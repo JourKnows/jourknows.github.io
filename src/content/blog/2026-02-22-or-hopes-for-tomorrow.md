@@ -4,7 +4,7 @@ pubDatetime: 2026-02-22
 modDatetime: 2026-02-22
 title: 𝗙𝗘𝗔𝗧𝗨𝗥𝗘 | A Hug that Spoke
 ogImage: 𝗙𝗘𝗔𝗧𝗨𝗥𝗘 | A Hug that Spoke
-slug: hopes-for-tomorrow
+slug: hug-that-spoke
 featured: true
 draft: false
 tags:
