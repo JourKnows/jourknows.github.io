@@ -10,7 +10,7 @@ export interface Props {
 const { activeNav } = Astro.props;
 ---
 
-<header style="background-color: #182566; color: #ffffff;">
+<header class="sticky top-0 z-50 w-full bg-[#182566] text-white shadow-md">
   <a id="skip-to-content" href="#main-content">Skip to content</a>
   <div class="nav-container">
     <div class="top-nav-wrap">
@@ -18,7 +18,7 @@ const { activeNav } = Astro.props;
         <img
           src="https://i.imgur.com/r5nCUdx.png"
           alt={SITE.title}
-          style="background: transparent; border: none;"
+          class="border-none bg-transparent"
           width={LOGO_IMAGE.width}
           height={LOGO_IMAGE.height}
         />
@@ -49,7 +49,8 @@ const { activeNav } = Astro.props;
             <line x1="6" y1="6" x2="18" y2="18" class="close"></line>
           </svg>
         </button>
-        <ul id="menu-items" class="display-none sm:flex" style="color: #ffffff;">
+        
+        <ul id="menu-items" class="hidden sm:flex">
           <li>
             <a href="/posts/" class={activeNav === "posts" ? "active" : ""}>
               Posts
@@ -68,9 +69,9 @@ const { activeNav } = Astro.props;
           <li>
             <LinkButton
               href="/search/"
-              className={`focus-outline p-3 sm:p-1 ${
+              className={`focus-outline flex items-center justify-center p-3 sm:p-1 ${
                 activeNav === "search" ? "active" : ""
-              } flex`}
+              }`}
               ariaLabel="search"
               title="Search"
             >
@@ -78,7 +79,8 @@ const { activeNav } = Astro.props;
                 xmlns="http://www.w3.org/2000/svg"
                 class="scale-125 sm:scale-100"
                 fill="currentColor"
-                ><path
+              >
+                <path
                   d="M19.023 16.977a35.13 35.13 0 0 1-1.367-1.384c-.372-.378-.596-.653-.596-.653l-2.8-1.337A6.962 6.962 0 0 0 16 9c0-3.859-3.14-7-7-7S2 5.141 2 9s3.14 7 7 7c1.763 0 3.37-.66 4.603-1.739l1.337 2.8s.275.224.653.596c.387.363.896.854 1.384 1.367l1.358 1.392.604.646 2.121-2.121-.646-.604c-.379-.372-.885-.866-1.391-1.36zM9 14c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z"
                 ></path>
               </svg>
@@ -100,41 +102,32 @@ const { activeNav } = Astro.props;
     @apply mx-auto flex max-w-3xl flex-col items-center justify-between sm:flex-row;
   }
   .top-nav-wrap {
-    @apply relative flex w-full items-start justify-between p-4 sm:items-center sm:py-8;
+    @apply relative flex w-full items-center justify-between p-4 sm:py-6;
   }
   .logo {
-    @apply absolute py-1 text-xl font-semibold sm:static sm:text-2xl;
+    @apply py-1 text-xl font-semibold sm:text-2xl;
   }
   .hamburger-menu {
     @apply self-end p-2 sm:hidden;
   }
   .hamburger-menu svg {
-    @apply h-6 w-6 scale-125;
-    stroke: #ffffff;
+    @apply h-7 w-7;
   }
 
   nav {
-    @apply flex w-full flex-col items-center sm:ml-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0;
+    @apply flex w-full flex-col items-center sm:ml-2 sm:flex-row sm:justify-end sm:py-0;
   }
   nav ul {
-    @apply mt-4 grid w-44 grid-cols-2 grid-rows-4 gap-x-2 gap-y-2 sm:ml-0 sm:mt-0 sm:w-auto sm:gap-x-5 sm:gap-y-0;
+    @apply w-full flex-col items-center gap-y-4 pb-6 pt-2 sm:w-auto sm:flex-row sm:gap-x-6 sm:gap-y-0 sm:pb-0 sm:pt-0;
   }
   nav ul li {
-    @apply col-span-2 flex items-center justify-center;
+    @apply flex w-full items-center justify-center sm:w-auto;
   }
   nav ul li a {
-    @apply w-full px-4 py-3 text-center font-medium sm:my-0 sm:px-2 sm:py-1;
-    color: #ffffff;
+    @apply block w-full px-4 py-3 text-center text-lg font-medium transition-colors sm:px-2 sm:py-1 sm:text-base;
   }
   nav ul li a:hover {
     color: rgb(var(--color-accent));
-  }
-  nav ul li:nth-last-child(2) a {
-    @apply w-auto;
-  }
-  nav ul li:nth-last-child(1),
-  nav ul li:nth-last-child(2) {
-    @apply col-span-1;
   }
   nav a.active {
     @apply underline decoration-wavy decoration-2 underline-offset-4;
@@ -143,22 +136,14 @@ const { activeNav } = Astro.props;
     @apply fill-skin-accent;
   }
 
-  nav button {
-    @apply p-1;
-  }
+  /* SVG Icon adjustments */
   nav button svg {
-    @apply h-6 w-6 hover:fill-skin-accent;
-    fill: #ffffff;
+    @apply hover:fill-skin-accent;
   }
-  #theme-btn {
-    @apply p-3 sm:p-1;
-  }
-  #theme-btn svg {
-    @apply scale-125 hover:rotate-12 sm:scale-100;
-  }
-
+  
+  /* Menu Toggle Animations */
   .menu-icon line {
-    @apply transition-opacity duration-75 ease-in-out;
+    @apply transition-opacity duration-150 ease-in-out;
   }
   .menu-icon .close {
     opacity: 0;
@@ -173,7 +158,6 @@ const { activeNav } = Astro.props;
 
 <script>
   function toggleNav() {
-    // Toggle menu
     const menuBtn = document.querySelector(".hamburger-menu");
     const menuIcon = document.querySelector(".menu-icon");
     const menuItems = document.querySelector("#menu-items");
@@ -184,9 +168,12 @@ const { activeNav } = Astro.props;
       menuBtn.setAttribute("aria-expanded", menuExpanded ? "false" : "true");
       menuBtn.setAttribute(
         "aria-label",
-        menuExpanded ? "Open Menu" : "Close Menu"
+        menuExpanded ? "Close Menu" : "Open Menu"
       );
-      menuItems?.classList.toggle("display-none");
+      
+      // Toggles Tailwind classes instead of custom 'display-none'
+      menuItems?.classList.toggle("hidden");
+      menuItems?.classList.toggle("flex");
     });
   }
 
