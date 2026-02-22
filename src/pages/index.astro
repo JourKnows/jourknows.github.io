@@ -151,11 +151,12 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   
   /* Hero Redesign Specific */
   .hero-gradient {
-    /* FIXED: Changed from-skin-accent/10 to from-[rgba(var(--color-accent),0.1)] */
-    @apply rounded-xl bg-gradient-to-br from-[rgba(var(--color-accent),0.1)] to-skin-card p-6 mb-8 border border-skin-line;
+    /* FIXED: Swapped all skin-* gradients to direct CSS variables */
+    @apply rounded-xl bg-gradient-to-br from-[rgba(var(--color-accent),0.1)] to-[rgba(var(--color-card),1)] p-6 mb-8 border border-skin-line;
   }
   .hero-title-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-skin-accent to-skin-base inline-block;
+    /* FIXED: Swapped from-skin-accent and to-skin-base */
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[rgba(var(--color-accent),1)] to-[rgba(var(--color-text-base),1)] inline-block;
   }
   .hero-cta-wrapper {
     @apply mt-8 flex flex-col sm:flex-row gap-4 items-center;
