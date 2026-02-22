@@ -22,33 +22,46 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 <Layout>
   <Header />
   <main id="main-content">
-    <section id="hero">
-      <h1>JourKnows</h1>
-      <a
-        target="_blank"
-        href="/rss.xml"
-        class="rss-link"
-        aria-label="rss feed"
-        title="RSS Feed"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" class="rss-icon"
-          ><path
-            d="M19 20.001C19 11.729 12.271 5 4 5v2c7.168 0 13 5.832 13 13.001h2z"
-          ></path><path
-            d="M12 20.001h2C14 14.486 9.514 10 4 10v2c4.411 0 8 3.589 8 8.001z"
-          ></path><circle cx="6" cy="18" r="2"></circle>
-        </svg>
-        <span class="sr-only">RSS Feed</span>
-      </a>
+    <section id="hero" class="hero-gradient mt-8">
+      <div class="flex items-center justify-between flex-wrap gap-4">
+        <h1 class="hero-title-gradient !my-0">JourKnows</h1>
+        <a
+          target="_blank"
+          href="/rss.xml"
+          class="rss-link !mb-0 flex items-center gap-2 hover:text-skin-accent transition-colors"
+          aria-label="rss feed"
+          title="RSS Feed"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="rss-icon !mb-0 !scale-100"
+            ><path
+              d="M19 20.001C19 11.729 12.271 5 4 5v2c7.168 0 13 5.832 13 13.001h2z"
+            ></path><path
+              d="M12 20.001h2C14 14.486 9.514 10 4 10v2c4.411 0 8 3.589 8 8.001z"
+            ></path><circle cx="6" cy="18" r="2"></circle>
+          </svg>
+          <span class="font-medium hidden sm:inline-block">RSS Feed</span>
+          <span class="sr-only">RSS Feed</span>
+        </a>
+      </div>
 
-      <p>
-        Journalism for All!
+      <p class="text-lg mt-6 text-skin-base/80 max-w-2xl leading-relaxed">
+        <strong>Journalism for All!</strong> Welcome to a platform dedicated to making high-quality, impactful journalism accessible to everyone. We cover the stories that matter most, breaking down complex issues into clear, insightful reporting.
       </p>
+      
+      <div class="hero-cta-wrapper">
+        <a href="/posts" class="hero-btn-primary text-center">
+          Read Latest Articles
+        </a>
+        <a href="/about" class="hero-btn-secondary text-center">
+          About Us
+        </a>
+      </div>
+
       {
         // only display if at least one social link is enabled
         socialCount > 0 && (
-          <div class="social-wrapper">
-            <div class="social-links">Social Links:</div>
+          <div class="social-wrapper mt-8 border-t border-skin-line/50 pt-6">
+            <div class="social-links font-medium text-skin-base/70">Connect with us:</div>
             <Socials />
           </div>
         )
@@ -134,6 +147,23 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   }
   .social-links {
     @apply mb-1 mr-2 whitespace-nowrap sm:mb-0;
+  }
+  
+  /* Hero Redesign Specific */
+  .hero-gradient {
+    @apply rounded-xl bg-gradient-to-br from-skin-accent/10 to-skin-card p-6 mb-8 border border-skin-line;
+  }
+  .hero-title-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-skin-accent to-skin-base inline-block;
+  }
+  .hero-cta-wrapper {
+    @apply mt-8 flex flex-col sm:flex-row gap-4 items-center;
+  }
+  .hero-btn-primary {
+    @apply bg-skin-accent text-skin-inverted px-6 py-3 rounded-md font-semibold hover:opacity-90 transition-opacity;
+  }
+  .hero-btn-secondary {
+    @apply border-2 border-skin-accent text-skin-accent px-6 py-3 rounded-md font-semibold hover:bg-skin-accent hover:text-skin-inverted transition-colors;
   }
 
   /* ===== Featured & Recent Posts Sections ===== */
