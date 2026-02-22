@@ -9,12 +9,25 @@ featured: true
 draft: false
 tags:
   - LITERARY
+description: 𝗟𝗜𝗧𝗘𝗥𝗔𝗥𝗬 | Hopes for Tomorrow
 ---
+```
+<iframe 
+  width="100%" 
+  height="400" 
+  src="https://www.youtube.com/embed/MGvT4LHzRw0" 
+  title="YouTube video player" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+  allowfullscreen>
+</iframe>
+```
+
+  
+  
 𝗖𝗼𝗻𝘁𝗲𝗻𝘁 𝗪𝗮𝗿𝗻𝗶𝗻𝗴: Suicide, Suicidal Ideation, and Depression
 
-This piece discusses themes that may be triggering for some readers. Reader discretion is advised.  
-  
-<iframe width="100%" height="400" src="[https://www.youtube.com/embed/MGvT4LHzRw0](https://www.youtube.com/embed/MGvT4LHzRw0)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen> </iframe>
+This piece discusses themes that may be triggering for some readers. Reader discretion is advised.
 
 \-
 
