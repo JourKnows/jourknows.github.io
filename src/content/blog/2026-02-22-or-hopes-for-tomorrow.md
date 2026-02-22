@@ -1,50 +1,32 @@
 ---
-author: Darr Restauro
-pubDatetime: 2026-02-20
-modDatetime: 2026-02-20
-title: 𝗟𝗜𝗧𝗘𝗥𝗔𝗥𝗬 | Hopes for Tomorrow
-ogImage: 𝗟𝗜𝗧𝗘𝗥𝗔𝗥𝗬 | Hopes for Tomorrow
+author: Axel Delino
+pubDatetime: 2026-02-22
+modDatetime: 2026-02-22
+title: 𝗙𝗘𝗔𝗧𝗨𝗥𝗘 | A Hug that Spoke
+ogImage: 𝗙𝗘𝗔𝗧𝗨𝗥𝗘 | A Hug that Spoke
 slug: hopes-for-tomorrow
 featured: true
 draft: false
 tags:
-  - LITERARY
-description: 𝗟𝗜𝗧𝗘𝗥𝗔𝗥𝗬 | Hopes for Tomorrow
+  - feature
+description: 𝗙𝗘𝗔𝗧𝗨𝗥𝗘 | A Hug that Spoke
 ---
-\[!\[Watch the video\]([https://img.youtube.com/vi/MGvT4LHzRw0/maxresdefault.jpg)\](https://youtu.be/MGvT4LHzRw0)](https://img.youtube.com/vi/MGvT4LHzRw0/maxresdefault.jpg\)]\(https://youtu.be/MGvT4LHzRw0\))
+![](/640331408_122168176970861171_1754203537249393007_n.jpg)
 
   
   
-𝗖𝗼𝗻𝘁𝗲𝗻𝘁 𝗪𝗮𝗿𝗻𝗶𝗻𝗴: Suicide, Suicidal Ideation, and Depression
+There are moments when words become unnecessary, especially when a single gesture carries the weight of fear, loneliness, and the quiet appeal to be comforted. A trembling body. A small hand wanting to hold and embrace something soft. A silent cry for safety.
 
-This piece discusses themes that may be triggering for some readers. Reader discretion is advised.
+In a video clip that touched millions online, a young monkey named Punch wrapped himself around a stuffed toy after being attacked and distressed by other older monkeys around him. To seek comfort, Punch fled away from them, clutched a stuffed toy tightly to his chest, and sought reassurance in the only way he knew how. And in that fragile embrace, a strong statement surfaced: emotions are not exclusive to humans.
 
-\-
+What unfolded on the screen did not look like something new. Like a child retreating into the safety of a favorite blanket or a beloved toy after being bullied in the playground, the urge to seek comfort in moments of sadness is something deeply familiar to us.
 
-𝗟𝗜𝗧𝗘𝗥𝗔𝗥𝗬 | Hopes for Tomorrow
+However, for years, people have drawn a line between “us” and “them”. Us being rational beings, where emotion and feelings are always present, and them being instinct-driven creatures, with no sense for such things. Yet, studies in animal behaviour proved that such boundaries do not exist. They can feel. They form bonds. They respond to rejection. They seek comfort.
 
-Another life taken away because of depression. As I sigh heavily each day, I wonder—when will it be my turn? Or will I be the next one?
+Punch’s hug was not a performance. It was more than just a cute internet moment. It was a raw display of vulnerability. It was instinct shaped by feeling.
 
-Even though my life keeps pulling me into a dark dungeon filled with fear, pain and anxiety, I hold myself together so I will not break apart.
+In our generation, where we commonly believe what we see online, it is always easy to focus on the surface of everything. But, moments like this require a deeper reflection. If animals feel fear and seek comfort, then how should “we” respond?
 
-Sometimes, as I look upward with tears softly sliding down my cheeks, I ponder what tomorrow will hold. It feels like everything is slowly growing distant.
+Perhaps the lesson is simple: empathy should not stop at our own kind. And maybe that is the real story—not that a monkey cutely hugged a toy, but a reminder that the capacity to feel is not ours alone.
 
-I long for a life where I no longer ask if the morning rays will touch me, like how the sun strikes everything with its orange and yellow light.
-
-With my body full of dreadful thoughts, I worry that someday, I won’t be yawning with joy, like the birds that hum at dawn or reaching out my hands like the sky opening wide.
-
-Even as I wake to a new morning and survive another day, my heart still trembles at the thought of what’s to come next. I cannot clearly see if I will breathe in hope, as the Earth breathes life.
-
-Everything within me feels uncertain and cryptic. Will I ever run freely, like how the wind travels swiftly? I hope so.
-
-Day by day, I pray that I will ignite like fire burning endlessly. I pray that the trust I have in myself will not fail me, and that it will overcome every temptation.
-
-When everything becomes certain, will I flow with awe, like how water moves so freely? I will still admire how it weaves strong waves, and I will conquer them.
-
-Someday, it will not be my turn. Still, this journey will not be easy. There will be times when I think of giving up, of ending everything, but like the cycle of morning and night, I will fight endlessly.
-
-In the labyrinth of my mind, I promise myself, when I wish for tomorrow to glow like diamonds shimmering in the sky, I will be fine.
-
-Lastly, darkness may lure, nor come near me, I will build a barrier of hopes that I will not let it swallow me. Like how sunrise chases the night away, I'll stand firm and seize everything tomorrow.
-
-𝗪𝗼𝗿𝗱𝘀 𝗯𝘆 Darr Restauro
+𝗪𝗼𝗿𝗱𝘀 𝗯𝘆 Axel Delino
