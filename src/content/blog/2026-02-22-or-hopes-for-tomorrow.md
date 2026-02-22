@@ -11,17 +11,7 @@ tags:
   - LITERARY
 description: 𝗟𝗜𝗧𝗘𝗥𝗔𝗥𝗬 | Hopes for Tomorrow
 ---
-```
-<iframe 
-  width="100%" 
-  height="400" 
-  src="https://www.youtube.com/embed/MGvT4LHzRw0" 
-  title="YouTube video player" 
-  frameborder="0" 
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-  allowfullscreen>
-</iframe>
-```
+\[!\[Watch the video\]([https://img.youtube.com/vi/MGvT4LHzRw0/maxresdefault.jpg)\](https://youtu.be/MGvT4LHzRw0)](https://img.youtube.com/vi/MGvT4LHzRw0/maxresdefault.jpg\)]\(https://youtu.be/MGvT4LHzRw0\))
 
   
   
