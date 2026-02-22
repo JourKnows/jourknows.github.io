@@ -22,13 +22,19 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 <Layout>
   <Header />
   <main id="main-content">
-    <section id="hero" class="hero-gradient mt-8">
+    <section id="hero" class="hero-container mt-8">
       <div class="flex items-center justify-between flex-wrap gap-4">
-        <h1 class="hero-title-gradient !my-0">JourKnows</h1>
+        <h1 class="!my-0">
+          <img 
+            src="https://i.imgur.com/r5nCUdx.png" 
+            alt="JourKnows Logo" 
+            class="h-12 w-auto sm:h-16 object-contain"
+          />
+        </h1>
         <a
           target="_blank"
           href="/rss.xml"
-          class="rss-link !mb-0 flex items-center gap-2 hover:text-skin-accent transition-colors"
+          class="rss-link !mb-0 flex items-center gap-2 hover:opacity-80 transition-opacity text-white"
           aria-label="rss feed"
           title="RSS Feed"
         >
@@ -44,7 +50,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
         </a>
       </div>
 
-      <p class="text-lg mt-6 text-skin-base/80 max-w-2xl leading-relaxed">
+      <p class="text-lg mt-6 text-white/90 max-w-2xl leading-relaxed">
         <strong>Journalism for All!</strong> Welcome to a platform dedicated to making high-quality, impactful journalism accessible to everyone. We cover the stories that matter most, breaking down complex issues into clear, insightful reporting.
       </p>
       
@@ -60,9 +66,11 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       {
         // only display if at least one social link is enabled
         socialCount > 0 && (
-          <div class="social-wrapper mt-8 border-t border-skin-line/50 pt-6">
-            <div class="social-links font-medium text-skin-base/70">Connect with us:</div>
-            <Socials />
+          <div class="social-wrapper mt-8 border-t border-white/20 pt-6">
+            <div class="social-links font-medium text-white/80">Connect with us:</div>
+            <div class="hero-socials">
+              <Socials />
+            </div>
           </div>
         )
       }
@@ -131,13 +139,13 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     @apply pb-6 pt-8;
   }
   #hero h1 {
-    @apply my-4 inline-block text-3xl font-bold sm:my-8 sm:text-5xl;
+    @apply my-4 inline-block sm:my-8;
   }
   #hero .rss-link {
     @apply mb-6;
   }
   #hero .rss-icon {
-    @apply mb-2 h-6 w-6 scale-110 fill-skin-accent sm:mb-3 sm:scale-125;
+    @apply mb-2 h-6 w-6 scale-110 fill-white sm:mb-3 sm:scale-125;
   }
   #hero p {
     @apply my-2;
@@ -150,22 +158,22 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   }
   
   /* Hero Redesign Specific */
-  .hero-gradient {
-    /* FIXED: Swapped all skin-* gradients to direct CSS variables */
-    @apply rounded-xl bg-gradient-to-br from-[rgba(var(--color-accent),0.1)] to-[rgba(var(--color-card),1)] p-6 mb-8 border border-skin-line;
-  }
-  .hero-title-gradient {
-    /* FIXED: Swapped from-skin-accent and to-skin-base */
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[rgba(var(--color-accent),1)] to-[rgba(var(--color-text-base),1)] inline-block;
+  .hero-container {
+    @apply rounded-xl bg-[#182566] text-white p-6 sm:p-10 mb-8 shadow-lg;
   }
   .hero-cta-wrapper {
     @apply mt-8 flex flex-col sm:flex-row gap-4 items-center;
   }
   .hero-btn-primary {
-    @apply bg-skin-accent text-skin-inverted px-6 py-3 rounded-md font-semibold hover:opacity-90 transition-opacity;
+    @apply bg-white text-[#182566] px-6 py-3 rounded-md font-bold hover:bg-gray-100 transition-colors w-full sm:w-auto;
   }
   .hero-btn-secondary {
-    @apply border-2 border-skin-accent text-skin-accent px-6 py-3 rounded-md font-semibold hover:bg-skin-accent hover:text-skin-inverted transition-colors;
+    @apply border-2 border-white text-white px-6 py-3 rounded-md font-bold hover:bg-white hover:text-[#182566] transition-colors w-full sm:w-auto;
+  }
+
+  /* Force Socials inside the hero to be white */
+  .hero-socials :global(svg) {
+    @apply fill-white hover:opacity-80 transition-opacity;
   }
 
   /* ===== Featured & Recent Posts Sections ===== */
