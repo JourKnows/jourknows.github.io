@@ -2,9 +2,10 @@
 import { LOGO_IMAGE, SITE } from "@config";
 import Hr from "./Hr.astro";
 import LinkButton from "./LinkButton.astro";
+import { Image } from "astro:assets";
 
 export interface Props {
-  activeNav?: "posts" | "categories" | "about" | "search";
+  activeNav?: "posts" | "tags" | "about" | "search";
 }
 
 const { activeNav } = Astro.props;
@@ -15,12 +16,13 @@ const { activeNav } = Astro.props;
   <div class="nav-container">
     <div class="top-nav-wrap">
       <a href="/" class="logo whitespace-nowrap">
-        <img
+        <Image
           src="https://i.imgur.com/r5nCUdx.png"
           alt={SITE.title}
           class="border-none bg-transparent"
           width={LOGO_IMAGE.width}
           height={LOGO_IMAGE.height}
+          loading={"eager"}
         />
       </a>
       <nav id="nav-menu">
@@ -49,7 +51,7 @@ const { activeNav } = Astro.props;
             <line x1="6" y1="6" x2="18" y2="18" class="close"></line>
           </svg>
         </button>
-        
+
         <ul id="menu-items" class="hidden sm:flex">
           <li>
             <a href="/posts/" class={activeNav === "posts" ? "active" : ""}>
@@ -57,8 +59,8 @@ const { activeNav } = Astro.props;
             </a>
           </li>
           <li>
-            <a href="/tags/" class={activeNav === "categories" ? "active" : ""}>
-              Categories
+            <a href="/tags/" class={activeNav === "tags" ? "active" : ""}>
+              Tags
             </a>
           </li>
           <li>
@@ -140,7 +142,7 @@ const { activeNav } = Astro.props;
   nav button svg {
     @apply hover:fill-skin-accent;
   }
-  
+
   /* Menu Toggle Animations */
   .menu-icon line {
     @apply transition-opacity duration-150 ease-in-out;
@@ -170,7 +172,7 @@ const { activeNav } = Astro.props;
         "aria-label",
         menuExpanded ? "Close Menu" : "Open Menu"
       );
-      
+
       // Toggles Tailwind classes instead of custom 'display-none'
       menuItems?.classList.toggle("hidden");
       menuItems?.classList.toggle("flex");
