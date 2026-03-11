@@ -8,12 +8,12 @@ export default function getFirstImage(markdownBody: string): string | null {
 
   const mdMatch = markdownBody.match(mdRegex);
   if (mdMatch && mdMatch[1]) {
-    return mdMatch[1];
+    return mdMatch[1].replace(/^@assets\//, "/assets/");
   }
 
   const htmlMatch = markdownBody.match(htmlRegex);
   if (htmlMatch && htmlMatch[1]) {
-    return htmlMatch[1];
+    return htmlMatch[1].replace(/^@assets\//, "/assets/");
   }
 
   return null;
