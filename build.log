@@ -3,32 +3,30 @@
 > astro build && jampack ./dist
 
 Re-optimizing dependencies because vite config has changed
-01:12:22 [vite] Re-optimizing dependencies because vite config has changed
-01:12:22 Types generated 199ms
-01:12:22 [build] output: "static"
-01:12:22 [build] directory: /home/unknown-device/jourknows.github.io/dist/
-01:12:22 [build] Collecting build info...
-01:12:22 [build] ✓ Completed in 237ms.
-01:12:22 [build] Building static entrypoints...
+01:14:58 [vite] Re-optimizing dependencies because vite config has changed
+01:14:58 Types generated 219ms
+01:14:58 [build] output: "static"
+01:14:58 [build] directory: /home/unknown-device/jourknows.github.io/dist/
+01:14:58 [build] Collecting build info...
+01:14:58 [build] ✓ Completed in 257ms.
+01:14:58 [build] Building static entrypoints...
 Browserslist: caniuse-lite is outdated. Please run:
   npx update-browserslist-db@latest
   Why you should do it regularly: https://github.com/browserslist/update-db#readme
-01:12:25 [build] ✓ Completed in 2.98s.
+01:15:01 [build] ✓ Completed in 3.28s.
 
  building client (vite) 
-01:12:25 [vite] transforming...
-01:12:26 [vite] ✓ 53 modules transformed.
-01:12:26 [vite] rendering chunks...
-01:12:26 [vite] computing gzip size...
-01:12:26 [vite] dist/_astro/hoisted.ZNMvpbjk.js        0.51 kB │ gzip:  0.29 kB
-01:12:26 [vite] dist/_astro/jsx-runtime.9YwcPWTT.js    0.92 kB │ gzip:  0.58 kB
-01:12:26 [vite] dist/_astro/AppNavbar.wRmZzmnk.js      4.72 kB │ gzip:  2.01 kB
-01:12:26 [vite] dist/_astro/index.LFf77hJu.js          6.71 kB │ gzip:  2.67 kB
-01:12:26 [vite] dist/_astro/hoisted.l-JsOPk0.js       12.47 kB │ gzip:  4.38 kB
-01:12:26 [vite] dist/_astro/Search.9Xg5ye-l.js        28.17 kB │ gzip: 10.81 kB
-01:12:26 [vite] dist/_astro/client.olTvLX7Y.js       135.32 kB │ gzip: 43.73 kB
-01:12:26 [vite] ✓ built in 577ms
+01:15:01 [vite] transforming...
+01:15:02 [vite] ✓ 53 modules transformed.
+01:15:02 [vite] rendering chunks...
+01:15:02 [vite] computing gzip size...
+01:15:02 [vite] dist/_astro/hoisted.ZNMvpbjk.js        0.51 kB │ gzip:  0.29 kB
+01:15:02 [vite] dist/_astro/jsx-runtime.9YwcPWTT.js    0.92 kB │ gzip:  0.58 kB
+01:15:02 [vite] dist/_astro/AppNavbar.WxJcJ2GG.js      4.80 kB │ gzip:  2.05 kB
+01:15:02 [vite] dist/_astro/index.LFf77hJu.js          6.71 kB │ gzip:  2.67 kB
+01:15:02 [vite] dist/_astro/hoisted.l-JsOPk0.js       12.47 kB │ gzip:  4.38 kB
+01:15:02 [vite] dist/_astro/Search.9Xg5ye-l.js        28.17 kB │ gzip: 10.81 kB
+01:15:02 [vite] dist/_astro/client.olTvLX7Y.js       135.32 kB │ gzip: 43.73 kB
+01:15:02 [vite] ✓ built in 528ms
 
  generating static routes 
-01:12:31 λ src/pages/posts/[slug]/index.png.ts
-01:12:31   ├─ /posts/adding-new-posts-in-astropaper-theme.png

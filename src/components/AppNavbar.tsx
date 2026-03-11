@@ -127,7 +127,7 @@ export default function AppNavbar({
 
                 {/* Dropdown Menu */}
                 {categoriesOpen && (
-                  <div className="absolute top-full right-0 mt-2 py-2 w-48 bg-[#000060] rounded-xl shadow-xl flex flex-col z-50 animate-[jkFadeUp_0.15s_ease_both]">
+                  <div className="absolute top-full right-0 mt-2 py-2 w-48 bg-[#000060] rounded-xl shadow-xl flex flex-col z-[999] animate-[jkFadeUp_0.15s_ease_both] overflow-hidden">
                     {navLinks
                       .filter(link => link.href !== "/")
                       .map(link => (
@@ -201,8 +201,11 @@ export default function AppNavbar({
         >
           <nav
             onClick={e => e.stopPropagation()}
-            className="absolute right-0 w-[min(260px,80vw)] bg-[#000060] shadow-[-4px_0_24px_rgba(0,0,0,0.4)] min-h-[100svh] pt-1.5 animate-[jkFadeUp_0.2s_ease_both]"
-            style={{ top: compact ? 58 : 70 }}
+            className="absolute right-0 w-[min(260px,80vw)] bg-[#000060] shadow-[-4px_0_24px_rgba(0,0,0,0.4)] min-h-[100svh] pt-1.5 animate-[jkFadeUp_0.2s_ease_both] overflow-y-auto pb-24"
+            style={{
+              top: compact ? 58 : 70,
+              height: `calc(100svh - ${compact ? 58 : 70}px)`,
+            }}
           >
             <div className="px-5 py-3 font-display font-black text-[11px] text-white/50 tracking-[1px] mb-1">
               CATEGORIES
