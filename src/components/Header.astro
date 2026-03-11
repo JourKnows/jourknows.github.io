@@ -16,11 +16,10 @@ const { activeNav } = Astro.props;
     <div class="top-nav-wrap">
       <a href="/" class="logo whitespace-nowrap">
         <img
-          src="https://i.imgur.com/r5nCUdx.png"
+          src="https://i.imgur.com/iYJvOsW.png"
           alt={SITE.title}
-          class="border-none bg-transparent"
-          width={LOGO_IMAGE.width}
-          height={LOGO_IMAGE.height}
+          class="border-none bg-transparent w-auto object-contain"
+          style={`height: ${LOGO_IMAGE.height}px;`}
         />
       </a>
       <nav id="nav-menu">
