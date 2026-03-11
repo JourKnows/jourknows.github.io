@@ -21,7 +21,7 @@ const categoryTags = allTags.filter(t => mainCategoryKeys.includes(t.tag));
 
 const navLinks = [
   { label: "HOME", href: "/" },
-  ...categoryTags.map(t => ({
+  ...allTags.map(t => ({
     label: t.tagName.toUpperCase(),
     href: `/tags/${t.tag}`,
   })),
