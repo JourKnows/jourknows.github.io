@@ -44,6 +44,8 @@ export default function AppNavbar({
     return false;
   };
 
+  const [categoriesOpen, setCategoriesOpen] = useState(false);
+
   return (
     <>
       <header className="sticky top-0 z-[200] bg-jk-navy-grad shadow-[0_2px_16px_rgba(0,0,77,0.5)]">
@@ -55,24 +57,28 @@ export default function AppNavbar({
             height: compact ? 58 : 70,
           }}
         >
-          {/* Search button */}
-          <button
-            onClick={() => setSearchOpen(s => !s)}
-            className="jk-btn bg-transparent border-none cursor-pointer p-1.5 shrink-0"
-            aria-label="Search"
+          {/* Left spacer / Search */}
+          <div
+            className="flex items-center"
+            style={{ width: compact ? "auto" : 140 }}
           >
-            <img
-              src={SEARCH_ICON}
-              alt="search"
-              className="w-5 h-5 opacity-80"
-            />
-          </button>
+            <button
+              onClick={() => setSearchOpen(s => !s)}
+              className="jk-btn bg-transparent border-none cursor-pointer p-1.5 shrink-0"
+              aria-label="Search"
+            >
+              <img
+                src={SEARCH_ICON}
+                alt="search"
+                className="w-5 h-5 opacity-80"
+              />
+            </button>
+          </div>
 
-          {/* Logo */}
+          {/* Logo (Centered) */}
           <a
             href="/"
-            className="flex-1 flex items-center gap-2.5 cursor-pointer outline-none no-underline"
-            style={{ justifyContent: compact ? "center" : "flex-start" }}
+            className="flex-1 flex items-center justify-center cursor-pointer outline-none no-underline"
           >
             <img
               src={LOGO}
@@ -80,30 +86,66 @@ export default function AppNavbar({
               className="rounded-lg object-cover shrink-0"
               style={{ width: compact ? 38 : 50, height: compact ? 38 : 50 }}
             />
-            {!compact && (
-              <span className="font-display font-extrabold text-[17px] text-white tracking-[0.5px]">
-                JourKnows
-              </span>
-            )}
           </a>
 
           {/* Desktop nav links */}
           {!compact && (
-            <nav className="flex gap-5 items-center">
-              {navLinks.map(link => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className={`jk-btn bg-transparent border-none cursor-pointer font-display tracking-[0.5px] whitespace-nowrap pb-0.5 outline-none no-underline block ${
-                    isActive(link.href)
+            <nav
+              className="flex items-center"
+              style={{ width: 140, justifyContent: "flex-end" }}
+            >
+              <div
+                className="relative"
+                onMouseEnter={() => setCategoriesOpen(true)}
+                onMouseLeave={() => setCategoriesOpen(false)}
+              >
+                <button
+                  className={`jk-btn bg-transparent border-none cursor-pointer font-display tracking-[0.5px] whitespace-nowrap pb-0.5 outline-none flex items-center gap-1 ${
+                    categoriesOpen || activeHref !== "/"
                       ? "font-extrabold text-white border-b-2 border-white"
                       : "font-semibold text-white/75 border-b-2 border-transparent hover:text-white"
                   }`}
-                  style={{ fontSize: 12 }}
+                  style={{ fontSize: 13 }}
                 >
-                  {link.label}
-                </a>
-              ))}
+                  CATEGORIES
+                  <svg
+                    width="10"
+                    height="6"
+                    viewBox="0 0 10 6"
+                    fill="none"
+                    className={`transition-transform duration-200 ${categoriesOpen ? "rotate-180" : ""}`}
+                  >
+                    <path
+                      d="M1 1L5 5L9 1"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+
+                {/* Dropdown Menu */}
+                {categoriesOpen && (
+                  <div className="absolute top-full right-0 mt-2 py-2 w-48 bg-[#000060] rounded-xl shadow-xl flex flex-col z-50 animate-[jkFadeUp_0.15s_ease_both]">
+                    {navLinks
+                      .filter(link => link.href !== "/")
+                      .map(link => (
+                        <a
+                          key={link.label}
+                          href={link.href}
+                          className={`block px-4 py-2.5 font-display text-[13px] tracking-[0.5px] no-underline ${
+                            isActive(link.href)
+                              ? "font-extrabold text-white bg-white/10"
+                              : "font-semibold text-white/80 hover:text-white hover:bg-white/5"
+                          } transition-colors`}
+                        >
+                          {link.label}
+                        </a>
+                      ))}
+                  </div>
+                )}
+              </div>
             </nav>
           )}
 
@@ -162,19 +204,24 @@ export default function AppNavbar({
             className="absolute right-0 w-[min(260px,80vw)] bg-[#000060] shadow-[-4px_0_24px_rgba(0,0,0,0.4)] min-h-[100svh] pt-1.5 animate-[jkFadeUp_0.2s_ease_both]"
             style={{ top: compact ? 58 : 70 }}
           >
-            {navLinks.map(link => (
-              <a
-                key={link.label}
-                href={link.href}
-                className={`block w-full text-left border-none cursor-pointer font-display text-[15px] text-white py-3.5 px-5 tracking-[0.5px] outline-none no-underline ${
-                  isActive(link.href)
-                    ? "font-extrabold bg-white/12 border-l-[3px] border-l-white"
-                    : "font-semibold bg-transparent border-l-[3px] border-l-transparent"
-                }`}
-              >
-                {link.label}
-              </a>
-            ))}
+            <div className="px-5 py-3 font-display font-black text-[11px] text-white/50 tracking-[1px] mb-1">
+              CATEGORIES
+            </div>
+            {navLinks
+              .filter(link => link.href !== "/")
+              .map(link => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className={`block w-full text-left border-none cursor-pointer font-display text-[15px] text-white py-3.5 px-5 tracking-[0.5px] outline-none no-underline ${
+                    isActive(link.href)
+                      ? "font-extrabold bg-white/12 border-l-[3px] border-l-white"
+                      : "font-semibold bg-transparent border-l-[3px] border-l-transparent"
+                  }`}
+                >
+                  {link.label}
+                </a>
+              ))}
           </nav>
         </div>
       )}
