@@ -9,6 +9,7 @@ featured: false
 draft: false
 tags:
   - Opinion
+description: 𝗢𝗣𝗜𝗡𝗬𝗢𝗡 | Uniporme ng Hustisya’t Karahasan
 ---
 ![](/644374153_122169712358861171_6752842328629072553_n.jpg)
 
