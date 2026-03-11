@@ -31,11 +31,13 @@ const {
 
 const { Content } = await post.render();
 
-const ogImageUrl = typeof ogImage === "string" ? ogImage : ogImage?.src;
-const ogUrl = new URL(
-  ogImageUrl ?? `/posts/${slugifyStr(title)}.png`,
-  Astro.url.origin
-).href;
+// Extract the first markdown image from the post body using regex
+const markdownImageMatch = post.body.match(/!\[.*?\]\((.*?)\)/);
+const firstMarkdownImage = markdownImageMatch ? markdownImageMatch[1] : null;
+const ogUrl =
+  firstMarkdownImage ||
+  (typeof ogImage === "string" ? ogImage : ogImage?.src) ||
+  new URL(`/posts/${slugifyStr(title)}.png`, Astro.url.origin).href;
 
 const layoutProps = {
   title: `${title} | ${SITE.title}`,
@@ -184,5 +186,12 @@ const navLinks = [
   }
   .prose :global(p:first-of-type::first-letter) {
     @apply font-bold text-lg;
+  }
+</style>
+
+<style is:global>
+  /* Hide the first image in the article body if it was extracted for the hero background */
+  #article img:first-of-type {
+    display: none;
   }
 </style>
