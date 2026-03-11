@@ -18,6 +18,18 @@ module.exports = {
     },
 
     extend: {
+      colors: {
+        "jk-primary": "#00046D",
+        "jk-secondary": "#020269",
+        "jk-accent": "#314DEB",
+        "jk-orange": "#F8A42E",
+        "jk-red": "#AE1914",
+      },
+      backgroundImage: {
+        "jk-navy-grad": "linear-gradient(135deg,#000080 0%,#000055 100%)",
+        "jk-footer-grad": "radial-gradient(ellipse at center,#00046d 0%,#080a5a 25%,#0f1146 50%,#171832 75%,#1e1e1e 100%)",
+        "jk-btn-grad": "linear-gradient(to right,#00046d,#0007d3)",
+      },
       textColor: {
         skin: {
           base: withOpacity("--color-text-base"),
@@ -55,6 +67,8 @@ module.exports = {
       },
       fontFamily: {
         mono: ["IBM Plex Mono", "monospace"],
+        sans: ["Inter", "sans-serif"],
+        display: ["Montserrat", "sans-serif"],
       },
 
       typography: {

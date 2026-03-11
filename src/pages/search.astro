@@ -1,30 +1,56 @@
 ---
 import { getCollection } from "astro:content";
-import { SITE } from "@config";
-import Layout from "@layouts/Layout.astro";
-import Main from "@layouts/Main.astro";
-import Header from "@components/Header.astro";
-import Footer from "@components/Footer.astro";
-import SearchBar from "@components/Search";
 import getSortedPosts from "@utils/getSortedPosts";
+import getUniqueTags from "@utils/getUniqueTags";
+import AppNavbar from "@components/AppNavbar";
+import AppFooter from "@components/AppFooter.astro";
+import SearchBar from "@components/Search";
 
-// Retrieve all published articles
 const posts = await getCollection("blog", ({ data }) => !data.draft);
 const sortedPosts = getSortedPosts(posts);
 
-// List of items to search in
 const searchList = sortedPosts.map(({ data, slug }) => ({
   title: data.title,
   description: data.description,
   data,
   slug,
 }));
+
+const tagsAll = getUniqueTags(posts);
+const navLinks = [
+  { label: "HOME", href: "/" },
+  ...tagsAll.map(t => ({
+    label: t.tagName.toUpperCase(),
+    href: `/tags/${t.tag}`,
+  })),
+];
 ---
 
-<Layout title={`Search | ${SITE.title}`}>
-  <Header activeNav="search" />
-  <Main pageTitle="Search" pageDesc="Search any article ...">
-    <SearchBar client:load searchList={searchList} />
-  </Main>
-  <Footer />
-</Layout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>JourKnows | Search</title>
+  </head>
+  <body
+    class="font-display min-h-[100vh] bg-[#fafafa]/70 overflow-x-hidden max-w-[100vw] m-0 p-0 text-[#1e1e1e]"
+  >
+    <AppNavbar client:load activeHref="/search" navLinks={navLinks} />
+
+    <div class="jk-page min-h-[70vh]">
+      <div
+        class="max-w-[1080px] mx-auto px-4 sm:px-7 lg:px-11 pt-[22px] sm:pt-[28px] lg:pt-[36px] pb-12"
+      >
+        <h1
+          class="font-display font-black text-[26px] sm:text-[34px] text-[#00046D] mb-4"
+        >
+          Search Articles
+        </h1>
+        <SearchBar client:load searchList={searchList} />
+      </div>
+    </div>
+
+    <AppFooter />
+  </body>
+</html>

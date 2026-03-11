@@ -1,24 +1,49 @@
 ---
 import { getCollection } from "astro:content";
-import Header from "@components/Header.astro";
-import Footer from "@components/Footer.astro";
-import Layout from "@layouts/Layout.astro";
-import Main from "@layouts/Main.astro";
-import Tag from "@components/Tag.astro";
 import getUniqueTags from "@utils/getUniqueTags";
-import { SITE } from "@config";
+import AppNavbar from "@components/AppNavbar";
+import AppFooter from "@components/AppFooter.astro";
+import Tag from "@components/Tag.astro";
 
 const posts = await getCollection("blog");
-
 let tags = getUniqueTags(posts);
+
+const navLinks = [
+  { label: "HOME", href: "/" },
+  ...tags.map(t => ({
+    label: t.tagName.toUpperCase(),
+    href: `/tags/${t.tag}`,
+  })),
+];
 ---
 
-<Layout title={`Tags | ${SITE.title}`}>
-  <Header activeNav="tags" />
-  <Main pageTitle="Tags" pageDesc="All the tags used in posts.">
-    <ul>
-      {tags.map(({ tag }) => <Tag {tag} size="lg" />)}
-    </ul>
-  </Main>
-  <Footer />
-</Layout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>JourKnows | Tags</title>
+  </head>
+  <body
+    class="font-display min-h-[100vh] bg-[#fafafa]/70 overflow-x-hidden max-w-[100vw] m-0 p-0 text-[#1e1e1e]"
+  >
+    <AppNavbar client:load activeHref="/tags" navLinks={navLinks} />
+
+    <div class="jk-page min-h-[70vh]">
+      <div
+        class="max-w-[1080px] mx-auto px-4 sm:px-7 lg:px-11 pt-[22px] sm:pt-[28px] lg:pt-[36px] pb-12"
+      >
+        <h1
+          class="font-display font-black text-[26px] sm:text-[34px] text-[#00046D] mb-4"
+        >
+          All Topics
+        </h1>
+        <ul class="flex flex-wrap gap-3 list-none p-0 m-0">
+          {tags.map(({ tag }) => <Tag tag={tag} size="lg" />)}
+        </ul>
+      </div>
+    </div>
+
+    <AppFooter />
+  </body>
+</html>

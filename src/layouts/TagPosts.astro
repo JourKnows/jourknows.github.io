@@ -1,12 +1,16 @@
 ---
 import { type CollectionEntry } from "astro:content";
 import Layout from "@layouts/Layout.astro";
-import Main from "@layouts/Main.astro";
-import Header from "@components/Header.astro";
-import Footer from "@components/Footer.astro";
-import Card from "@components/Card";
+import AppNavbar from "@components/AppNavbar";
+import AppFooter from "@components/AppFooter.astro";
+import SectionHeader from "@components/SectionHeader.astro";
+import HeaderCard from "@components/HeaderCard.astro";
+import SmallCard from "@components/SmallCard.astro";
 import Pagination from "@components/Pagination.astro";
 import { SITE } from "@config";
+import { HERO_IMG, SECTION_COLORS } from "@utils/constants";
+import { getCollection } from "astro:content";
+import getUniqueTags from "@utils/getUniqueTags";
 
 export interface Props {
   currentPage: number;
@@ -17,33 +21,85 @@ export interface Props {
 }
 
 const { currentPage, totalPages, paginatedPosts, tag, tagName } = Astro.props;
+
+// Find matching section styling
+const secColor = SECTION_COLORS[tag] || SECTION_COLORS.default;
+
+const headerPost = paginatedPosts[0];
+const smallPosts = paginatedPosts.slice(1);
+
+const allPosts = await getCollection("blog");
+const tagsAll = getUniqueTags(allPosts);
+const navLinks = [
+  { label: "HOME", href: "/" },
+  ...tagsAll.map(t => ({
+    label: t.tagName.toUpperCase(),
+    href: `/tags/${t.tag}`,
+  })),
+];
 ---
 
-<Layout title={`Tag: ${tagName} | ${SITE.title}`}>
-  <Header activeNav="tags" />
-  <Main
-    pageTitle={[`Tag:`, `${tagName}`]}
-    titleTransition={tag}
-    pageDesc={`All the articles with the tag "${tagName}".`}
-  >
-    <h1 slot="title" transition:name={tag}>{`Tag:${tag}`}</h1>
-    <ul>
+<Layout title={`Section: ${tagName} | ${SITE.title}`}>
+  <AppNavbar client:load activeHref={`/tags/${tag}`} navLinks={navLinks} />
+
+  <div class="jk-page bg-white min-h-[100vh]">
+    {/* Banner */}
+    <div class="relative h-[190px] sm:h-[250px] lg:h-[310px] overflow-hidden">
+      <img src={HERO_IMG} alt="" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-b from-black/20 to-black/75">
+      </div>
+      <div
+        class="absolute bottom-[18px] sm:bottom-[32px] left-0 right-0 px-4 sm:px-7 lg:px-[68px]"
+      >
+        <h1
+          class="font-display font-black text-[26px] sm:text-[34px] lg:text-[44px] text-white mb-1 uppercase"
+        >
+          {tagName}
+        </h1>
+        <p
+          class="font-display text-[11px] sm:text-[14px] text-white/80 max-w-[520px]"
+        >
+          Catch up on the latest {tagName.toLowerCase()} updates and insightful articles
+          from our contributors.
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="max-w-[1280px] mx-auto px-4 sm:px-7 lg:px-[68px] py-[22px] sm:py-[26px] lg:py-[36px] pb-[36px] sm:pb-[44px] lg:pb-[52px]"
+    >
       {
-        paginatedPosts.map(({ data, slug }) => (
-          <Card href={`/posts/${slug}/`} frontmatter={data} />
-        ))
+        headerPost && (
+          <div class="mb-7">
+            <SectionHeader label="TOP ARTICLE" color={secColor} />
+            <HeaderCard post={headerPost} />
+          </div>
+        )
       }
-    </ul>
-  </Main>
 
-  <Pagination
-    {currentPage}
-    {totalPages}
-    prevUrl={`/tags/${tag}${
-      currentPage - 1 !== 1 ? "/" + (currentPage - 1) : ""
-    }/`}
-    nextUrl={`/tags/${tag}/${currentPage + 1}/`}
-  />
+      {
+        smallPosts.length > 0 && (
+          <div>
+            <SectionHeader label="LATEST" color={secColor} />
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-[18px] mb-5">
+              {smallPosts.map(post => (
+                <SmallCard post={post} category={tagName} />
+              ))}
+            </div>
 
-  <Footer noMarginTop={totalPages > 1} />
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              prevUrl={`/tags/${tag}${
+                currentPage - 1 !== 1 ? "/" + (currentPage - 1) : ""
+              }/`}
+              nextUrl={`/tags/${tag}/${currentPage + 1}/`}
+            />
+          </div>
+        )
+      }
+    </div>
+
+    <AppFooter />
+  </div>
 </Layout>

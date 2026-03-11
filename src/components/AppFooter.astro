@@ -1,0 +1,109 @@
+---
+import { LOREM } from "../utils/constants";
+import { SOCIALS } from "../config";
+import socialIcons from "../assets/socialIcons";
+
+const LOGO =
+  "https://www.figma.com/api/mcp/asset/10230cad-3002-4e4d-b964-2e3e2f2df496";
+const LETTER_ICON =
+  "https://www.figma.com/api/mcp/asset/49ecb15a-e553-4c2a-ae4a-d40d7fbbc864";
+---
+
+<footer class="bg-jk-footer-grad text-white/85 pt-7 sm:pt-11">
+  <div
+    class="max-w-[1400px] mx-auto px-4 sm:px-12 grid grid-cols-1 sm:grid-cols-[1fr_2fr_1fr] gap-6 sm:gap-10"
+  >
+    <!-- Logo & Description -->
+    <div>
+      <img
+        src={LOGO}
+        alt="JourKnows"
+        class="w-[66px] h-[66px] rounded-[10px] mb-2.5 object-cover"
+      />
+      <p
+        class="text-[11px] opacity-80 leading-[1.75] max-w-[220px] font-display"
+      >
+        {LOREM.slice(0, 115)}
+      </p>
+    </div>
+
+    <!-- Newsletter & Socials -->
+    <div>
+      <p class="font-display font-extrabold text-[13px] mb-2.5">
+        Subscribe to our newsletter
+      </p>
+      <form class="flex mb-3 max-w-sm">
+        <div
+          class="flex items-center border border-white/60 flex-1 rounded-l-[5px] overflow-hidden"
+        >
+          <img
+            src={LETTER_ICON}
+            alt=""
+            class="w-[13px] h-[18px] mx-[7px] object-contain shrink-0"
+          />
+          <input
+            type="email"
+            placeholder="your@email.com"
+            class="flex-1 bg-transparent border-none outline-none text-white/80 text-[11px] font-display py-[7px] px-0.5 min-w-0 placeholder:text-white/50"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          class="jk-btn bg-[#fafafa] border-none cursor-pointer font-display font-bold text-jk-primary text-[11px] px-3 rounded-r-[5px] whitespace-nowrap"
+        >
+          SUBSCRIBE
+        </button>
+      </form>
+      <div class="flex gap-4">
+        {
+          SOCIALS.filter(social => social.active).map(social => (
+            <a
+              href={social.href}
+              class="hover:opacity-100 opacity-90 transition-opacity"
+              title={social.linkTitle}
+            >
+              <Fragment set:html={socialIcons[social.name]} />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Links -->
+    <div class="flex gap-6">
+      <div>
+        <p class="font-display font-extrabold text-[12px] mb-2">JourKnows PH</p>
+        {
+          ["About Us", "Contact Us", "Privacy Policy"].map(link => (
+            <a
+              href="#"
+              class="block font-display text-[12px] mb-1.5 cursor-pointer opacity-85 hover:opacity-100 hover:text-white transition-opacity"
+            >
+              {link}
+            </a>
+          ))
+        }
+      </div>
+      <div>
+        <p class="font-display font-extrabold text-[12px] mb-2">Quick Links</p>
+        {
+          ["Volunteer", "Subscribe"].map(link => (
+            <a
+              href="#"
+              class="block font-display text-[12px] mb-1.5 cursor-pointer opacity-85 hover:opacity-100 hover:text-white transition-opacity"
+            >
+              {link}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="mt-6 bg-gradient-to-r from-[#797979] via-[#505050] to-[#272727] text-center py-2.5 px-4 font-display text-[11px] text-white/70"
+  >
+    © JourKnows 2025. All rights reserved.
+  </div>
+</footer>

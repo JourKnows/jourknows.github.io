@@ -138,4 +138,26 @@
   .focus-outline {
     @apply outline-2 outline-offset-1 outline-skin-fill focus-visible:no-underline focus-visible:outline-dashed;
   }
+
+  /* Custom JourKnows UI utilities */
+  @keyframes jkFadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+  .jk-page {
+    animation: jkFadeUp 0.28s ease both;
+  }
+  .jk-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .jk-card:active {
+    opacity: 0.85;
+  }
+  .jk-btn {
+    transition: opacity 0.15s, transform 0.15s;
+  }
+  .jk-btn:active {
+    opacity: 0.78;
+    transform: scale(0.96);
+  }
 }

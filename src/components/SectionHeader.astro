@@ -1,0 +1,22 @@
+---
+export interface Props {
+  label: string;
+  color: string;
+}
+
+const { label, color } = Astro.props;
+---
+
+<div class="flex items-center mb-[18px]">
+  <div class={`px-3.5 py-1.5 shrink-0 ${color}`}>
+    <span
+      class="font-display font-extrabold text-[15px] text-[#fafafa] tracking-[0.3px] whitespace-nowrap"
+    >
+      {label}
+    </span>
+  </div>
+  <div
+    class="flex-1 h-1 rounded-sm bg-gradient-to-r from-[#041eb0] to-[#fffbfb] min-w-0"
+  >
+  </div>
+</div>

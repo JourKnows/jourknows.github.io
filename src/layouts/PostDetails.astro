@@ -1,13 +1,17 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import Header from "@components/Header.astro";
-import Footer from "@components/Footer.astro";
-import Tag from "@components/Tag.astro";
-import Datetime from "@components/Datetime";
+import AppNavbar from "@components/AppNavbar";
+import AppFooter from "@components/AppFooter.astro";
+import ArticleReactions from "@components/ArticleReactions";
+import ArticleComments from "@components/ArticleComments";
+import SmallCard from "@components/SmallCard.astro";
 import type { CollectionEntry } from "astro:content";
 import { slugifyStr } from "@utils/slugify";
-import ShareLinks from "@components/ShareLinks.astro";
 import { SITE } from "@config";
+import { HERO_IMG, AUTHOR_IMG } from "@utils/constants";
+import { getCollection } from "astro:content";
+import getSortedPosts from "@utils/getSortedPosts";
+import getUniqueTags from "@utils/getUniqueTags";
 
 export interface Props {
   post: CollectionEntry<"blog">;
@@ -44,178 +48,185 @@ const layoutProps = {
   ogImage: ogUrl,
   scrollSmooth: true,
 };
+
+// Format dates nicely
+const pubDateStr = new Date(pubDatetime).toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  hour: "numeric",
+  minute: "2-digit",
+});
+
+// Grab recent posts for "Related articles"
+const allPosts = await getCollection("blog");
+const recentRelated = getSortedPosts(allPosts)
+  .filter(p => p.slug !== post.slug)
+  .slice(0, 4);
+
+const tagsAll = getUniqueTags(allPosts);
+const navLinks = [
+  { label: "HOME", href: "/" },
+  ...tagsAll.map(t => ({
+    label: t.tagName.toUpperCase(),
+    href: `/tags/${t.tag}`,
+  })),
+];
 ---
 
 <Layout {...layoutProps}>
-  <Header />
+  <AppNavbar
+    client:load
+    activeHref={`/tags/${tags[0] ? slugifyStr(tags[0]) : "news"}`}
+    navLinks={navLinks}
+  />
 
-  <!-- <div class="progress-container fixed top-0 z-10 h-1 w-full bg-skin-fill">
-    <div class="progress-bar h-1 w-0 bg-skin-accent" id="myBar"></div>
-  </div> -->
-
-  <div class="mx-auto flex w-full max-w-3xl justify-start px-2">
-    <button
-      class="focus-outline mb-2 mt-8 flex hover:opacity-75"
-      onclick="(() => (history.length === 1) ? window.location = '/' : history.back())()"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg"
-        ><path
-          d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"
-        ></path>
-      </svg><span>Go back</span>
-    </button>
-  </div>
-  <main id="main-content">
-    <h1 transition:name={slugifyStr(title)} class="post-title">{title}</h1>
-    <Datetime
-      pubDatetime={pubDatetime}
-      modDatetime={modDatetime}
-      size="lg"
-      className="my-2"
-    />
-    <article id="article" role="article" class="prose mx-auto mt-8 max-w-3xl">
-      <Content />
-    </article>
-
-    <ul class="my-8">
-      {tags.map(tag => <Tag tag={slugifyStr(tag)} />)}
-    </ul>
-
-    <div
-      class="flex flex-col-reverse items-center justify-between gap-6 sm:flex-row-reverse sm:items-end sm:gap-4"
-    >
-      <button
-        id="back-to-top"
-        class="focus-outline whitespace-nowrap py-1 hover:opacity-75"
+  <div class="jk-page bg-white min-h-screen text-[#1e1e1e] font-display">
+    {/* ── Hero ── */}
+    <div class="relative h-[270px] sm:h-[360px] lg:h-[450px] overflow-hidden">
+      <img src={HERO_IMG} alt="" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-b from-black/10 to-black/75">
+      </div>
+      <div
+        class="absolute bottom-[18px] sm:bottom-[34px] left-0 right-0 px-4 sm:px-7 lg:px-12"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" class="rotate-90">
-          <path
-            d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"
-          ></path>
-        </svg>
-        <span>Back to Top</span>
-      </button>
-
-      <ShareLinks />
+        <div
+          class="inline-block bg-[#fafafa] px-[13px] py-[3px] rounded-[20px] mb-2 shadow-[0_4px_4px_rgba(0,0,0,0.5)]"
+        >
+          <span
+            class="font-display font-bold text-[12px] text-transparent bg-clip-text bg-gradient-to-l from-[#0007d3] to-[#00046d] uppercase"
+          >
+            {tags[0] || "NEWS"}
+          </span>
+        </div>
+        <h1
+          class="font-display font-black text-[19px] sm:text-[26px] lg:text-[34px] text-[#fafafa] leading-[1.2] mb-2.5 max-w-[680px]"
+        >
+          {title}
+        </h1>
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div class="flex items-center gap-[10px]">
+            <img
+              src={AUTHOR_IMG}
+              alt=""
+              class="w-[30px] sm:w-[42px] h-[38px] sm:h-[52px] object-cover rounded shadow shrink-0"
+            />
+            <span
+              class="font-sans italic text-[#fafafa] text-[12px] sm:text-[14px]"
+              >by {author || "Journalist"}</span
+            >
+          </div>
+          <button
+            onclick="(() => (history.length === 1) ? window.location = '/' : history.back())()"
+            class="jk-btn bg-transparent border border-white rounded-[20px] px-3.5 py-[7px] cursor-pointer font-display font-extrabold text-white text-[12px]"
+          >
+            ← BACK
+          </button>
+        </div>
+      </div>
     </div>
-  </main>
-  <Footer />
+
+    {/* ── Content ── */}
+    <div
+      class="max-w-[1080px] mx-auto px-4 sm:px-7 lg:px-11 pt-[22px] sm:pt-[28px] lg:pt-[36px]"
+    >
+      <p
+        class="font-display font-semibold text-[12px] text-[#1e1e1e]/60 mb-[18px]"
+      >
+        Published {pubDateStr}
+      </p>
+
+      {/* Feature image block */}
+      <div
+        class="bg-[#d9d9d9] rounded-[10px] sm:rounded-[14px] h-[190px] sm:h-[260px] lg:h-[360px] mb-2 relative"
+      >
+        <p
+          class="absolute bottom-[9px] right-3 font-display italic text-[10px] text-[#1e1e1e]/60 m-0"
+        >
+          Photo by {author || "Contributor"}
+        </p>
+      </div>
+
+      <article
+        id="article"
+        class="prose max-w-none text-justify mt-8 mb-8 font-display"
+      >
+        <Content />
+      </article>
+
+      <ArticleReactions client:visible />
+
+      {/* ── About Writer ── */}
+      <div class="rounded-[10px] sm:rounded-[14px] overflow-hidden mb-8">
+        <div class="h-1 bg-gradient-to-r from-[#170075] to-[#2c00db]"></div>
+        <div
+          class="p-3.5 sm:p-6 bg-[#fafafa] flex flex-col sm:flex-row gap-3 sm:gap-6 items-start"
+        >
+          <img
+            src={AUTHOR_IMG}
+            alt="Writer"
+            class="w-16 h-20 sm:w-[150px] sm:h-[185px] object-cover rounded-lg shrink-0 shadow-md"
+          />
+          <div class="mt-1 sm:mt-0">
+            <h3
+              class="font-display font-bold text-[13px] sm:text-[20px] text-transparent bg-clip-text bg-gradient-to-r from-[#0e00aa] to-[#05005c] mb-1.5 sm:mb-2.5"
+            >
+              ABOUT THE WRITER
+            </h3>
+            <p
+              class="font-display text-[12px] sm:text-[14px] text-[#1e1e1e] leading-[1.7] sm:leading-[1.8] sm:text-justify m-0"
+            >
+              {author} is a dedicated journalist contributing to JourKnows. Covering
+              extensive stories regarding local events and feature pieces.
+            </p>
+          </div>
+        </div>
+        <div
+          class="h-[36px] sm:h-[56px] bg-gradient-to-r from-[#170075] to-[#2c00db]"
+        >
+        </div>
+      </div>
+
+      <ArticleComments client:visible />
+
+      {/* ── Related articles ── */}
+      <div class="border-t-[2px] border-[#0007d3] pt-[22px] mb-8 lg:mb-12">
+        <h2
+          class="font-display font-extrabold text-[17px] sm:text-[22px] text-[#000055] mb-[18px]"
+        >
+          RELATED ARTICLES
+        </h2>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-[9px] sm:gap-[18px]">
+          {
+            recentRelated.map(relatedPost => (
+              <SmallCard
+                post={relatedPost}
+                category={relatedPost.data.tags[0] || "NEWS"}
+              />
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <AppFooter />
+  </div>
 </Layout>
 
 <style>
-  main {
-    @apply mx-auto w-full max-w-3xl px-4 pb-12;
+  .prose {
+    font-size: 14px;
+    line-height: 1.85;
   }
-  .post-title {
-    @apply text-2xl font-semibold text-skin-accent;
+  @media (min-width: 640px) {
+    .prose {
+      font-size: 16px;
+    }
+  }
+  .prose :global(p) {
+    @apply mb-[18px];
+  }
+  .prose :global(p:first-of-type::first-letter) {
+    @apply font-bold text-lg;
   }
 </style>
-
-<script is:inline>
-  /** Create a progress indicator
-   *  at the top */
-  function createProgressBar() {
-    // Create the main container div
-    const progressContainer = document.createElement("div");
-    progressContainer.className =
-      "progress-container fixed top-0 z-10 h-1 w-full bg-skin-fill";
-
-    // Create the progress bar div
-    const progressBar = document.createElement("div");
-    progressBar.className = "progress-bar h-1 w-0 bg-skin-accent";
-    progressBar.id = "myBar";
-
-    // Append the progress bar to the progress container
-    progressContainer.appendChild(progressBar);
-
-    // Append the progress container to the document body or any other desired parent element
-    document.body.appendChild(progressContainer);
-  }
-  createProgressBar();
-
-  /** Update the progress bar
-   *  when user scrolls */
-  function updateScrollProgress() {
-    const winScroll =
-      document.body.scrollTop || document.documentElement.scrollTop;
-    const height =
-      document.documentElement.scrollHeight -
-      document.documentElement.clientHeight;
-    const scrolled = (winScroll / height) * 100;
-    if (document) {
-      const myBar = document.getElementById("myBar");
-      if (myBar) {
-        myBar.style.width = scrolled + "%";
-      }
-    }
-  }
-  document.addEventListener("scroll", updateScrollProgress);
-
-  /** Attaches links to headings in the document,
-   *  allowing sharing of sections easily */
-  function addHeadingLinks() {
-    let headings = Array.from(document.querySelectorAll("h2, h3, h4, h5, h6"));
-    for (let heading of headings) {
-      heading.classList.add("group");
-      let link = document.createElement("a");
-      link.innerText = "#";
-      link.className = "heading-link hidden group-hover:inline-block ml-2";
-      link.href = "#" + heading.id;
-      link.ariaHidden = "true";
-      heading.appendChild(link);
-    }
-  }
-  addHeadingLinks();
-
-  /** Attaches copy buttons to code blocks in the document,
-   * allowing users to copy code easily. */
-  function attachCopyButtons() {
-    let copyButtonLabel = "Copy";
-    let codeBlocks = Array.from(document.querySelectorAll("pre"));
-
-    for (let codeBlock of codeBlocks) {
-      let wrapper = document.createElement("div");
-      wrapper.style.position = "relative";
-
-      let copyButton = document.createElement("button");
-      copyButton.className =
-        "copy-code absolute right-3 -top-3 rounded bg-skin-card px-2 py-1 text-xs leading-4 text-skin-base font-medium";
-      copyButton.innerHTML = copyButtonLabel;
-      codeBlock.setAttribute("tabindex", "0");
-      codeBlock.appendChild(copyButton);
-
-      // wrap codebock with relative parent element
-      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
-      wrapper.appendChild(codeBlock);
-
-      copyButton.addEventListener("click", async () => {
-        await copyCode(codeBlock, copyButton);
-      });
-    }
-
-    async function copyCode(block, button) {
-      let code = block.querySelector("code");
-      let text = code?.innerText;
-
-      await navigator.clipboard.writeText(text ?? "");
-
-      // visual feedback that task is completed
-      button.innerText = "Copied";
-
-      setTimeout(() => {
-        button.innerText = copyButtonLabel;
-      }, 700);
-    }
-  }
-  attachCopyButtons();
-
-  /** Scrolls the document to the top when
-   * the "Back to Top" button is clicked. */
-  function backToTop() {
-    document.querySelector("#back-to-top")?.addEventListener("click", () => {
-      document.body.scrollTop = 0; // For Safari
-      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    });
-  }
-  backToTop();
-</script>
