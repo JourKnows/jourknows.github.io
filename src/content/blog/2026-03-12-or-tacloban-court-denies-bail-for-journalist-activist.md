@@ -1,7 +1,7 @@
 ---
 author: Carla Peñalosa
-pubDatetime: 2026-02-25
-modDatetime: 2026-02-25
+pubDatetime: 2025-12-10
+modDatetime: 2025-12-10
 title: 𝗡𝗘𝗪𝗦 | Tacloban court denies bail for journalist, activist
 ogImage: 𝗡𝗘𝗪𝗦 | Tacloban court denies bail for journalist, activist
 slug: tacloban-court-bail
