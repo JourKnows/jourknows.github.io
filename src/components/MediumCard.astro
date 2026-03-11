@@ -11,9 +11,8 @@ const { post } = Astro.props;
 
 <a
   href={`/posts/${post.slug}/`}
-  class="jk-card bg-[#f4f4f4] rounded-[10px] overflow-hidden cursor-pointer flex shadow-[0_1px_4px_rgba(0,0,0,0.08)] outline-none"
+  class="jk-card bg-[#f4f4f4] rounded-[10px] overflow-hidden cursor-pointer flex flex-col shadow-[0_1px_4px_rgba(0,0,0,0.08)] outline-none"
 >
-  <div class="bg-[#d9d9d9] w-[110px] min-w-[110px] shrink-0"></div>
   <div class="px-[13px] py-[11px] flex-1 min-w-0">
     <p
       class="font-display font-bold text-[13px] text-[#151515] mb-1.5 leading-[1.4] line-clamp-2"

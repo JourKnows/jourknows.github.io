@@ -11,6 +11,7 @@ import { SITE } from "@config";
 import { HERO_IMG, SECTION_COLORS } from "@utils/constants";
 import { getCollection } from "astro:content";
 import getUniqueTags from "@utils/getUniqueTags";
+import getFirstImage from "@utils/getFirstImage";
 
 export interface Props {
   currentPage: number;
@@ -27,6 +28,8 @@ const secColor = SECTION_COLORS[tag] || SECTION_COLORS.default;
 
 const headerPost = paginatedPosts[0];
 const smallPosts = paginatedPosts.slice(1);
+
+const heroImage = headerPost ? getFirstImage(headerPost.body) : null;
 
 const allPosts = await getCollection("blog");
 const tagsAll = getUniqueTags(allPosts);
@@ -49,15 +52,26 @@ const navLinks = [
 
   <div class="jk-page bg-white min-h-[100vh]">
     {/* Banner */}
-    <div class="relative h-[190px] sm:h-[250px] lg:h-[310px] overflow-hidden">
-      <img src={HERO_IMG} alt="" class="w-full h-full object-cover" />
-      <div class="absolute inset-0 bg-gradient-to-b from-black/20 to-black/75">
-      </div>
+    <div
+      class={`relative h-[190px] sm:h-[250px] lg:h-[310px] overflow-hidden ${!heroImage ? secColor : ""}`}
+    >
+      {
+        heroImage && (
+          <>
+            <img
+              src={heroImage}
+              alt={tagName}
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-gradient-to-b from-black/20 to-black/75" />
+          </>
+        )
+      }
       <div
         class="absolute bottom-[18px] sm:bottom-[32px] left-0 right-0 px-4 sm:px-7 lg:px-[68px]"
       >
         <h1
-          class="font-display font-black text-[26px] sm:text-[34px] lg:text-[44px] text-white mb-1 uppercase"
+          class="font-display font-black text-[26px] sm:text-[34px] lg:text-[44px] text-white mb-1 uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
         >
           {tagName}
         </h1>

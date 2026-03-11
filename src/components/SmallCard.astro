@@ -12,16 +12,14 @@ const { post, category } = Astro.props;
 
 <a
   href={`/posts/${post.slug}/`}
-  class="jk-card bg-[#f4f4f4] rounded-[10px] overflow-hidden cursor-pointer shadow-[0_1px_4px_rgba(0,0,0,0.08)] block outline-none"
+  class="jk-card bg-[#f4f4f4] rounded-[10px] overflow-hidden cursor-pointer flex flex-col shadow-[0_1px_4px_rgba(0,0,0,0.08)] outline-none"
 >
-  <div class="bg-[#d9d9d9] h-[120px] relative">
+  <div class="px-[11px] pt-[10px] pb-[13px]">
     <span
-      class="absolute bottom-[7px] left-[7px] bg-black/55 text-white font-display font-bold text-[10px] px-[7px] py-[2px] rounded uppercase"
+      class="inline-block bg-[#0007d3] text-white font-display font-bold text-[10px] px-[7px] py-[2px] rounded uppercase mb-2"
     >
       {category}
     </span>
-  </div>
-  <div class="px-[11px] pt-[10px] pb-[13px]">
     <p
       class="font-display font-bold text-[12px] text-[#151515] mb-[5px] leading-[1.4] line-clamp-2"
     >

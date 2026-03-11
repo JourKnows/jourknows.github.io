@@ -86,49 +86,32 @@ const navLinks = [
   />
 
   <div class="jk-page bg-white min-h-screen text-[#1e1e1e] font-display">
-    {/* ── Hero ── */}
-    <div
-      class="relative h-[270px] sm:h-[360px] lg:h-[450px] overflow-hidden bg-[#d9d9d9]"
-    >
-      {
-        ogUrl && (
-          <img src={ogUrl} alt={title} class="w-full h-full object-cover" />
-        )
-      }
-      <div class="absolute inset-0 bg-gradient-to-b from-black/10 to-black/75">
-      </div>
-      <div
-        class="absolute bottom-[18px] sm:bottom-[34px] left-0 right-0 px-4 sm:px-7 lg:px-12"
-      >
-        <div
-          class="inline-block bg-[#fafafa] px-[13px] py-[3px] rounded-[20px] mb-2 shadow-[0_4px_4px_rgba(0,0,0,0.5)]"
-        >
-          <span
-            class="font-display font-bold text-[12px] text-transparent bg-clip-text bg-gradient-to-l from-[#0007d3] to-[#00046d] uppercase"
-          >
-            {tags[0] || "NEWS"}
-          </span>
-        </div>
-        <h1
-          class="font-display font-black text-[19px] sm:text-[26px] lg:text-[34px] text-[#fafafa] leading-[1.2] mb-2.5 max-w-[680px]"
-        >
-          {title}
-        </h1>
-        <div class="flex items-center justify-end flex-wrap gap-2">
-          <button
-            onclick="(() => (history.length === 1) ? window.location = '/' : history.back())()"
-            class="jk-btn bg-transparent border border-white rounded-[20px] px-3.5 py-[7px] cursor-pointer font-display font-extrabold text-white text-[12px]"
-          >
-            ← BACK
-          </button>
-        </div>
-      </div>
-    </div>
-
     {/* ── Content ── */}
     <div
       class="max-w-[1080px] mx-auto px-4 sm:px-7 lg:px-11 pt-[22px] sm:pt-[28px] lg:pt-[36px]"
     >
+      <div class="flex items-center justify-between mb-4">
+        <div
+          class="inline-block bg-[#0007d3] px-[13px] py-[3px] rounded-[20px]"
+        >
+          <span class="font-display font-bold text-[12px] text-white uppercase">
+            {tags[0] || "NEWS"}
+          </span>
+        </div>
+        <button
+          onclick="(() => (history.length === 1) ? window.location = '/' : history.back())()"
+          class="jk-btn bg-transparent border border-[#0007d3] rounded-[20px] px-3.5 py-[7px] cursor-pointer font-display font-extrabold text-[#0007d3] hover:bg-[#0007d3]/10 transition-colors text-[12px]"
+        >
+          ← BACK
+        </button>
+      </div>
+
+      <h1
+        class="font-display font-black text-[24px] sm:text-[32px] lg:text-[42px] text-[#1e1e1e] leading-[1.2] mb-4"
+      >
+        {title}
+      </h1>
+
       <p
         class="font-display font-semibold text-[12px] text-[#1e1e1e]/60 mb-[18px]"
       >
