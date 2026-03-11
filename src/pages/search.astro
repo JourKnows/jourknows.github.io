@@ -17,9 +17,15 @@ const searchList = sortedPosts.map(({ data, slug }) => ({
 }));
 
 const tagsAll = getUniqueTags(posts);
+import { SECTION_COLORS } from "@utils/constants";
+const mainCategoryKeys = Object.keys(SECTION_COLORS).filter(
+  k => k !== "default"
+);
+const categoryTags = tagsAll.filter(t => mainCategoryKeys.includes(t.tag));
+
 const navLinks = [
   { label: "HOME", href: "/" },
-  ...tagsAll.map(t => ({
+  ...categoryTags.map(t => ({
     label: t.tagName.toUpperCase(),
     href: `/tags/${t.tag}`,
   })),

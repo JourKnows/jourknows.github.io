@@ -12,11 +12,15 @@ import { HERO_IMG, AUTHOR_IMG, SECTION_COLORS } from "@utils/constants";
 
 const posts = await getCollection("blog");
 const sortedPosts = getSortedPosts(posts);
-const tags = getUniqueTags(posts);
+const allTags = getUniqueTags(posts);
+const mainCategoryKeys = Object.keys(SECTION_COLORS).filter(
+  k => k !== "default"
+);
+const categoryTags = allTags.filter(t => mainCategoryKeys.includes(t.tag));
 
 const navLinks = [
   { label: "HOME", href: "/" },
-  ...tags.map(t => ({
+  ...categoryTags.map(t => ({
     label: t.tagName.toUpperCase(),
     href: `/tags/${t.tag}`,
   })),
@@ -107,7 +111,7 @@ const getPostsByCategory = (cat: string) => {
       {/* ── Category sections ── */}
       <div class="bg-[#fafafa]/70">
         {
-          tags.map(tagObj => {
+          categoryTags.map(tagObj => {
             const catTag = tagObj.tag;
             const label = tagObj.tagName.toUpperCase();
             const color = SECTION_COLORS[catTag] || SECTION_COLORS.default;
