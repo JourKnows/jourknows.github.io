@@ -14,10 +14,7 @@ import { HERO_IMG, SECTION_COLORS } from "@utils/constants";
 const posts = await getCollection("blog");
 const sortedPosts = getSortedPosts(posts);
 const allTags = getUniqueTags(posts);
-const mainCategoryKeys = Object.keys(SECTION_COLORS).filter(
-  k => k !== "default"
-);
-const categoryTags = allTags.filter(t => mainCategoryKeys.includes(t.tag));
+const categoryTags = allTags;
 
 const navLinks = [
   { label: "HOME", href: "/" },
@@ -139,20 +136,6 @@ const getPostsByCategory = (cat: string) => {
             );
           })
         }
-      </div>
-
-      {/* ── Know The Line ── */}
-      <div
-        class="px-[16px] sm:px-[28px] lg:px-[68px] py-[22px] sm:py-[26px] lg:py-[30px] pb-[32px] sm:pb-[38px] lg:pb-[44px] bg-white"
-      >
-        <SectionHeader label="KNOW THE LINE" color="bg-jk-primary" />
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 lg:gap-[18px]">
-          {
-            sortedPosts
-              .slice(0, 4)
-              .map(post => <SmallCard post={post} category="LITERARY" />)
-          }
-        </div>
       </div>
 
       <AppFooter />
