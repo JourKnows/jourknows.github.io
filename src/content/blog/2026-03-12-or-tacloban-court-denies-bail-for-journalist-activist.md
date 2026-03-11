@@ -7,12 +7,12 @@ ogImage: 𝗡𝗘𝗪𝗦 | Tacloban court denies bail for journalist, activist
 slug: tacloban-court-bail
 featured: true
 draft: false
+tags:
+  - News
 description: 𝗡𝗘𝗪𝗦 | Tacloban court denies bail for journalist, activist
 ---
 ![](/641633585_122168822666861171_3735020648027150980_n.jpg)
 
-  
-  
 Tacloban City’s Regional Trial Court has denied the bail petitions of community journalist Frenchie Mae Cumpio, and activist Marielle Domequil, the court confirmed on Monday, February 16.
 
 Judge Georgina Uy Perez cited the seriousness of the offense and the risk of continued involvement in prohibited activities in a nine-page decision on Feb. 13.
