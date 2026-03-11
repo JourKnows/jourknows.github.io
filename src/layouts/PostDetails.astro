@@ -88,8 +88,14 @@ const navLinks = [
 
   <div class="jk-page bg-white min-h-screen text-[#1e1e1e] font-display">
     {/* ── Hero ── */}
-    <div class="relative h-[270px] sm:h-[360px] lg:h-[450px] overflow-hidden">
-      <img src={HERO_IMG} alt="" class="w-full h-full object-cover" />
+    <div
+      class="relative h-[270px] sm:h-[360px] lg:h-[450px] overflow-hidden bg-[#d9d9d9]"
+    >
+      {
+        ogUrl && (
+          <img src={ogUrl} alt={title} class="w-full h-full object-cover" />
+        )
+      }
       <div class="absolute inset-0 bg-gradient-to-b from-black/10 to-black/75">
       </div>
       <div
@@ -129,17 +135,6 @@ const navLinks = [
       >
         Published {pubDateStr}
       </p>
-
-      {/* Feature image block */}
-      <div
-        class="bg-[#d9d9d9] rounded-[10px] sm:rounded-[14px] h-[190px] sm:h-[260px] lg:h-[360px] mb-2 relative"
-      >
-        <p
-          class="absolute bottom-[9px] right-3 font-display italic text-[10px] text-[#1e1e1e]/60 m-0"
-        >
-          Photo by {author || "Contributor"}
-        </p>
-      </div>
 
       <article
         id="article"
