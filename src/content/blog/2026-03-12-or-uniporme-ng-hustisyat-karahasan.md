@@ -10,6 +10,10 @@ draft: false
 tags:
   - Opinion
 ---
+![](/644374153_122169712358861171_6752842328629072553_n.jpg)
+
+  
+  
 Pinatunayan na naman ng PNP na hindi umiiral ang batas ng ating bansa.  
   
 Kamakailan lamang, muling pumutok ang isyu ng pagpapahirap sa PNP dahil sa umano’y power tripping at hazing. Ayon sa balita, may isang policewoman at ang kaniyang anak ang pinatay, at kasunod nito, isang pulis din ang pinatay at inilibing sa septic tank.  
