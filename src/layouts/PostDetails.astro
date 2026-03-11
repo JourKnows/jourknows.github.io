@@ -3,7 +3,6 @@ import Layout from "@layouts/Layout.astro";
 import AppNavbar from "@components/AppNavbar";
 import AppFooter from "@components/AppFooter.astro";
 import ArticleReactions from "@components/ArticleReactions";
-import ArticleComments from "@components/ArticleComments";
 import SmallCard from "@components/SmallCard.astro";
 import type { CollectionEntry } from "astro:content";
 import { slugifyStr } from "@utils/slugify";
@@ -192,8 +191,6 @@ const navLinks = [
         >
         </div>
       </div>
-
-      <ArticleComments client:visible />
 
       {/* ── Related articles ── */}
       <div class="border-t-[2px] border-[#0007d3] pt-[22px] mb-8 lg:mb-12">
