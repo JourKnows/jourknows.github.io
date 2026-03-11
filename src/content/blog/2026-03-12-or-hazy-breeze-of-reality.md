@@ -1,7 +1,7 @@
 ---
 author: Denise Lei Suba
-pubDatetime: 2026-02-18
-modDatetime: 2026-02-18
+pubDatetime: 2026-03-12
+modDatetime: 2026-02-12
 title: 𝗟𝗜𝗧𝗘𝗥𝗔𝗥𝗬 | Hazy Breeze of Reality
 ogImage: 𝗟𝗜𝗧𝗘𝗥𝗔𝗥𝗬 | Hazy Breeze of Reality
 slug: hazy-breeze-reality
@@ -22,6 +22,6 @@ How does it feel to have your name echo through the walls of such a happy home? 
 
 As the rain pours like the clouds are tearing up, grieving like it also had lost its spark, I quietly scooped half-filled spoon with rice and a piece of pork. The pork is cold, and it has absorbed the sauce while it was in the fridge; The rice wasn’t cold, though, it sat out so much that a bite felt like chewing clusters of sand.
 
-I could have always just made my own, just prepared, warm meal. But, it was never how warm or cold it was – nor was it about how it tasted. Whether I was eating anything at the dining table, it wasn’t important; I was still starved of the feeling of creating memories with those whom I had always cherished from the start. The crisp blow of air caressed my face of detachment – Is this the hazy breeze of my reality? Could I not be bitter about it at all?  
-  
+I could have always just made my own, just prepared, warm meal. But, it was never how warm or cold it was – nor was it about how it tasted. Whether I was eating anything at the dining table, it wasn’t important; I was still starved of the feeling of creating memories with those whom I had always cherished from the start. The crisp blow of air caressed my face of detachment – Is this the hazy breeze of my reality? Could I not be bitter about it at all?
+
 𝗪𝗿𝗶𝘁𝘁𝗲𝗻 𝗯𝘆 Denise Lei Suba
