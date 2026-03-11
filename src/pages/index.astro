@@ -9,7 +9,7 @@ import SectionHeader from "@components/SectionHeader.astro";
 import HeaderCard from "@components/HeaderCard.astro";
 import MediumCard from "@components/MediumCard.astro";
 import SmallCard from "@components/SmallCard.astro";
-import { HERO_IMG, AUTHOR_IMG, SECTION_COLORS } from "@utils/constants";
+import { HERO_IMG, SECTION_COLORS } from "@utils/constants";
 
 const posts = await getCollection("blog");
 const sortedPosts = getSortedPosts(posts);
@@ -67,17 +67,7 @@ const getPostsByCategory = (cat: string) => {
               <h1 class="font-display font-black text-[21px] sm:text-[28px] lg:text-[38px] text-[#fafafa] leading-[1.15] mb-2.5 max-w-[680px] drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)] line-clamp-2">
                 {heroPost.data.title}
               </h1>
-              <div class="flex items-center justify-between flex-wrap gap-2.5">
-                <div class="flex items-center gap-2.5">
-                  <img
-                    src={AUTHOR_IMG}
-                    alt=""
-                    class="w-[34px] sm:w-[44px] h-[42px] sm:h-[54px] object-cover rounded shadow border border-white/20 shrink-0"
-                  />
-                  <span class="font-sans italic text-[#fafafa] text-[12px] sm:text-[14px] drop-shadow-[0_1px_4px_rgba(0,0,0,0.4)]">
-                    by {heroPost.data.author}
-                  </span>
-                </div>
+              <div class="flex items-center justify-end flex-wrap gap-2.5">
                 <a
                   href={`/posts/${heroPost.slug}/`}
                   class="jk-btn bg-transparent border border-white rounded-[20px] px-[14px] sm:px-[20px] py-[7px] sm:py-[8px] cursor-pointer font-display font-bold text-white text-[11px] sm:text-[13px] no-underline"

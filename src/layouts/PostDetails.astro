@@ -7,7 +7,7 @@ import SmallCard from "@components/SmallCard.astro";
 import type { CollectionEntry } from "astro:content";
 import { slugifyStr } from "@utils/slugify";
 import { SITE } from "@config";
-import { HERO_IMG, AUTHOR_IMG } from "@utils/constants";
+import { HERO_IMG } from "@utils/constants";
 import { getCollection } from "astro:content";
 import getSortedPosts from "@utils/getSortedPosts";
 import getUniqueTags from "@utils/getUniqueTags";
@@ -109,18 +109,7 @@ const navLinks = [
         >
           {title}
         </h1>
-        <div class="flex items-center justify-between flex-wrap gap-2">
-          <div class="flex items-center gap-[10px]">
-            <img
-              src={AUTHOR_IMG}
-              alt=""
-              class="w-[30px] sm:w-[42px] h-[38px] sm:h-[52px] object-cover rounded shadow shrink-0"
-            />
-            <span
-              class="font-sans italic text-[#fafafa] text-[12px] sm:text-[14px]"
-              >by {author || "Journalist"}</span
-            >
-          </div>
+        <div class="flex items-center justify-end flex-wrap gap-2">
           <button
             onclick="(() => (history.length === 1) ? window.location = '/' : history.back())()"
             class="jk-btn bg-transparent border border-white rounded-[20px] px-3.5 py-[7px] cursor-pointer font-display font-extrabold text-white text-[12px]"

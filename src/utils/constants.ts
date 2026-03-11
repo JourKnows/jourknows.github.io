@@ -2,8 +2,6 @@ export const LOGO =
   "https://www.figma.com/api/mcp/asset/10230cad-3002-4e4d-b964-2e3e2f2df496";
 export const HERO_IMG =
   "https://www.figma.com/api/mcp/asset/efb1c652-fa66-4d27-a71f-a50150c59bf9";
-export const AUTHOR_IMG =
-  "https://www.figma.com/api/mcp/asset/c3dea2c0-a640-40a4-96c3-3f0c52574711";
 export const SEARCH_ICON =
   "https://www.figma.com/api/mcp/asset/0826f66e-7363-4bd7-af2a-a6943955ff8a";
 export const LETTER_ICON =
