@@ -2,7 +2,7 @@
 import Layout from "@layouts/Layout.astro";
 import AppNavbar from "@components/AppNavbar";
 import AppFooter from "@components/AppFooter.astro";
-import ArticleComments from "@components/ArticleComments";
+import ArticleReactions from "@components/ArticleComments";
 import SmallCard from "@components/SmallCard.astro";
 import type { CollectionEntry } from "astro:content";
 import { slugifyStr } from "@utils/slugify";
@@ -126,8 +126,27 @@ const navLinks = [
         <Content />
       </article>
 
-      {/* ── Reactions & Comments ── */}
-      <ArticleComments client:load slug={post.slug} />
+      {/* ── Reactions (Lyket) ── */}
+      <ArticleReactions client:load slug={post.slug} />
+
+      {/* ── Comments (Cusdis) ── */}
+      <div class="border-t-2 border-[#0007d3] pt-6 mb-8">
+        <h2
+          class="font-display font-extrabold text-[17px] sm:text-[22px] text-[#000055] mb-4"
+        >
+          Let us know your thoughts!
+        </h2>
+        <div
+          id="cusdis_thread"
+          data-host="https://cusdis.com"
+          data-app-id="16cb8053-6b15-436b-9430-fe85341f2328"
+          data-page-id={post.slug}
+          data-page-url={`/posts/${post.slug}/`}
+          data-page-title={title}
+        >
+        </div>
+        <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+      </div>
 
       {/* ── Related articles ── */}
       <div class="border-t-[2px] border-[#0007d3] pt-[22px] mb-8 lg:mb-12">
