@@ -1,17 +1,25 @@
 import { useState, useEffect, useCallback } from "react";
-import useBreakpoint from "../utils/useBreakpoint";
+import {
+  REACT_LIKE,
+  REACT_DISLIKE,
+  REACT_HEART,
+  REACT_LAUGH,
+  REACT_WOW,
+  REACT_SAD,
+  REACT_ANGRY,
+} from "../utils/constants";
 
-const LYKET_API_KEY = "pt_9fcc5c0c1c7cadd5c06640e0ddb8ee";
+const LYKET_API_KEY = import.meta.env.PUBLIC_LYKET_API_KEY;
 const LYKET_BASE_URL = "https://api.lyket.dev/v1";
 
 const REACTION_TYPES = [
-  { type: "like", icon: "/assets/react-like.svg", label: "Like" },
-  { type: "dislike", icon: "/assets/react-dislike.svg", label: "Dislike" },
-  { type: "heart", icon: "/assets/react-heart.svg", label: "Heart" },
-  { type: "laugh", icon: "/assets/react-laugh.svg", label: "Laugh" },
-  { type: "wow", icon: "/assets/react-wow.svg", label: "Wow" },
-  { type: "sad", icon: "/assets/react-sad.svg", label: "Sad" },
-  { type: "angry", icon: "/assets/react-angry.svg", label: "Angry" },
+  { type: "like", icon: REACT_LIKE, label: "Like" },
+  { type: "dislike", icon: REACT_DISLIKE, label: "Dislike" },
+  { type: "heart", icon: REACT_HEART, label: "Heart" },
+  { type: "laugh", icon: REACT_LAUGH, label: "Laugh" },
+  { type: "wow", icon: REACT_WOW, label: "Wow" },
+  { type: "sad", icon: REACT_SAD, label: "Sad" },
+  { type: "angry", icon: REACT_ANGRY, label: "Angry" },
 ];
 
 interface ReactionState {
@@ -20,7 +28,6 @@ interface ReactionState {
 }
 
 export default function ArticleReactions({ slug }: { slug: string }) {
-  const { isMobile } = useBreakpoint();
   const [reactions, setReactions] = useState<Record<string, ReactionState>>({});
 
   // Fetch current counts for all reactions
@@ -104,9 +111,7 @@ export default function ArticleReactions({ slug }: { slug: string }) {
 
   return (
     <div className="border-t-2 border-[#0007d3] pt-6 mb-8">
-      <h2
-        className={`font-display font-extrabold ${isMobile ? "text-[17px]" : "text-[22px]"} text-[#000055] mb-4`}
-      >
+      <h2 className="font-display font-extrabold text-[17px] sm:text-[22px] text-[#000055] mb-4">
         React to this article
       </h2>
       <div className="flex flex-wrap gap-2 mb-4">
@@ -114,6 +119,7 @@ export default function ArticleReactions({ slug }: { slug: string }) {
           const state = reactions[r.type];
           return (
             <button
+              type="button"
               key={r.type}
               onClick={() => toggleReaction(r.type)}
               className={`jk-btn flex items-center gap-1.5 border rounded-full px-3 py-1.5 cursor-pointer transition-colors ${
