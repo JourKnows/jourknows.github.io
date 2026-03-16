@@ -2,6 +2,7 @@
 import Layout from "@layouts/Layout.astro";
 import AppNavbar from "@components/AppNavbar";
 import AppFooter from "@components/AppFooter.astro";
+import ArticleComments from "@components/ArticleComments";
 import SmallCard from "@components/SmallCard.astro";
 import type { CollectionEntry } from "astro:content";
 import { slugifyStr } from "@utils/slugify";
@@ -125,6 +126,9 @@ const navLinks = [
         <Content />
       </article>
 
+      {/* ── Reactions & Comments ── */}
+      <ArticleComments client:load slug={post.slug} />
+
       {/* ── Related articles ── */}
       <div class="border-t-[2px] border-[#0007d3] pt-[22px] mb-8 lg:mb-12">
         <h2
@@ -132,7 +136,9 @@ const navLinks = [
         >
           RELATED ARTICLES
         </h2>
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-[9px] sm:gap-[18px]">
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[9px] sm:gap-[18px]"
+        >
           {
             recentRelated.map(relatedPost => (
               <SmallCard
@@ -142,6 +148,16 @@ const navLinks = [
             ))
           }
         </div>
+      </div>
+
+      {/* ── Back to Home ── */}
+      <div class="text-center pb-10">
+        <a
+          href="/"
+          class="jk-btn inline-block bg-transparent border-2 border-[#0007d3] rounded-[20px] px-6 py-[10px] cursor-pointer font-display font-extrabold text-[#0007d3] hover:bg-[#0007d3] hover:text-white transition-colors text-[13px] no-underline"
+        >
+          ← BACK TO HOME
+        </a>
       </div>
     </div>
 
@@ -164,5 +180,12 @@ const navLinks = [
   }
   .prose :global(p:first-of-type::first-letter) {
     @apply font-bold text-lg;
+  }
+  .prose :global(img) {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
   }
 </style>

@@ -7,6 +7,7 @@ export interface Props {
 }
 
 const { post } = Astro.props;
+const tag = post.data.tags?.[0] || "NEWS";
 ---
 
 <a
@@ -14,6 +15,11 @@ const { post } = Astro.props;
   class="jk-card bg-[#f4f4f4] rounded-[10px] overflow-hidden cursor-pointer flex flex-col shadow-[0_1px_4px_rgba(0,0,0,0.08)] outline-none"
 >
   <div class="px-[13px] py-[11px] flex-1 min-w-0">
+    <span
+      class="inline-block bg-[#0007d3] text-white font-display font-bold text-[10px] px-[7px] py-[2px] rounded uppercase mb-1.5"
+    >
+      {tag}
+    </span>
     <p
       class="font-display font-bold text-[13px] text-[#151515] mb-1.5 leading-[1.4] line-clamp-2"
     >

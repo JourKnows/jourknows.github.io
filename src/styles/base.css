@@ -38,8 +38,10 @@
     @apply flex min-h-[100svh] flex-col bg-skin-fill font-mono text-skin-base 
     selection:bg-skin-accent selection:bg-opacity-70 selection:text-skin-inverted;
   }
-  section,
-  footer {
+  section {
+    @apply mx-auto max-w-3xl px-4;
+  }
+  footer:not(.jk-footer) {
     @apply mx-auto max-w-3xl px-4;
   }
   a {
@@ -71,9 +73,9 @@
     prose-ul:overflow-x-clip prose-ul:!text-skin-base prose-li:marker:!text-skin-accent
     prose-table:text-skin-base prose-th:border
     prose-th:border-skin-line prose-td:border 
-    prose-td:border-skin-line prose-img:!my-2 
-    prose-img:mx-auto prose-img:border-2 
-    prose-img:border-skin-line prose-hr:!border-skin-line;
+    prose-td:border-skin-line    prose-img:!my-4 
+    prose-img:mx-auto prose-img:!border-0 
+    prose-img:rounded-lg prose-hr:!border-skin-line;
   }
   .prose a {
     @apply break-words hover:!text-skin-accent;
