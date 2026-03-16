@@ -1,9 +1,11 @@
 ---
+import { getCollection } from "astro:content";
 import { SITE } from "@config";
 import Breadcrumbs from "@components/Breadcrumbs.astro";
-import Footer from "@components/Footer.astro";
-import Header from "@components/Header.astro";
+import AppNavbar from "@components/AppNavbar";
+import AppFooter from "@components/AppFooter.astro";
 import Layout from "./Layout.astro";
+import getUniqueTags from "@utils/getUniqueTags";
 
 export interface Props {
   frontmatter: {
@@ -13,10 +15,20 @@ export interface Props {
 }
 
 const { frontmatter } = Astro.props;
+
+const allPosts = await getCollection("blog");
+const allTags = getUniqueTags(allPosts);
+const navLinks = [
+  { label: "HOME", href: "/" },
+  ...allTags.map(t => ({
+    label: t.tagName.toUpperCase(),
+    href: `/tags/${t.tag}`,
+  })),
+];
 ---
 
 <Layout title={`${frontmatter.title} | ${SITE.title}`}>
-  <Header activeNav="about" />
+  <AppNavbar client:load activeHref="/about" navLinks={navLinks} />
   <Breadcrumbs />
   <main id="main-content">
     <section id="about" class="prose mb-28 max-w-3xl prose-img:border-0">
@@ -24,5 +36,5 @@ const { frontmatter } = Astro.props;
       <slot />
     </section>
   </main>
-  <Footer />
+  <AppFooter />
 </Layout>

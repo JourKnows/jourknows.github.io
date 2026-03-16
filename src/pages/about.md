@@ -3,34 +3,37 @@ layout: ../layouts/AboutLayout.astro
 title: "About"
 ---
 
-AstroPaper is a minimal, responsive and SEO-friendly Astro blog theme. I designed and crafted this based on [my personal blog](https://satnaing.dev/blog).
+## Who We Are
 
-This theme is aimed to be accessible out of the box. Light and dark mode are supported by
-default and additional color schemes can also be configured.
+**JourKnows PH** is a student-led journalism publication dedicated to amplifying the voices of Filipino youth. We believe in the power of storytelling to inform, inspire, and ignite change within our communities.
 
-This theme is self-documented \_ which means articles/posts in this theme can also be considered as documentations. So, see the documentation for more info.
+## Our Mission
 
-<div>
-  <img src="/assets/dev.svg" class="sm:w-1/2 mx-auto" alt="coding dev illustration">
-</div>
+> **Journalism for All.**
 
-## Tech Stack
+We exist to make journalism accessible and inclusive. JourKnows breaks down the barriers that keep young voices from being heard. From campus affairs to national issues, we deliver stories that matter — written by students, for everyone.
 
-This theme is written in vanilla JavaScript (+ TypeScript for type checking) and a little bit of ReactJS for some interactions. TailwindCSS is used for styling; and Markdown is used for blog contents.
+## What We Cover
 
-## Features
+- **News** — Campus and national stories that impact the student community
+- **Opinion** — Bold perspectives and commentary on issues that matter
+- **Features** — In-depth stories that go beyond the headlines
+- **Literary** — Creative works, essays, and poetry from student writers
+- **Sci-Tech** — Innovation, research, and technology in education
+- **Lifestyle** — Culture, wellness, and the student experience
+- **Sports** — Athletic achievements and campus sports coverage
 
-Here are certain features of this site.
+## Get Involved
 
-- fully responsive and accessible
-- SEO-friendly
-- light & dark mode
-- fuzzy search
-- super fast performance
-- draft posts
-- pagination
-- sitemap & rss feed
-- highly customizable
+JourKnows is powered by passionate student volunteers. Whether you're an aspiring writer, photographer, illustrator, or simply someone who cares about truth and storytelling, there's a place for you on our team.
 
-If you like this theme, you can star/contribute to the [repo](https://github.com/satnaing/astro-paper).  
-Or you can even give any feedback via my [email](mailto:contact@satnaing.dev).
+**Ways to contribute:**
+
+- 📝 **Write for us** — Submit articles, opinion pieces, or literary works
+- 📸 **Visual storytelling** — Contribute photography or graphic design
+- 📣 **Spread the word** — Share our stories and help us reach more readers
+- 💬 **Join the team** — Volunteer as a reporter, editor, or social media contributor
+
+## Connect With Us
+
+Follow us on our social media channels and subscribe to our newsletter to stay updated with the latest stories from JourKnows PH.

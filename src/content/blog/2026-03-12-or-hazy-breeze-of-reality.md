@@ -3,7 +3,6 @@ author: Denise Lei Suba
 pubDatetime: 2026-03-11
 modDatetime: 2026-03-11
 title: 𝗟𝗜𝗧𝗘𝗥𝗔𝗥𝗬 | Hazy Breeze of Reality
-ogImage: 𝗟𝗜𝗧𝗘𝗥𝗔𝗥𝗬 | Hazy Breeze of Reality
 slug: hazy-breeze-reality
 featured: true
 draft: false
@@ -11,6 +10,7 @@ tags:
   - Literary
 description: 𝗟𝗜𝗧𝗘𝗥𝗔𝗥𝗬 | Hazy Breeze of Reality
 ---
+
 ![](/637985775_122167663094861171_8973902478659316014_n.jpg)  
 How does it feel having the wind brush your chilly wounds? No, it's not bleeding – but it is as deep as ever.
 

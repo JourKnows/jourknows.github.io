@@ -3,7 +3,6 @@ author: Axel Delino
 pubDatetime: 2026-02-22
 modDatetime: 2026-02-22
 title: 𝗙𝗘𝗔𝗧𝗨𝗥𝗘 | A Hug that Spoke
-ogImage: 𝗙𝗘𝗔𝗧𝗨𝗥𝗘 | A Hug that Spoke
 slug: hug-that-spoke
 featured: true
 draft: false
@@ -11,10 +10,9 @@ tags:
   - feature
 description: 𝗙𝗘𝗔𝗧𝗨𝗥𝗘 | A Hug that Spoke
 ---
+
 ![](/640331408_122168176970861171_1754203537249393007_n.jpg)
 
-  
-  
 There are moments when words become unnecessary, especially when a single gesture carries the weight of fear, loneliness, and the quiet appeal to be comforted. A trembling body. A small hand wanting to hold and embrace something soft. A silent cry for safety.
 
 In a video clip that touched millions online, a young monkey named Punch wrapped himself around a stuffed toy after being attacked and distressed by other older monkeys around him. To seek comfort, Punch fled away from them, clutched a stuffed toy tightly to his chest, and sought reassurance in the only way he knew how. And in that fragile embrace, a strong statement surfaced: emotions are not exclusive to humans.

@@ -1,12 +1,14 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import Main from "@layouts/Main.astro";
-import Header from "@components/Header.astro";
-import Footer from "@components/Footer.astro";
+import AppNavbar from "@components/AppNavbar";
+import AppFooter from "@components/AppFooter.astro";
 import Pagination from "@components/Pagination.astro";
 import Card from "@components/Card";
 import { SITE } from "@config";
+import getUniqueTags from "@utils/getUniqueTags";
 
 export interface Props {
   currentPage: number;
@@ -15,10 +17,20 @@ export interface Props {
 }
 
 const { currentPage, totalPages, paginatedPosts } = Astro.props;
+
+const allPosts = await getCollection("blog");
+const allTags = getUniqueTags(allPosts);
+const navLinks = [
+  { label: "HOME", href: "/" },
+  ...allTags.map(t => ({
+    label: t.tagName.toUpperCase(),
+    href: `/tags/${t.tag}`,
+  })),
+];
 ---
 
 <Layout title={`Posts | ${SITE.title}`}>
-  <Header activeNav="posts" />
+  <AppNavbar client:load activeHref="/posts" navLinks={navLinks} />
   <Main pageTitle="Posts" pageDesc="Read freely.">
     <ul>
       {
@@ -36,5 +48,5 @@ const { currentPage, totalPages, paginatedPosts } = Astro.props;
     nextUrl={`/posts/${currentPage + 1}/`}
   />
 
-  <Footer noMarginTop={totalPages > 1} />
+  <AppFooter />
 </Layout>

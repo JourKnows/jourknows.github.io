@@ -1,21 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { LOGO, SEARCH_ICON } from "../utils/constants";
-
-function useBreakpoint() {
-  const getW = () => (typeof window !== "undefined" ? window.innerWidth : 1200);
-  const [w, setW] = useState(getW);
-  useEffect(() => {
-    const h = () => setW(window.innerWidth);
-    window.addEventListener("resize", h);
-    return () => window.removeEventListener("resize", h);
-  }, []);
-  return {
-    isMobile: w < 640,
-    isTablet: w >= 640 && w < 1024,
-    isDesktop: w >= 1024,
-    w,
-  };
-}
+import useBreakpoint from "../utils/useBreakpoint";
 
 export default function AppNavbar({
   activeHref,
