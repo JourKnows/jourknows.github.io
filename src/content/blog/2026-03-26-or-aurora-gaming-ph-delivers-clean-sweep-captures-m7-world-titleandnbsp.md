@@ -2,8 +2,7 @@
 author: Wen Cortes
 pubDatetime: 2026-03-22
 modDatetime: 2026-03-22
-title: 𝗦𝗣𝗢𝗥𝗧𝗦 | Aurora Gaming PH Delivers Clean sweep, Captures M7 World
-  Title&nbsp;
+title: Aurora Gaming PH Delivers Clean sweep, Captures M7 World Title&nbsp;
 ogImage: Aurora Gaming PH Delivers Clean sweep, Captures M7 World Title&nbsp;
 slug: aurora-gaming-ph
 featured: true
