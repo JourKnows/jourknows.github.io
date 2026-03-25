@@ -9,6 +9,8 @@ ogImage: 𝗦𝗣𝗢𝗥𝗧𝗦 | Aurora Gaming PH Delivers Clean sweep, Captu
 slug: aurora-gaming-ph
 featured: true
 draft: false
+tags:
+  - SPORTS
 description: 𝗦𝗣𝗢𝗥𝗧𝗦 | Aurora Gaming PH Delivers Clean sweep, Captures M7
   World Title&nbsp;
 ---
