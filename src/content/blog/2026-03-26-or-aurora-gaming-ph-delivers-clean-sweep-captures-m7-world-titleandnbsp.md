@@ -9,8 +9,7 @@ featured: true
 draft: false
 tags:
   - SPORTS
-description: 𝗦𝗣𝗢𝗥𝗧𝗦 | Aurora Gaming PH Delivers Clean sweep, Captures M7
-  World Title&nbsp;
+description: Aurora Gaming PH Delivers Clean sweep, Captures M7 World Title
 ---
 ![](/618387790_122163567962861171_5419676321152952639_n.jpg)
 
