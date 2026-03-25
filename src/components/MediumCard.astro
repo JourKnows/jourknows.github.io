@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import getRelativeTime from "@utils/getRelativeTime";
+import getFirstImage from "@utils/getFirstImage";
 
 export interface Props {
   post: CollectionEntry<"blog">;
@@ -8,12 +9,24 @@ export interface Props {
 
 const { post } = Astro.props;
 const tag = post.data.tags?.[0] || "NEWS";
+const image = getFirstImage(post.body);
 ---
 
 <a
   href={`/posts/${post.slug}/`}
-  class="jk-card bg-[#f4f4f4] rounded-[10px] overflow-hidden cursor-pointer flex flex-col shadow-[0_1px_4px_rgba(0,0,0,0.08)] outline-none"
+  class="jk-card bg-[#f4f4f4] rounded-[10px] overflow-hidden cursor-pointer flex flex-col shadow-[0_1px_4px_rgba(0,0,0,0.08)] outline-none group"
 >
+  {
+    image && (
+      <div class="w-full h-32 sm:h-40 overflow-hidden shrink-0">
+        <img
+          src={image}
+          alt={post.data.title}
+          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        />
+      </div>
+    )
+  }
   <div class="px-[13px] py-[11px] flex-1 min-w-0">
     <span
       class="inline-block bg-[#0007d3] text-white font-display font-bold text-[10px] px-[7px] py-[2px] rounded uppercase mb-1.5"
