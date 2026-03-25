@@ -29,22 +29,17 @@ const image = getFirstImage(post.body);
       <div class="w-full aspect-[4/3] bg-gray-300 shrink-0 rounded" />
     )
   }
-  <div class="pt-3 pb-2 flex-1 min-w-0 flex flex-col">
-    <span
-      class="inline-block bg-[#0007d3] text-white font-display font-bold text-[10px] px-[7px] py-[2px] rounded uppercase mb-2"
-    >
-      {category}
-    </span>
+  <div class="pt-3 pb-2 flex-1 min-w-0 flex flex-col mt-1">
     <p
       class="font-display font-bold text-[14px] sm:text-[15px] text-[#151515] mb-[5px] leading-[1.3] line-clamp-3"
     >
       {post.data.title}
     </p>
-    <div class="mt-auto">
+    <div class="mt-auto pt-2">
       <p class="font-sans font-medium text-[11px] text-[#555] mb-[2px]">
         by {post.data.author}
       </p>
-      <p class="font-sans text-[11px] text-[#888] m-0">
+      <p class="font-sans italic text-[11px] text-[#333] m-0">
         {getRelativeTime(post.data.pubDatetime)}
       </p>
     </div>
