@@ -126,37 +126,36 @@ const navLinks = [
         <Content />
       </article>
 
-      {/* ── Reactions (web-reactionz) ── */}
-      <div class="border-t-2 border-[#0007d3] pt-6 mb-8">
+      {/* ── Comments & Reactions (Giscus) ── */}
+      <div class="border-t-2 border-[#0007d3] pt-6 mb-8 mt-12">
         <h2
-          class="font-display font-extrabold text-[17px] sm:text-[22px] text-[#000055] mb-4"
+          class="font-display font-extrabold text-[17px] sm:text-[22px] text-[#000055] mb-6"
         >
-          React to this article
+          Community Discussion
         </h2>
-        <div id="web-reactionz-container"></div>
         <script
-          is:inline
-          src="https://cdn.jsdelivr.net/gh/intersect-software/web-reactionz@1/public/setup.min.js"
-          data-siteid="c753a40d-d741-45d3-a3dd-ad4e595aacf8"></script>
-      </div>
-
-      {/* ── Comments (Cusdis) ── */}
-      <div class="border-t-2 border-[#0007d3] pt-6 mb-8">
-        <h2
-          class="font-display font-extrabold text-[17px] sm:text-[22px] text-[#000055] mb-4"
-        >
-          Let us know your thoughts!
-        </h2>
-        <div
-          id="cusdis_thread"
-          data-host="https://cusdis.com"
-          data-app-id="16cb8053-6b15-436b-9430-fe85341f2328"
-          data-page-id={post.slug}
-          data-page-url={`/posts/${post.slug}/`}
-          data-page-title={title}
-        >
-        </div>
-        <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+          src="https://giscus.app/client.js"
+          data-repo="JourKnows/jourknows.github.io"
+          data-repo-id="R_kgDORV_Tww"
+          data-category="General"
+          data-category-id="DIC_kwDORV_Tw84CjX1w"
+          data-mapping="pathname"
+          data-strict="0"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="bottom"
+          data-theme="light"
+          data-lang="en"
+          crossorigin="anonymous"
+          async
+        ></script>
+        <p class="text-xs text-gray-500 mt-2 italic text-center">
+          Note: You must authorize the <a
+            href="https://github.com/apps/giscus"
+            target="_blank"
+            class="underline text-[#0007d3]">Giscus GitHub App</a
+          > on your repository for comments to load.
+        </p>
       </div>
 
       {/* ── Related articles ── */}
