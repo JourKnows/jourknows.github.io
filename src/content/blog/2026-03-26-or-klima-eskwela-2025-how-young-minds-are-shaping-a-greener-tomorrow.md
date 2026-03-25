@@ -2,17 +2,14 @@
 author: Kateleen Joyce Malijan
 pubDatetime: 2026-03-22
 modDatetime: 2026-03-22
-title: "𝗦𝗖𝗜-𝗧𝗘𝗖𝗛 | Klima Eskwela 2025: How Young Minds are Shaping a
-  Greener Tomorrow"
-ogImage: "𝗦𝗖𝗜-𝗧𝗘𝗖𝗛 | Klima Eskwela 2025: How Young Minds are Shaping a
-  Greener Tomorrow"
+title: "Klima Eskwela 2025: How Young Minds are Shaping a Greener Tomorrow"
+ogImage: "Klima Eskwela 2025: How Young Minds are Shaping a Greener Tomorrow"
 slug: klima-eskwela
 featured: true
 draft: false
 tags:
   - SCI-TECH
-description: "𝗦𝗖𝗜-𝗧𝗘𝗖𝗛 | Klima Eskwela 2025: How Young Minds are Shaping
-  a Greener Tomorrow"
+description: "Klima Eskwela 2025: How Young Minds are Shaping a Greener Tomorrow"
 ---
 ![](/536147493_122133862916861171_6504509345229683080_n.jpg)
 
