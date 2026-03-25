@@ -18,7 +18,7 @@ const image = getFirstImage(post.body);
 >
   {
     image ? (
-      <div class="w-full aspect-[16/9] bg-[#d9d9d9] overflow-hidden shrink-0 rounded-[8px]">
+      <div class="w-full aspect-[3/2] bg-[#d9d9d9] overflow-hidden shrink-0 rounded-[8px]">
         <img
           src={image}
           alt={post.data.title}
@@ -26,7 +26,7 @@ const image = getFirstImage(post.body);
         />
       </div>
     ) : (
-      <div class="w-full aspect-[16/9] bg-[#d9d9d9] shrink-0 rounded-[8px]" />
+      <div class="w-full aspect-[3/2] bg-[#d9d9d9] shrink-0 rounded-[8px]" />
     )
   }
   <div class="pt-3 sm:pt-4 flex-1 min-w-0 flex flex-col">
@@ -35,14 +35,16 @@ const image = getFirstImage(post.body);
     >
       {post.data.title}
     </p>
-    <p class="font-sans font-medium text-[12px] text-[#555] mb-1">
+    <p class="font-sans font-medium text-[12px] italic text-[#555] mb-[1px]">
       by {post.data.author}
     </p>
-    <p class="font-sans text-[12px] text-[#888] mb-0 sm:mb-2.5">
+    <p
+      class="font-sans font-bold text-[12px] italic text-[#333] mb-0 sm:mb-2.5"
+    >
       {getRelativeTime(post.data.pubDatetime)}
     </p>
     <p
-      class="hidden sm:block font-display text-[14px] text-[#444] leading-[1.6] line-clamp-3 mt-2"
+      class="font-display text-[14px] text-[#444] leading-[1.5] line-clamp-3 mt-2 sm:mt-0"
     >
       {post.data.description}
     </p>

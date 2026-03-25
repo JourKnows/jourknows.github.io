@@ -40,10 +40,10 @@ const image = getFirstImage(post.body);
     >
       {post.data.title}
     </p>
-    <p class="font-sans font-medium text-[11px] text-[#555] mb-[3px]">
+    <p class="font-sans font-medium text-[11px] italic text-[#555] mb-[1px]">
       by {post.data.author}
     </p>
-    <p class="font-sans text-[11px] text-[#888] m-0">
+    <p class="font-sans font-bold text-[11px] italic text-[#333] m-0">
       {getRelativeTime(post.data.pubDatetime)}
     </p>
   </div>
