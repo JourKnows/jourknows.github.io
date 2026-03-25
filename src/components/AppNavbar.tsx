@@ -36,17 +36,14 @@ export default function AppNavbar({
       <header className="sticky top-0 z-[200] bg-jk-navy-grad shadow-[0_2px_16px_rgba(0,0,77,0.5)]">
         {/* Top bar */}
         <div
-          className="flex items-center gap-2 mx-auto w-full max-w-[1400px]"
+          className="flex items-center justify-between relative mx-auto w-full max-w-[1400px]"
           style={{
             padding: compact ? "0 14px" : "0 32px",
             height: compact ? 58 : 70,
           }}
         >
-          {/* Left spacer / Search */}
-          <div
-            className="flex items-center"
-            style={{ width: compact ? "auto" : 140 }}
-          >
+          {/* Left side / Search */}
+          <div className="flex items-center">
             <button
               onClick={() => setSearchOpen(s => !s)}
               className="jk-btn bg-transparent border-none cursor-pointer p-1.5 shrink-0"
@@ -60,10 +57,10 @@ export default function AppNavbar({
             </button>
           </div>
 
-          {/* Logo (Centered) */}
+          {/* Logo (Centered Absolute) */}
           <a
             href="/"
-            className="flex-1 flex items-center justify-center cursor-pointer outline-none no-underline"
+            className="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] flex items-center justify-center cursor-pointer outline-none no-underline z-10"
           >
             <img
               src={LOGO}
@@ -75,61 +72,21 @@ export default function AppNavbar({
 
           {/* Desktop nav links */}
           {!compact && (
-            <nav
-              className="flex items-center"
-              style={{ width: 140, justifyContent: "flex-end" }}
-            >
-              <div
-                className="relative"
-                onMouseEnter={() => setCategoriesOpen(true)}
-                onMouseLeave={() => setCategoriesOpen(false)}
-              >
-                <button
-                  className={`jk-btn bg-transparent border-none cursor-pointer font-display tracking-[0.5px] whitespace-nowrap pb-0.5 outline-none flex items-center gap-1 ${
-                    categoriesOpen || activeHref !== "/"
-                      ? "font-extrabold text-white border-b-2 border-white"
-                      : "font-semibold text-white/75 border-b-2 border-transparent hover:text-white"
-                  }`}
-                  style={{ fontSize: 13 }}
-                >
-                  CATEGORIES
-                  <svg
-                    width="10"
-                    height="6"
-                    viewBox="0 0 10 6"
-                    fill="none"
-                    className={`transition-transform duration-200 ${categoriesOpen ? "rotate-180" : ""}`}
+            <nav className="flex items-center z-10">
+              <div className="flex items-center gap-4 lg:gap-6">
+                {navLinks.map(link => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className={`font-display text-[12px] lg:text-[13px] tracking-[0.5px] uppercase no-underline whitespace-nowrap transition-colors ${
+                      isActive(link.href)
+                        ? "font-extrabold text-white"
+                        : "font-medium text-white/75 hover:text-white"
+                    }`}
                   >
-                    <path
-                      d="M1 1L5 5L9 1"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </button>
-
-                {/* Dropdown Menu */}
-                {categoriesOpen && (
-                  <div className="absolute top-full right-0 mt-2 py-2 w-48 bg-[#000060] rounded-xl shadow-xl flex flex-col z-[999] animate-[jkFadeUp_0.15s_ease_both] overflow-hidden">
-                    {navLinks
-                      .filter(link => link.href !== "/")
-                      .map(link => (
-                        <a
-                          key={link.label}
-                          href={link.href}
-                          className={`block px-4 py-2.5 font-display text-[13px] tracking-[0.5px] no-underline ${
-                            isActive(link.href)
-                              ? "font-extrabold text-white bg-white/10"
-                              : "font-semibold text-white/80 hover:text-white hover:bg-white/5"
-                          } transition-colors`}
-                        >
-                          {link.label}
-                        </a>
-                      ))}
-                  </div>
-                )}
+                    {link.label}
+                  </a>
+                ))}
               </div>
             </nav>
           )}
