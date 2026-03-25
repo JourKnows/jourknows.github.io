@@ -33,42 +33,111 @@ export default function AppNavbar({
 
   return (
     <>
-      <header className="sticky top-0 z-[200] bg-jk-navy-grad shadow-[0_2px_16px_rgba(0,0,77,0.5)]">
+      {/* Site Banner */}
+      <div
+        className="hidden sm:block"
+        style={{
+          width: "100%",
+          aspectRatio: "1024 / 85",
+          overflow: "hidden",
+          position: "relative",
+        }}
+      >
+        <img
+          src="https://i.imgur.com/u77FS3O.jpeg"
+          alt="Site banner"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            display: "block",
+          }}
+        />
+        <img
+          src="https://i0.wp.com/jourknowsph.com/wp-content/uploads/2026/02/untitled-1920-x-900-px-1920-x-750-px.png?fit=1920%2C750&ssl=1"
+          alt="Site logo"
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            height: "90%",
+            aspectRatio: "311 / 224",
+            objectFit: "contain",
+          }}
+        />
+      </div>
+      <header
+        className={`sticky top-0 z-[200] shadow-[0_2px_16px_rgba(0,0,77,0.15)] ${compact ? "bg-jk-navy-grad" : "bg-white"}`}
+      >
         {/* Top bar */}
         <div
           className="flex items-center justify-between relative mx-auto w-full max-w-[1400px]"
           style={{
             padding: compact ? "0 14px" : "0 32px",
-            height: compact ? 58 : 70,
+            height: compact ? 58 : 46,
           }}
         >
           {/* Left side / Search */}
           <div className="flex items-center">
-            <button
-              onClick={() => setSearchOpen(s => !s)}
-              className="jk-btn bg-transparent border-none cursor-pointer p-1.5 shrink-0"
-              aria-label="Search"
-            >
-              <img
-                src={SEARCH_ICON}
-                alt="search"
-                className="w-5 h-5 opacity-80"
-              />
-            </button>
+            {compact ? (
+              <button
+                onClick={() => setSearchOpen(s => !s)}
+                className="jk-btn bg-transparent border-none cursor-pointer p-1.5 shrink-0"
+                aria-label="Search"
+              >
+                <img
+                  src={SEARCH_ICON}
+                  alt="search"
+                  className="w-5 h-5 opacity-80"
+                />
+              </button>
+            ) : (
+              <form onSubmit={handleSearch} className="flex items-center gap-2">
+                <button
+                  type="submit"
+                  className="bg-transparent border-none cursor-pointer p-1 shrink-0 flex items-center justify-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#000060"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                </button>
+                <input
+                  type="text"
+                  placeholder=""
+                  value={searchQuery}
+                  onChange={e => setSearchQuery(e.target.value)}
+                  className="bg-[#e9ecef] rounded-full h-[28px] focus:outline-none px-4 w-[200px] lg:w-[250px] outline-none text-[#000060] font-sans text-[13px] border border-transparent focus:border-[#000060]/30 transition-colors"
+                />
+              </form>
+            )}
           </div>
 
           {/* Logo (Centered Absolute) */}
-          <a
-            href="/"
-            className="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] flex items-center justify-center cursor-pointer outline-none no-underline z-10"
-          >
-            <img
-              src={LOGO}
-              alt="JourKnows"
-              className="rounded-lg object-cover shrink-0"
-              style={{ width: compact ? 38 : 50, height: compact ? 38 : 50 }}
-            />
-          </a>
+          {compact && (
+            <a
+              href="/"
+              className="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] flex items-center justify-center cursor-pointer outline-none no-underline z-10"
+            >
+              <img
+                src="https://i0.wp.com/jourknowsph.com/wp-content/uploads/2026/02/untitled-1920-x-900-px-1920-x-750-px.png?fit=1920%2C750&ssl=1"
+                alt="JourKnows"
+                className="object-contain shrink-0"
+                style={{ height: 32, width: "auto" }}
+              />
+            </a>
+          )}
 
           {/* Desktop nav links */}
           {!compact && (
@@ -78,10 +147,10 @@ export default function AppNavbar({
                   <a
                     key={link.label}
                     href={link.href}
-                    className={`font-display text-[12px] lg:text-[13px] tracking-[0.5px] uppercase no-underline whitespace-nowrap transition-colors ${
+                    className={`font-display text-[12px] lg:text-[14px] tracking-[0.5px] uppercase no-underline whitespace-nowrap transition-colors ${
                       isActive(link.href)
-                        ? "font-extrabold text-white"
-                        : "font-medium text-white/75 hover:text-white"
+                        ? "font-extrabold text-[#000060]"
+                        : "font-bold text-[#333333] hover:text-[#000060]"
                     }`}
                   >
                     {link.label}
@@ -120,7 +189,7 @@ export default function AppNavbar({
         </div>
 
         {/* Search bar */}
-        {searchOpen && (
+        {compact && searchOpen && (
           <div className="bg-[#00003c]/95 py-2 px-3.5">
             <form onSubmit={handleSearch}>
               <input

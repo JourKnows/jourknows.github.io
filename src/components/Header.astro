@@ -10,13 +10,25 @@ export interface Props {
 const { activeNav } = Astro.props;
 ---
 
+<div class="header-banner hidden sm:block">
+  <img
+    src="https://i.imgur.com/u77FS3O.jpeg"
+    alt="Site banner"
+    class="banner-img"
+  />
+  <img
+    src="https://i0.wp.com/jourknowsph.com/wp-content/uploads/2026/02/untitled-1920-x-900-px-1920-x-750-px.png?fit=1920%2C750&ssl=1"
+    alt="Site logo"
+    class="banner-logo"
+  />
+</div>
 <header class="sticky top-0 z-50 w-full bg-[#182566] text-white shadow-md">
   <a id="skip-to-content" href="#main-content">Skip to content</a>
   <div class="nav-container">
     <div class="top-nav-wrap">
-      <a href="/" class="logo whitespace-nowrap">
+      <a href="/" class="logo whitespace-nowrap sm:hidden">
         <img
-          src="https://i.imgur.com/iYJvOsW.png"
+          src="https://i0.wp.com/jourknowsph.com/wp-content/uploads/2026/02/untitled-1920-x-900-px-1920-x-750-px.png?fit=1920%2C750&ssl=1"
           alt={SITE.title}
           class="border-none bg-transparent w-auto object-contain scale-125"
           style={`height: ${LOGO_IMAGE.height}px;`}
@@ -48,7 +60,7 @@ const { activeNav } = Astro.props;
             <line x1="6" y1="6" x2="18" y2="18" class="close"></line>
           </svg>
         </button>
-        
+
         <ul id="menu-items" class="hidden sm:flex">
           <li>
             <a href="/posts/" class={activeNav === "posts" ? "active" : ""}>
@@ -94,6 +106,23 @@ const { activeNav } = Astro.props;
 </header>
 
 <style>
+  .header-banner {
+    @apply w-full relative;
+    aspect-ratio: 1024 / 85;
+    overflow: hidden;
+  }
+  .banner-img {
+    @apply w-full h-full object-cover block;
+  }
+  .banner-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 90%;
+    aspect-ratio: 311 / 224;
+    object-fit: contain;
+  }
   #skip-to-content {
     @apply absolute -top-full left-16 z-50 bg-skin-accent px-3 py-2 text-skin-inverted transition-all focus:top-4;
   }
@@ -139,7 +168,7 @@ const { activeNav } = Astro.props;
   nav button svg {
     @apply hover:fill-skin-accent;
   }
-  
+
   /* Menu Toggle Animations */
   .menu-icon line {
     @apply transition-opacity duration-150 ease-in-out;
@@ -169,7 +198,7 @@ const { activeNav } = Astro.props;
         "aria-label",
         menuExpanded ? "Close Menu" : "Open Menu"
       );
-      
+
       // Toggles Tailwind classes instead of custom 'display-none'
       menuItems?.classList.toggle("hidden");
       menuItems?.classList.toggle("flex");
