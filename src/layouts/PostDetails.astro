@@ -2,7 +2,7 @@
 import Layout from "@layouts/Layout.astro";
 import AppNavbar from "@components/AppNavbar";
 import AppFooter from "@components/AppFooter.astro";
-import ArticleReactions from "@components/ArticleReactions";
+
 import SmallCard from "@components/SmallCard.astro";
 import type { CollectionEntry } from "astro:content";
 import { slugifyStr } from "@utils/slugify";
@@ -126,8 +126,20 @@ const navLinks = [
         <Content />
       </article>
 
-      {/* ── Reactions (Lyket) ── */}
-      <ArticleReactions client:load slug={post.slug} />
+      {/* ── Reactions (web-reactionz) ── */}
+      <div class="border-t-2 border-[#0007d3] pt-6 mb-8">
+        <h2
+          class="font-display font-extrabold text-[17px] sm:text-[22px] text-[#000055] mb-4"
+        >
+          React to this article
+        </h2>
+        <web-reactionz></web-reactionz>
+        <script
+          async
+          defer
+          src="https://cdn.jsdelivr.net/gh/intersect-software/web-reactionz@1/public/setup.min.js"
+          data-siteid="c753a40d-d741-45d3-a3dd-ad4e595aacf8"></script>
+      </div>
 
       {/* ── Comments (Cusdis) ── */}
       <div class="border-t-2 border-[#0007d3] pt-6 mb-8">
