@@ -18,7 +18,7 @@ const image = getFirstImage(post.body);
 >
   {
     image && (
-      <div class="w-full sm:w-2/5 h-48 sm:h-auto overflow-hidden shrink-0">
+      <div class="w-full sm:w-2/5 aspect-square overflow-hidden shrink-0">
         <img
           src={image}
           alt={post.data.title}
