@@ -1,7 +1,7 @@
 ---
 author: Kateleen Joyce Malijan
-pubDatetime: 2026-03-24
-modDatetime: 2026-03-24
+pubDatetime: 2026-03-22
+modDatetime: 2026-03-22
 title: "𝗦𝗖𝗜-𝗧𝗘𝗖𝗛 | Klima Eskwela 2025: How Young Minds are Shaping a
   Greener Tomorrow"
 ogImage: "𝗦𝗖𝗜-𝗧𝗘𝗖𝗛 | Klima Eskwela 2025: How Young Minds are Shaping a
