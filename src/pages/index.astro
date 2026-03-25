@@ -11,6 +11,7 @@ import MediumCard from "@components/MediumCard.astro";
 import SmallCard from "@components/SmallCard.astro";
 import { HERO_IMG, SECTION_COLORS } from "@utils/constants";
 import getFirstImage from "@utils/getFirstImage";
+import { slugifyAll } from "@utils/slugify";
 
 const posts = await getCollection("blog");
 const sortedPosts = getSortedPosts(posts);
@@ -34,7 +35,7 @@ const latestPosts = sortedPosts.slice(1, 5);
 // Get categorised posts simply
 const getPostsByCategory = (cat: string) => {
   return sortedPosts
-    .filter(p => p.data.tags?.includes(cat.toLowerCase()))
+    .filter(p => slugifyAll(p.data.tags || []).includes(cat))
     .slice(0, 4);
 };
 ---
