@@ -18,7 +18,7 @@ const image = getFirstImage(post.body);
 >
   {
     image ? (
-      <div class="w-full aspect-square bg-[#d9d9d9] overflow-hidden shrink-0 rounded-[8px]">
+      <div class="w-full aspect-[8/9] bg-[#d9d9d9] overflow-hidden shrink-0 rounded-[8px]">
         <img
           src={image}
           alt={post.data.title}
@@ -26,7 +26,7 @@ const image = getFirstImage(post.body);
         />
       </div>
     ) : (
-      <div class="w-full aspect-square bg-[#d9d9d9] shrink-0 rounded-[8px]" />
+      <div class="w-full aspect-[8/9] bg-[#d9d9d9] shrink-0 rounded-[8px]" />
     )
   }
   <div class="pt-3 pb-2 flex-1 min-w-0 flex flex-col">
