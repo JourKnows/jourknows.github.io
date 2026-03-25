@@ -126,22 +126,8 @@ const navLinks = [
         <Content />
       </article>
 
-      {/* ── Reactions (Web-Reactionz) ── */}
+      {/* ── Comments & Reactions (Giscus) ── */}
       <div class="border-t-2 border-[#0007d3] pt-6 mb-8 mt-12">
-        <h2
-          class="font-display font-extrabold text-[17px] sm:text-[22px] text-[#000055] mb-4"
-        >
-          React to this article
-        </h2>
-        <div id="web-reactionz-container"></div>
-        <script
-          is:inline
-          src="https://cdn.jsdelivr.net/gh/intersect-software/web-reactionz@1/public/setup.min.js"
-          data-siteid="c753a40d-d741-45d3-a3dd-ad4e595aacf8"></script>
-      </div>
-
-      {/* ── Comments (Giscus) ── */}
-      <div class="border-t-2 border-[#0007d3] pt-6 mb-8">
         <h2
           class="font-display font-extrabold text-[17px] sm:text-[22px] text-[#000055] mb-6"
         >
@@ -155,13 +141,14 @@ const navLinks = [
           data-category-id="DIC_kwDORV_Tw84C5Rfs"
           data-mapping="pathname"
           data-strict="0"
-          data-reactions-enabled="0"
+          data-reactions-enabled="1"
           data-emit-metadata="0"
           data-input-position="bottom"
           data-theme="preferred_color_scheme"
           data-lang="en"
           crossorigin="anonymous"
-          async></script>
+          async
+        ></script>
         <p class="text-xs text-gray-500 mt-2 italic text-center">
           Note: You must authorize the <a
             href="https://github.com/apps/giscus"
