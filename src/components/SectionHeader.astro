@@ -8,15 +8,12 @@ const { label, color } = Astro.props;
 ---
 
 <div class="flex items-center mb-[18px]">
-  <div class={`px-3.5 py-1.5 shrink-0 ${color}`}>
+  <div class={`px-3.5 py-1.5 shrink-0 ${color} z-10`}>
     <span
-      class="font-display font-extrabold text-[15px] text-[#fafafa] tracking-[0.3px] whitespace-nowrap"
+      class="font-display font-bold text-[13px] sm:text-[15px] text-[#fafafa] tracking-[0.5px] whitespace-nowrap uppercase"
     >
       {label}
     </span>
   </div>
-  <div
-    class="flex-1 h-1 rounded-sm bg-gradient-to-r from-[#041eb0] to-[#fffbfb] min-w-0"
-  >
-  </div>
+  <div class={`flex-1 h-[2px] -ml-[2px] rounded-r-sm min-w-0 ${color}`}></div>
 </div>

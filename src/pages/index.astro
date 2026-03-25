@@ -69,23 +69,37 @@ const getPostsByCategory = (cat: string) => {
               </>
             )}
             <div class="absolute bottom-[22px] sm:bottom-[38px] left-0 right-0 px-[16px] sm:px-[28px] lg:px-[68px]">
-              <div class="inline-block bg-[#fafafa] px-[13px] py-[3px] rounded-[20px] mb-2 shadow-[0_4px_4px_rgba(0,0,0,0.5)] border border-[#e0e0e0]">
-                <span class="font-display font-bold text-[12px] text-transparent bg-clip-text bg-gradient-to-l from-[#0007d3] to-[#00046d]">
-                  LATEST
+              <div class="inline-block bg-white px-[12px] py-[3px] rounded-[20px] mb-2.5 shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
+                <span class="font-display font-bold text-[11px] text-[#00046d] uppercase tracking-wide">
+                  {heroPost.data.tags?.[0] || "NEWS"}
                 </span>
               </div>
               <h1
-                class={`font-display font-black text-[21px] sm:text-[28px] lg:text-[38px] ${heroImage ? "text-[#fafafa] drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]" : "text-[#00046d]"} leading-[1.15] mb-2.5 max-w-[680px] line-clamp-2`}
+                class={`font-display font-black text-[22px] sm:text-[32px] lg:text-[42px] ${heroImage ? "text-[#fafafa] drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]" : "text-[#00046d]"} leading-[1.2] mb-3 max-w-[800px]`}
               >
                 {heroPost.data.title}
               </h1>
-              <div class="flex items-center justify-end flex-wrap gap-2.5">
-                <a
-                  href={`/posts/${heroPost.slug}/`}
-                  class={`jk-btn bg-transparent border ${heroImage ? "border-white text-white" : "border-[#00046d] text-[#00046d]"} rounded-[20px] px-[14px] sm:px-[20px] py-[7px] sm:py-[8px] cursor-pointer font-display font-bold text-[11px] sm:text-[13px] no-underline`}
-                >
-                  READ MORE
-                </a>
+              <div class="flex items-center gap-2.5 mt-2">
+                <div class="w-8 h-8 rounded-full bg-[#00046d] flex items-center justify-center overflow-hidden shrink-0 border border-white/50 shadow-sm">
+                  <span class="text-white text-[12px] font-bold">
+                    {heroPost.data.author.charAt(0).toUpperCase()}
+                  </span>
+                </div>
+                <div class="flex flex-col">
+                  <span
+                    class={`font-display font-bold text-[12px] ${heroImage ? "text-white" : "text-[#333]"}`}
+                  >
+                    {heroPost.data.author}
+                  </span>
+                  <span
+                    class={`font-sans text-[10px] ${heroImage ? "text-white/80" : "text-[#666]"}`}
+                  >
+                    {new Date(heroPost.data.pubDatetime).toLocaleDateString(
+                      "en-US",
+                      { year: "numeric", month: "long", day: "numeric" }
+                    )}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -112,7 +126,7 @@ const getPostsByCategory = (cat: string) => {
       }
 
       {/* ── Category sections ── */}
-      <div class="bg-[#fafafa]/70">
+      <div class="bg-white">
         {
           categoryTags.map(tagObj => {
             const catTag = tagObj.tag;
@@ -126,16 +140,30 @@ const getPostsByCategory = (cat: string) => {
             const headerPost = catPosts[0];
             const smallPosts = catPosts.slice(1, 4);
 
+            if (label === "DRAW THE LINE") {
+              // Special layout for DRAW THE LINE: exactly 4 SmallCards in a horizontal row
+              return (
+                <div class="px-[16px] sm:px-[28px] lg:px-[68px] py-[22px] sm:py-[26px] lg:py-[30px] pb-[32px] sm:pb-[38px] lg:pb-[44px]">
+                  <SectionHeader label={label} color={color} />
+                  <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4 lg:gap-[18px]">
+                    {catPosts.slice(0, 4).map(post => (
+                      <SmallCard post={post} category={label} />
+                    ))}
+                  </div>
+                </div>
+              );
+            }
+
             return (
               <div class="px-[16px] sm:px-[28px] lg:px-[68px] py-[22px] sm:py-[26px] lg:py-[30px] pb-[32px] sm:pb-[38px] lg:pb-[44px]">
                 <SectionHeader label={label} color={color} />
-                <div class="mb-4">
+                <div class="mb-5 sm:mb-8">
                   <HeaderCard post={headerPost} />
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-4 lg:gap-[18px]">
                   {smallPosts.map((post, i) => (
                     <div class={i === 2 ? "hidden sm:block" : ""}>
-                      <SmallCard post={post} category={label.split(" ")[0]} />
+                      <SmallCard post={post} category={label} />
                     </div>
                   ))}
                 </div>
