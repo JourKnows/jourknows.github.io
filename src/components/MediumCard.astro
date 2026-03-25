@@ -14,11 +14,11 @@ const image = getFirstImage(post.body);
 
 <a
   href={`/posts/${post.slug}/`}
-  class="jk-card bg-transparent overflow-hidden cursor-pointer flex flex-col outline-none group pb-4 mb-4"
+  class="jk-card bg-transparent overflow-hidden cursor-pointer flex flex-col sm:flex-row outline-none group pb-4 mb-4 sm:border-b sm:border-gray-200"
 >
   {
     image ? (
-      <div class="w-full aspect-[4/3] bg-[#d9d9d9] overflow-hidden shrink-0 rounded-[8px]">
+      <div class="w-full sm:w-[160px] aspect-[4/3] bg-[#d9d9d9] overflow-hidden shrink-0 rounded-[8px]">
         <img
           src={image}
           alt={post.data.title}
@@ -26,10 +26,12 @@ const image = getFirstImage(post.body);
         />
       </div>
     ) : (
-      <div class="w-full aspect-[4/3] bg-[#d9d9d9] shrink-0 rounded-[8px]" />
+      <div class="w-full sm:w-[160px] aspect-[4/3] bg-[#d9d9d9] shrink-0 rounded-[8px]" />
     )
   }
-  <div class="pt-3 flex-1 min-w-0 flex flex-col">
+  <div
+    class="pt-3 sm:pt-0 sm:pl-4 flex-1 min-w-0 flex flex-col sm:justify-center"
+  >
     <span
       class="font-display font-extrabold text-[11px] text-[#111] uppercase tracking-[0.5px] mb-1.5"
     >
