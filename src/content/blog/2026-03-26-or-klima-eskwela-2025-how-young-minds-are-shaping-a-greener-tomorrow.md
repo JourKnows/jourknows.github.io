@@ -16,7 +16,6 @@ description: "𝗦𝗖𝗜-𝗧𝗘𝗖𝗛 | Klima Eskwela 2025: How Young Mind
 ---
 ![](/536147493_122133862916861171_6504509345229683080_n.jpg)
 
-  
 In a typical science class, students learn about greenhouse gases, rising sea levels, and extreme weather events. But for youth participating in Klima Eskwela 2025, climate change is not just a topic in a textbook—it is a problem they are determined to solve. This nationwide program is turning schools into hubs of climate action, equipping students with the tools, funding, and mentorship they need to turn ideas into real-world solutions.
 
 The first leg of the program kicked off on May 21, 2025 at Caraga State University (CSU) in Butuan City. Organized by The Climate Reality Project Philippines with the Climate Change Commission, along with the City Government of Butuan, and CSU, the initiative is designed to train student leaders who can launch campaigns, run projects, and build movements. Participants spent days learning how to plan campaigns, write policies, map stakeholders, and manage projects. For many, it is a wake-up call. CSU student Jon Patoñal explained that while he had always known that plastic was bad for oceans and landfills, the training showed how its production and disposal also release greenhouse gases, connecting everyday waste directly to the climate crisis. 
