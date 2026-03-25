@@ -79,27 +79,35 @@ const getPostsByCategory = (cat: string) => {
               >
                 {heroPost.data.title}
               </h1>
-              <div class="flex items-center gap-2.5 mt-2">
-                <div class="w-8 h-8 rounded-full bg-[#00046d] flex items-center justify-center overflow-hidden shrink-0 border border-white/50 shadow-sm">
-                  <span class="text-white text-[12px] font-bold">
-                    {heroPost.data.author.charAt(0).toUpperCase()}
-                  </span>
+              <div class="flex items-center justify-between gap-5 mt-3">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-full bg-[#00046d] flex items-center justify-center overflow-hidden shrink-0 border border-white/50 shadow-sm">
+                    <span class="text-white text-[12px] font-bold">
+                      {heroPost.data.author.charAt(0).toUpperCase()}
+                    </span>
+                  </div>
+                  <div class="flex flex-col">
+                    <span
+                      class={`font-display font-bold text-[12px] ${heroImage ? "text-white" : "text-[#333]"}`}
+                    >
+                      by {heroPost.data.author}
+                    </span>
+                    <span
+                      class={`font-sans text-[10px] ${heroImage ? "text-white/80" : "text-[#666]"}`}
+                    >
+                      {new Date(heroPost.data.pubDatetime).toLocaleDateString(
+                        "en-US",
+                        { year: "numeric", month: "long", day: "numeric" }
+                      )}
+                    </span>
+                  </div>
                 </div>
-                <div class="flex flex-col">
-                  <span
-                    class={`font-display font-bold text-[12px] ${heroImage ? "text-white" : "text-[#333]"}`}
-                  >
-                    {heroPost.data.author}
-                  </span>
-                  <span
-                    class={`font-sans text-[10px] ${heroImage ? "text-white/80" : "text-[#666]"}`}
-                  >
-                    {new Date(heroPost.data.pubDatetime).toLocaleDateString(
-                      "en-US",
-                      { year: "numeric", month: "long", day: "numeric" }
-                    )}
-                  </span>
-                </div>
+                <a
+                  href={`/posts/${heroPost.slug}/`}
+                  class={`shrink-0 border ${heroImage ? "border-white text-white" : "border-[#00046d] text-[#00046d]"} uppercase rounded-[20px] px-4 py-1.5 cursor-pointer font-display font-bold text-[10px] tracking-wide no-underline`}
+                >
+                  READ MORE
+                </a>
               </div>
             </div>
           </div>
@@ -140,24 +148,10 @@ const getPostsByCategory = (cat: string) => {
             const headerPost = catPosts[0];
             const smallPosts = catPosts.slice(1, 4);
 
-            if (label === "DRAW THE LINE") {
-              // Special layout for DRAW THE LINE: exactly 4 SmallCards in a horizontal row
-              return (
-                <div class="px-[16px] sm:px-[28px] lg:px-[68px] py-[22px] sm:py-[26px] lg:py-[30px] pb-[32px] sm:pb-[38px] lg:pb-[44px]">
-                  <SectionHeader label={label} color={color} />
-                  <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4 lg:gap-[18px]">
-                    {catPosts.slice(0, 4).map(post => (
-                      <SmallCard post={post} category={label} />
-                    ))}
-                  </div>
-                </div>
-              );
-            }
-
             return (
               <div class="px-[16px] sm:px-[28px] lg:px-[68px] py-[22px] sm:py-[26px] lg:py-[30px] pb-[32px] sm:pb-[38px] lg:pb-[44px]">
                 <SectionHeader label={label} color={color} />
-                <div class="mb-5 sm:mb-8">
+                <div class="mb-5">
                   <HeaderCard post={headerPost} />
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-4 lg:gap-[18px]">
@@ -167,10 +161,10 @@ const getPostsByCategory = (cat: string) => {
                     </div>
                   ))}
                 </div>
-                <div class="mt-3.5 text-center sm:hidden">
+                <div class="mt-8 text-center">
                   <a
                     href={`/tags/${catTag}`}
-                    class="jk-btn bg-jk-primary border-none rounded-[20px] px-[26px] py-[9px] cursor-pointer font-display font-bold text-white text-[13px] inline-block no-underline"
+                    class="bg-[#00046d] border-none rounded-[20px] px-8 py-2.5 cursor-pointer font-display font-medium text-white text-[12px] uppercase tracking-wide inline-block no-underline shadow-md"
                   >
                     READ MORE
                   </a>
