@@ -18,11 +18,14 @@ export default function AppNavbar({
   // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (menuOpen && compact) {
+      document.documentElement.style.overflow = "hidden";
       document.body.style.overflow = "hidden";
     } else {
+      document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
     }
     return () => {
+      document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
     };
   }, [menuOpen, compact]);
