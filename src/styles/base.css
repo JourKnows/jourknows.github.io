@@ -141,9 +141,7 @@
     @apply outline-2 outline-offset-1 outline-skin-fill focus-visible:no-underline focus-visible:outline-dashed;
   }
 
-  /* Custom JourKnows UI utilities */
 
-  /* Shared image container — wraps all card/hero images */
   .jk-img-container {
     @apply overflow-hidden rounded-lg;
     background-color: #e8e8e8;
@@ -153,7 +151,6 @@
     background-size: 48px 48px;
   }
 
-  /* Hover zoom for card images */
   .jk-img-container img {
     @apply w-full h-full object-cover;
     transition: transform 0.3s ease;
@@ -165,6 +162,10 @@
   @keyframes jkFadeUp {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: none; }
+  }
+  @keyframes slideInRight {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
   }
   .jk-page {
     animation: jkFadeUp 0.28s ease both;

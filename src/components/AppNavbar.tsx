@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { LOGO, SEARCH_ICON } from "../utils/constants";
 import useBreakpoint from "../utils/useBreakpoint";
 
@@ -14,6 +14,18 @@ export default function AppNavbar({
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (menuOpen && compact) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen, compact]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -209,12 +221,13 @@ export default function AppNavbar({
         <div
           onClick={() => setMenuOpen(false)}
           className="fixed inset-0 z-[199] bg-black/45"
+          style={{ top: compact ? 58 : 70 }}
         >
           <nav
             onClick={e => e.stopPropagation()}
-            className="absolute right-0 w-[min(260px,80vw)] bg-[#000060] shadow-[-4px_0_24px_rgba(0,0,0,0.4)] min-h-[100svh] pt-1.5 animate-[jkFadeUp_0.2s_ease_both] overflow-y-auto pb-24"
+            className="absolute right-0 w-[min(260px,80vw)] bg-[#000060] shadow-[-4px_0_24px_rgba(0,0,0,0.4)] pt-1.5 overflow-y-auto pb-24 animate-[slideInRight_0.2s_ease_both]"
             style={{
-              top: compact ? 58 : 70,
+              top: 0,
               height: `calc(100svh - ${compact ? 58 : 70}px)`,
             }}
           >
@@ -227,6 +240,7 @@ export default function AppNavbar({
                 <a
                   key={link.label}
                   href={link.href}
+                  onClick={() => setMenuOpen(false)}
                   className={`block w-full text-left border-none cursor-pointer font-display text-[15px] text-white py-3.5 px-5 tracking-[0.5px] outline-none no-underline ${
                     isActive(link.href)
                       ? "font-extrabold bg-white/12 border-l-[3px] border-l-white"
