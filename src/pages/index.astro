@@ -57,7 +57,7 @@ const getPostsByCategory = (cat: string) => {
       {
         heroPost && (
           <div
-            class={`relative h-[310px] sm:h-[400px] lg:h-[510px] overflow-hidden ${!heroImage ? "bg-white" : ""}`}
+            class={`relative h-[310px] sm:h-[400px] lg:h-[510px] overflow-hidden ${!heroImage ? "jk-img-container" : ""}`}
           >
             {heroImage && (
               <>
@@ -80,7 +80,7 @@ const getPostsByCategory = (cat: string) => {
               >
                 {heroPost.data.title}
               </h1>
-              <div class="flex items-center justify-between gap-5 mt-3">
+              <div class="flex items-center flex-wrap gap-3 sm:gap-5 mt-3 sm:justify-between">
                 <div class="flex items-center gap-2.5">
                   <div class="w-8 h-8 rounded-full bg-[#00046d] flex items-center justify-center overflow-hidden shrink-0 border border-white/50 shadow-sm">
                     <span class="text-white text-[12px] font-bold">

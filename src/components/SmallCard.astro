@@ -18,15 +18,11 @@ const image = getFirstImage(post.body);
 >
   {
     image ? (
-      <div class="w-full aspect-[8/9] bg-[#d9d9d9] overflow-hidden shrink-0 rounded-[8px]">
-        <img
-          src={image}
-          alt={post.data.title}
-          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-        />
+      <div class="jk-img-container w-full aspect-[8/9] shrink-0">
+        <img src={image} alt={post.data.title} />
       </div>
     ) : (
-      <div class="w-full aspect-[8/9] bg-[#d9d9d9] shrink-0 rounded-[8px]" />
+      <div class="jk-img-container w-full aspect-[8/9] shrink-0" />
     )
   }
   <div class="pt-3 pb-2 flex-1 min-w-0 flex flex-col">
