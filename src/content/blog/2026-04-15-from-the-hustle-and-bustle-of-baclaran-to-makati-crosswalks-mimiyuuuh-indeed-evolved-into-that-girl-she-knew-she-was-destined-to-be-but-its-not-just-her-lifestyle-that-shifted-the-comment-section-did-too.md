@@ -9,7 +9,7 @@ ogImage: From the hustle and bustle of Baclaran to Makati crosswalks, Mimiyuuuh
   indeed evolved into "that girl" she knew she was destined to be. But it's not
   just her lifestyle that shifted, the comment section did too.
 slug: mimiyuh
-featured: false
+featured: true
 draft: false
 tags:
   - JOIN IN THE KNOW
