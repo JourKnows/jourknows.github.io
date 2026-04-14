@@ -2,12 +2,8 @@
 author: Alexander Dylan C. De Guzman
 pubDatetime: 2026-04-13
 modDatetime: 2026-04-13
-title: From the hustle and bustle of Baclaran to Makati crosswalks, Mimiyuuuh
-  indeed evolved into "that girl" she knew she was destined to be. But it's not
-  just her lifestyle that shifted, the comment section did too.
-ogImage: From the hustle and bustle of Baclaran to Makati crosswalks, Mimiyuuuh
-  indeed evolved into "that girl" she knew she was destined to be. But it's not
-  just her lifestyle that shifted, the comment section did too.
+title: THAT Girl Eversince
+ogImage: THAT Girl Eversince
 slug: mimiyuh
 featured: true
 draft: false
