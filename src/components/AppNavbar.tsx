@@ -63,7 +63,7 @@ export default function AppNavbar({
           }}
         />
         <img
-          src="https://i0.wp.com/jourknowsph.com/wp-content/uploads/2026/02/untitled-1920-x-900-px-1920-x-750-px.png?fit=1920%2C750&ssl=1"
+          src="https://i0.wp.com/jourknows.github.io/wp-content/uploads/2026/02/untitled-1920-x-900-px-1920-x-750-px.png?fit=1920%2C750&ssl=1"
           alt="Site logo"
           className="transition-opacity duration-[800ms] group-hover:opacity-80"
           style={{
@@ -171,7 +171,7 @@ export default function AppNavbar({
               className="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] flex items-center justify-center cursor-pointer outline-none no-underline z-10 hover:opacity-80 transition-opacity"
             >
               <img
-                src="https://i0.wp.com/jourknowsph.com/wp-content/uploads/2026/02/untitled-1920-x-900-px-1920-x-750-px.png?fit=1920%2C750&ssl=1"
+                src="https://i0.wp.com/jourknows.github.io/wp-content/uploads/2026/02/untitled-1920-x-900-px-1920-x-750-px.png?fit=1920%2C750&ssl=1"
                 alt="JourKnows"
                 className="object-contain shrink-0 transition-all duration-500"
                 style={{ height: isScrolled ? 26 : 32, width: "auto" }}
