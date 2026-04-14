@@ -9,9 +9,12 @@ const JOURKNOWS_DESC =
   "JourKnows PH is a student journalism publication committed to amplifying youth voices and delivering stories that matter — Journalism for All.";
 ---
 
-<footer class="jk-footer bg-jk-footer-grad text-white/85 pt-7 sm:pt-11 w-full">
+<footer
+  class="jk-footer bg-[#05051a]/85 backdrop-blur-[64px] saturate-150 text-white/85 pt-12 sm:pt-16 pb-8 w-[92%] max-w-[1100px] mx-auto sm:mb-10 mt-12 rounded-[32px] sm:rounded-[40px] border border-white/10 shadow-[0_40px_80px_rgba(0,0,40,0.15)] animate-glassFadeUp"
+  style="animation-delay: 500ms;"
+>
   <div
-    class="w-full px-6 sm:px-12 lg:px-20 grid grid-cols-1 sm:grid-cols-[1fr_2fr_1fr] gap-6 sm:gap-10"
+    class="w-full px-6 sm:px-12 lg:px-16 grid grid-cols-1 sm:grid-cols-[1fr_2fr_1fr] gap-6 sm:gap-10"
   >
     <!-- Logo & Description -->
     <div>
@@ -34,26 +37,26 @@ const JOURKNOWS_DESC =
       </p>
       <form class="flex mb-3 max-w-sm">
         <div
-          class="flex items-center border border-white/60 flex-1 rounded-l-[5px] overflow-hidden"
+          class="flex items-center bg-white/5 border border-white/10 flex-1 rounded-[24px] overflow-hidden p-1 shadow-inner focus-within:bg-white/10 focus-within:border-white/20 transition-all duration-300"
         >
           <img
             src={LETTER_ICON}
             alt=""
-            class="w-[13px] h-[18px] mx-[7px] object-contain shrink-0"
+            class="w-[14px] h-[14px] mx-3 opacity-60 object-contain shrink-0"
           />
           <input
             type="email"
             placeholder="your@email.com"
-            class="flex-1 bg-transparent border-none outline-none text-white/80 text-[11px] font-display py-[7px] px-0.5 min-w-0 placeholder:text-white/50"
+            class="flex-1 bg-transparent border-none outline-none text-white/90 text-[13px] font-display py-2 px-1 min-w-0 placeholder:text-white/40"
             required
           />
+          <button
+            type="submit"
+            class="jk-btn bg-white border-none cursor-pointer font-display font-bold text-[#000010] text-[11px] px-4 py-2 rounded-[20px] whitespace-nowrap hover:bg-[#e0e0e0] transition-colors"
+          >
+            SUBSCRIBE
+          </button>
         </div>
-        <button
-          type="submit"
-          class="jk-btn bg-[#fafafa] border-none cursor-pointer font-display font-bold text-jk-primary text-[11px] px-3 rounded-r-[5px] whitespace-nowrap"
-        >
-          SUBSCRIBE
-        </button>
       </form>
       <div class="flex gap-4">
         {
@@ -102,7 +105,7 @@ const JOURKNOWS_DESC =
   </div>
 
   <div
-    class="mt-6 bg-gradient-to-r from-[#797979] via-[#505050] to-[#272727] text-center py-2.5 px-4 font-display text-[11px] text-white/70"
+    class="mt-12 text-center font-display text-[12px] text-white/40 pt-6 border-t border-white/10"
   >
     © JourKnows 2025. All rights reserved.
   </div>

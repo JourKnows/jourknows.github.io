@@ -14,7 +14,7 @@ const image = getFirstImage(post.body);
 
 <a
   href={`/posts/${post.slug}/`}
-  class="jk-card bg-transparent overflow-hidden cursor-pointer flex flex-col sm:flex-row outline-none group pb-4 mb-4 sm:border-b sm:border-gray-200"
+  class="bg-transparent overflow-hidden cursor-pointer flex flex-col sm:flex-row outline-none group pb-4 mb-4 sm:border-b sm:border-gray-200 sm:px-4 sm:-mx-4 sm:pt-4 sm:-mt-4 rounded-xl transition-all duration-500 hover:bg-[#fafafa] hover:-translate-y-1 hover:shadow-[0_12px_24px_rgba(0,0,0,0.06)]"
 >
   {
     image ? (
@@ -38,7 +38,7 @@ const image = getFirstImage(post.body);
       {tag}
     </span>
     <p
-      class="font-display font-bold text-[14px] sm:text-[16px] text-[#151515] mb-2 leading-[1.3] line-clamp-2"
+      class="font-display font-bold text-[14px] sm:text-[16px] text-[#151515] group-hover:text-[#00046d] transition-colors duration-300 mb-2 leading-[1.3] line-clamp-2"
     >
       {post.data.title}
     </p>

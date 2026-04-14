@@ -9,7 +9,7 @@ import SectionHeader from "@components/SectionHeader.astro";
 import HeaderCard from "@components/HeaderCard.astro";
 import MediumCard from "@components/MediumCard.astro";
 import SmallCard from "@components/SmallCard.astro";
-import { HERO_IMG, SECTION_COLORS } from "@utils/constants";
+import { SECTION_COLORS } from "@utils/constants";
 import getFirstImage from "@utils/getFirstImage";
 import { slugifyAll } from "@utils/slugify";
 
@@ -46,25 +46,29 @@ const getPostsByCategory = (cat: string) => {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <title>JourKnows | Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body
-    class="font-display min-h-[100vh] bg-white overflow-x-hidden max-w-[100vw] m-0 p-0 text-[#1e1e1e]"
-  >
+  <body class="font-display min-h-[100vh] bg-[#f5f6fa] m-0 p-0 text-[#1e1e1e]">
     <AppNavbar client:load activeHref="/" navLinks={navLinks} />
 
-    <div class="jk-page">
+    <div>
       {/* ── Hero ── */}
       {
         heroPost && (
           <div
-            class={`relative h-[310px] sm:h-[400px] lg:h-[510px] overflow-hidden ${!heroImage ? "bg-white" : ""}`}
+            class={`relative h-[310px] sm:h-[400px] lg:h-[510px] overflow-hidden animate-glassFadeUp ${!heroImage ? "bg-white" : ""}`}
           >
             {heroImage && (
               <>
                 <img
                   src={heroImage}
                   alt={heroPost.data.title}
-                  class="w-full h-full object-cover"
+                  class="w-full h-full object-cover animate-cinematicZoom"
                 />
                 <div class="absolute inset-0 bg-gradient-to-b from-black/10 to-black/75" />
               </>
@@ -118,7 +122,10 @@ const getPostsByCategory = (cat: string) => {
       {/* ── Latest ── */}
       {
         latestPosts.length > 0 && (
-          <div class="bg-white px-[16px] sm:px-[28px] lg:px-[68px] py-[22px] sm:py-[26px] lg:py-[30px] pb-[30px] sm:pb-[34px] lg:pb-[38px]">
+          <div
+            class="bg-white border border-black/5 shadow-[0_12px_40px_rgba(0,0,0,0.06)] px-[16px] sm:px-[28px] lg:px-[68px] py-[28px] sm:py-[34px] lg:py-[40px] pb-[34px] sm:pb-[40px] lg:pb-[46px] sm:mx-5 lg:mx-10 sm:rounded-3xl mt-3 sm:mt-6 transition-all duration-500 animate-glassFadeUp"
+            style="animation-delay: 150ms;"
+          >
             <div class="flex items-center mb-3.5">
               <h2 class="font-display font-extrabold text-[17px] sm:text-[21px] text-[#1a1a1a] shrink-0 mr-3">
                 LATEST
@@ -135,7 +142,7 @@ const getPostsByCategory = (cat: string) => {
       }
 
       {/* ── Category sections ── */}
-      <div class="bg-white">
+      <div class="animate-glassFadeUp" style="animation-delay: 300ms;">
         {
           categoryTags.map(tagObj => {
             const catTag = tagObj.tag;
@@ -150,7 +157,7 @@ const getPostsByCategory = (cat: string) => {
             const smallPosts = catPosts.slice(1, 4);
 
             return (
-              <div class="px-[16px] sm:px-[28px] lg:px-[68px] py-[22px] sm:py-[26px] lg:py-[30px] pb-[32px] sm:pb-[38px] lg:pb-[44px]">
+              <div class="bg-white px-[16px] sm:px-[28px] lg:px-[68px] py-[28px] sm:py-[34px] lg:py-[40px] pb-[36px] sm:pb-[42px] lg:pb-[48px] sm:mx-5 lg:mx-10 sm:rounded-2xl mb-3 sm:mb-5">
                 <SectionHeader label={label} color={color} />
                 <div class="mb-5">
                   <HeaderCard post={headerPost} />

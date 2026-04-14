@@ -8,13 +8,12 @@ export interface Props {
 }
 
 const { post } = Astro.props;
-const tag = post.data.tags?.[0] || "NEWS";
 const image = getFirstImage(post.body);
 ---
 
 <a
   href={`/posts/${post.slug}/`}
-  class="jk-card bg-transparent overflow-hidden cursor-pointer flex flex-col sm:flex-row outline-none group mb-2"
+  class="bg-transparent overflow-hidden cursor-pointer flex flex-col sm:flex-row outline-none group mb-2 sm:p-4 sm:-m-4 rounded-xl transition-all duration-500 hover:bg-[#fafafa] hover:-translate-y-1 hover:shadow-[0_12px_24px_rgba(0,0,0,0.06)]"
 >
   {
     image ? (
@@ -33,7 +32,7 @@ const image = getFirstImage(post.body);
     class="pt-3 sm:pt-0 sm:pl-5 lg:pl-6 flex-1 min-w-0 flex flex-col sm:justify-center"
   >
     <p
-      class="font-display font-bold text-[18px] sm:text-[22px] text-[#151515] mb-[7px] leading-[1.3] line-clamp-2 sm:line-clamp-3"
+      class="font-display font-bold text-[18px] sm:text-[22px] text-[#151515] group-hover:text-[#00046d] transition-colors duration-300 mb-[7px] leading-[1.3] line-clamp-2 sm:line-clamp-3"
     >
       {post.data.title}
     </p>

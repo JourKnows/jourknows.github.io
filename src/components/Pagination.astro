@@ -20,23 +20,25 @@ const next = currentPage < totalPages ? "" : "disabled";
       <LinkButton
         disabled={prev === "disabled"}
         href={prevUrl}
-        className={`mr-4 select-none ${prev}`}
+        className={`mr-4 select-none ${prev} jk-btn inline-flex items-center justify-center gap-2 bg-white/70 backdrop-blur-xl border border-black/5 rounded-full px-5 py-2.5 font-display font-extrabold text-[13px] text-[#000060] hover:bg-[#000060]/10 transition-colors shadow-[0_2px_8px_rgba(0,0,0,0.04)] no-underline`}
         ariaLabel="Previous"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" class={`${prev}-svg`}>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current">
           <path d="M12.707 17.293 8.414 13H18v-2H8.414l4.293-4.293-1.414-1.414L4.586 12l6.707 6.707z" />
         </svg>
         Prev
       </LinkButton>
-      {currentPage} / {totalPages}
+      <div class="flex items-center justify-center px-4 font-display font-medium text-[14px] text-[#444]">
+        {currentPage} / {totalPages}
+      </div>
       <LinkButton
         disabled={next === "disabled"}
         href={nextUrl}
-        className={`ml-4 select-none ${next}`}
+        className={`ml-4 select-none ${next} jk-btn inline-flex items-center justify-center gap-2 bg-white/70 backdrop-blur-xl border border-black/5 rounded-full px-5 py-2.5 font-display font-extrabold text-[13px] text-[#000060] hover:bg-[#000060]/10 transition-colors shadow-[0_2px_8px_rgba(0,0,0,0.04)] no-underline`}
         ariaLabel="Next"
       >
         Next
-        <svg xmlns="http://www.w3.org/2000/svg" class={`${next}-svg`}>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current">
           <path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z" />
         </svg>
       </LinkButton>
@@ -46,12 +48,9 @@ const next = currentPage < totalPages ? "" : "disabled";
 
 <style>
   .pagination-wrapper {
-    @apply mb-8 mt-auto flex justify-center;
+    @apply my-10 flex justify-center items-center;
   }
   .disabled {
-    @apply pointer-events-none select-none opacity-50 hover:text-skin-base group-hover:fill-skin-base;
-  }
-  .disabled-svg {
-    @apply group-hover:!fill-skin-base;
+    @apply pointer-events-none select-none opacity-40;
   }
 </style>

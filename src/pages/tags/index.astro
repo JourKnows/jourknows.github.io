@@ -9,12 +9,6 @@ import Tag from "@components/Tag.astro";
 const posts = await getCollection("blog");
 let tags = getUniqueTags(posts);
 
-import { SECTION_COLORS } from "@utils/constants";
-const mainCategoryKeys = Object.keys(SECTION_COLORS).filter(
-  k => k !== "default"
-);
-const categoryTags = tags.filter(t => mainCategoryKeys.includes(t.tag));
-
 const navLinks = [
   { label: "HOME", href: "/" },
   ...tags.map(t => ({

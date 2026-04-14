@@ -8,13 +8,13 @@ export interface Props {
   category?: string;
 }
 
-const { post, category } = Astro.props;
+const { post } = Astro.props;
 const image = getFirstImage(post.body);
 ---
 
 <a
   href={`/posts/${post.slug}/`}
-  class="jk-card bg-transparent overflow-hidden cursor-pointer flex flex-col outline-none group"
+  class="bg-transparent overflow-hidden cursor-pointer flex flex-col outline-none group p-2 -m-2 rounded-xl transition-all duration-500 hover:bg-white hover:-translate-y-1 hover:shadow-[0_12px_24px_rgba(0,0,0,0.06)]"
 >
   {
     image ? (
@@ -31,7 +31,7 @@ const image = getFirstImage(post.body);
   }
   <div class="pt-3 pb-2 flex-1 min-w-0 flex flex-col">
     <p
-      class="font-display font-bold text-[14px] sm:text-[15px] text-[#151515] mb-[5px] leading-[1.3] line-clamp-3"
+      class="font-display font-bold text-[14px] sm:text-[15px] text-[#151515] group-hover:text-[#00046d] transition-colors duration-300 mb-[5px] leading-[1.3] line-clamp-3"
     >
       {post.data.title}
     </p>

@@ -7,7 +7,7 @@ import SmallCard from "@components/SmallCard.astro";
 import type { CollectionEntry } from "astro:content";
 import { slugifyStr } from "@utils/slugify";
 import { SITE } from "@config";
-import { HERO_IMG } from "@utils/constants";
+
 import { getCollection } from "astro:content";
 import getSortedPosts from "@utils/getSortedPosts";
 import getUniqueTags from "@utils/getUniqueTags";
@@ -64,11 +64,6 @@ const recentRelated = getSortedPosts(allPosts)
   .slice(0, 4);
 
 const tagsAll = getUniqueTags(allPosts);
-import { SECTION_COLORS } from "@utils/constants";
-const mainCategoryKeys = Object.keys(SECTION_COLORS).filter(
-  k => k !== "default"
-);
-const categoryTags = tagsAll.filter(t => mainCategoryKeys.includes(t.tag));
 
 const navLinks = [
   { label: "HOME", href: "/" },
@@ -86,10 +81,10 @@ const navLinks = [
     navLinks={navLinks}
   />
 
-  <div class="jk-page bg-white min-h-screen text-[#1e1e1e] font-display">
+  <div class="jk-page bg-[#f5f6fa] min-h-screen text-[#1e1e1e] font-display">
     {/* ── Content ── */}
     <div
-      class="max-w-[1080px] mx-auto px-4 sm:px-7 lg:px-11 pt-[22px] sm:pt-[28px] lg:pt-[36px]"
+      class="max-w-[1080px] mx-auto px-5 sm:px-8 lg:px-12 pt-[28px] sm:pt-[34px] lg:pt-[42px] pb-4 bg-white sm:rounded-3xl border border-black/5 sm:mt-6 lg:mt-8 mb-8 shadow-[0_12px_40px_rgba(0,0,0,0.06)] transition-all duration-500"
     >
       <div class="flex items-center justify-between mb-4">
         <div

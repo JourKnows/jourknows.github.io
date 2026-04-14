@@ -8,7 +8,7 @@ import HeaderCard from "@components/HeaderCard.astro";
 import SmallCard from "@components/SmallCard.astro";
 import Pagination from "@components/Pagination.astro";
 import { SITE } from "@config";
-import { HERO_IMG, SECTION_COLORS } from "@utils/constants";
+import { SECTION_COLORS } from "@utils/constants";
 import { getCollection } from "astro:content";
 import getUniqueTags from "@utils/getUniqueTags";
 import getFirstImage from "@utils/getFirstImage";
@@ -33,10 +33,6 @@ const heroImage = headerPost ? getFirstImage(headerPost.body) : null;
 
 const allPosts = await getCollection("blog");
 const tagsAll = getUniqueTags(allPosts);
-const mainCategoryKeys = Object.keys(SECTION_COLORS).filter(
-  k => k !== "default"
-);
-const categoryTags = tagsAll.filter(t => mainCategoryKeys.includes(t.tag));
 
 const navLinks = [
   { label: "HOME", href: "/" },
@@ -50,7 +46,7 @@ const navLinks = [
 <Layout title={`Section: ${tagName} | ${SITE.title}`}>
   <AppNavbar client:load activeHref={`/tags/${tag}`} navLinks={navLinks} />
 
-  <div class="jk-page bg-white min-h-[100vh]">
+  <div class="jk-page bg-[#f5f6fa] min-h-[100vh]">
     {/* Banner */}
     <div
       class={`relative h-[190px] sm:h-[250px] lg:h-[310px] overflow-hidden ${!heroImage ? secColor : ""}`}
@@ -85,7 +81,7 @@ const navLinks = [
     </div>
 
     <div
-      class="max-w-[1280px] mx-auto px-4 sm:px-7 lg:px-[68px] py-[22px] sm:py-[26px] lg:py-[36px] pb-[36px] sm:pb-[44px] lg:pb-[52px]"
+      class="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-[68px] py-[28px] sm:py-[34px] lg:py-[42px] pb-[40px] sm:pb-[48px] lg:pb-[56px] bg-white border border-black/5 sm:rounded-3xl sm:mt-6 lg:mt-8 mb-8 shadow-[0_12px_40px_rgba(0,0,0,0.06)] transition-all duration-500"
     >
       {
         headerPost && (

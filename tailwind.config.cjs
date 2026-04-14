@@ -70,6 +70,20 @@ module.exports = {
         sans: ["Inter", "sans-serif"],
         display: ["Montserrat", "sans-serif"],
       },
+      keyframes: {
+        glassFadeUp: {
+          '0%': { opacity: '0', transform: 'translateY(24px)', filter: 'blur(8px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)', filter: 'blur(0px)' },
+        },
+        cinematicZoom: {
+          '0%': { transform: 'scale(1.06)' },
+          '100%': { transform: 'scale(1)' },
+        }
+      },
+      animation: {
+        glassFadeUp: 'glassFadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) both',
+        cinematicZoom: 'cinematicZoom 7s cubic-bezier(0.16, 1, 0.3, 1) both',
+      },
 
       typography: {
         DEFAULT: {
