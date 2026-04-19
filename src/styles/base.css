@@ -101,26 +101,36 @@
   /* ===== scrollbar ===== */
   html {
     overflow-y: scroll;
+    /* Standard scrollbar for Firefox */
+    scrollbar-width: thin;
   }
 
-  /* width */
-  ::-webkit-scrollbar {
-    @apply w-3;
-  }
+  /* Custom scrollbar only for desktop (devices with a mouse).
+     Mobile devices (iOS/Android) keep their native, perfectly optimized auto-hiding scrollbars. */
+  @media (hover: hover) and (pointer: fine) {
+    /* Clickable width */
+    ::-webkit-scrollbar {
+      width: 14px;
+    }
 
-  /* Track */
-  ::-webkit-scrollbar-track {
-    @apply bg-skin-fill;
-  }
+    /* Track */
+    ::-webkit-scrollbar-track {
+      @apply bg-skin-fill;
+    }
 
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    @apply bg-skin-card;
-  }
+    /* Handle: Visually thin (2px) but functionally thick (14px) for easy clicking */
+    ::-webkit-scrollbar-thumb {
+      @apply bg-skin-card;
+      border: 6px solid transparent;
+      background-clip: padding-box;
+      border-radius: 9999px;
+    }
 
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-skin-card-muted;
+    /* Handle on hover: Expands visually to 10px */
+    ::-webkit-scrollbar-thumb:hover {
+      @apply bg-skin-card-muted;
+      border: 2px solid transparent;
+    }
   }
 
   code,

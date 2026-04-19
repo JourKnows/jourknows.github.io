@@ -28,6 +28,11 @@ export default function Card({ href, frontmatter, secHeading = true }: Props) {
         ) : (
           <h3 {...headerProps}>{title}</h3>
         )}
+        {frontmatter.author && (
+          <p className="font-display font-medium text-[13px] italic text-[#1e1e1e]/80 mb-1">
+            By {frontmatter.author}
+          </p>
+        )}
         <div className="mb-2">
           <Datetime pubDatetime={pubDatetime} modDatetime={modDatetime} />
         </div>

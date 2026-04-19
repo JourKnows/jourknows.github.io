@@ -13,10 +13,12 @@ export interface Props {
 export async function getStaticPaths() {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
 
-  const postResult = posts.map(post => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+  const postResult = posts
+    .filter(post => post.slug || post.id)
+    .map(post => ({
+      params: { slug: post.slug || post.id.replace(/\.mdx?$/, "") },
+      props: { post },
+    }));
 
   const pagePaths = getPageNumbers(posts.length).map(pageNum => ({
     params: { slug: String(pageNum) },

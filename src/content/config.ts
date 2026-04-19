@@ -6,9 +6,28 @@ const blog = defineCollection({
   schema: ({ image }) =>
     z.object({
       author: z.string().default(SITE.author),
-      pubDatetime: z.date(),
-      modDatetime: z.date().optional().nullable(),
-      title: z.string(),
+      pubDatetime: z
+        .union([z.date(), z.string()])
+        .optional()
+        .transform(val => {
+          if (!val) return new Date();
+          const date = new Date(val);
+          return isNaN(date.getTime()) ? new Date() : date;
+        })
+        .default(() => new Date()),
+      modDatetime: z
+        .union([z.date(), z.string()])
+        .optional()
+        .transform(val => {
+          if (!val) return null;
+          const date = new Date(val);
+          return isNaN(date.getTime()) ? null : date;
+        })
+        .nullable(),
+      title: z
+        .string()
+        .optional()
+        .transform(val => val || "Untitled"),
       featured: z.boolean().optional(),
       draft: z.boolean().optional(),
       tags: z.array(z.string()).default(["others"]),
@@ -18,7 +37,10 @@ const blog = defineCollection({
         })
         .or(z.string())
         .optional(),
-      description: z.string(),
+      description: z
+        .string()
+        .optional()
+        .transform(val => val || "No description"),
       canonicalURL: z.string().optional(),
     }),
 });

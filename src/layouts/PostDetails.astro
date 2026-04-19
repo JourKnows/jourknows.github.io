@@ -103,10 +103,18 @@ const navLinks = [
       </div>
 
       <h1
-        class="font-display font-black text-[24px] sm:text-[32px] lg:text-[42px] text-[#1e1e1e] leading-[1.2] mb-4"
+        class="font-display font-black text-[24px] sm:text-[32px] lg:text-[42px] text-[#1e1e1e] leading-[1.2] mb-2"
       >
         {title}
       </h1>
+
+      {
+        author && (
+          <p class="font-display font-medium text-[14px] sm:text-[16px] italic text-[#1e1e1e]/80 mb-1">
+            By {author}
+          </p>
+        )
+      }
 
       <p
         class="font-display font-semibold text-[12px] text-[#1e1e1e]/60 mb-[18px]"
@@ -190,25 +198,33 @@ const navLinks = [
 
 <style>
   .prose {
-    font-size: 14px;
-    line-height: 1.85;
+    font-size: 16px;
+    line-height: 1.8;
+    letter-spacing: -0.01em;
   }
   @media (min-width: 640px) {
     .prose {
-      font-size: 16px;
+      font-size: 18px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .prose {
+      font-size: 19px;
+      line-height: 1.85;
     }
   }
   .prose :global(p) {
-    @apply mb-[18px];
+    @apply mb-[22px];
   }
   .prose :global(p:first-of-type::first-letter) {
-    @apply font-bold text-lg;
+    @apply font-bold text-xl;
   }
   .prose :global(img) {
     width: 100%;
     max-width: 100%;
     height: auto;
-    border-radius: 8px;
+    border-radius: 10px;
     object-fit: cover;
+    @apply shadow-sm;
   }
 </style>
