@@ -270,39 +270,39 @@ export default function AppNavbar({
         )}
       </header>
 
-      {/* Mobile slide-in menu (Dark Glass) */}
+      {/* Mobile Premium Dropdown Menu (Centered Floating Pill) */}
       {compact && menuOpen && (
         <div
           onClick={() => setMenuOpen(false)}
-          className="fixed inset-0 z-[199] bg-black/60 backdrop-blur-sm transition-opacity duration-300"
+          className="fixed inset-0 z-[199] bg-black/40 backdrop-blur-sm transition-opacity duration-300 flex justify-center items-start"
+          style={{
+            paddingTop: isScrolled ? 58 : 66,
+          }}
         >
           <nav
             onClick={e => e.stopPropagation()}
-            className="absolute right-0 w-[min(300px,85vw)] bg-[#000060]/85 backdrop-blur-3xl shadow-[-12px_0_40px_rgba(0,0,60,0.6)] min-h-[100svh] pt-4 animate-[jkFadeUp_0.3s_ease_both] overflow-y-auto pb-32 border-l border-white/10 transition-all duration-300"
-            style={{
-              top: isScrolled ? 50 : 58,
-              height: `calc(100svh - ${isScrolled ? 50 : 58}px)`,
-            }}
+            className="w-[92vw] max-w-[400px] bg-[#000060]/90 backdrop-blur-[40px] backdrop-saturate-[200%] shadow-[0_24px_60px_rgba(0,0,60,0.4)] rounded-[24px] border border-white/20 animate-[jkDrop_0.35s_cubic-bezier(0.16,1,0.3,1)_both] p-2 flex flex-col"
           >
-            <div className="px-6 py-2 font-display font-black text-[10px] text-white/50 tracking-[1.5px] mb-2 uppercase">
-              Categories
+            <div className="px-4 py-3 font-display font-black text-[11px] text-white/60 tracking-[1.5px] uppercase">
+              Menu
             </div>
-            <div className="mx-4 bg-white/5 rounded-2xl overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_4px_12px_rgba(0,0,0,0.2)] border border-white/5">
-              {navLinks
-                .filter(link => link.href !== "/")
-                .map((link, idx, arr) => (
+            <div className="flex flex-col gap-1">
+              {navLinks.map((link, idx) => {
+                const active = isActive(link.href);
+                return (
                   <a
                     key={link.label}
                     href={link.href}
-                    className={`block w-full text-left border-none cursor-pointer font-display text-[15px] text-white py-4 px-5 tracking-[0.3px] outline-none no-underline transition-colors active:bg-white/20 ${
-                      isActive(link.href)
-                        ? "font-extrabold bg-white/10"
-                        : "font-medium hover:bg-white/10"
-                    } ${idx !== arr.length - 1 ? "border-b border-white/5" : ""}`}
+                    className={`block w-full text-left rounded-[16px] cursor-pointer font-display text-[15px] py-3.5 px-4 tracking-[0.3px] outline-none no-underline transition-all duration-300 active:scale-[0.98] ${
+                      active
+                        ? "font-extrabold text-[#000060] bg-white shadow-[0_4px_12px_rgba(0,0,0,0.1)]"
+                        : "font-semibold text-white/90 hover:bg-white/10 hover:text-white active:bg-white/20"
+                    }`}
                   >
                     {link.label}
                   </a>
-                ))}
+                );
+              })}
             </div>
           </nav>
         </div>

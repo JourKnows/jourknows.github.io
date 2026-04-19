@@ -169,6 +169,10 @@
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: none; }
   }
+  @keyframes jkDrop {
+    from { opacity: 0; transform: translateY(-15px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
   .jk-page {
     animation: jkFadeUp 0.28s ease both;
   }
