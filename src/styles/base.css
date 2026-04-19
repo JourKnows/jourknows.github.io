@@ -44,9 +44,6 @@
   footer:not(.jk-footer) {
     @apply mx-auto max-w-3xl px-4;
   }
-  a, button {
-    touch-action: manipulation;
-  }
   a {
     @apply outline-2 outline-offset-1 outline-skin-fill 
     focus-visible:no-underline focus-visible:outline-dashed;
@@ -108,11 +105,6 @@
     scrollbar-width: thin;
   }
 
-  html, body {
-    max-width: 100vw;
-    overflow-x: hidden;
-  }
-
   /* Custom scrollbar only for desktop (devices with a mouse).
      Mobile devices (iOS/Android) keep their native, perfectly optimized auto-hiding scrollbars. */
   @media (hover: hover) and (pointer: fine) {
@@ -146,11 +138,6 @@
     word-wrap: break-word;
   }
 
-  pre {
-    max-width: 100vw;
-    overflow-x: auto;
-  }
-
   pre > code {
     white-space: pre;
   }
@@ -168,10 +155,6 @@
   @keyframes jkFadeUp {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: none; }
-  }
-  @keyframes jkDrop {
-    from { opacity: 0; transform: translateY(-15px) scale(0.98); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
   }
   .jk-page {
     animation: jkFadeUp 0.28s ease both;

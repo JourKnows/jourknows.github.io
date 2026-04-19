@@ -236,16 +236,16 @@ export default function AppNavbar({
           )}
         </div>
 
-        {/* Mobile Search Input Overlay (Dark Glass) */}
+        {/* Mobile Search Input Overlay (Apple Liquid Glass) */}
         {compact && searchOpen && (
-          <div className="absolute top-[100%] left-0 right-0 w-full pointer-events-auto bg-[#000060]/95 backdrop-blur-3xl border-b border-white/10 py-3 px-4 shadow-[0_8px_32px_rgba(0,0,60,0.5)] transition-all animate-[jkFadeUp_0.2s_ease_both]">
+          <div className="absolute top-[100%] left-0 right-0 w-full pointer-events-auto bg-[#000020]/50 backdrop-blur-[40px] backdrop-saturate-[200%] border-b border-white/10 py-3 px-4 shadow-[0_20px_50px_rgba(0,0,0,0.3)] transition-all animate-[jkFadeUp_0.2s_ease_both]">
             <form onSubmit={handleSearch}>
               <div className="relative">
-                <div className="absolute left-3 top-[50%] translate-y-[-50%] opacity-60">
+                <div className="absolute left-4 top-[50%] translate-y-[-50%] opacity-70">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
+                    width="18"
+                    height="18"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="#ffffff"
@@ -262,7 +262,7 @@ export default function AppNavbar({
                   placeholder="Search articles…"
                   value={searchQuery}
                   onChange={e => setSearchQuery(e.target.value)}
-                  className="w-full bg-black/30 border border-white/10 rounded-xl py-3 pl-10 pr-4 text-white font-display text-[14px] outline-none placeholder:text-white/50 focus:border-white/40 focus:bg-white/10 transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.2)]"
+                  className="w-full bg-white/10 border border-white/20 rounded-[16px] py-3 pl-12 pr-4 text-white font-display text-[16px] outline-none placeholder:text-white/60 focus:border-white/50 focus:bg-white/20 transition-all shadow-[inset_0_2px_8px_rgba(0,0,0,0.15)]"
                 />
               </div>
             </form>
@@ -270,39 +270,39 @@ export default function AppNavbar({
         )}
       </header>
 
-      {/* Mobile Premium Dropdown Menu (Centered Floating Pill) */}
+      {/* Mobile slide-in menu (Apple Liquid Glass) */}
       {compact && menuOpen && (
         <div
           onClick={() => setMenuOpen(false)}
-          className="fixed inset-0 z-[199] bg-black/40 backdrop-blur-sm transition-opacity duration-300 flex justify-center items-start"
-          style={{
-            paddingTop: isScrolled ? 58 : 66,
-          }}
+          className="fixed inset-0 z-[199] bg-black/40 backdrop-blur-sm transition-opacity duration-300"
         >
           <nav
             onClick={e => e.stopPropagation()}
-            className="w-[92vw] max-w-[400px] max-h-[85vh] overflow-y-auto bg-[#000060]/90 backdrop-blur-[40px] backdrop-saturate-[200%] shadow-[0_24px_60px_rgba(0,0,60,0.4)] rounded-[24px] border border-white/20 animate-[jkDrop_0.35s_cubic-bezier(0.16,1,0.3,1)_both] p-2 flex flex-col"
+            className="absolute right-0 w-[min(320px,85vw)] bg-[#000020]/50 backdrop-blur-[40px] backdrop-saturate-[200%] shadow-[-20px_0_60px_rgba(0,0,0,0.4)] min-h-[100svh] pt-6 animate-[jkFadeUp_0.3s_ease_both] overflow-y-auto pb-32 border-l border-white/10 transition-all duration-300"
+            style={{
+              top: isScrolled ? 50 : 58,
+              height: `calc(100svh - ${isScrolled ? 50 : 58}px)`,
+            }}
           >
-            <div className="px-4 py-3 font-display font-black text-[11px] text-white/60 tracking-[1.5px] uppercase">
-              Menu
+            <div className="px-7 py-2 font-display font-black text-[11px] text-white/50 tracking-[2px] mb-3 uppercase">
+              Categories
             </div>
-            <div className="flex flex-col gap-1">
-              {navLinks.map((link, idx) => {
-                const active = isActive(link.href);
-                return (
+            <div className="mx-5 bg-white/10 rounded-[20px] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_8px_20px_rgba(0,0,0,0.2)] border border-white/10">
+              {navLinks
+                .filter(link => link.href !== "/")
+                .map((link, idx, arr) => (
                   <a
                     key={link.label}
                     href={link.href}
-                    className={`block w-full text-left rounded-[16px] cursor-pointer font-display text-[15px] py-3.5 px-4 tracking-[0.3px] outline-none no-underline transition-all duration-300 active:scale-[0.98] ${
-                      active
-                        ? "font-extrabold text-[#000060] bg-white shadow-[0_4px_12px_rgba(0,0,0,0.1)]"
-                        : "font-semibold text-white/90 hover:bg-white/10 hover:text-white active:bg-white/20"
-                    }`}
+                    className={`block w-full text-left border-none cursor-pointer font-display text-[16px] text-white py-4 px-6 tracking-[0.5px] outline-none no-underline transition-all duration-300 active:bg-white/20 active:scale-[0.98] ${
+                      isActive(link.href)
+                        ? "font-extrabold bg-white/15 shadow-[inset_4px_0_0_#ffffff]"
+                        : "font-medium hover:bg-white/10"
+                    } ${idx !== arr.length - 1 ? "border-b border-white/10" : ""}`}
                   >
                     {link.label}
                   </a>
-                );
-              })}
+                ))}
             </div>
           </nav>
         </div>
