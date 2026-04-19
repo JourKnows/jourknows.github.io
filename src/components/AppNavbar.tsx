@@ -281,7 +281,7 @@ export default function AppNavbar({
         >
           <nav
             onClick={e => e.stopPropagation()}
-            className="w-[92vw] max-w-[400px] bg-[#000060]/90 backdrop-blur-[40px] backdrop-saturate-[200%] shadow-[0_24px_60px_rgba(0,0,60,0.4)] rounded-[24px] border border-white/20 animate-[jkDrop_0.35s_cubic-bezier(0.16,1,0.3,1)_both] p-2 flex flex-col"
+            className="w-[92vw] max-w-[400px] max-h-[85vh] overflow-y-auto bg-[#000060]/90 backdrop-blur-[40px] backdrop-saturate-[200%] shadow-[0_24px_60px_rgba(0,0,60,0.4)] rounded-[24px] border border-white/20 animate-[jkDrop_0.35s_cubic-bezier(0.16,1,0.3,1)_both] p-2 flex flex-col"
           >
             <div className="px-4 py-3 font-display font-black text-[11px] text-white/60 tracking-[1.5px] uppercase">
               Menu
