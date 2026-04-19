@@ -88,11 +88,11 @@ export default function AppNavbar({
         }`}
       >
         <div
-          className={`pointer-events-auto flex items-center justify-between relative transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] transform-gpu origin-top ${
+          className={`pointer-events-auto flex items-center justify-between relative transition-all duration-[500ms] ease-[cubic-bezier(0.16,1,0.3,1)] transform-gpu origin-top will-change-transform ${
             compact
               ? isScrolled
-                ? // Mobile: Navy Dark Liquid Glass
-                  "w-full bg-[#000060]/75 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.5)] border-b border-white/10"
+                ? // Mobile: Apple Liquid Glass
+                  "w-full bg-[#000020]/60 backdrop-blur-xl backdrop-saturate-[200%] shadow-[0_16px_32px_rgba(0,0,0,0.4)] border-b border-white/15"
                 : // Mobile: Solid Navy
                   "w-full bg-[#000060] border-[transparent] shadow-[0_2px_16px_rgba(0,0,77,0.15)]"
               : isScrolled
@@ -238,7 +238,7 @@ export default function AppNavbar({
 
         {/* Mobile Search Input Overlay (Apple Liquid Glass) */}
         {compact && searchOpen && (
-          <div className="absolute top-[100%] left-0 right-0 w-full pointer-events-auto bg-[#000020]/50 backdrop-blur-[40px] backdrop-saturate-[200%] border-b border-white/10 py-3 px-4 shadow-[0_20px_50px_rgba(0,0,0,0.3)] transition-all animate-[jkFadeUp_0.2s_ease_both]">
+          <div className="absolute top-[100%] left-0 right-0 w-full pointer-events-auto bg-[#000020]/50 backdrop-blur-xl backdrop-saturate-[200%] border-b border-white/10 py-3 px-4 shadow-[0_20px_50px_rgba(0,0,0,0.3)] transform-gpu will-change-transform transition-all animate-[jkFadeUp_0.25s_cubic-bezier(0.16,1,0.3,1)_both]">
             <form onSubmit={handleSearch}>
               <div className="relative">
                 <div className="absolute left-4 top-[50%] translate-y-[-50%] opacity-70">
@@ -270,39 +270,42 @@ export default function AppNavbar({
         )}
       </header>
 
-      {/* Mobile slide-in menu (Apple Liquid Glass) */}
+      {/* Mobile Modal Menu (Centered Apple Liquid Glass) */}
       {compact && menuOpen && (
         <div
           onClick={() => setMenuOpen(false)}
-          className="fixed inset-0 z-[199] bg-black/40 backdrop-blur-sm transition-opacity duration-300"
+          className="fixed inset-0 z-[199] bg-black/50 backdrop-blur-md transition-opacity duration-300 flex items-center justify-center p-5 transform-gpu will-change-transform"
         >
           <nav
             onClick={e => e.stopPropagation()}
-            className="absolute right-0 w-[min(320px,85vw)] bg-[#000020]/50 backdrop-blur-[40px] backdrop-saturate-[200%] shadow-[-20px_0_60px_rgba(0,0,0,0.4)] min-h-[100svh] pt-6 animate-[jkFadeUp_0.3s_ease_both] overflow-y-auto pb-32 border-l border-white/10 transition-all duration-300"
-            style={{
-              top: isScrolled ? 50 : 58,
-              height: `calc(100svh - ${isScrolled ? 50 : 58}px)`,
-            }}
+            className="w-[min(400px,100%)] bg-[#000020]/60 backdrop-blur-xl backdrop-saturate-[200%] shadow-[0_30px_60px_rgba(0,0,0,0.6)] rounded-[32px] pt-6 pb-8 transform-gpu will-change-transform animate-[jkPopIn_0.35s_cubic-bezier(0.16,1,0.3,1)_both] border border-white/20 transition-all duration-300"
           >
-            <div className="px-7 py-2 font-display font-black text-[11px] text-white/50 tracking-[2px] mb-3 uppercase">
-              Categories
+            <div className="px-7 py-2 font-display font-black text-[12px] text-white/50 tracking-[2px] mb-3 uppercase text-center">
+              Menu
             </div>
-            <div className="mx-5 bg-white/10 rounded-[20px] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_8px_20px_rgba(0,0,0,0.2)] border border-white/10">
-              {navLinks
-                .filter(link => link.href !== "/")
-                .map((link, idx, arr) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    className={`block w-full text-left border-none cursor-pointer font-display text-[16px] text-white py-4 px-6 tracking-[0.5px] outline-none no-underline transition-all duration-300 active:bg-white/20 active:scale-[0.98] ${
-                      isActive(link.href)
-                        ? "font-extrabold bg-white/15 shadow-[inset_4px_0_0_#ffffff]"
-                        : "font-medium hover:bg-white/10"
-                    } ${idx !== arr.length - 1 ? "border-b border-white/10" : ""}`}
-                  >
-                    {link.label}
-                  </a>
-                ))}
+            <div className="mx-5 bg-white/10 rounded-[24px] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_8px_20px_rgba(0,0,0,0.2)] border border-white/10">
+              {navLinks.map((link, idx, arr) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className={`block w-full text-center border-none cursor-pointer font-display text-[16px] text-white py-4 px-6 tracking-[1px] outline-none no-underline transition-all duration-300 active:bg-white/20 active:scale-[0.98] ${
+                    isActive(link.href)
+                      ? "font-extrabold bg-white/20"
+                      : "font-medium hover:bg-white/10"
+                  } ${idx !== arr.length - 1 ? "border-b border-white/10" : ""}`}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+
+            <div className="mt-8 flex justify-center">
+              <button
+                onClick={() => setMenuOpen(false)}
+                className="bg-white/10 hover:bg-white/20 active:bg-white/30 active:scale-95 transition-all duration-300 text-white font-display font-bold text-[14px] tracking-[1px] px-8 py-3 rounded-full border border-white/20 shadow-[0_8px_16px_rgba(0,0,0,0.2)]"
+              >
+                CLOSE
+              </button>
             </div>
           </nav>
         </div>
