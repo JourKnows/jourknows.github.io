@@ -40,7 +40,6 @@ export default function AppNavbar({
 
   const NAVBAR_ORDER = [
     "HOME",
-    "CARTOONING",
     "NEWS",
     "SPORTS",
     "OPINION",
@@ -48,6 +47,7 @@ export default function AppNavbar({
     "SCI-TECH",
     "EXPLAINER",
     "LITERARY",
+    "CARTOONING",
   ];
 
   const sortedNavLinks = [...navLinks].sort((a, b) => {
