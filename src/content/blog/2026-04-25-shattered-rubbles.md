@@ -7,7 +7,7 @@ slug: shattered-rubbles
 featured: true
 draft: false
 tags:
-  - CARTOONING
+  - CARTOON
 ---
 ![](/1777060059536.jpg)
 
