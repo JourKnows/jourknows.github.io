@@ -129,6 +129,26 @@ const navLinks = [
         <Content />
       </article>
 
+      {/* ── Comments & Reactions (Zoomment) ── */}
+      <div class="border-t-2 border-[#0007d3] pt-6 mb-12 mt-8">
+        <h2
+          class="font-display font-extrabold text-[17px] sm:text-[22px] text-[#000055] mb-6"
+        >
+          Community Discussion
+        </h2>
+        <div
+          id="zoomment"
+          data-theme="light"
+          data-language="en"
+          data-gravatar="monsterid"
+          data-emotions="👍,👎,❤️,😂,😢,😮,😡"
+          data-visitors="true"
+        >
+        </div>
+        <script is:inline src="https://cdn.zoomment.com/zoomment.min.js"
+        ></script>
+      </div>
+
       {/* ── Related articles ── */}
       <div class="border-t-[2px] border-[#0007d3] pt-[22px] mb-8 lg:mb-12">
         <h2
@@ -158,37 +178,6 @@ const navLinks = [
         >
           ← BACK TO HOME
         </a>
-      </div>
-
-      {/* ── Comments & Reactions (Giscus) ── */}
-      <div class="border-t-2 border-[#0007d3] pt-6 mb-8 mt-12 pb-10">
-        <h2
-          class="font-display font-extrabold text-[17px] sm:text-[22px] text-[#000055] mb-6"
-        >
-          Community Discussion
-        </h2>
-        <script
-          src="https://giscus.app/client.js"
-          data-repo="JourKnows/jourknows.github.io"
-          data-repo-id="R_kgDORV_Tww"
-          data-category="General"
-          data-category-id="DIC_kwDORV_Tw84C5Rfs"
-          data-mapping="pathname"
-          data-strict="0"
-          data-reactions-enabled="1"
-          data-emit-metadata="0"
-          data-input-position="bottom"
-          data-theme="noborder_light"
-          data-lang="en"
-          crossorigin="anonymous"
-          async></script>
-        <p class="text-xs text-gray-500 mt-2 italic text-center">
-          Note: You must authorize the <a
-            href="https://github.com/apps/giscus"
-            target="_blank"
-            class="underline text-[#0007d3]">Giscus GitHub App</a
-          > on your repository for comments to load.
-        </p>
       </div>
     </div>
 

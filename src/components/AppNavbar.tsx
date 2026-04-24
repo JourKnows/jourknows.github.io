@@ -38,6 +38,27 @@ export default function AppNavbar({
     return activeHref.startsWith(href);
   };
 
+  const NAVBAR_ORDER = [
+    "HOME",
+    "CARTOONING",
+    "NEWS",
+    "SPORTS",
+    "OPINION",
+    "FEATURE",
+    "SCI-TECH",
+    "EXPLAINER",
+    "LITERARY",
+  ];
+
+  const sortedNavLinks = [...navLinks].sort((a, b) => {
+    const aIdx = NAVBAR_ORDER.indexOf(a.label.toUpperCase());
+    const bIdx = NAVBAR_ORDER.indexOf(b.label.toUpperCase());
+    if (aIdx !== -1 && bIdx !== -1) return aIdx - bIdx;
+    if (aIdx !== -1) return -1;
+    if (bIdx !== -1) return 1;
+    return a.label.localeCompare(b.label);
+  });
+
   return (
     <>
       {/* Site Banner (MUST STAY INTACT AND UNMODIFIED ABOVE HEADER) */}
@@ -183,7 +204,7 @@ export default function AppNavbar({
           {!compact && (
             <nav className="flex items-center z-10 h-full">
               <div className="flex items-center gap-4 lg:gap-5 h-full">
-                {navLinks.map(link => {
+                {sortedNavLinks.map(link => {
                   const active = isActive(link.href);
                   return (
                     <a
@@ -278,13 +299,25 @@ export default function AppNavbar({
         >
           <nav
             onClick={e => e.stopPropagation()}
-            className="w-[min(400px,100%)] bg-[#000020]/60 backdrop-blur-xl backdrop-saturate-[200%] shadow-[0_30px_60px_rgba(0,0,0,0.6)] rounded-[32px] pt-6 pb-8 transform-gpu will-change-transform animate-[jkPopIn_0.35s_cubic-bezier(0.16,1,0.3,1)_both] border border-white/20 transition-all duration-300"
+            className="w-[min(400px,100%)] max-h-[90vh] flex flex-col bg-[#000020]/60 backdrop-blur-xl backdrop-saturate-[200%] shadow-[0_30px_60px_rgba(0,0,0,0.6)] rounded-[32px] pt-6 pb-6 sm:pb-8 transform-gpu will-change-transform animate-[jkPopIn_0.35s_cubic-bezier(0.16,1,0.3,1)_both] border border-white/20 transition-all duration-300"
           >
-            <div className="px-7 py-2 font-display font-black text-[12px] text-white/50 tracking-[2px] mb-3 uppercase text-center">
+            <div className="px-7 py-2 font-display font-black text-[12px] text-white/50 tracking-[2px] mb-3 uppercase text-center shrink-0">
               Menu
             </div>
-            <div className="mx-5 bg-white/10 rounded-[24px] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_8px_20px_rgba(0,0,0,0.2)] border border-white/10">
-              {navLinks.map((link, idx, arr) => (
+
+            {/* Scrollable Links Container */}
+            <div
+              className="mx-5 bg-white/10 rounded-[24px] overflow-y-auto shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_8px_20px_rgba(0,0,0,0.2)] border border-white/10 shrink"
+              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            >
+              <style
+                dangerouslySetInnerHTML={{
+                  __html: `
+                .overflow-y-auto::-webkit-scrollbar { display: none; }
+              `,
+                }}
+              />
+              {sortedNavLinks.map((link, idx, arr) => (
                 <a
                   key={link.label}
                   href={link.href}

@@ -2,8 +2,11 @@
 import { getCollection } from "astro:content";
 import getSortedPosts from "@utils/getSortedPosts";
 import getUniqueTags from "@utils/getUniqueTags";
+import getAllImages from "@utils/getAllImages";
 import "@styles/base.css";
 import AppNavbar from "@components/AppNavbar";
+import CartoonComicViewer from "@components/CartoonComicViewer";
+import ExplainerGallery from "@components/ExplainerGallery";
 import AppFooter from "@components/AppFooter.astro";
 import SectionHeader from "@components/SectionHeader.astro";
 import HeaderCard from "@components/HeaderCard.astro";
@@ -155,6 +158,74 @@ const getPostsByCategory = (cat: string) => {
             // grab posts for this category tag
             const catPosts = getPostsByCategory(catTag);
             if (catPosts.length === 0) return null; // hide section if no posts
+
+            if (catTag === "cartoon") {
+              const mappedPosts = catPosts.map(p => ({
+                title: p.data.title || "Untitled",
+                slug: p.slug || "",
+                author: p.data.author || "JourKnows",
+                image:
+                  getFirstImage(p.body) ||
+                  "https://placehold.co/800x800/f4f1e1/1a1a1a?text=Artwork+Unavailable",
+                date: p.data.pubDatetime
+                  ? new Date(p.data.pubDatetime).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })
+                  : "Unknown Date",
+              }));
+
+              return (
+                <div class="mb-3 sm:mb-5 sm:mx-5 lg:mx-10 sm:rounded-2xl bg-white overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.06)]">
+                  <CartoonComicViewer client:visible posts={mappedPosts} />
+                </div>
+              );
+            }
+
+            if (catTag === "explainer") {
+              const explainerPost = catPosts[0];
+              if (!explainerPost) return null;
+
+              const images = getAllImages(explainerPost.body);
+
+              return (
+                <div class="bg-white px-[16px] sm:px-[28px] lg:px-[68px] py-[28px] sm:py-[34px] lg:py-[40px] pb-[36px] sm:pb-[42px] lg:pb-[48px] sm:mx-5 lg:mx-10 sm:rounded-2xl mb-3 sm:mb-5">
+                  <SectionHeader label={label} color={color} />
+
+                  <div class="mt-5 mb-8">
+                    <ExplainerGallery
+                      client:visible
+                      title={explainerPost.data.title || "Untitled"}
+                      slug={explainerPost.slug || ""}
+                      author={explainerPost.data.author || "JourKnows"}
+                      date={
+                        explainerPost.data.pubDatetime
+                          ? new Date(
+                              explainerPost.data.pubDatetime
+                            ).toLocaleDateString("en-US", {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                            })
+                          : "Unknown Date"
+                      }
+                      description={explainerPost.data.description || ""}
+                      images={images}
+                    />
+                  </div>
+
+                  <div class="mt-8 text-center">
+                    <a
+                      href={`/tags/${catTag}`}
+                      class="bg-[#00046d] border-none rounded-[20px] px-8 py-2.5 cursor-pointer font-display font-medium text-white text-[12px] uppercase tracking-wide inline-block no-underline shadow-md"
+                    >
+                      READ MORE
+                    </a>
+                  </div>
+                </div>
+              );
+            }
 
             const headerPost = catPosts[0];
             const smallPosts = catPosts.slice(1, 4);
