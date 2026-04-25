@@ -37,4 +37,20 @@ In the end, Vice Ganda is not a transformation story. It is a story of becoming 
 
 
 
+![](/1777105292234.jpg)
+
+![](/1777105295854.jpg)
+
+![](/1777105298789.jpg)
+
+![](/1777105301723.jpg)
+
+![](/1777105304616.jpg)
+
+![](/1777105307502.jpg)
+
+![](/1777105310118.jpg)
+
+
+
 #JourKnows #JournalismForAll
