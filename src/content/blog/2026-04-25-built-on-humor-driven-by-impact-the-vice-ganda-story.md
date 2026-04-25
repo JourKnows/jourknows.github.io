@@ -2,7 +2,7 @@
 author: Earl Inocencio
 pubDatetime: 2026-04-19
 modDatetime: 2026-04-19
-title: 𝗝𝗢𝗜𝗡 𝗜𝗡 𝗧𝗛𝗘 𝗞𝗡𝗢𝗪 | Built on Humor, Driven by Impact
+title: Built on Humor, Driven by Impact
 slug: vice-ganda
 featured: true
 draft: false
