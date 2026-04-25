@@ -34,16 +34,6 @@ From the hustle and bustle of Baclaran to Makati crosswalks, Mimiyuuuh indeed ev
 
 &nbsp;
 
-&nbsp;
-
-&nbsp;
-
-𝗪𝗼𝗿𝗱𝘀 𝗯𝘆 Alexander Dylan C. De Guzman
-
-𝗚𝗿𝗮𝗽𝗵𝗶𝗰𝘀 𝗯𝘆 Earl Inocencio, Wahab Arpha
-
-
-
 #JourKnows 
 
 #JournalismForAll
