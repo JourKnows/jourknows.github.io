@@ -12,7 +12,7 @@ description: From the hustle and bustle of Baclaran to Makati crosswalks,
   Mimiyuuuh indeed evolved into "that girl" she knew she was destined to be. But
   it's not just her lifestyle that shifted, the comment section did too.
 ---
-𝗝𝗢𝗜𝗡 𝗜𝗡 𝗧𝗛𝗘 𝗞𝗡𝗢𝗪 | From the hustle and bustle of Baclaran to Makati crosswalks, Mimiyuuuh indeed evolved into "that girl" she knew she was destined to be. But it's not just her lifestyle that shifted, the comment section did too.
+From the hustle and bustle of Baclaran to Makati crosswalks, Mimiyuuuh indeed evolved into "that girl" she knew she was destined to be. But it's not just her lifestyle that shifted, the comment section did too.
 
 ![](/1776197484887.jpg)
 
