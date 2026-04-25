@@ -9,10 +9,6 @@ draft: false
 tags:
   - EXPLAINER
 ---
-𝗝𝗢𝗜𝗡 𝗜𝗡 𝗧𝗛𝗘 𝗞𝗡𝗢𝗪 | Built on Humor, Driven by Impact: The Vice Ganda Story
-
-
-
 There are celebrities who entertain, and there are those who redefine what entertainment means. Vice Ganda belongs to the second kind. Not because she followed the rules of showbiz, but because she constantly bent them, using humor—not just as performance, but as language, survival, and truth.
 
 
