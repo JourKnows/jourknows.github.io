@@ -43,7 +43,6 @@ export default function LatestDeckViewer({ posts }: Props) {
   }, []);
   const autoplayRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
-  const isDraggingRef = useRef(false);
 
   if (!posts || posts.length === 0) return null;
 
@@ -192,18 +191,13 @@ export default function LatestDeckViewer({ posts }: Props) {
     if (luckySpinning || isTransitioning) return;
     setTouchEnd(null);
     setDragDelta(0);
-    isDraggingRef.current = false;
     setTouchStart(isMobile ? clientY : clientX);
   };
   const handleSwipeMove = (clientX: number, clientY: number) => {
     if (luckySpinning || touchStart === null) return;
     const current = isMobile ? clientY : clientX;
     setTouchEnd(current);
-    const delta = current - touchStart;
-    setDragDelta(delta);
-    if (Math.abs(delta) > 5) {
-      isDraggingRef.current = true;
-    }
+    setDragDelta(current - touchStart);
   };
   const handleSwipeEnd = () => {
     if (luckySpinning || touchStart === null) {
@@ -481,12 +475,6 @@ export default function LatestDeckViewer({ posts }: Props) {
         onMouseMove={onMouseMove}
         onMouseUp={handleSwipeEnd}
         onMouseLeave={handleSwipeEnd}
-        onClickCapture={e => {
-          if (isDraggingRef.current || luckySpinning) {
-            e.preventDefault();
-            e.stopPropagation();
-          }
-        }}
       >
         {displayPosts.map((post, idx) => {
           const isActive = idx === currentIndex;
@@ -500,6 +488,7 @@ export default function LatestDeckViewer({ posts }: Props) {
               <a
                 href={`/posts/${post.slug}/`}
                 className="absolute inset-0 w-full h-full block no-underline"
+                onClick={e => luckySpinning && e.preventDefault()}
               >
                 {post.image ? (
                   <img
@@ -507,8 +496,6 @@ export default function LatestDeckViewer({ posts }: Props) {
                     alt={post.title}
                     className="absolute inset-0 w-full h-full object-cover"
                     draggable="false"
-                    loading={idx === 0 ? "eager" : "lazy"}
-                    decoding="async"
                     style={{
                       animation:
                         isActive && !luckySpinning
