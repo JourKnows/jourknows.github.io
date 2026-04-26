@@ -18,7 +18,10 @@ To protect the hard work of the journalists while still giving back to the open-
 
 ### 1. The Codebase: GNU GPLv3 License
 
-The underlying source code of this website—including the Astro configurations, React components (such as the swipeable deck viewer), Tailwind styles, and layout templates—is open source and licensed under the **GNU General Public License v3.0 (GPLv3)**.
+This project is built upon the [AstroPaper](https://github.com/satnaing/astro-paper) theme.
+
+- The original AstroPaper source code remains under the **MIT License** (Copyright (c) 2023 Sat Naing).
+- All modifications, new React components (such as the swipeable deck viewer), and the resulting combined software are licensed and distributed under the **GNU General Public License v3.0 (GPLv3)**.
 
 You are free to copy, modify, and use the code architecture. However, under the terms of the GPLv3, if you use, modify, or distribute this code in your own project, your entire project must also be open-sourced under the same GPLv3 license.
 
