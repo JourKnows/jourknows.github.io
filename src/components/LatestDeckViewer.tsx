@@ -28,6 +28,7 @@ export default function LatestDeckViewer({ posts }: Props) {
   const [luckySpinning, setLuckySpinning] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [dragDelta, setDragDelta] = useState(0);
   const [hasSwiped, setHasSwiped] = useState(false);
   const [isMobile, setIsMobile] = useState(true);
 
@@ -164,33 +165,37 @@ export default function LatestDeckViewer({ posts }: Props) {
   }, [resetAutoplay]);
 
   // Touch & Mouse swipe handling
-  const minSwipeDistance = 15;
+  const minSwipeDistance = 40;
   const handleSwipeStart = (clientX: number, clientY: number) => {
-    if (luckySpinning) return;
+    if (luckySpinning || isTransitioning) return;
     setTouchEnd(null);
+    setDragDelta(0);
     setTouchStart(isMobile ? clientY : clientX);
   };
   const handleSwipeMove = (clientX: number, clientY: number) => {
     if (luckySpinning || touchStart === null) return;
-    setTouchEnd(isMobile ? clientY : clientX);
+    const current = isMobile ? clientY : clientX;
+    setTouchEnd(current);
+    setDragDelta(current - touchStart);
   };
   const handleSwipeEnd = () => {
-    if (luckySpinning || touchStart === null || touchEnd === null) {
+    if (luckySpinning || touchStart === null) {
       setTouchStart(null);
+      setDragDelta(0);
       return;
     }
-    const distance = touchStart - touchEnd;
-    if (distance > minSwipeDistance) {
+    if (dragDelta < -minSwipeDistance) {
       handleNext();
       resetAutoplay();
       setHasSwiped(true);
-    } else if (distance < -minSwipeDistance) {
+    } else if (dragDelta > minSwipeDistance) {
       handlePrev();
       resetAutoplay();
       setHasSwiped(true);
     }
     setTouchStart(null);
     setTouchEnd(null);
+    setDragDelta(0);
   };
 
   const onTouchStart = (e: React.TouchEvent) =>
@@ -244,12 +249,14 @@ export default function LatestDeckViewer({ posts }: Props) {
   }, [handleNext, handlePrev, resetAutoplay, expanded, luckySpinning]);
 
   // Slide styles - customized for spin state
-  const getSlideStyle = (
-    isActive: boolean,
-    isLeaving: boolean
-  ): React.CSSProperties => {
+  const getSlideStyle = (idx: number): React.CSSProperties => {
+    const isActive = idx === currentIndex;
+    const isLeaving = idx === prevIndex;
+    const isNext = idx === (currentIndex + 1) % deckPosts.length;
+    const isPrev =
+      idx === (currentIndex - 1 + deckPosts.length) % deckPosts.length;
+
     if (luckySpinning) {
-      // During spin, create a vertical wheel effect
       if (isActive) {
         return {
           zIndex: 2,
@@ -280,31 +287,66 @@ export default function LatestDeckViewer({ posts }: Props) {
       };
     }
 
-    // TikTok style push
-    if (isActive) {
+    const trans = "transform 0.35s cubic-bezier(0.1, 0.9, 0.2, 1)";
+    const dragAxis = isMobile ? "Y" : "X";
+
+    // When NOT dragging
+    if (touchStart === null) {
+      if (isActive) {
+        return {
+          zIndex: 2,
+          transform: `translate${dragAxis}(0)`,
+          opacity: 1,
+          transition: trans,
+        };
+      }
+      if (isLeaving) {
+        const offset = direction === "next" ? "-100%" : "100%";
+        return {
+          zIndex: 2,
+          transform: `translate${dragAxis}(${offset})`,
+          opacity: 1,
+          transition: trans,
+        };
+      }
+      const hiddenOffset = direction === "next" ? "100%" : "-100%";
       return {
-        zIndex: 2,
-        transform: isMobile ? "translateY(0)" : "translateX(0)",
+        zIndex: 0,
+        transform: `translate${dragAxis}(${hiddenOffset})`,
         opacity: 1,
-        transition: "transform 0.35s cubic-bezier(0.1, 0.9, 0.2, 1)",
-      };
-    }
-    if (isLeaving) {
-      const offset = direction === "next" ? "-100%" : "100%";
-      return {
-        zIndex: 2,
-        transform: isMobile ? `translateY(${offset})` : `translateX(${offset})`,
-        opacity: 1,
-        transition: "transform 0.35s cubic-bezier(0.1, 0.9, 0.2, 1)",
+        transition: trans,
+        pointerEvents: "none",
       };
     }
 
-    const hiddenOffset = direction === "next" ? "100%" : "-100%";
+    // When DRAGGING (1:1 physical follow)
+    if (isActive) {
+      return {
+        zIndex: 2,
+        transform: `translate${dragAxis}(${dragDelta}px)`,
+        opacity: 1,
+        transition: "none",
+      };
+    }
+    if (isNext && dragDelta < 0) {
+      return {
+        zIndex: 2,
+        transform: `translate${dragAxis}(calc(100% + ${dragDelta}px))`,
+        opacity: 1,
+        transition: "none",
+      };
+    }
+    if (isPrev && dragDelta > 0) {
+      return {
+        zIndex: 2,
+        transform: `translate${dragAxis}(calc(-100% + ${dragDelta}px))`,
+        opacity: 1,
+        transition: "none",
+      };
+    }
     return {
       zIndex: 0,
-      transform: isMobile
-        ? `translateY(${hiddenOffset})`
-        : `translateX(${hiddenOffset})`,
+      transform: `translate${dragAxis}(100%)`,
       opacity: 1,
       transition: "none",
       pointerEvents: "none",
@@ -404,13 +446,12 @@ export default function LatestDeckViewer({ posts }: Props) {
       >
         {displayPosts.map((post, idx) => {
           const isActive = idx === currentIndex;
-          const isLeaving = idx === prevIndex;
 
           return (
             <div
               key={post.slug + idx}
               className="absolute inset-0 w-full h-full"
-              style={getSlideStyle(isActive, isLeaving)}
+              style={getSlideStyle(idx)}
             >
               <a
                 href={`/posts/${post.slug}/`}
