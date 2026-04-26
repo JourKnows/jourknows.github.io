@@ -496,6 +496,8 @@ export default function LatestDeckViewer({ posts }: Props) {
                     alt={post.title}
                     className="absolute inset-0 w-full h-full object-cover"
                     draggable="false"
+                    loading={idx === 0 ? "eager" : "lazy"}
+                    decoding="async"
                     style={{
                       animation:
                         isActive && !luckySpinning
