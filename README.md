@@ -2,7 +2,7 @@
 
 A modern, high-performance editorial platform featuring a TikTok-inspired dual-axis article deck, seamless PagesCMS integration, and optimized typography.
 
-## 🛠 Customizability
+## Customizability
 
 This repository was designed to be highly customizable for developers and publishers alike. If you are using this code for your own project:
 
@@ -12,7 +12,7 @@ This repository was designed to be highly customizable for developers and publis
 
 Feel free to fork this project, modify the UI components, and adapt the architecture to fit your own unique publishing needs!
 
-## ⚖️ License & Copyright (Dual-License Model)
+## License & Copyright (Dual-License Model)
 
 To protect the hard work of the journalists while still giving back to the open-source community, this project operates under a split-licensing model.
 
@@ -32,7 +32,7 @@ All editorial content, journalistic text, illustrations, and media assets locate
 - `src/content/blog/` (All Markdown articles)
 - `public/` (All images, branding, and media)
 
-These assets **may not** be reproduced, copied, republished, or distributed in any form without explicit written permission from the publisher.
+These assets **MAY NOT** be reproduced, copied, republished, or distributed in any form without explicit written permission from the publisher. 
 
 ---
 
