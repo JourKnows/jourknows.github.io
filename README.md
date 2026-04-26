@@ -16,11 +16,11 @@ Feel free to fork this project, modify the UI components, and adapt the architec
 
 To protect the hard work of the journalists while still giving back to the open-source community, this project operates under a split-licensing model.
 
-### 1. The Codebase: MIT License
+### 1. The Codebase: GNU GPLv3 License
 
-The underlying source code of this website—including the Astro configurations, React components (such as the swipeable deck viewer), Tailwind styles, and layout templates—is open source and licensed under the **MIT License**.
+The underlying source code of this website—including the Astro configurations, React components (such as the swipeable deck viewer), Tailwind styles, and layout templates—is open source and licensed under the **GNU General Public License v3.0 (GPLv3)**.
 
-You are free to copy, modify, and use the code architecture for your own personal or commercial projects, provided you include the original copyright notice in your software.
+You are free to copy, modify, and use the code architecture. However, under the terms of the GPLv3, if you use, modify, or distribute this code in your own project, your entire project must also be open-sourced under the same GPLv3 license.
 
 ### 2. The Content: All Rights Reserved
 
