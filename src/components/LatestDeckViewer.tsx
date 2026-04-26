@@ -23,6 +23,7 @@ export default function LatestDeckViewer({ posts }: Props) {
   const [prevIndex, setPrevIndex] = useState<number | null>(null);
   const [direction, setDirection] = useState<Direction>("next");
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isRestored, setIsRestored] = useState(false);
   const [textVisible, setTextVisible] = useState(true);
   const [expanded, setExpanded] = useState(false);
   const [luckySpinning, setLuckySpinning] = useState(false);
@@ -46,6 +47,28 @@ export default function LatestDeckViewer({ posts }: Props) {
   if (!posts || posts.length === 0) return null;
 
   const deckPosts = posts.slice(0, DECK_COUNT);
+
+  useEffect(() => {
+    const savedSlug = sessionStorage.getItem("jourknows_deck_slug");
+    if (savedSlug) {
+      const idx = deckPosts.findIndex(p => p.slug === savedSlug);
+      if (idx !== -1) setCurrentIndex(idx);
+    }
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setIsRestored(true);
+      });
+    });
+  }, [deckPosts]);
+
+  useEffect(() => {
+    if (isRestored && deckPosts[currentIndex]) {
+      sessionStorage.setItem(
+        "jourknows_deck_slug",
+        deckPosts[currentIndex].slug
+      );
+    }
+  }, [currentIndex, deckPosts, isRestored]);
 
   const initAudio = () => {
     if (!audioContextRef.current) {
@@ -287,7 +310,9 @@ export default function LatestDeckViewer({ posts }: Props) {
       };
     }
 
-    const trans = "transform 0.35s cubic-bezier(0.1, 0.9, 0.2, 1)";
+    const trans = isRestored
+      ? "transform 0.35s cubic-bezier(0.1, 0.9, 0.2, 1)"
+      : "none";
 
     // When NOT dragging
     if (touchStart === null) {
