@@ -29,8 +29,16 @@ export default function LatestDeckViewer({ posts }: Props) {
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const [hasSwiped, setHasSwiped] = useState(false);
+  const [isMobile, setIsMobile] = useState(true);
 
   const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
   const autoplayRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
 
@@ -110,13 +118,11 @@ export default function LatestDeckViewer({ posts }: Props) {
   const goTo = useCallback(
     (nextIdx: number, dir: Direction = "next", instant: boolean = false) => {
       if ((isTransitioning && !instant) || nextIdx === currentIndex) return;
-      setTextVisible(false);
       setDirection(dir);
 
       if (instant) {
         setPrevIndex(currentIndex);
         setCurrentIndex(nextIdx);
-        // Clean up previous instantly for spinning
         setTimeout(() => setPrevIndex(null), 50);
         return;
       }
@@ -125,11 +131,10 @@ export default function LatestDeckViewer({ posts }: Props) {
         setIsTransitioning(true);
         setPrevIndex(currentIndex);
         setCurrentIndex(nextIdx);
-        setTimeout(() => setTextVisible(true), 150);
         setTimeout(() => {
           setPrevIndex(null);
           setIsTransitioning(false);
-        }, 600);
+        }, 500);
       }, 20);
     },
     [currentIndex, isTransitioning]
@@ -158,16 +163,20 @@ export default function LatestDeckViewer({ posts }: Props) {
     };
   }, [resetAutoplay]);
 
-  // Touch — vertical swipe
+  // Touch swipe handling
   const minSwipeDistance = 25;
   const onTouchStart = (e: React.TouchEvent) => {
     if (luckySpinning) return;
     setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientY);
+    setTouchStart(
+      isMobile ? e.targetTouches[0].clientY : e.targetTouches[0].clientX
+    );
   };
   const onTouchMove = (e: React.TouchEvent) => {
     if (luckySpinning) return;
-    setTouchEnd(e.targetTouches[0].clientY);
+    setTouchEnd(
+      isMobile ? e.targetTouches[0].clientY : e.targetTouches[0].clientX
+    );
   };
   const onTouchEnd = () => {
     if (luckySpinning || !touchStart || !touchEnd) return;
@@ -233,7 +242,9 @@ export default function LatestDeckViewer({ posts }: Props) {
       if (isActive) {
         return {
           zIndex: 2,
-          transform: "translateY(0) scale(1)",
+          transform: isMobile
+            ? "translateY(0) scale(1)"
+            : "translateX(0) scale(1)",
           opacity: 1,
           transition: "transform 0.1s linear, opacity 0.1s linear",
         };
@@ -241,56 +252,64 @@ export default function LatestDeckViewer({ posts }: Props) {
       if (isLeaving) {
         return {
           zIndex: 1,
-          transform: "translateY(-100%) scale(0.9)",
+          transform: isMobile
+            ? "translateY(-100%) scale(0.9)"
+            : "translateX(-100%) scale(0.9)",
           opacity: 0.5,
           transition: "transform 0.1s linear, opacity 0.1s linear",
         };
       }
       return {
         zIndex: 0,
-        transform: "translateY(100%) scale(0.9)",
+        transform: isMobile
+          ? "translateY(100%) scale(0.9)"
+          : "translateX(100%) scale(0.9)",
         opacity: 0,
         transition: "none",
       };
     }
 
-    // Normal behavior
+    // TikTok style push
     if (isActive) {
       return {
         zIndex: 2,
-        transform: "translateY(0) scale(1)",
+        transform: isMobile ? "translateY(0)" : "translateX(0)",
         opacity: 1,
-        transition:
-          "transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease",
+        transition: "transform 0.5s cubic-bezier(0.32, 0.72, 0, 1)",
       };
     }
     if (isLeaving) {
+      const offset = direction === "next" ? "-100%" : "100%";
       return {
-        zIndex: 1,
-        transform:
-          direction === "next"
-            ? "translateY(-6%) scale(0.95)"
-            : "translateY(6%) scale(0.95)",
-        opacity: 0,
-        transition:
-          "transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease",
+        zIndex: 2,
+        transform: isMobile ? `translateY(${offset})` : `translateX(${offset})`,
+        opacity: 1,
+        transition: "transform 0.5s cubic-bezier(0.32, 0.72, 0, 1)",
       };
     }
+
+    const hiddenOffset = direction === "next" ? "100%" : "-100%";
     return {
       zIndex: 0,
-      transform:
-        direction === "next"
-          ? "translateY(5%) scale(1.01)"
-          : "translateY(-5%) scale(1.01)",
-      opacity: 0,
+      transform: isMobile
+        ? `translateY(${hiddenOffset})`
+        : `translateX(${hiddenOffset})`,
+      opacity: 1,
       transition: "none",
+      pointerEvents: "none",
     };
   };
 
   const textStagger = (delay: number): React.CSSProperties => ({
     opacity: textVisible && !luckySpinning ? 1 : 0,
     transform:
-      textVisible && !luckySpinning ? "translateY(0)" : "translateY(12px)",
+      textVisible && !luckySpinning
+        ? isMobile
+          ? "translateY(0)"
+          : "translateX(0)"
+        : isMobile
+          ? "translateY(12px)"
+          : "translateX(12px)",
     transition: luckySpinning
       ? "none"
       : `opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1) ${delay * 0.6}s, transform 0.5s cubic-bezier(0.25, 1, 0.5, 1) ${delay * 0.6}s`,
@@ -361,7 +380,7 @@ export default function LatestDeckViewer({ posts }: Props) {
       {/* Full-bleed deck */}
       <div
         ref={containerRef}
-        className={`relative w-full h-[75vh] min-h-[340px] max-h-[580px] sm:max-h-[480px] lg:max-h-[540px] overflow-hidden group bg-[#0a0a14] touch-pan-x ${
+        className={`relative w-full h-[75vh] min-h-[340px] max-h-[580px] sm:max-h-[480px] lg:max-h-[540px] overflow-hidden group bg-[#0a0a14] touch-pan-x sm:touch-pan-y ${
           luckySpinning ? "pointer-events-none" : ""
         }`}
         onTouchStart={onTouchStart}
@@ -371,7 +390,6 @@ export default function LatestDeckViewer({ posts }: Props) {
         {displayPosts.map((post, idx) => {
           const isActive = idx === currentIndex;
           const isLeaving = idx === prevIndex;
-          if (!isActive && !isLeaving) return null;
 
           return (
             <div
