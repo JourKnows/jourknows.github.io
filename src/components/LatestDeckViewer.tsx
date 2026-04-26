@@ -45,7 +45,7 @@ export default function LatestDeckViewer({ posts }: Props) {
   const [expanded, setExpanded] = useState(false);
   const [luckySpinning, setLuckySpinning] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [, setTouchEnd] = useState<number | null>(null);
   const [dragDelta, setDragDelta] = useState(0);
   const [hasSwiped, setHasSwiped] = useState(false);
   const [isMobile, setIsMobile] = useState(true);
