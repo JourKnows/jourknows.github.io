@@ -128,15 +128,13 @@ export default function LatestDeckViewer({ posts }: Props) {
         return;
       }
 
+      setIsTransitioning(true);
+      setPrevIndex(currentIndex);
+      setCurrentIndex(nextIdx);
       setTimeout(() => {
-        setIsTransitioning(true);
-        setPrevIndex(currentIndex);
-        setCurrentIndex(nextIdx);
-        setTimeout(() => {
-          setPrevIndex(null);
-          setIsTransitioning(false);
-        }, 350);
-      }, 5);
+        setPrevIndex(null);
+        setIsTransitioning(false);
+      }, 350);
     },
     [currentIndex, isTransitioning]
   );
@@ -256,66 +254,70 @@ export default function LatestDeckViewer({ posts }: Props) {
     const isPrev =
       idx === (currentIndex - 1 + deckPosts.length) % deckPosts.length;
 
+    const translate3d = (val: string | number) => {
+      const v = typeof val === "number" ? `${val}px` : val;
+      return isMobile ? `translate3d(0, ${v}, 0)` : `translate3d(${v}, 0, 0)`;
+    };
+
     if (luckySpinning) {
       if (isActive) {
         return {
           zIndex: 2,
-          transform: isMobile
-            ? "translateY(0) scale(1)"
-            : "translateX(0) scale(1)",
+          transform: `${translate3d(0)} scale(1)`,
           opacity: 1,
           transition: "transform 0.1s linear, opacity 0.1s linear",
+          willChange: "transform",
         };
       }
       if (isLeaving) {
         return {
           zIndex: 1,
-          transform: isMobile
-            ? "translateY(-100%) scale(0.9)"
-            : "translateX(-100%) scale(0.9)",
+          transform: `${translate3d("-100%")} scale(0.9)`,
           opacity: 0.5,
           transition: "transform 0.1s linear, opacity 0.1s linear",
+          willChange: "transform",
         };
       }
       return {
         zIndex: 0,
-        transform: isMobile
-          ? "translateY(100%) scale(0.9)"
-          : "translateX(100%) scale(0.9)",
+        transform: `${translate3d("100%")} scale(0.9)`,
         opacity: 0,
         transition: "none",
+        willChange: "transform",
       };
     }
 
     const trans = "transform 0.35s cubic-bezier(0.1, 0.9, 0.2, 1)";
-    const dragAxis = isMobile ? "Y" : "X";
 
     // When NOT dragging
     if (touchStart === null) {
       if (isActive) {
         return {
           zIndex: 2,
-          transform: `translate${dragAxis}(0)`,
+          transform: translate3d(0),
           opacity: 1,
           transition: trans,
+          willChange: "transform",
         };
       }
       if (isLeaving) {
         const offset = direction === "next" ? "-100%" : "100%";
         return {
           zIndex: 2,
-          transform: `translate${dragAxis}(${offset})`,
+          transform: translate3d(offset),
           opacity: 1,
           transition: trans,
+          willChange: "transform",
         };
       }
       const hiddenOffset = direction === "next" ? "100%" : "-100%";
       return {
         zIndex: 0,
-        transform: `translate${dragAxis}(${hiddenOffset})`,
+        transform: translate3d(hiddenOffset),
         opacity: 1,
         transition: trans,
         pointerEvents: "none",
+        willChange: "transform",
       };
     }
 
@@ -323,50 +325,55 @@ export default function LatestDeckViewer({ posts }: Props) {
     if (isActive) {
       return {
         zIndex: 2,
-        transform: `translate${dragAxis}(${dragDelta}px)`,
+        transform: translate3d(dragDelta),
         opacity: 1,
         transition: "none",
+        willChange: "transform",
       };
     }
     if (isNext && dragDelta < 0) {
       return {
         zIndex: 2,
-        transform: `translate${dragAxis}(calc(100% + ${dragDelta}px))`,
+        transform: translate3d(`calc(100% + ${dragDelta}px)`),
         opacity: 1,
         transition: "none",
+        willChange: "transform",
       };
     }
     if (isPrev && dragDelta > 0) {
       return {
         zIndex: 2,
-        transform: `translate${dragAxis}(calc(-100% + ${dragDelta}px))`,
+        transform: translate3d(`calc(-100% + ${dragDelta}px)`),
         opacity: 1,
         transition: "none",
+        willChange: "transform",
       };
     }
     return {
       zIndex: 0,
-      transform: `translate${dragAxis}(100%)`,
+      transform: translate3d("100%"),
       opacity: 1,
       transition: "none",
       pointerEvents: "none",
+      willChange: "transform",
     };
   };
 
-  const textStagger = (delay: number): React.CSSProperties => ({
-    opacity: textVisible && !luckySpinning ? 1 : 0,
-    transform:
-      textVisible && !luckySpinning
-        ? isMobile
-          ? "translateY(0)"
-          : "translateX(0)"
-        : isMobile
-          ? "translateY(12px)"
-          : "translateX(12px)",
-    transition: luckySpinning
-      ? "none"
-      : `opacity 0.35s cubic-bezier(0.1, 0.9, 0.2, 1) ${delay * 0.5}s, transform 0.35s cubic-bezier(0.1, 0.9, 0.2, 1) ${delay * 0.5}s`,
-  });
+  const textStagger = (delay: number): React.CSSProperties => {
+    const translate3d = (val: string | number) => {
+      const v = typeof val === "number" ? `${val}px` : val;
+      return isMobile ? `translate3d(0, ${v}, 0)` : `translate3d(${v}, 0, 0)`;
+    };
+    return {
+      opacity: textVisible && !luckySpinning ? 1 : 0,
+      transform:
+        textVisible && !luckySpinning ? translate3d(0) : translate3d(12),
+      transition: luckySpinning
+        ? "none"
+        : `opacity 0.35s cubic-bezier(0.1, 0.9, 0.2, 1) ${delay * 0.5}s, transform 0.35s cubic-bezier(0.1, 0.9, 0.2, 1) ${delay * 0.5}s`,
+      willChange: "opacity, transform",
+    };
+  };
 
   const triggerLuckySpin = () => {
     if (luckySpinning) return;
