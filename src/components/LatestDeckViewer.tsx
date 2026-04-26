@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+  useMemo,
+} from "react";
 
 export interface LatestPost {
   title: string;
@@ -19,7 +25,18 @@ type Direction = "next" | "prev";
 const DECK_COUNT = 8;
 
 export default function LatestDeckViewer({ posts }: Props) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const deckPosts = useMemo(() => posts.slice(0, DECK_COUNT), [posts]);
+
+  const [currentIndex, setCurrentIndex] = useState(() => {
+    if (typeof window !== "undefined") {
+      const savedSlug = sessionStorage.getItem("jourknows_deck_slug");
+      if (savedSlug) {
+        const idx = deckPosts.findIndex(p => p.slug === savedSlug);
+        if (idx !== -1) return idx;
+      }
+    }
+    return 0;
+  });
   const [prevIndex, setPrevIndex] = useState<number | null>(null);
   const [direction, setDirection] = useState<Direction>("next");
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -34,6 +51,8 @@ export default function LatestDeckViewer({ posts }: Props) {
   const [isMobile, setIsMobile] = useState(true);
 
   const containerRef = useRef<HTMLDivElement>(null);
+  const autoplayRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const audioContextRef = useRef<AudioContext | null>(null);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 640);
@@ -41,26 +60,15 @@ export default function LatestDeckViewer({ posts }: Props) {
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
-  const autoplayRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const audioContextRef = useRef<AudioContext | null>(null);
 
-  if (!posts || posts.length === 0) return null;
-
-  const deckPosts = posts.slice(0, DECK_COUNT);
-
+  // Mark restored after first paint to enable transitions
   useEffect(() => {
-    const savedSlug = sessionStorage.getItem("jourknows_deck_slug");
-    if (savedSlug) {
-      const idx = deckPosts.findIndex(p => p.slug === savedSlug);
-      if (idx !== -1) setCurrentIndex(idx);
-    }
     requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        setIsRestored(true);
-      });
+      requestAnimationFrame(() => setIsRestored(true));
     });
-  }, [deckPosts]);
+  }, []);
 
+  // Persist current slide to sessionStorage
   useEffect(() => {
     if (isRestored && deckPosts[currentIndex]) {
       sessionStorage.setItem(
@@ -69,6 +77,8 @@ export default function LatestDeckViewer({ posts }: Props) {
       );
     }
   }, [currentIndex, deckPosts, isRestored]);
+
+  if (!posts || posts.length === 0) return null;
 
   const initAudio = () => {
     if (!audioContextRef.current) {
