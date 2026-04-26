@@ -3,7 +3,6 @@ author: Axel Delino
 pubDatetime: 2026-02-22
 modDatetime: 2026-02-22
 title: A Hug that Spoke
-ogImage: A Hug that Spoke
 slug: hug-that-spoke
 featured: true
 draft: false
@@ -11,6 +10,7 @@ tags:
   - feature
 description: A Hug that Spoke
 ---
+
 ![](/640331408_122168176970861171_1754203537249393007_n.jpg)
 
 There are moments when words become unnecessary, especially when a single gesture carries the weight of fear, loneliness, and the quiet appeal to be comforted. A trembling body. A small hand wanting to hold and embrace something soft. A silent cry for safety.

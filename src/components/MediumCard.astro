@@ -5,11 +5,13 @@ import getFirstImage from "@utils/getFirstImage";
 
 export interface Props {
   post: CollectionEntry<"blog">;
+  squareImage?: boolean;
 }
 
-const { post } = Astro.props;
+const { post, squareImage = false } = Astro.props;
 const tag = post.data.tags?.[0] || "NEWS";
 const image = getFirstImage(post.body);
+const imageAspect = squareImage ? "aspect-square" : "aspect-[4/3]";
 ---
 
 <a
@@ -18,7 +20,9 @@ const image = getFirstImage(post.body);
 >
   {
     image ? (
-      <div class="w-full sm:w-[160px] aspect-[4/3] bg-[#d9d9d9] overflow-hidden shrink-0 rounded-[8px]">
+      <div
+        class={`w-full ${squareImage ? "sm:w-[180px]" : "sm:w-[160px]"} ${imageAspect} bg-[#d9d9d9] overflow-hidden shrink-0 rounded-[8px]`}
+      >
         <img
           src={image}
           alt={post.data.title}
@@ -26,7 +30,9 @@ const image = getFirstImage(post.body);
         />
       </div>
     ) : (
-      <div class="w-full sm:w-[160px] aspect-[4/3] bg-[#d9d9d9] shrink-0 rounded-[8px]" />
+      <div
+        class={`w-full ${squareImage ? "sm:w-[180px]" : "sm:w-[160px]"} ${imageAspect} bg-[#d9d9d9] shrink-0 rounded-[8px]`}
+      />
     )
   }
   <div

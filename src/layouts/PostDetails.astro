@@ -86,41 +86,73 @@ const navLinks = [
     <div
       class="max-w-[1080px] mx-auto px-5 sm:px-8 lg:px-12 pt-[28px] sm:pt-[34px] lg:pt-[42px] pb-4 bg-white sm:rounded-3xl border border-black/5 sm:mt-6 lg:mt-8 mb-8 shadow-[0_12px_40px_rgba(0,0,0,0.06)] transition-all duration-500"
     >
-      <div class="flex items-center justify-between mb-4">
-        <div
-          class="inline-block bg-[#0007d3] px-[13px] py-[3px] rounded-[20px]"
-        >
-          <span class="font-display font-bold text-[12px] text-white uppercase">
-            {tags[0] || "NEWS"}
-          </span>
+      {/* ── Top Header Section (TikTok-inspired) ── */}
+      <div class="relative flex flex-col gap-5 mb-8 mt-2">
+        <div class="flex items-center justify-between w-full">
+          {/* Floating Back Button */}
+          <button
+            onclick="(() => (history.length === 1) ? window.location = '/' : history.back())()"
+            class="group flex items-center justify-center w-[42px] h-[42px] bg-black/[0.04] hover:bg-black/[0.08] active:bg-black/[0.12] rounded-full transition-all duration-150 ease-out cursor-pointer text-[#1e1e1e] hover:scale-[1.05] active:scale-[0.92] shadow-[0_2px_8px_rgba(0,0,0,0.02)]"
+            aria-label="Go Back"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="group-hover:-translate-x-0.5 transition-transform duration-150"
+            >
+              <path d="M19 12H5M12 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+
+          {/* Category Badge (Clickable Nav Pill) */}
+          <a
+            href={`/tags/${tags[0] ? slugifyStr(tags[0]) : "news"}`}
+            class="bg-[#1e1e1e] hover:bg-[#0007d3] px-[16px] py-[8px] rounded-full shadow-sm hover:shadow-md transition-all duration-150 ease-out hover:-translate-y-0.5 active:translate-y-0 active:scale-95 flex items-center gap-1.5 no-underline group"
+          >
+            <span
+              class="w-1.5 h-1.5 rounded-full bg-[#ff0050] group-hover:bg-white transition-colors duration-200"
+            ></span>
+            <span
+              class="font-display font-extrabold text-[11px] tracking-wider text-white uppercase mt-[1px]"
+            >
+              {tags[0] || "NEWS"}
+            </span>
+          </a>
         </div>
-        <button
-          onclick="(() => (history.length === 1) ? window.location = '/' : history.back())()"
-          class="jk-btn bg-transparent border border-[#0007d3] rounded-[20px] px-3.5 py-[7px] cursor-pointer font-display font-extrabold text-[#0007d3] hover:bg-[#0007d3]/10 transition-colors text-[12px]"
+
+        {/* Title */}
+        <h1
+          class="font-display font-black text-[28px] sm:text-[36px] lg:text-[46px] text-[#1e1e1e] leading-[1.1] tracking-tight"
         >
-          ← BACK
-        </button>
+          {title}
+        </h1>
+
+        {/* Author and Date Meta (App-style inline) */}
+        <div
+          class="flex items-center gap-3 text-[14px] sm:text-[15px] font-display mt-1"
+        >
+          {
+            author && (
+              <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-[#0007d3] to-[#ff0050] flex items-center justify-center text-white text-[12px] font-bold shadow-sm">
+                  {author.charAt(0).toUpperCase()}
+                </div>
+                <span class="font-bold text-[#1e1e1e]">{author}</span>
+              </div>
+            )
+          }
+          {author && <span class="text-[#1e1e1e]/30 font-bold">•</span>}
+          <span class="font-semibold text-[#1e1e1e]/60">{pubDateStr}</span>
+        </div>
       </div>
-
-      <h1
-        class="font-display font-black text-[24px] sm:text-[32px] lg:text-[42px] text-[#1e1e1e] leading-[1.2] mb-2"
-      >
-        {title}
-      </h1>
-
-      {
-        author && (
-          <p class="font-display font-medium text-[14px] sm:text-[16px] italic text-[#1e1e1e]/80 mb-1">
-            By {author}
-          </p>
-        )
-      }
-
-      <p
-        class="font-display font-semibold text-[12px] text-[#1e1e1e]/60 mb-[18px]"
-      >
-        Published {pubDateStr}
-      </p>
+      <hr class="border-black/5 mb-8" />
 
       <article
         id="article"
@@ -204,9 +236,6 @@ const navLinks = [
   }
   .prose :global(p) {
     @apply mb-[22px];
-  }
-  .prose :global(p:first-of-type::first-letter) {
-    @apply font-bold text-xl;
   }
   .prose :global(img) {
     width: 100%;

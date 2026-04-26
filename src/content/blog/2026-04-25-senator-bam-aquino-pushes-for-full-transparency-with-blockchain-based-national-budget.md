@@ -8,17 +8,18 @@ slug: blockchain
 featured: true
 draft: false
 tags:
-  - NEWS
+  - news
 description: MANILA, PHILIPPINES — Philippine Senator Bam Aquino plans to file a
   bill to place the national budget on a blockchain, aiming to make government
   spending transparent, he told attendees at the Manila Tech Summit on
   Wednesday, Aug. 27.
 ---
+
 ![](/1777066720594.jpg)
 
 MANILA, PHILIPPINES — Philippine Senator Bam Aquino plans to file a bill to place the national budget on a blockchain, aiming to make government spending transparent, he told attendees at the Manila Tech Summit on Wednesday, Aug. 27.
 
-“No one is crazy enough to put their transactions on blockchain, where every single step of the way will be logged and transparent to every single citizen. But we want to start,” Aquino said, according to local outlet Bilyonaryo. 
+“No one is crazy enough to put their transactions on blockchain, where every single step of the way will be logged and transparent to every single citizen. But we want to start,” Aquino said, according to local outlet Bilyonaryo.
 
 In a Facebook post, he described the idea as “blockchain-based budgeting to make every peso transparent and accountable.”
 
@@ -28,7 +29,7 @@ While moving the entire national budget on-chain would be new, the Department of
 
 In the setup, documents remain off-chain; the blockchain acts as a tamper-evident log.
 
-BayaniChain added that the  blockchain won’t end corruption but can make accountability harder to evade, laying groundwork for broader government use.
+BayaniChain added that the blockchain won’t end corruption but can make accountability harder to evade, laying groundwork for broader government use.
 
 Aquino’s proposal would build on these early steps, potentially scaling from specific fiscal documents to a public-facing ledger of budget flows.
 

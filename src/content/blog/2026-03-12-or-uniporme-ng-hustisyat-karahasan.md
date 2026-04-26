@@ -3,14 +3,14 @@ author: France Palos
 pubDatetime: 2026-03-02
 modDatetime: 2026-03-02
 title: " Uniporme ng Hustisya’t Karahasan"
-ogImage: " Uniporme ng Hustisya’t Karahasan"
 slug: uniporme-ng-hustisya
 featured: true
 draft: false
 tags:
-  - Opinion
+  - opinion
 description: " Uniporme ng Hustisya’t Karahasan"
 ---
+
 ![](/644374153_122169712358861171_6752842328629072553_n.jpg)
 
 Pinatunayan na naman ng PNP na hindi umiiral ang batas ng ating bansa.

@@ -7,7 +7,7 @@ content:
     type: collection
     path: src/content/blog
     view:
-      fields: [ title, draft, date ]
+      fields: [ title, draft, pubDatetime ]
     fields:
       - { name: author, label: Author, type: string }
       - { name: pubDatetime, label: Date, type: date, required: true }
@@ -17,8 +17,13 @@ content:
       - { name: slug, label: Slug, type: string }
       - { name: featured, label: Featured, type: boolean }
       - { name: draft, label: Draft, type: boolean }
-      - { name: tags, label: Tags, type: string, list: true }
-      - { name: description, label: Description, type: string }
+      - name: tags
+        label: Tags
+        type: string
+        list: true
+        options:
+          values: [news, sports, opinion, feature, sci-tech, explainer, literary, cartoon]
+      - { name: description, label: Description, type: string, required: true }
       - { name: body, label: Body, type: rich-text }
   - name: about
     label: About page

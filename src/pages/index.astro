@@ -6,11 +6,12 @@ import getAllImages from "@utils/getAllImages";
 import "@styles/base.css";
 import AppNavbar from "@components/AppNavbar";
 import CartoonComicViewer from "@components/CartoonComicViewer";
+import LatestDeckViewer from "@components/LatestDeckViewer";
 import ExplainerGallery from "@components/ExplainerGallery";
 import AppFooter from "@components/AppFooter.astro";
 import SectionHeader from "@components/SectionHeader.astro";
 import HeaderCard from "@components/HeaderCard.astro";
-import MediumCard from "@components/MediumCard.astro";
+
 import SmallCard from "@components/SmallCard.astro";
 import { SECTION_COLORS } from "@utils/constants";
 import getFirstImage from "@utils/getFirstImage";
@@ -47,11 +48,7 @@ const navLinks = [
   })),
 ];
 
-// Fallback logic for demo
-const heroPost = sortedPosts[0];
-const heroImage = heroPost ? getFirstImage(heroPost.body) : null;
-
-const latestPosts = sortedPosts.slice(1, 5);
+const latestPosts = sortedPosts;
 
 // Get categorised posts simply
 const getPostsByCategory = (cat: string) => {
@@ -81,86 +78,28 @@ const getPostsByCategory = (cat: string) => {
     <AppNavbar client:load activeHref="/" navLinks={navLinks} />
 
     <div>
-      {/* ── Hero ── */}
-      {
-        heroPost && (
-          <div
-            class={`relative h-[310px] sm:h-[400px] lg:h-[510px] overflow-hidden animate-glassFadeUp ${!heroImage ? "bg-white" : ""}`}
-          >
-            {heroImage && (
-              <>
-                <img
-                  src={heroImage}
-                  alt={heroPost.data.title}
-                  class="w-full h-full object-cover animate-cinematicZoom"
-                />
-                <div class="absolute inset-0 bg-gradient-to-b from-black/10 to-black/75" />
-              </>
-            )}
-            <div class="absolute bottom-[22px] sm:bottom-[38px] left-0 right-0 px-[16px] sm:px-[28px] lg:px-[68px]">
-              <div class="inline-block bg-white px-[12px] py-[3px] rounded-[20px] mb-2.5 shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
-                <span class="font-display font-bold text-[11px] text-[#00046d] uppercase tracking-wide">
-                  {heroPost.data.tags?.[0] || "NEWS"}
-                </span>
-              </div>
-              <h1
-                class={`font-display font-black text-[22px] sm:text-[32px] lg:text-[42px] ${heroImage ? "text-[#fafafa] drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]" : "text-[#00046d]"} leading-[1.2] mb-3 max-w-[800px]`}
-              >
-                {heroPost.data.title}
-              </h1>
-              <div class="flex items-center justify-between gap-5 mt-3">
-                <div class="flex items-center gap-2.5">
-                  <div class="w-8 h-8 rounded-full bg-[#00046d] flex items-center justify-center overflow-hidden shrink-0 border border-white/50 shadow-sm">
-                    <span class="text-white text-[12px] font-bold">
-                      {heroPost.data.author.charAt(0).toUpperCase()}
-                    </span>
-                  </div>
-                  <div class="flex flex-col">
-                    <span
-                      class={`font-display font-bold text-[12px] ${heroImage ? "text-white" : "text-[#333]"}`}
-                    >
-                      by {heroPost.data.author}
-                    </span>
-                    <span
-                      class={`font-sans text-[10px] ${heroImage ? "text-white/80" : "text-[#666]"}`}
-                    >
-                      {new Date(heroPost.data.pubDatetime).toLocaleDateString(
-                        "en-US",
-                        { year: "numeric", month: "long", day: "numeric" }
-                      )}
-                    </span>
-                  </div>
-                </div>
-                <a
-                  href={`/posts/${heroPost.slug}/`}
-                  class={`shrink-0 border ${heroImage ? "border-white text-white" : "border-[#00046d] text-[#00046d]"} uppercase rounded-[20px] px-4 py-1.5 cursor-pointer font-display font-bold text-[10px] tracking-wide no-underline`}
-                >
-                  READ MORE
-                </a>
-              </div>
-            </div>
-          </div>
-        )
-      }
-
       {/* ── Latest ── */}
       {
         latestPosts.length > 0 && (
-          <div
-            class="bg-white border border-black/5 shadow-[0_12px_40px_rgba(0,0,0,0.06)] px-[16px] sm:px-[28px] lg:px-[68px] py-[28px] sm:py-[34px] lg:py-[40px] pb-[34px] sm:pb-[40px] lg:pb-[46px] sm:mx-5 lg:mx-10 sm:rounded-3xl mt-3 sm:mt-6 transition-all duration-500 animate-glassFadeUp"
-            style="animation-delay: 150ms;"
-          >
-            <div class="flex items-center mb-3.5">
-              <h2 class="font-display font-extrabold text-[17px] sm:text-[21px] text-[#1a1a1a] shrink-0 mr-3">
-                LATEST
-              </h2>
-              <div class="flex-1 h-[3px] bg-gradient-to-r from-[#041eb0] to-[#fffbfb] rounded" />
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5">
-              {latestPosts.map(post => (
-                <MediumCard post={post} />
-              ))}
-            </div>
+          <div class="w-full relative bg-white overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.06)] mb-3 sm:mb-5">
+            <LatestDeckViewer
+              client:visible
+              posts={latestPosts.map(p => ({
+                title: p.data.title || "Untitled",
+                slug: p.slug || "",
+                author: p.data.author || "JourKnows",
+                image: getFirstImage(p.body) || null,
+                date: p.data.pubDatetime
+                  ? new Date(p.data.pubDatetime).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })
+                  : "Unknown Date",
+                tag: p.data.tags?.[0] || "NEWS",
+                description: p.data.description || "",
+              }))}
+            />
           </div>
         )
       }
