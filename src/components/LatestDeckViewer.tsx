@@ -134,8 +134,8 @@ export default function LatestDeckViewer({ posts }: Props) {
         setTimeout(() => {
           setPrevIndex(null);
           setIsTransitioning(false);
-        }, 500);
-      }, 20);
+        }, 350);
+      }, 5);
     },
     [currentIndex, isTransitioning]
   );
@@ -163,23 +163,22 @@ export default function LatestDeckViewer({ posts }: Props) {
     };
   }, [resetAutoplay]);
 
-  // Touch swipe handling
-  const minSwipeDistance = 25;
-  const onTouchStart = (e: React.TouchEvent) => {
+  // Touch & Mouse swipe handling
+  const minSwipeDistance = 15;
+  const handleSwipeStart = (clientX: number, clientY: number) => {
     if (luckySpinning) return;
     setTouchEnd(null);
-    setTouchStart(
-      isMobile ? e.targetTouches[0].clientY : e.targetTouches[0].clientX
-    );
+    setTouchStart(isMobile ? clientY : clientX);
   };
-  const onTouchMove = (e: React.TouchEvent) => {
-    if (luckySpinning) return;
-    setTouchEnd(
-      isMobile ? e.targetTouches[0].clientY : e.targetTouches[0].clientX
-    );
+  const handleSwipeMove = (clientX: number, clientY: number) => {
+    if (luckySpinning || touchStart === null) return;
+    setTouchEnd(isMobile ? clientY : clientX);
   };
-  const onTouchEnd = () => {
-    if (luckySpinning || !touchStart || !touchEnd) return;
+  const handleSwipeEnd = () => {
+    if (luckySpinning || touchStart === null || touchEnd === null) {
+      setTouchStart(null);
+      return;
+    }
     const distance = touchStart - touchEnd;
     if (distance > minSwipeDistance) {
       handleNext();
@@ -190,7 +189,19 @@ export default function LatestDeckViewer({ posts }: Props) {
       resetAutoplay();
       setHasSwiped(true);
     }
+    setTouchStart(null);
+    setTouchEnd(null);
   };
+
+  const onTouchStart = (e: React.TouchEvent) =>
+    handleSwipeStart(e.targetTouches[0].clientX, e.targetTouches[0].clientY);
+  const onTouchMove = (e: React.TouchEvent) =>
+    handleSwipeMove(e.targetTouches[0].clientX, e.targetTouches[0].clientY);
+
+  const onMouseDown = (e: React.MouseEvent) =>
+    handleSwipeStart(e.clientX, e.clientY);
+  const onMouseMove = (e: React.MouseEvent) =>
+    handleSwipeMove(e.clientX, e.clientY);
 
   // Keyboard + wheel
   useEffect(() => {
@@ -222,7 +233,7 @@ export default function LatestDeckViewer({ posts }: Props) {
       else handlePrev();
       resetAutoplay();
       wheelCooldown = true;
-      setTimeout(() => (wheelCooldown = false), 1200);
+      setTimeout(() => (wheelCooldown = false), 450);
     };
 
     if (el) el.addEventListener("wheel", handleWheel, { passive: false });
@@ -275,7 +286,7 @@ export default function LatestDeckViewer({ posts }: Props) {
         zIndex: 2,
         transform: isMobile ? "translateY(0)" : "translateX(0)",
         opacity: 1,
-        transition: "transform 0.5s cubic-bezier(0.32, 0.72, 0, 1)",
+        transition: "transform 0.35s cubic-bezier(0.1, 0.9, 0.2, 1)",
       };
     }
     if (isLeaving) {
@@ -284,7 +295,7 @@ export default function LatestDeckViewer({ posts }: Props) {
         zIndex: 2,
         transform: isMobile ? `translateY(${offset})` : `translateX(${offset})`,
         opacity: 1,
-        transition: "transform 0.5s cubic-bezier(0.32, 0.72, 0, 1)",
+        transition: "transform 0.35s cubic-bezier(0.1, 0.9, 0.2, 1)",
       };
     }
 
@@ -312,7 +323,7 @@ export default function LatestDeckViewer({ posts }: Props) {
           : "translateX(12px)",
     transition: luckySpinning
       ? "none"
-      : `opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1) ${delay * 0.6}s, transform 0.5s cubic-bezier(0.25, 1, 0.5, 1) ${delay * 0.6}s`,
+      : `opacity 0.35s cubic-bezier(0.1, 0.9, 0.2, 1) ${delay * 0.5}s, transform 0.35s cubic-bezier(0.1, 0.9, 0.2, 1) ${delay * 0.5}s`,
   });
 
   const triggerLuckySpin = () => {
@@ -380,12 +391,16 @@ export default function LatestDeckViewer({ posts }: Props) {
       {/* Full-bleed deck */}
       <div
         ref={containerRef}
-        className={`relative w-full h-[75vh] min-h-[340px] max-h-[580px] sm:max-h-[480px] lg:max-h-[540px] overflow-hidden group bg-[#0a0a14] touch-pan-x sm:touch-pan-y ${
+        className={`relative w-full h-[75vh] min-h-[340px] max-h-[580px] sm:max-h-[480px] lg:max-h-[540px] overflow-hidden group bg-[#0a0a14] touch-pan-x sm:touch-pan-y cursor-grab active:cursor-grabbing ${
           luckySpinning ? "pointer-events-none" : ""
         }`}
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
+        onTouchEnd={handleSwipeEnd}
+        onMouseDown={onMouseDown}
+        onMouseMove={onMouseMove}
+        onMouseUp={handleSwipeEnd}
+        onMouseLeave={handleSwipeEnd}
       >
         {displayPosts.map((post, idx) => {
           const isActive = idx === currentIndex;
