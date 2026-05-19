@@ -67,8 +67,8 @@ module.exports = {
       },
       fontFamily: {
         mono: ["IBM Plex Mono", "monospace"],
-        sans: ["Inter", "sans-serif"],
-        display: ["Montserrat", "sans-serif"],
+        sans: ["Poppins", "sans-serif"],
+        display: ["Poppins", "sans-serif"],
       },
       keyframes: {
         glassFadeUp: {
