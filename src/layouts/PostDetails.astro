@@ -27,6 +27,7 @@ const {
   pubDatetime,
   modDatetime,
   tags,
+  locale,
 } = post.data;
 
 const { Content } = await post.render();
@@ -46,6 +47,7 @@ const layoutProps = {
   canonicalURL,
   ogImage: ogUrl,
   scrollSmooth: true,
+  locale,
 };
 
 // Format dates nicely
@@ -75,6 +77,33 @@ const navLinks = [
 ---
 
 <Layout {...layoutProps}>
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      headline: title,
+      description: description,
+      image: [ogUrl],
+      datePublished: pubDatetime,
+      dateModified: modDatetime || pubDatetime,
+      author: [
+        {
+          "@type": "Person",
+          name: author,
+          url: SITE.website,
+        },
+      ],
+      publisher: {
+        "@type": "Organization",
+        name: SITE.title,
+        logo: {
+          "@type": "ImageObject",
+          url: SITE.website + "assets/logo.png",
+        },
+      },
+    })}
+  />
   <AppNavbar
     client:load
     activeHref={`/tags/${tags[0] ? slugifyStr(tags[0]) : "news"}`}

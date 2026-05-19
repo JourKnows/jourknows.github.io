@@ -14,7 +14,9 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
     react(),
-    sitemap(),
+    sitemap({
+      filter: page => !page.includes("/search") && !page.includes("/tags"),
+    }),
   ],
   markdown: {
     remarkPlugins: [

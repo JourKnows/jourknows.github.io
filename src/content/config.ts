@@ -41,6 +41,7 @@ const blog = defineCollection({
         .string()
         .optional()
         .transform(val => val || "No description"),
+      locale: z.string().optional(),
       canonicalURL: z.string().optional(),
     }),
 });

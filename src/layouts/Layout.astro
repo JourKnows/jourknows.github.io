@@ -14,6 +14,7 @@ export interface Props {
   pubDatetime?: Date;
   modDatetime?: Date | null;
   scrollSmooth?: boolean;
+  locale?: string;
 }
 
 const {
@@ -25,6 +26,7 @@ const {
   pubDatetime,
   modDatetime,
   scrollSmooth = false,
+  locale = LOCALE.langTag[0] ?? "en-PH",
 } = Astro.props;
 
 const socialImageURL = new URL(
@@ -34,10 +36,7 @@ const socialImageURL = new URL(
 ---
 
 <!doctype html>
-<html
-  lang=`${LOCALE.lang ?? "en"}`
-  class={`${scrollSmooth && "scroll-smooth"}`}
->
+<html lang={locale} class={`${scrollSmooth && "scroll-smooth"}`}>
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -60,6 +59,17 @@ const socialImageURL = new URL(
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={socialImageURL} />
+    {
+      pubDatetime ? (
+        <>
+          <meta property="og:type" content="article" />
+          <meta property="article:author" content={author} />
+        </>
+      ) : (
+        <meta property="og:type" content="website" />
+      )
+    }
+    <meta property="og:locale" content={locale.replace("-", "_")} />
 
     <!-- Article Published/Modified time -->
     {

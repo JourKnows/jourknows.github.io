@@ -17,6 +17,11 @@ content:
       - { name: slug, label: Slug, type: string }
       - { name: featured, label: Featured, type: boolean }
       - { name: draft, label: Draft, type: boolean }
+      - name: locale
+        label: Language Locale
+        type: string
+        options:
+          values: [en, fil]
       - name: tags
         label: Tags
         type: string
