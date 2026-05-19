@@ -321,7 +321,9 @@ export default function LatestDeckViewer({ posts }: Props) {
     }
 
     const trans = isRestored
-      ? "transform 0.35s cubic-bezier(0.1, 0.9, 0.2, 1)"
+      ? isMobile
+        ? "transform 0.35s cubic-bezier(0.1, 0.9, 0.2, 1)"
+        : "transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1)"
       : "none";
 
     // When NOT dragging
@@ -329,68 +331,99 @@ export default function LatestDeckViewer({ posts }: Props) {
       if (isActive) {
         return {
           zIndex: 2,
-          transform: translate3d(0),
+          transform: isMobile
+            ? translate3d(0)
+            : "translate3d(0, 0, 0) scale(1)",
           opacity: 1,
           transition: trans,
-          willChange: "transform",
+          willChange: isMobile ? "transform" : "transform, opacity",
         };
       }
       if (isLeaving) {
         const offset = direction === "next" ? "-100%" : "100%";
+        const desktopLeaveTransform =
+          direction === "next"
+            ? "translate3d(-40px, 0, 0) scale(1.02)"
+            : "translate3d(40px, 0, 0) scale(1.02)";
         return {
-          zIndex: 2,
-          transform: translate3d(offset),
-          opacity: 1,
+          zIndex: isMobile ? 2 : 1, // On desktop, leaving slide sinks underneath
+          transform: isMobile ? translate3d(offset) : desktopLeaveTransform,
+          opacity: isMobile ? 1 : 0,
           transition: trans,
-          willChange: "transform",
+          willChange: isMobile ? "transform" : "transform, opacity",
         };
       }
       const hiddenOffset = direction === "next" ? "100%" : "-100%";
+      const desktopHiddenTransform =
+        direction === "next"
+          ? "translate3d(40px, 0, 0) scale(0.98)"
+          : "translate3d(-40px, 0, 0) scale(0.98)";
       return {
         zIndex: 0,
-        transform: translate3d(hiddenOffset),
-        opacity: 1,
+        transform: isMobile
+          ? translate3d(hiddenOffset)
+          : desktopHiddenTransform,
+        opacity: isMobile ? 1 : 0,
         transition: trans,
         pointerEvents: "none",
-        willChange: "transform",
+        willChange: isMobile ? "transform" : "transform, opacity",
       };
     }
 
-    // When DRAGGING (1:1 physical follow)
+    // When DRAGGING (1:1 physical follow for mobile, scrubbable crossfade for desktop)
+    const dragPercent = Math.min(
+      Math.max(
+        Math.abs(dragDelta) /
+          (isMobile ? window.innerHeight : window.innerWidth),
+        0
+      ),
+      1
+    );
+
     if (isActive) {
+      const desktopTransform =
+        dragDelta < 0
+          ? `translate3d(${-dragPercent * 40}px, 0, 0) scale(${1 + dragPercent * 0.02})`
+          : `translate3d(${dragPercent * 40}px, 0, 0) scale(${1 + dragPercent * 0.02})`;
       return {
-        zIndex: 2,
-        transform: translate3d(dragDelta),
-        opacity: 1,
+        zIndex: isMobile ? 2 : 1,
+        transform: isMobile ? translate3d(dragDelta) : desktopTransform,
+        opacity: isMobile ? 1 : 1 - dragPercent,
         transition: "none",
-        willChange: "transform",
+        willChange: isMobile ? "transform" : "transform, opacity",
       };
     }
     if (isNext && dragDelta < 0) {
       return {
         zIndex: 2,
-        transform: translate3d(`calc(100% + ${dragDelta}px)`),
-        opacity: 1,
+        transform: isMobile
+          ? translate3d(`calc(100% + ${dragDelta}px)`)
+          : `translate3d(${(1 - dragPercent) * 40}px, 0, 0) scale(${0.98 + dragPercent * 0.02})`,
+        opacity: isMobile ? 1 : dragPercent,
         transition: "none",
-        willChange: "transform",
+        willChange: isMobile ? "transform" : "transform, opacity",
       };
     }
     if (isPrev && dragDelta > 0) {
       return {
         zIndex: 2,
-        transform: translate3d(`calc(-100% + ${dragDelta}px)`),
-        opacity: 1,
+        transform: isMobile
+          ? translate3d(`calc(-100% + ${dragDelta}px)`)
+          : `translate3d(${-(1 - dragPercent) * 40}px, 0, 0) scale(${0.98 + dragPercent * 0.02})`,
+        opacity: isMobile ? 1 : dragPercent,
         transition: "none",
-        willChange: "transform",
+        willChange: isMobile ? "transform" : "transform, opacity",
       };
     }
     return {
       zIndex: 0,
-      transform: translate3d("100%"),
-      opacity: 1,
+      transform: isMobile
+        ? translate3d("100%")
+        : "translate3d(40px, 0, 0) scale(0.98)",
+      opacity: isMobile ? 1 : 0,
       transition: "none",
       pointerEvents: "none",
-      willChange: "transform",
+      willChange: isMobile ? "transform" : "transform, opacity",
     };
   };
 
