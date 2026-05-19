@@ -10,6 +10,9 @@ content:
       fields: [ title, draft, pubDatetime ]
     fields:
       - { name: author, label: Author, type: string }
+      - { name: authorTitle, label: Author Title/Role, type: string }
+      - { name: authorBio, label: Author Bio, type: text }
+      - { name: authorImage, label: Author Profile Image, type: image }
       - { name: pubDatetime, label: Date, type: date, required: true }
       - { name: modDatetime, label: Date, type: date }
       - { name: title, label: Title, type: string, required: true }
