@@ -1,5 +1,7 @@
 ---
 author: Clark Kent Pagdilao Dalman
+authorTitle: Managing Editor
+authorBio: Haggard
 pubDatetime: 2026-04-22
 modDatetime: 2026-04-22
 title: Senator Bam Aquino pushes for full transparency with Blockchain-Based
@@ -7,6 +9,7 @@ title: Senator Bam Aquino pushes for full transparency with Blockchain-Based
 slug: blockchain
 featured: true
 draft: false
+locale: en
 tags:
   - news
 description: MANILA, PHILIPPINES — Philippine Senator Bam Aquino plans to file a
@@ -14,7 +17,6 @@ description: MANILA, PHILIPPINES — Philippine Senator Bam Aquino plans to file
   spending transparent, he told attendees at the Manila Tech Summit on
   Wednesday, Aug. 27.
 ---
-
 ![](/1777066720594.jpg)
 
 MANILA, PHILIPPINES — Philippine Senator Bam Aquino plans to file a bill to place the national budget on a blockchain, aiming to make government spending transparent, he told attendees at the Manila Tech Summit on Wednesday, Aug. 27.
