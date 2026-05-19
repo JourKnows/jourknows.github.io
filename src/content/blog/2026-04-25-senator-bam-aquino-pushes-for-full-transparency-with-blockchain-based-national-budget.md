@@ -2,6 +2,7 @@
 author: Clark Kent Pagdilao Dalman
 authorTitle: Managing Editor
 authorBio: Haggard
+authorImage: /konosuba-kazuma.gif
 pubDatetime: 2026-04-22
 modDatetime: 2026-04-22
 title: Senator Bam Aquino pushes for full transparency with Blockchain-Based
