@@ -1,8 +1,6 @@
 export default function getFirstImage(markdownBody: string): string | null {
   if (!markdownBody) return null;
 
-  // Regex to match markdown image syntax: ![alt text](url)
-  // Or HTML syntax: <img src="url" />
   const mdRegex = /!\[[^\]]*\]\(([^)]+)\)/;
   const htmlRegex = /<img[^>]+src=["']([^"']+)["']/i;
 
