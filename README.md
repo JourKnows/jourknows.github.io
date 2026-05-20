@@ -32,7 +32,7 @@ All editorial content, journalistic text, illustrations, and media assets locate
 - `src/content/blog/` (All Markdown articles)
 - `public/` (All images, branding, and media)
 
-These assets **MAY NOT** be reproduced, copied, republished, or distributed in any form without explicit written permission from the publisher. 
+These assets **MAY NOT** be reproduced, copied, republished, or distributed in any form without explicit written permission from the publisher.
 
 ---
 

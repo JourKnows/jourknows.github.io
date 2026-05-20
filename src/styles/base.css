@@ -140,12 +140,24 @@
     overflow-wrap: break-word;
   }
 
-  p, h1, h2, h3, h4, h5, h6, li, a {
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  li,
+  a {
     overflow-wrap: break-word;
     word-break: break-word;
   }
 
-  img, video, iframe, canvas, svg {
+  img,
+  video,
+  iframe,
+  canvas,
+  svg {
     max-width: 100%;
     height: auto;
   }
@@ -173,24 +185,40 @@
 
   /* Custom JourKnows UI utilities */
   @keyframes jkFadeUp {
-    from { opacity: 0; transform: translate3d(0, 15px, 0); }
-    to { opacity: 1; transform: translate3d(0, 0, 0); }
+    from {
+      opacity: 0;
+      transform: translate3d(0, 15px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
   }
   @keyframes jkPopIn {
-    0% { opacity: 0; transform: scale3d(0.92, 0.92, 1) translate3d(0, 10px, 0); }
-    100% { opacity: 1; transform: scale3d(1, 1, 1) translate3d(0, 0, 0); }
+    0% {
+      opacity: 0;
+      transform: scale3d(0.92, 0.92, 1) translate3d(0, 10px, 0);
+    }
+    100% {
+      opacity: 1;
+      transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+    }
   }
   .jk-page {
     animation: jkFadeUp 0.28s ease both;
   }
   .jk-card {
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition:
+      transform 0.2s,
+      box-shadow 0.2s;
   }
   .jk-card:active {
     opacity: 0.85;
   }
   .jk-btn {
-    transition: opacity 0.15s, transform 0.15s;
+    transition:
+      opacity 0.15s,
+      transform 0.15s;
   }
   .jk-btn:active {
     opacity: 0.78;

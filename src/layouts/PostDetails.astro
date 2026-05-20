@@ -36,10 +36,8 @@ const {
 const { Content } = await post.render();
 
 const ogImageUrl = typeof ogImage === "string" ? ogImage : ogImage?.src;
-const ogUrl = new URL(
-  ogImageUrl ?? `/posts/${slugifyStr(title)}.png`,
-  Astro.url.origin
-).href;
+const ogUrl = new URL(ogImageUrl ?? `/posts/${post.slug}.png`, Astro.url.origin)
+  .href;
 
 const layoutProps = {
   title: `${title} | ${SITE.title}`,

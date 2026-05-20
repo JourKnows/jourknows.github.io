@@ -18,9 +18,10 @@ description: MANILA, PHILIPPINES — Philippine Senator Bam Aquino plans to file
   spending transparent, he told attendees at the Manila Tech Summit on
   Wednesday, Aug. 27.
 ---
+
 ![](/Messenger_creation_50C0684E-94F9-40F2-96A8-88EC83AC4863.jpeg)
 
-**MANILA, PHILIPPINES**  — Philippine Senator Bam Aquino plans to file a bill to place the national budget on a blockchain, aiming to make government spending transparent, he told attendees at the Manila Tech Summit on Wednesday, Aug. 27.
+**MANILA, PHILIPPINES** — Philippine Senator Bam Aquino plans to file a bill to place the national budget on a blockchain, aiming to make government spending transparent, he told attendees at the Manila Tech Summit on Wednesday, Aug. 27.
 
 “No one is crazy enough to put their transactions on blockchain, where every single step of the way will be logged and transparent to every single citizen. But we want to start,” Aquino said, according to local outlet Bilyonaryo.
 
