@@ -14,8 +14,8 @@ interface Props {
 
 export default function CartoonComicViewer({ posts }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const touchStartRef = React.useRef<number | null>(null);
+  const touchEndRef = React.useRef<number | null>(null);
   const containerRef = React.useRef<HTMLDivElement>(null);
 
   if (!posts || posts.length === 0) return null;
@@ -31,16 +31,18 @@ export default function CartoonComicViewer({ posts }: Props) {
   const minSwipeDistance = 50;
 
   const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientY);
+    touchEndRef.current = null;
+    touchStartRef.current = e.targetTouches[0].clientY;
   };
 
   const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientY);
+    touchEndRef.current = e.targetTouches[0].clientY;
   };
 
   const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
+    const touchStart = touchStartRef.current;
+    const touchEnd = touchEndRef.current;
+    if (touchStart === null || touchEnd === null) return;
     const distance = touchStart - touchEnd;
     const isUpSwipe = distance > minSwipeDistance;
     const isDownSwipe = distance < -minSwipeDistance;

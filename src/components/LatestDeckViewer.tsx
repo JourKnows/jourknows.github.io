@@ -45,7 +45,6 @@ export default function LatestDeckViewer({ posts }: Props) {
   const [expanded, setExpanded] = useState(false);
   const [luckySpinning, setLuckySpinning] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [, setTouchEnd] = useState<number | null>(null);
   const [dragDelta, setDragDelta] = useState(0);
   const [hasSwiped, setHasSwiped] = useState(false);
   const [isMobile, setIsMobile] = useState(true);
@@ -199,14 +198,12 @@ export default function LatestDeckViewer({ posts }: Props) {
   const minSwipeDistance = 40;
   const handleSwipeStart = (clientX: number, clientY: number) => {
     if (luckySpinning || isTransitioning) return;
-    setTouchEnd(null);
     setDragDelta(0);
     setTouchStart(isMobile ? clientY : clientX);
   };
   const handleSwipeMove = (clientX: number, clientY: number) => {
     if (luckySpinning || touchStart === null) return;
     const current = isMobile ? clientY : clientX;
-    setTouchEnd(current);
     setDragDelta(current - touchStart);
   };
   const handleSwipeEnd = () => {
@@ -225,7 +222,6 @@ export default function LatestDeckViewer({ posts }: Props) {
       setHasSwiped(true);
     }
     setTouchStart(null);
-    setTouchEnd(null);
     setDragDelta(0);
   };
 
