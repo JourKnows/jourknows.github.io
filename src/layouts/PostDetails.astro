@@ -199,6 +199,57 @@ const navLinks = [
         <Content />
       </article>
 
+      {/* ── Mini Writer Profile (Redesigned) ── */}
+      {
+        authorBio && (
+          <div class="mb-12 mt-4">
+            <div class="relative w-full rounded-[24px] overflow-hidden bg-white border border-black/5 shadow-[0_12px_40px_rgba(0,0,0,0.06)]">
+              {/* Blue Background Bottom Half */}
+              <div class="absolute bottom-0 left-0 w-full h-[55%] bg-[#0f0b83]" />
+
+              <div class="relative px-6 pt-8 pb-10 sm:px-10">
+                {/* Title */}
+                <h2 class="font-display font-black text-[20px] sm:text-[24px] text-[#0f0b83] uppercase tracking-widest mb-8 sm:mb-10">
+                  ABOUT THE WRITER
+                </h2>
+
+                <div class="flex flex-col sm:flex-row items-center sm:items-stretch gap-6 sm:gap-10 relative z-10">
+                  {/* Avatar (Centers on the boundary) */}
+                  <div class="shrink-0 flex items-center justify-center">
+                    {authorImage ? (
+                      <img
+                        src={authorImage}
+                        alt={author}
+                        class="w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] rounded-full object-cover shadow-[0_12px_40px_rgba(0,0,0,0.25)] bg-[#0f0b83]"
+                      />
+                    ) : (
+                      <div class="w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] rounded-full bg-gradient-to-tr from-[#0007d3] to-[#ff0050] flex items-center justify-center text-white text-[64px] font-black shadow-[0_12px_40px_rgba(0,0,0,0.25)]">
+                        {author.charAt(0).toUpperCase()}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Bio Box (Centers on the boundary) */}
+                  <div class="flex-1 w-full flex flex-col justify-center bg-white rounded-[18px] border border-[#838be4] shadow-sm p-6 sm:p-8 relative">
+                    <h3 class="font-display font-black text-[19px] text-[#1e1e1e] mb-1">
+                      {author}
+                    </h3>
+                    {authorTitle && (
+                      <p class="font-display font-bold text-[12.5px] text-[#0007d3] uppercase tracking-wider mb-3">
+                        {authorTitle}
+                      </p>
+                    )}
+                    <p class="font-sans text-[15px] sm:text-[15.5px] text-[#555] leading-relaxed mb-0 text-justify">
+                      {authorBio}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      }
+
       {/* ── Comments & Reactions (Zoomment) ── */}
       <div class="border-t-2 border-[#0007d3] pt-6 mb-12 mt-8">
         <h2
@@ -250,57 +301,6 @@ const navLinks = [
         </a>
       </div>
     </div>
-
-    {/* ── Mini Writer Profile (Redesigned) ── */}
-    {
-      authorBio && (
-        <div class="max-w-[1080px] mx-auto px-5 sm:px-8 lg:px-12 w-full mb-12">
-          <div class="relative w-full rounded-[24px] overflow-hidden bg-white border border-black/5 shadow-[0_12px_40px_rgba(0,0,0,0.06)]">
-            {/* Blue Background Bottom Half */}
-            <div class="absolute bottom-0 left-0 w-full h-[55%] bg-[#0f0b83]" />
-
-            <div class="relative px-6 pt-8 pb-10 sm:px-10">
-              {/* Title */}
-              <h2 class="font-display font-black text-[20px] sm:text-[24px] text-[#0f0b83] uppercase tracking-widest mb-8 sm:mb-10">
-                ABOUT THE WRITER
-              </h2>
-
-              <div class="flex flex-col sm:flex-row items-center sm:items-stretch gap-6 sm:gap-10 relative z-10">
-                {/* Avatar (Centers on the boundary) */}
-                <div class="shrink-0 flex items-center justify-center">
-                  {authorImage ? (
-                    <img
-                      src={authorImage}
-                      alt={author}
-                      class="w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] rounded-full object-cover shadow-[0_12px_40px_rgba(0,0,0,0.25)] bg-[#0f0b83]"
-                    />
-                  ) : (
-                    <div class="w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] rounded-full bg-gradient-to-tr from-[#0007d3] to-[#ff0050] flex items-center justify-center text-white text-[64px] font-black shadow-[0_12px_40px_rgba(0,0,0,0.25)]">
-                      {author.charAt(0).toUpperCase()}
-                    </div>
-                  )}
-                </div>
-
-                {/* Bio Box (Centers on the boundary) */}
-                <div class="flex-1 w-full flex flex-col justify-center bg-white rounded-[18px] border border-[#838be4] shadow-sm p-6 sm:p-8 relative">
-                  <h3 class="font-display font-black text-[19px] text-[#1e1e1e] mb-1">
-                    {author}
-                  </h3>
-                  {authorTitle && (
-                    <p class="font-display font-bold text-[12.5px] text-[#0007d3] uppercase tracking-wider mb-3">
-                      {authorTitle}
-                    </p>
-                  )}
-                  <p class="font-sans text-[15px] sm:text-[15.5px] text-[#555] leading-relaxed mb-0 text-justify">
-                    {authorBio}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )
-    }
 
     <AppFooter />
   </div>

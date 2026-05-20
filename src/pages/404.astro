@@ -1,13 +1,25 @@
 ---
 import { SITE } from "@config";
 import Layout from "@layouts/Layout.astro";
-import Header from "@components/Header.astro";
-import Footer from "@components/Footer.astro";
+import AppNavbar from "@components/AppNavbar";
+import AppFooter from "@components/AppFooter.astro";
 import LinkButton from "@components/LinkButton.astro";
+import { getCollection } from "astro:content";
+import getUniqueTags from "@utils/getUniqueTags";
+
+const posts = await getCollection("blog");
+const tags = getUniqueTags(posts);
+const navLinks = [
+  { label: "HOME", href: "/" },
+  ...tags.map(t => ({
+    label: t.tagName.toUpperCase(),
+    href: `/tags/${t.tag}`,
+  })),
+];
 ---
 
 <Layout title={`404 Not Found | ${SITE.title}`}>
-  <Header />
+  <AppNavbar client:load activeHref="" navLinks={navLinks} />
 
   <main id="main-content">
     <div class="not-found-wrapper">
@@ -23,7 +35,7 @@ import LinkButton from "@components/LinkButton.astro";
     </div>
   </main>
 
-  <Footer />
+  <AppFooter />
 </Layout>
 
 <style>
