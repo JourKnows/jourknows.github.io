@@ -1,6 +1,7 @@
 ---
 author: Wen Cortes
 illustrator: Wen Cortes
+copyeditor: Wen Cortes
 pubDatetime: 2026-03-22
 modDatetime: 2026-03-22
 title: Aurora Gaming PH Delivers Clean sweep, Captures M7 World Title
