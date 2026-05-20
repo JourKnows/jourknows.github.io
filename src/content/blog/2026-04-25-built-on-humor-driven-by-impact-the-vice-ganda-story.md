@@ -4,13 +4,12 @@ pubDatetime: 2026-04-19
 modDatetime: 2026-04-19
 title: Built on Humor, Driven by Impact
 slug: vice-ganda
-featured: true
+featured: false
 draft: false
 tags:
   - explainer
-description: "No description"
+description: No description
 ---
-
 There are celebrities who entertain, and there are those who redefine what entertainment means. Vice Ganda belongs to the second kind. Not because she followed the rules of showbiz, but because she constantly bent them, using humor—not just as performance, but as language, survival, and truth.
 
 What makes her story interesting is not just fame, but consistency. Despite changes in trends and criticism that come with being in the spotlight, she has remained relevant by staying true to her personality and style.
