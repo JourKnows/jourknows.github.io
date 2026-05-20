@@ -1,5 +1,8 @@
 ---
 author: France Palos
+authorTitle: "JourKnows Staffer "
+authorBio: France Palos serves as a JourKnows Staffer under the News Desk Department.
+authorImage: /Untitled design-8.jpg
 pubDatetime: 2026-03-02
 modDatetime: 2026-03-02
 title: " Uniporme ng Hustisya’t Karahasan"
@@ -11,7 +14,8 @@ tags:
 description: " Uniporme ng Hustisya’t Karahasan"
 ---
 
-![](/644374153_122169712358861171_6752842328629072553_n.jpg)
+
+![](</Untitled design-9.jpg>)
 
 Pinatunayan na naman ng PNP na hindi umiiral ang batas ng ating bansa.
 
