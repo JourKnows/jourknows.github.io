@@ -14,7 +14,9 @@ description: Ipapatawag ng Senate Blue Ribbon Committee si dating kongresista
   Zaldy Co sa unang pagkakataon kaugnay ng imbestigasyon sa umano’y anomalya sa
   flood control projects, ayon kay Sen. Panfilo Lacson nitong ika-17 ng Abril.
 ---
-![](/Untitled design-6.jpg)
+
+
+![](/sheesh.jpg)
 
 Ipapatawag ng Senate Blue Ribbon Committee si dating kongresista Zaldy Co sa unang pagkakataon kaugnay ng imbestigasyon sa umano’y anomalya sa flood control projects, ayon kay Sen. Panfilo Lacson nitong ika-17 ng Abril.   
 
