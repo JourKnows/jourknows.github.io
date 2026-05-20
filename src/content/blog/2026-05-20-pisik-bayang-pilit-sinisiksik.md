@@ -10,7 +10,7 @@ title: "Pisik: Bayang Pilit Sinisiksik"
 featured: false
 draft: false
 tags:
-  - features
+  - feature
 description: Bilang isang anak-dalita, batid kong kinakailangan ko pang sumuot
   sa isang butas ng karayom makamit lang ang inaasam-asam kong maginhawang
   buhay.
