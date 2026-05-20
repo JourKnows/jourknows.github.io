@@ -33,6 +33,8 @@ const {
   authorImage,
   illustrator,
   illustratorImage,
+  copyeditor,
+  copyeditorImage,
 } = post.data;
 
 const { Content } = await post.render();
@@ -101,6 +103,15 @@ const navLinks = [
               {
                 "@type": "Person",
                 name: illustrator,
+                url: SITE.website,
+              },
+            ]
+          : []),
+        ...(copyeditor
+          ? [
+              {
+                "@type": "Person",
+                name: copyeditor,
                 url: SITE.website,
               },
             ]
@@ -183,7 +194,7 @@ const navLinks = [
           <div class="flex items-center">
             {
               author && (
-                <div class="relative z-20">
+                <div class="relative z-30">
                   {authorImage ? (
                     <img
                       src={authorImage}
@@ -200,7 +211,7 @@ const navLinks = [
             }
             {
               illustrator && (
-                <div class="-ml-3 relative z-10">
+                <div class:list={["relative z-20", { "-ml-3": author }]}>
                   {illustratorImage ? (
                     <img
                       src={illustratorImage}
@@ -210,6 +221,28 @@ const navLinks = [
                   ) : (
                     <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-[#ff0050] to-[#ffbe0b] flex items-center justify-center text-white text-[12px] font-bold shadow-sm border border-white">
                       {illustrator.charAt(0).toUpperCase()}
+                    </div>
+                  )}
+                </div>
+              )
+            }
+            {
+              copyeditor && (
+                <div
+                  class:list={[
+                    "relative z-10",
+                    { "-ml-3": author || illustrator },
+                  ]}
+                >
+                  {copyeditorImage ? (
+                    <img
+                      src={copyeditorImage}
+                      alt={copyeditor}
+                      class="w-8 h-8 rounded-full object-cover shadow-sm border border-white"
+                    />
+                  ) : (
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-[#00b4d8] to-[#0077b6] flex items-center justify-center text-white text-[12px] font-bold shadow-sm border border-white">
+                      {copyeditor.charAt(0).toUpperCase()}
                     </div>
                   )}
                 </div>
@@ -229,7 +262,7 @@ const navLinks = [
               )
             }
             {
-              author && illustrator && (
+              author && (illustrator || copyeditor) && (
                 <span class="text-[#1e1e1e]/30 font-bold">•</span>
               )
             }
@@ -242,7 +275,20 @@ const navLinks = [
               )
             }
             {
-              (author || illustrator) && (
+              illustrator && copyeditor && (
+                <span class="text-[#1e1e1e]/30 font-bold">•</span>
+              )
+            }
+            {
+              copyeditor && (
+                <span>
+                  Copyedited by{" "}
+                  <span class="font-bold text-[#1e1e1e]">{copyeditor}</span>
+                </span>
+              )
+            }
+            {
+              (author || illustrator || copyeditor) && (
                 <span class="text-[#1e1e1e]/30 font-bold">•</span>
               )
             }
