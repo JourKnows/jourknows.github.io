@@ -2,7 +2,7 @@
 author: France Palos
 authorTitle: "JourKnows Staffer "
 authorBio: France Palos serves as a JourKnows Staffer under the News Desk Department.
-authorImage: /Untitled-design-5.jpg
+authorImage: /Untitled design-8.jpg
 pubDatetime: 2026-05-01
 modDatetime: 2026-05-01
 title: Zaldy Co, haharap sa Blue Ribbon sa isyu ng flood control
