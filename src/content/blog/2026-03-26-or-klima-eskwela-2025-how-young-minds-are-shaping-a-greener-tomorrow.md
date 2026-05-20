@@ -10,8 +10,7 @@ tags:
   - sci-tech
 description: "Klima Eskwela 2025: How Young Minds are Shaping a Greener Tomorrow"
 ---
-
-![](/536147493_122133862916861171_6504509345229683080_n.jpg)
+![](/leana-2.jpg)
 
 In a typical science class, students learn about greenhouse gases, rising sea levels, and extreme weather events. But for youth participating in Klima Eskwela 2025, climate change is not just a topic in a textbook—it is a problem they are determined to solve. This nationwide program is turning schools into hubs of climate action, equipping students with the tools, funding, and mentorship they need to turn ideas into real-world solutions.
 
