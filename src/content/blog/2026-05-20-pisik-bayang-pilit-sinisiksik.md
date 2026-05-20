@@ -7,8 +7,8 @@ illustrator: Abdel Mahrouf Ameril
 pubDatetime: 2026-05-20
 modDatetime: 2026-05-20
 title: "Pisik: Bayang Pilit Sinisiksik"
-featured: true
-draft: false
+featured: false
+draft: true
 tags:
   - feature
 description: Bilang isang anak-dalita, batid kong kinakailangan ko pang sumuot
