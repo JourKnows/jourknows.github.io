@@ -12,7 +12,9 @@ tags:
   - sports
 description: Aurora Gaming PH Delivers Clean sweep, Captures M7 World Title
 ---
-![](/618387790_122163567962861171_5419676321152952639_n.jpg)
+
+
+![](/m7.png)
 
 Aurora Gaming PH stamped its authority on the global stage with a ruthless shutout of Indonesia’s Alter Ego, delivering a clinical 4–0 sweep to capture the M7 World Championship crown on Sunday night in Tennis Indoor Senayan, Jakarta.
 
