@@ -15,7 +15,7 @@ description: " Uniporme ng Hustisya’t Karahasan"
 ---
 
 
-![](</Untitled design-9.jpg>)
+![](/pulis.jpg)
 
 Pinatunayan na naman ng PNP na hindi umiiral ang batas ng ating bansa.
 
