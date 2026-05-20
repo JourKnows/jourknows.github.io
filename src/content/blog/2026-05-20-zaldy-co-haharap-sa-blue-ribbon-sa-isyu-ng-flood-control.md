@@ -3,6 +3,10 @@ author: France Palos
 authorTitle: "JourKnows Staffer "
 authorBio: France Palos serves as a JourKnows Staffer under the News Desk Department.
 authorImage: /Untitled-design-8.jpg
+illustrator: Stephanie Mañacap
+illustratorTitle: JourKnows Lead Cartoonist
+illustratorBio: Stephanie Mañacap is the Lead Cartoonist and Editorial Illustrator for JourKnows PH.
+illustratorImage: /Untitled-design-8-1.jpg
 pubDatetime: 2026-05-01
 modDatetime: 2026-05-01
 title: Zaldy Co, haharap sa Blue Ribbon sa isyu ng flood control

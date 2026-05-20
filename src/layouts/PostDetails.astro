@@ -31,6 +31,10 @@ const {
   authorTitle,
   authorBio,
   authorImage,
+  illustrator,
+  illustratorTitle,
+  illustratorBio,
+  illustratorImage,
 } = post.data;
 
 const { Content } = await post.render();
@@ -94,6 +98,15 @@ const navLinks = [
           name: author,
           url: SITE.website,
         },
+        ...(illustrator
+          ? [
+              {
+                "@type": "Person",
+                name: illustrator,
+                url: SITE.website,
+              },
+            ]
+          : []),
       ],
       publisher: {
         "@type": "Organization",
@@ -166,28 +179,77 @@ const navLinks = [
 
         {/* Author and Date Meta (App-style inline) */}
         <div
-          class="flex items-center gap-3 text-[14px] sm:text-[15px] font-display mt-1"
+          class="flex flex-wrap items-center gap-3 sm:gap-4 text-[14px] sm:text-[15px] font-display mt-1"
         >
-          {
-            author && (
-              <div class="flex items-center gap-2">
-                {authorImage ? (
-                  <img
-                    src={authorImage}
-                    alt={author}
-                    class="w-8 h-8 rounded-full object-cover shadow-sm border border-black/5"
-                  />
-                ) : (
-                  <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-[#0007d3] to-[#ff0050] flex items-center justify-center text-white text-[12px] font-bold shadow-sm">
-                    {author.charAt(0).toUpperCase()}
-                  </div>
-                )}
-                <span class="font-bold text-[#1e1e1e]">{author}</span>
-              </div>
-            )
-          }
-          {author && <span class="text-[#1e1e1e]/30 font-bold">•</span>}
-          <span class="font-semibold text-[#1e1e1e]/60">{pubDateStr}</span>
+          {/* Avatar Group */}
+          <div class="flex items-center">
+            {
+              author && (
+                <div class="relative z-20">
+                  {authorImage ? (
+                    <img
+                      src={authorImage}
+                      alt={author}
+                      class="w-8 h-8 rounded-full object-cover shadow-sm border border-white"
+                    />
+                  ) : (
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-[#0007d3] to-[#ff0050] flex items-center justify-center text-white text-[12px] font-bold shadow-sm border border-white">
+                      {author.charAt(0).toUpperCase()}
+                    </div>
+                  )}
+                </div>
+              )
+            }
+            {
+              illustrator && (
+                <div class="-ml-3 relative z-10">
+                  {illustratorImage ? (
+                    <img
+                      src={illustratorImage}
+                      alt={illustrator}
+                      class="w-8 h-8 rounded-full object-cover shadow-sm border border-white"
+                    />
+                  ) : (
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-[#ff0050] to-[#ffbe0b] flex items-center justify-center text-white text-[12px] font-bold shadow-sm border border-white">
+                      {illustrator.charAt(0).toUpperCase()}
+                    </div>
+                  )}
+                </div>
+              )
+            }
+          </div>
+
+          {/* Text Names & Roles */}
+          <div
+            class="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[#1e1e1e]/85"
+          >
+            {
+              author && (
+                <span>
+                  By <span class="font-bold text-[#1e1e1e]">{author}</span>
+                </span>
+              )
+            }
+            {
+              author && illustrator && (
+                <span class="text-[#1e1e1e]/30 font-bold">•</span>
+              )
+            }
+            {
+              illustrator && (
+                <span>
+                  Graphics by{" "}
+                  <span class="font-bold text-[#1e1e1e]">{illustrator}</span>
+                </span>
+              )
+            }
+            {
+              (author || illustrator) && (
+                <span class="text-[#1e1e1e]/30 font-bold">•</span>
+              )
+            }
+            <span class="font-semibold text-[#1e1e1e]/60">{pubDateStr}</span>
+          </div>
         </div>
       </div>
       <hr class="border-black/5 mb-8" />
@@ -241,6 +303,59 @@ const navLinks = [
                     )}
                     <p class="font-sans text-[15px] sm:text-[15.5px] text-[#555] leading-relaxed mb-0 text-justify">
                       {authorBio}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      }
+
+      {/* ── Mini Illustrator Profile (Redesigned) ── */}
+      {
+        illustratorBio && (
+          <div class="mb-12 mt-4">
+            <div class="relative w-full rounded-[24px] overflow-hidden bg-white border border-black/5 shadow-[0_12px_40px_rgba(0,0,0,0.06)]">
+              {/* Magenta Background Bottom Half */}
+              <div class="absolute bottom-0 left-0 w-full h-[55%] bg-[#ff0050]" />
+
+              <div class="relative px-6 pt-8 pb-10 sm:px-10">
+                {/* Title */}
+                <h2 class="font-display font-black text-[20px] sm:text-[24px] text-[#ff0050] uppercase tracking-widest mb-8 sm:mb-10">
+                  ABOUT THE ILLUSTRATOR
+                </h2>
+
+                <div class="flex flex-col sm:flex-row items-center sm:items-stretch gap-6 sm:gap-10 relative z-10">
+                  {/* Avatar (Centers on the boundary) */}
+                  <div class="shrink-0 flex items-center justify-center">
+                    {illustratorImage ? (
+                      <img
+                        src={illustratorImage}
+                        alt={illustrator}
+                        class="w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] rounded-full object-cover shadow-[0_12px_40px_rgba(0,0,0,0.25)] bg-[#ff0050]"
+                      />
+                    ) : (
+                      <div class="w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] rounded-full bg-gradient-to-tr from-[#ff0050] to-[#ffbe0b] flex items-center justify-center text-white text-[64px] font-black shadow-[0_12px_40px_rgba(0,0,0,0.25)]">
+                        {illustrator
+                          ? illustrator.charAt(0).toUpperCase()
+                          : "?"}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Bio Box (Centers on the boundary) */}
+                  <div class="flex-1 w-full flex flex-col justify-center bg-white rounded-[18px] border border-[#ff8fa3] shadow-sm p-6 sm:p-8 relative">
+                    <h3 class="font-display font-black text-[19px] text-[#1e1e1e] mb-1">
+                      {illustrator}
+                    </h3>
+                    {illustratorTitle && (
+                      <p class="font-display font-bold text-[12.5px] text-[#ff0050] uppercase tracking-wider mb-3">
+                        {illustratorTitle}
+                      </p>
+                    )}
+                    <p class="font-sans text-[15px] sm:text-[15.5px] text-[#555] leading-relaxed mb-0 text-justify">
+                      {illustratorBio}
                     </p>
                   </div>
                 </div>

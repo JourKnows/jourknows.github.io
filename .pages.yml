@@ -13,6 +13,10 @@ content:
       - { name: authorTitle, label: Author Title/Role, type: string }
       - { name: authorBio, label: Author Bio, type: text }
       - { name: authorImage, label: Author Profile Image, type: image }
+      - { name: illustrator, label: Illustrator / Graphics, type: string }
+      - { name: illustratorTitle, label: Illustrator Title/Role, type: string }
+      - { name: illustratorBio, label: Illustrator Bio, type: text }
+      - { name: illustratorImage, label: Illustrator Profile Image, type: image }
       - { name: pubDatetime, label: Date, type: date, required: true }
       - { name: modDatetime, label: Date, type: date }
       - { name: title, label: Title, type: string, required: true }
