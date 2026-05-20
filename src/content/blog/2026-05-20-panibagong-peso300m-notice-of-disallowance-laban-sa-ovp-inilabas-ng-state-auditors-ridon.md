@@ -9,12 +9,13 @@ title: Panibagong ₱300M Notice of Disallowance laban sa OVP, inilabas ng state
   auditors — Ridon
 featured: false
 draft: false
+tags:
+  - news
 description: " Inihayag ni Terry Ridon, chairperson ng House Committee on Public
   Accounts, na naglabas ang state auditors ng panibagong Notice of Disallowance
   (ND) laban sa confidential funds ng Office of the Vice President (OVP), na
   nagkakahalaga ng ₱300 milyon."
 ---
-
 ![](/sarahg.jpg)
 
 Inihayag ni Terry Ridon, chairperson ng House Committee on Public Accounts, na naglabas ang state auditors ng panibagong Notice of Disallowance (ND) laban sa confidential funds ng Office of the Vice President (OVP), na nagkakahalaga ng ₱300 milyon.
