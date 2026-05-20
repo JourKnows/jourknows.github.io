@@ -2,7 +2,7 @@
 author: France Palos
 authorTitle: "JourKnows Staffer "
 authorBio: France Palos serves as a JourKnows Staffer under the News Desk Department.
-authorImage: /Untitled design-8.jpg
+authorImage: /Untitled-design-8.jpg
 pubDatetime: 2026-03-02
 modDatetime: 2026-03-02
 title: " Uniporme ng Hustisya’t Karahasan"
@@ -13,7 +13,6 @@ tags:
   - opinion
 description: " Uniporme ng Hustisya’t Karahasan"
 ---
-
 
 ![](/pulis.jpg)
 
