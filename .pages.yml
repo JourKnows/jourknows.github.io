@@ -14,9 +14,7 @@ content:
       - { name: authorBio, label: Author Bio, type: text }
       - { name: authorImage, label: Author Profile Image, type: image }
       - { name: illustrator, label: Illustrator / Graphics, type: string }
-      - { name: illustratorImage, label: Illustrator Profile Image, type: image }
       - { name: copyeditor, label: Copyeditor, type: string }
-      - { name: copyeditorImage, label: Copyeditor Profile Image, type: image }
       - { name: pubDatetime, label: Date, type: date, required: true }
       - { name: modDatetime, label: Date, type: date }
       - { name: title, label: Title, type: string, required: true }

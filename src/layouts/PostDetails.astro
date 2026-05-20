@@ -32,9 +32,7 @@ const {
   authorBio,
   authorImage,
   illustrator,
-  illustratorImage,
   copyeditor,
-  copyeditorImage,
 } = post.data;
 
 const { Content } = await post.render();
@@ -194,7 +192,7 @@ const navLinks = [
           <div class="flex items-center">
             {
               author && (
-                <div class="relative z-30">
+                <div>
                   {authorImage ? (
                     <img
                       src={authorImage}
@@ -204,45 +202,6 @@ const navLinks = [
                   ) : (
                     <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-[#0007d3] to-[#ff0050] flex items-center justify-center text-white text-[12px] font-bold shadow-sm border border-white">
                       {author.charAt(0).toUpperCase()}
-                    </div>
-                  )}
-                </div>
-              )
-            }
-            {
-              illustrator && (
-                <div class:list={["relative z-20", { "-ml-3": author }]}>
-                  {illustratorImage ? (
-                    <img
-                      src={illustratorImage}
-                      alt={illustrator}
-                      class="w-8 h-8 rounded-full object-cover shadow-sm border border-white"
-                    />
-                  ) : (
-                    <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-[#ff0050] to-[#ffbe0b] flex items-center justify-center text-white text-[12px] font-bold shadow-sm border border-white">
-                      {illustrator.charAt(0).toUpperCase()}
-                    </div>
-                  )}
-                </div>
-              )
-            }
-            {
-              copyeditor && (
-                <div
-                  class:list={[
-                    "relative z-10",
-                    { "-ml-3": author || illustrator },
-                  ]}
-                >
-                  {copyeditorImage ? (
-                    <img
-                      src={copyeditorImage}
-                      alt={copyeditor}
-                      class="w-8 h-8 rounded-full object-cover shadow-sm border border-white"
-                    />
-                  ) : (
-                    <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-[#00b4d8] to-[#0077b6] flex items-center justify-center text-white text-[12px] font-bold shadow-sm border border-white">
-                      {copyeditor.charAt(0).toUpperCase()}
                     </div>
                   )}
                 </div>

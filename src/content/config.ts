@@ -10,9 +10,7 @@ const blog = defineCollection({
       authorBio: z.string().optional(),
       authorImage: z.string().optional(),
       illustrator: z.string().optional(),
-      illustratorImage: z.string().optional(),
       copyeditor: z.string().optional(),
-      copyeditorImage: z.string().optional(),
       pubDatetime: z
         .union([z.date(), z.string()])
         .optional()
