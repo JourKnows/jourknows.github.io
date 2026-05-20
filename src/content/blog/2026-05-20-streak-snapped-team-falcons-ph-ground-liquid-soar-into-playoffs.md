@@ -15,7 +15,7 @@ description: An unbeaten run that lasted months finally came to an
   refused to blink, turning a shaky start into a historic triumph against a Team
   Liquid PH squad that had long forgotten the taste of defeat.
 ---
-![](/sports.jpg)
+![](/streak.jpg)
 
 An unbeaten run that lasted months finally came to an end.  
 
