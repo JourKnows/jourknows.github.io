@@ -5,7 +5,7 @@ modDatetime: 2026-04-19
 title: Built on Humor, Driven by Impact
 slug: vice-ganda
 featured: false
-draft: false
+draft: true
 tags:
   - explainer
 description: No description
