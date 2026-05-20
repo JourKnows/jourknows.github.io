@@ -67,6 +67,22 @@ export default function LatestDeckViewer({ posts }: Props) {
     });
   }, []);
 
+  // Reset spin and transition states when page is restored from browser back-forward cache (bfcache)
+  useEffect(() => {
+    const handlePageShow = (e: PageTransitionEvent) => {
+      if (e.persisted) {
+        setLuckySpinning(false);
+        setTextVisible(true);
+        setIsTransitioning(false);
+        setPrevIndex(null);
+      }
+    };
+    window.addEventListener("pageshow", handlePageShow);
+    return () => {
+      window.removeEventListener("pageshow", handlePageShow);
+    };
+  }, []);
+
   // Persist current slide to sessionStorage
   useEffect(() => {
     if (isRestored && deckPosts[currentIndex]) {
