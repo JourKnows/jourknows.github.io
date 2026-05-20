@@ -1,8 +1,4 @@
 ---
-author: Ehron Spencer Fortaleza Tibor
-authorTitle: SUPREME LEADER
-authorBio: meh
-authorImage: /20251219_095206(1).jpg
 pubDatetime: 2026-04-13
 modDatetime: 2026-04-13
 title: THAT Girl Eversince
