@@ -3,6 +3,7 @@ author: Jann Bellson Patanayan
 authorTitle: "Deputy Sci-Tech Editor "
 authorBio: "Jann Bellson Patanayan currently serves as the Deputy Sci-Tech
   Editor of JourKnows PH "
+authorImage: /Untitled design-8-4.jpg
 illustrator: " Rian Patalita"
 pubDatetime: 2026-05-22
 modDatetime: 2026-05-22
