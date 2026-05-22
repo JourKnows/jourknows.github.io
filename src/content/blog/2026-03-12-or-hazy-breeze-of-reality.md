@@ -3,6 +3,7 @@ author: Denise Lei Suba
 authorTitle: JourKnows Staffer
 authorBio: Denise Lei Suba serves as a JourKnows Staffer under the Literary Desk
   Department
+authorImage: /Untitled design-8-5.jpg
 pubDatetime: 2026-03-11
 modDatetime: 2026-03-11
 title: Hazy Breeze of Reality
