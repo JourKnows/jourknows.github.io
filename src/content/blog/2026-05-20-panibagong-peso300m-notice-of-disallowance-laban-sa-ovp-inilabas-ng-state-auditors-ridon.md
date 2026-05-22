@@ -1,7 +1,13 @@
 ---
 author: John Brent Abo
 authorTitle: JourKnows Staffer
-authorBio: John Brent Abo  serves as a JourKnows Staffer under the News Desk Department.
+authorBio: John Brent Abo is a News Writer who has been involved in journalism
+  for several years. His work mainly focuses on stories that need to be seen and
+  heard, especially issues and experiences that are often overlooked by society.
+  Through his writing, he dedicates his work to people who struggle to have
+  their voices recognized and understood. Outside the newsroom, Brent enjoys
+  spending time with animals and watching boys’ love films and series during his
+  free time.
 authorImage: /Untitled-design-8-2.jpg
 pubDatetime: 2026-05-20
 modDatetime: 2026-05-20
