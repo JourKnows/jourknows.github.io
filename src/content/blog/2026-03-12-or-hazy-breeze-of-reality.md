@@ -1,5 +1,8 @@
 ---
 author: Denise Lei Suba
+authorTitle: JourKnows Staffer
+authorBio: Denise Lei Suba serves as a JourKnows Staffer under the Literary Desk
+  Department
 pubDatetime: 2026-03-11
 modDatetime: 2026-03-11
 title: Hazy Breeze of Reality
@@ -10,8 +13,11 @@ tags:
   - literary
 description: Hazy Breeze of Reality
 ---
+  
 
-![](/637985775_122167663094861171_8973902478659316014_n.jpg)  
+
+![](/hazy.png)
+
 How does it feel having the wind brush your chilly wounds? No, it's not bleeding – but it is as deep as ever.
 
 It’s quarter ‘til midnight – Dining the last meal of the day alone, with untouched rice and cold Pork Adobo in the microwavable. No phones, no tablets, and no TV’s, just me, the unfilled seats for 3, and the phlegmatic atmosphere I could not describe.
@@ -24,4 +30,3 @@ As the rain pours like the clouds are tearing up, grieving like it also had lost
 
 I could have always just made my own, just prepared, warm meal. But, it was never how warm or cold it was – nor was it about how it tasted. Whether I was eating anything at the dining table, it wasn’t important; I was still starved of the feeling of creating memories with those whom I had always cherished from the start. The crisp blow of air caressed my face of detachment – Is this the hazy breeze of my reality? Could I not be bitter about it at all?
 
-𝗪𝗿𝗶𝘁𝘁𝗲𝗻 𝗯𝘆 Denise Lei Suba
