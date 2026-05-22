@@ -10,7 +10,7 @@ title: This Wolf is on Fire
 featured: false
 draft: false
 tags:
-  - sci-tech
+  - literary
 description: Itinuturing si Firewolf bilang pangunahing sanhi ng pagkawasak ng
   valley sa pelikulang 𝘚𝘸𝘢𝘱𝘱𝘦𝘥, matapos niyang magpakawala ng apoy na
   nagdulot ng kaguluhan at pagkawala ng buhay. Sa paglabas ng kanyang tunay na
