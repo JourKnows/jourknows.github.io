@@ -1,6 +1,6 @@
 # JourKnows
 
-MOVED FROM https://jourknows.org/ to https://jourknowsph.orh/
+MOVED FROM https://jourknows.org/ to https://jourknowsph.org/
 
 A modern, high-performance editorial platform featuring a TikTok-inspired dual-axis article deck, seamless PagesCMS integration, and optimized typography.
 
