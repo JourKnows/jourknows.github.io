@@ -3,13 +3,14 @@ author: Jann Bellson Patanayan
 authorTitle: "Deputy Sci-Tech Editor "
 authorBio: "Jann Bellson Patanayan currently serves as the Deputy Sci-Tech
   Editor of JourKnows PH "
+illustrator: " Rian Patalita"
 pubDatetime: 2026-05-22
 modDatetime: 2026-05-22
 title: This Wolf is on Fire
 featured: false
 draft: false
 tags:
-  - scitech
+  - sci-tech
 description: Itinuturing si Firewolf bilang pangunahing sanhi ng pagkawasak ng
   valley sa pelikulang 𝘚𝘸𝘢𝘱𝘱𝘦𝘥, matapos niyang magpakawala ng apoy na
   nagdulot ng kaguluhan at pagkawala ng buhay. Sa paglabas ng kanyang tunay na
