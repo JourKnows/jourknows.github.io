@@ -9,7 +9,7 @@ pubDatetime: 2026-05-25
 modDatetime: 2026-05-25
 title: Test Purposes
 featured: false
-draft: false
+draft: true
 locale: "English "
 tags:
   - "news "
