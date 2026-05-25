@@ -13,7 +13,6 @@ tags:
   - opinion
 description: " Uniporme ng Hustisya’t Karahasan"
 ---
-
 ![](/pulis.jpg)
 
 Pinatunayan na naman ng PNP na hindi umiiral ang batas ng ating bansa.
@@ -32,4 +31,3 @@ Paulit-ulit na lamang itong nangyayari, at ang hatol ng nakararami—ito’y isa
 
 Giit ng PNP, isolated case umano ang nangyari sa Lamitan, ngunit ganito naman lagi ang kanilang pahayag. Dapat tiyakin ng PNP na hindi na ito mauulit. Dapat tiyakin na mapaparusahan ang mga sangkot sa hazing.
 
-𝗜𝘀𝗶𝗻𝘂𝗹𝗮𝘁 𝗻𝗶 France Palos
