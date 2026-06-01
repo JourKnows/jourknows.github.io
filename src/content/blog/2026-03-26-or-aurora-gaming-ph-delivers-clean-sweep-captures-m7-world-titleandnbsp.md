@@ -1,7 +1,9 @@
 ---
 author: Wen Cortes
-illustrator: Wen Cortes
-copyeditor: Wen Cortes
+authorTitle: Chief Sports Editor
+authorBio: Wen Cortes serves as the Chief Sports Editor of JourKnows PH.
+authorImage: /Untitled design-12.jpg
+illustrator: Von Bryan Alcantara
 pubDatetime: 2026-03-22
 modDatetime: 2026-03-22
 title: Aurora Gaming PH Delivers Clean sweep, Captures M7 World Title
