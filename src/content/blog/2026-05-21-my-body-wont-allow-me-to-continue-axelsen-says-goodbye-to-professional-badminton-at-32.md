@@ -2,7 +2,7 @@
 author: Clark Zircon Parcon
 authorTitle: JourKnows Staffer
 authorBio: Clark Zircon Parcon serves as a JourKnows Staffer under the News Desk
-  Department.
+  Department
 authorImage: /Untitled design-8-2.jpg
 illustrator: Gabrielle Luis Magat
 pubDatetime: 2026-05-01
