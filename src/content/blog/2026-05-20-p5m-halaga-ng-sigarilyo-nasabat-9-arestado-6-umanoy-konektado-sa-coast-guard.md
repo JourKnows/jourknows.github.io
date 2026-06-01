@@ -1,7 +1,7 @@
 ---
 author: France Palos
 authorTitle: JourKnows Staffer
-authorBio: France Palos serves as a JourKnows Staffer under the News Desk Department.
+authorBio: France Palos serves as a JourKnows Staffer under the News Desk Department
 authorImage: /Untitled-design-8-1.jpg
 pubDatetime: 2026-05-01
 modDatetime: 2026-05-01
@@ -17,7 +17,6 @@ description: Nasabat ng Philippine National Police (PNP) ang mahigit P5 milyong
   ang naaresto, kabilang ang anim na umano’y  konektado sa Philippine Coast
   Guard.
 ---
-
 ![](/cig.jpg)
 
 Nasabat ng Philippine National Police (PNP) ang mahigit P5 milyong halaga ng smuggled na sigarilyo sa magkahiwalay na operasyon sa Davao del Norte at Misamis Oriental nitong ika-18 ng Abril, kung saan siyam na suspek ang naaresto, kabilang ang anim na umano’y konektado sa Philippine Coast Guard.
