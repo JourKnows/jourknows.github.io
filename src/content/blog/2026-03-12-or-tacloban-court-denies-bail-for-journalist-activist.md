@@ -2,6 +2,7 @@
 author: Carla Peñalosa
 authorTitle: JourKnows Staffer
 authorBio: Carla Peñalosa serves as a JourKnows Staffer under the News Desk Department
+authorImage: /Untitled design-8-1.jpg
 pubDatetime: 2025-12-10
 modDatetime: 2025-12-10
 title: Tacloban court denies bail for journalist, activist
