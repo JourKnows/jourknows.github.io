@@ -15,7 +15,10 @@ description: When ordinary Filipinos are accused of crimes, they are expected to
   face the law immediately. So why does it seem different when the accused sits
   in power?
 ---
-![](/1-1.jpg)
+  
+
+
+![](/croc.png)
 
 When ordinary Filipinos are accused of crimes, they are expected to face the law immediately. So why does it seem different when the accused sits in power?
 
