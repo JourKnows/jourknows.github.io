@@ -1,7 +1,11 @@
 ---
 author: Leana Jale Quilang
 authorTitle: Features Editor
-authorBio: Leana Jale Quilang serves as the Features Editor of JourKnows PH
+authorBio: "Leana Jale Quilang has been in the campus journalism field for
+  almost 7 years. She is a Regional Schools Press Conference qualifier in 2024
+  and was the Associate Editor of her former school publication, UNA. Now, she
+  is continuing her passion of sharing unique stories and covering relevant
+  social issues with JourKnows. "
 authorImage: /[EB]/5-3.jpg
 illustrator: Abdel Mahrouf Ameril
 pubDatetime: 2026-05-20
