@@ -2,7 +2,7 @@
 author: Leana Jale Quilang
 authorTitle: Features Editor
 authorBio: Leana Jale Quilang serves as the Features Editor of JourKnows PH
-authorImage: /482269383_1843357646466381_3554033723848088064_n-1.jpg
+authorImage: /[EB]/5-3.jpg
 illustrator: Abdel Mahrouf Ameril
 pubDatetime: 2026-05-20
 modDatetime: 2026-05-20
