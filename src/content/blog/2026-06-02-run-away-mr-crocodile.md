@@ -1,7 +1,7 @@
 ---
 author: Wahab Arpha
 authorTitle: JourKnows Staffer
-authorBio: "Wahab Arpha  serves as a JourKnows Staffer under the Opinion Department. "
+authorBio: Wahab Arpha  serves as a JourKnows Staffer under the Opinion Desk Department
 authorImage: /1.jpg
 pubDatetime: 2026-06-02
 modDatetime: 2026-06-02
@@ -17,7 +17,6 @@ description: When ordinary Filipinos are accused of crimes, they are expected to
 ---
 ![](/1-1.jpg)
 
-  
 When ordinary Filipinos are accused of crimes, they are expected to face the law immediately. So why does it seem different when the accused sits in power?
 
 The Senate of the Philippines has once again raised questions about accountability, justice, and the rule of law. On May 14, 2026, Senator Ronald “Bato” dela Rosa reportedly disappeared again after briefly returning to the Senate for only three days, following months of staying away from public appearances amid the issue surrounding the alleged arrest warrant issued by the International Criminal Court (ICC) against him.
@@ -38,4 +37,3 @@ People can contribute by fighting misinformation, participating in discussions b
 
 Public officials should not run away from accountability. Leadership is tested not during moments of power, but during moments of responsibility. Instead of avoiding the law, those accused should face the courts with dignity, transparency, and respect for due process. 
 
-  
