@@ -1,5 +1,11 @@
 ---
 author: Alexander Dylan C. De Guzman
+authorTitle: "Graphics Department Head "
+authorBio: Dylan serves as the Graphics Department Head of JourKnows PH. A
+  journalist that expertise in visual journalism and modern graphic design. He
+  also loves to write opinion articles and explainers focusing on public figures
+  and today's society.
+authorImage: /[EB]/5-2.jpg
 pubDatetime: 2026-04-13
 modDatetime: 2026-04-13
 title: THAT Girl Eversince
