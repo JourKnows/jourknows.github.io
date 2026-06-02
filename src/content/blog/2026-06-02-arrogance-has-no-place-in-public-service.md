@@ -1,8 +1,8 @@
 ---
 author: Alexis Briones
 authorTitle: Deputy Sports Editor, JourKnows Staffer
-authorBio: Alexis Briones serves as the Deputy Sports Editor of JourKnows PH,
-  while being a JourKnows Staffer under the Opinion Desk Department
+authorBio: Alexis Briones serves as the Sports Editor of JourKnows PH, while
+  being a JourKnows Staffer under the Opinion Desk Department
 authorImage: /2.jpg
 pubDatetime: 2026-06-02
 modDatetime: 2026-06-02
@@ -32,7 +32,6 @@ At a time when Filipinos are demanding accountability and mature leadership, pub
 
 Marcoleta’s remarks may have been aimed at humiliating Senator Hontiveros, but in the end, they revealed more about his attitude than her capability.
 
-  
 
 
-  
+&nbsp;
