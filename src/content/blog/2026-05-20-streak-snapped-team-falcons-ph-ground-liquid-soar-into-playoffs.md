@@ -1,7 +1,7 @@
 ---
 author: Alexis Briones
 authorTitle: Sports Editor
-authorBio: Alexis Briones serves as the Deputy Sports Editor of JourKnows PH
+authorBio: Alexis Briones serves as the Sports Editor of JourKnows PH
 authorImage: /2-1.jpg
 pubDatetime: 2026-05-20
 modDatetime: 2026-05-20
