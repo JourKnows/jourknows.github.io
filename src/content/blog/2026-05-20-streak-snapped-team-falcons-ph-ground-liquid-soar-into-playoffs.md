@@ -2,7 +2,7 @@
 author: Alexis Briones
 authorTitle: Sports Editor
 authorBio: Alexis Briones serves as the Deputy Sports Editor of JourKnows PH
-authorImage: /Untitled design-8-1.jpg
+authorImage: /2-1.jpg
 pubDatetime: 2026-05-20
 modDatetime: 2026-05-20
 title: "STREAK SNAPPED: Team Falcons PH ground Liquid, soar into playoffs"
