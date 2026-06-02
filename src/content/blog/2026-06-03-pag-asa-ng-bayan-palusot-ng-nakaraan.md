@@ -21,8 +21,6 @@ description: "Patuloy na ibinabato sa aming kabataan ang responsibilidad na
   kasalukuyan, bakit kami ang inaasahang magsalba ng kinabukasang hindi naman
   namin inilagay sa panganib?"
 ---
-
-
 ![](/protest.jpg)
 
 Patuloy na ibinabato sa aming kabataan ang responsibilidad na ayusin ang mga problemang kailanman ay hindi namin nilikha. Tuwing lumalala ang korapsyon, kahirapan, o pagkasira ng kalikasan, iisa ang madalas na tugon: “Ang kabataan ang pag-asa ng bayan.” Sa halip na akuin ang pananagutan sa kasalukuyan, bakit kami ang inaasahang magsalba ng kinabukasang hindi naman namin inilagay sa panganib?
