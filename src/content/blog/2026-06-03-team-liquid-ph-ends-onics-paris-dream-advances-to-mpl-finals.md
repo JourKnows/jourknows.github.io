@@ -5,7 +5,7 @@ authorBio: Alexis Briones serves as the Sports Editor of JourKnows PH
 authorImage: /2.jpg
 pubDatetime: 2026-06-03
 modDatetime: 2026-06-03
-title: Team Liquid PH Ends Onic’s Paris Dream, Advances to MPL Finals
+title: Team Liquid PH Ends Onic’s Direct Paris Flight, Advances to MPL Finals
 featured: true
 draft: false
 locale: en
@@ -15,7 +15,7 @@ description: " Onic Philippines' hopes of returning to the international stage
   came to a heartbreaking end after Team Liquid Philippines claimed a 3-1
   victory in the MPL Philippines Season 17 Upper Bracket Finals, May 29."
 ---
-![](/onicph.jpg)
+![](/liquid.jpg)
 
 Onic Philippines' hopes of returning to the international stage came to a heartbreaking end after Team Liquid Philippines claimed a 3-1 victory in the MPL Philippines Season 17 Upper Bracket Finals, May 29.
 
@@ -33,4 +33,3 @@ The defending champions immediately converted the teamfight victory into a game-
 
 While Team Liquid moves on to the Grand Finals and an international campaign in Paris, Onic is left searching for answers after letting a golden opportunity slip away.
 
-  
