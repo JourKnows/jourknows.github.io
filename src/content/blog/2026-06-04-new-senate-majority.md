@@ -5,11 +5,15 @@ authorBio: Siya si paolo
 pubDatetime: 2026-06-04
 modDatetime: 2026-06-04
 title: Test ni James
-ogImage: /IMG_8489.jpeg
 slug: senate-majority
 featured: false
 draft: true
-description: New Senate Majority
+tags:
+  - news
+description: A new majority bloc emerged in the Senate on Wednesday, June 3,
+  after Sen. Francis “Chiz” Escudero attended the plenary session, providing the
+  quorum needed to conduct Senate business despite the absence of the remaining
+  10 majority senators.
 ---
 ![](/1-2.jpg)
 
