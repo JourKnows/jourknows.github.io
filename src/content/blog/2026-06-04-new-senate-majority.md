@@ -7,8 +7,8 @@ modDatetime: 2026-06-04
 title: NEW SENATE MAJORITY
 ogImage: /IMG_8489.jpeg
 slug: senate-majority
-featured: true
-draft: false
+featured: false
+draft: true
 description: New Senate Majority
 ---
 ![](/1-2.jpg)
