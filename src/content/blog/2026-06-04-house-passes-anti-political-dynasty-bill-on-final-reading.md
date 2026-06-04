@@ -40,4 +40,3 @@ Despite its passage, some critics have argued that the measure still contains lo
 
 First and second-degree relatives include a person’s parents, children, siblings, grandparents, grandchildren, aunts, uncles, nieces, nephews, and half-siblings, as well as the corresponding relatives of their spouse.
 
-  
