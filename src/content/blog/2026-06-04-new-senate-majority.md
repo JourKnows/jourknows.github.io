@@ -4,7 +4,7 @@ authorTitle: Eic na Malupet
 authorBio: Siya si paolo
 pubDatetime: 2026-06-04
 modDatetime: 2026-06-04
-title: NEW SENATE MAJORITY
+title: Test ni James
 ogImage: /IMG_8489.jpeg
 slug: senate-majority
 featured: false
