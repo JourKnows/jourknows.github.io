@@ -9,7 +9,7 @@ modDatetime: 2026-06-04
 title: TEST Senator Bam Aquino pushes for full transparency with
   Blockchain-Based National Budget
 featured: true
-draft: false
+draft: true
 tags:
   - news
 description: Philippine Senator Bam Aquino plans to file a bill to place the
