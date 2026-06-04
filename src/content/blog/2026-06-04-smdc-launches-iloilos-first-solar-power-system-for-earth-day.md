@@ -17,18 +17,17 @@ copyeditor: James Josef Gulac
 pubDatetime: 2026-06-04
 modDatetime: 2026-06-04
 title: SMDC launches Iloilo's first solar power system for Earth Day
-ogImage: /695566404_122183869886861171_5415531201843131360_n.jpg
-slug: smdc-solar-power-system
 featured: true
 draft: false
 tags:
-  - smdc
-  - earth day
+  - news
 description: "In celebration of Earth Day 2026, SM Development Corporation
   (SMDC) launched its first renewable energy system in the Visayas at Style
   Residences in Iloilo City on April 22 to expand its sustainable operations to
   residential communities beyond Metro Manila.  "
 ---
+
+
 In celebration of Earth Day 2026, SM Development Corporation (SMDC) launched its first renewable energy system in the Visayas at Style Residences in Iloilo City on April 22 to expand its sustainable operations to residential communities beyond Metro Manila.  
 
 Following its partnership with Buskowitz Energy, formalized in October 2025, this activation forms part of SMDC's broader renewable energy rollout covering four pilot developments, with three located in Metro Manila and one in the Visayas: Style Residences, Spring Residences, South Residences, and Vine Residences.  
