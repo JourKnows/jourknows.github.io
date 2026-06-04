@@ -26,7 +26,7 @@ description: "In celebration of Earth Day 2026, SM Development Corporation
   Residences in Iloilo City on April 22 to expand its sustainable operations to
   residential communities beyond Metro Manila.  "
 ---
-
+![](/695566404_122183869886861171_5415531201843131360_n-1.jpg)
 
 In celebration of Earth Day 2026, SM Development Corporation (SMDC) launched its first renewable energy system in the Visayas at Style Residences in Iloilo City on April 22 to expand its sustainable operations to residential communities beyond Metro Manila.  
 
@@ -47,3 +47,4 @@ Following the activation of the solar system at Style Residences, similar system
 Additionally, SMDC declared that renewable energy integration will be a standard feature in all upcoming developments, furthering its dedication to ecologically conscious communities and to reducing environmental impact and improving residential operations.  
 
 “Projects like Style Residences show that solar solutions can support everyday operations efficiently while helping communities transition to more sustainable energy use,” Buskowitz said.
+
