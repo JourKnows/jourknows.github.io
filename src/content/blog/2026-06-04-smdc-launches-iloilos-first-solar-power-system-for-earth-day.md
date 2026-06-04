@@ -4,7 +4,7 @@ authorTitle: "Managing Editor for Digital Content "
 authorBio: "Karl Mateo D. Aragon is an accomplished student leader and campus
   journalist from Bulacan, currently serving as the Editor-in-Chief of Arellano
   University The Standard – Elisa Esguerra Campus. "
-authorImage: /8213-1.jpg
+authorImage: /8213-2.jpg
 illustrator: Paolo Blanco
 copyeditor: James Josef Gulac
 pubDatetime: 2026-06-04
