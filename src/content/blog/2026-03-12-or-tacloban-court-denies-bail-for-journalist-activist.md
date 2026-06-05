@@ -1,7 +1,10 @@
 ---
 author: Carla Peñalosa
 authorTitle: JourKnows Staffer
-authorBio: Carla Peñalosa serves as a JourKnows Staffer under the News Desk Department
+authorBio: Carla Peñalosa is a campus journalist and an advocate for journalism
+  and education, whose work is driven by curiosity and a commitment to
+  amplifying voices. When she's not writing, she enjoys reading, savoring good
+  food, and following K-pop culture.
 authorImage: /Untitled design-8-1.jpg
 pubDatetime: 2025-12-10
 modDatetime: 2025-12-10
