@@ -1,7 +1,7 @@
 ---
 author: "John Cedric Revestir "
 authorTitle: JourKnows Staffer
-authorBio: John Cedric Revistir serves as a JourKnows Staffer under the Literary
+authorBio: John Cedric Revestir serves as a JourKnows Staffer under the Literary
   Desk Department
 authorImage: /Untitled design-8-5.jpg
 pubDatetime: 2026-06-05
@@ -12,14 +12,8 @@ draft: false
 locale: en
 tags:
   - literary
-description: NIKI once said, "The story we won’t tell is my greatest fantasy;
-  the passions I won’t feel again isn’t lost on me.” Everyone told us that the
-  classroom is our second home; the teachers who stood as our second
-  parents—ones who became the guiding stars when things grew dark, our
-  classmates who suddenly borrowed pens, yet returned with laughter from the
-  most foolish things and random thoughts, and the corners of the room that
-  silently heard all the noise and had seen the victories of our limitations and
-  the downfalls of our own negligence.
+description: 'NIKI once said, "The story we won’t tell is my greatest fantasy;
+  the passions I won’t feel again isn’t lost on me.” '
 ---
 ![](/theroom.jpg)
 
