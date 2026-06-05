@@ -51,4 +51,3 @@ And now, as I sit among new faces, founded in new places, I find myself silently
 
 “I hope you shortly find what you long for.”
 
-  
