@@ -49,4 +49,3 @@ Despite two lengthy rain delays that threatened to alter the match's complexion,
 
 There will be no time for celebration for the Filipina powerhouse as she faces Nikola Bartůňková of the Czech Republic in the championship match on June 7, seeking her second career WTA 125 title, having captured her maiden crown at the WTA 125 Guadalajara Open in Mexico last year.
 
-  
