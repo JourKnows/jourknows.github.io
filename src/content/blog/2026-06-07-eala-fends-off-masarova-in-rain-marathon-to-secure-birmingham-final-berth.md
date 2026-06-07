@@ -1,8 +1,8 @@
 ---
 author: Clark Zircon Parcon & Hannah Balaquiao
 authorTitle: JourKnows Staffers
-authorBio: Clark Zircon Parcon and Hannah Balaquiao both serve as staffers under
-  the Sports Desk Department of JourKnows
+authorBio: Clark Zircon Parcon serves as a staffer, while Hannah Balaquiao
+  serves as a volunteer under the Sports Desk Department of JourKnows.
 authorImage: /Untitled design-8.jpg
 pubDatetime: 2026-06-07
 modDatetime: 2026-06-07
