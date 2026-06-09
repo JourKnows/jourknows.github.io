@@ -18,8 +18,6 @@ description: Filipina tennis sensation Alex Eala pushed her mind and body past
   7-5, capturing the WTA 125 Birmingham Open title in a heart-stopping game of
   pure human defiance.
 ---
-
-
 ![](/2368.jpg)
 
 Filipina tennis sensation Alex Eala pushed her mind and body past the absolute limit to conquer Czech powerhouse Nikola Bartunkova, 5-7, 6-3, 7-5, capturing the WTA 125 Birmingham Open title in a heart-stopping game of pure human defiance.
