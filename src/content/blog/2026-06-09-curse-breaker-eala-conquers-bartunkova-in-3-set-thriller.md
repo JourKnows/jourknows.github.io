@@ -11,6 +11,8 @@ title: Curse-Breaker Eala Conquers Bartunkova  in 3-Set Thriller
 featured: false
 draft: false
 locale: en
+tags:
+  - sports
 description: Filipina tennis sensation Alex Eala pushed her mind and body past
   the absolute limit to conquer Czech powerhouse Nikola Bartunkova, 5-7, 6-3,
   7-5, capturing the WTA 125 Birmingham Open title in a heart-stopping game of
@@ -36,4 +38,3 @@ Serving for the championship in a tense, deuce-riddled final game, Eala hammered
 
 Lifting the heavy silverware into the English afternoon sun, Eala reminded the world that greatness is not given, but carved out of the grass with sweat, tears, and an absolute refusal to back down.
 
-  
