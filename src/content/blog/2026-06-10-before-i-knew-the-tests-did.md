@@ -52,4 +52,3 @@ You deserve to take up space. And most importantly, you deserve the freedom to e
 
 We deserve sunshine.
 
-  
