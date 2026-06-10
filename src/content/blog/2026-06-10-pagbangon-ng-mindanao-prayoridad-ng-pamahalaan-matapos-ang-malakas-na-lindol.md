@@ -2,6 +2,7 @@
 author: France Louie Palos
 authorTitle: JourKnows Staffer
 authorBio: France Palos serves as a JourKnows Staffer under the News Desk Department
+authorImage: /Untitled-design-8-2.jpg
 illustrator: Joshua Lian Cawilan
 pubDatetime: 2026-06-10
 modDatetime: 2026-06-10
