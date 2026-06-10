@@ -44,7 +44,6 @@ And I am happy. I do. 
 
 It shows in the congratulations I send without hesitation, in the way I say “I’m proud of you” like it doesn’t carry anything heavier underneath.  
 
-
 But later, when the room is quiet, I notice the smaller things.
 
 The message that stays unread a little longer than it used to.
@@ -52,7 +51,6 @@ The message that stays unread a little longer than it used to.
 The “someday” plans that used to have dates.
 
 The inside joke that now needs explaining before it’s funny again.  
-
 
 Nobody says goodbye. 
 
@@ -66,7 +64,6 @@ It’s not lost in the way people expect it to be.
 
 Nothing breaks. Nothing ends loudly.  
 
-
 It’s just the slow realization that everyone is moving—just not in the same direction anymore.
 
 Like sitting in the same classroom, but knowing next term the seats won’t mean the same people.
@@ -76,7 +73,6 @@ Like sitting in the same classroom, but knowing next term the seats won’t mean
 And the strange part is—we still show up for each other.
 
 We still cheer. Still reply. Still react like nothing is changing.  
-
 
 But something is.
 
@@ -106,5 +102,3 @@ And I am becoming the person who keeps noticing when 
 
 “next time” starts meaning “maybe not.”
 
-  
-  
