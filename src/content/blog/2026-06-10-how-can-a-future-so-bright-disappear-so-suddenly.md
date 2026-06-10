@@ -60,4 +60,3 @@ Gone too soon, but never forgotten.
 
 Rest in peace, Rene Clert Baterbonia and Divine Adili.
 
-  
