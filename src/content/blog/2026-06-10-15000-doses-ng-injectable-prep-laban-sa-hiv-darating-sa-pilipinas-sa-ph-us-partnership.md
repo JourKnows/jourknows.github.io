@@ -11,6 +11,8 @@ title: 15,000 doses ng injectable PrEP laban sa HIV, darating sa Pilipinas sa
 featured: false
 draft: false
 locale: fil
+tags:
+  - news
 description: " Inaasahang darating sa Pilipinas ang 15,000 doses ng injectable
   Lenacapavir (LEN), isang anyo ng pre-exposure prophylaxis (PrEP) na ginagamit
   bilang proteksyon laban sa HIV, sa ilalim ng isang kasunduan sa pagitan ng
@@ -38,4 +40,3 @@ May naitala rin na 15 kaso sa mga pasyenteng wala pang 15 taong gulang.
 
 Bagama’t bumaba ang bilang ng mga bagong kaso kumpara sa 5,583 na naitala noong ikatlong quarter ng 2025, patuloy na paalala ng DOH ang kahalagahan ng maagang testing, preventive measures, at access sa paggamot upang mapigilan ang pagkalat ng HIV sa bansa.
 
-  
