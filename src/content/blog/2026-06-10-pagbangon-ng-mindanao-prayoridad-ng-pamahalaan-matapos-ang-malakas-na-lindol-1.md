@@ -10,6 +10,8 @@ title: Pagbangon ng Mindanao, prayoridad ng pamahalaan matapos ang malakas na li
 featured: false
 draft: false
 locale: fil
+tags:
+  - news
 description: Nakatuon ngayon ang pamahalaan sa agarang pagtugon at
   rehabilitasyon ng mga apektadong komunidad matapos ang 7.8-magnitude na lindol
   na tumama sa baybayin ng Mindanao noong Lunes, Hunyo 8, na ikinasawi ng hindi
@@ -37,4 +39,3 @@ Ayon sa National Disaster Risk Reduction and Management Council (NDRRMC), mahala
 
 Samantala, patuloy ang beripikasyon ng mga awtoridad sa bilang ng mga nasawi, nasugatan, at nawawala habang nagpapatuloy ang search, rescue, at relief operations sa iba't ibang bahagi ng Mindanao.
 
-  
