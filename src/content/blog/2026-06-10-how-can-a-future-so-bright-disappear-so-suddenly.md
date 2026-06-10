@@ -4,13 +4,15 @@ authorTitle: Sports Editor
 authorBio: Wen Cortes serves as the Chief Sports Editor of JourKnows PH
 authorImage: /Untitled-design-8.jpg
 illustrator: Charlene Supnet, Earl Inocencio
-copyeditor: Axel
+copyeditor: Maria Selma
 pubDatetime: 2026-06-10
 modDatetime: 2026-06-10
 title: How can a future so bright disappear so suddenly?
 featured: false
 draft: false
 locale: en
+tags:
+  - opinion
 description: Some athletes play for trophies. Others play for something greater.
   For Rene Clert “Bobet” Baterbonia, basketball was more than a game. It was a
   promise—promise to his family, his friends, his hometown, and to himself that
