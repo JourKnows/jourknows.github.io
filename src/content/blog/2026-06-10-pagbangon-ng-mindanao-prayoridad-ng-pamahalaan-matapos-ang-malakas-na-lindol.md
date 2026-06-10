@@ -5,7 +5,7 @@ authorBio: France Palos serves as a JourKnows Staffer under the News Desk Depart
 illustrator: Joshua Lian Cawilan
 pubDatetime: 2026-06-10
 modDatetime: 2026-06-10
-title: Pagbangon ng Mindanao, prayoridad ng pamahalaan matapos ang malakas na lindol
+title: Pagtaas ng presyo ng diesel at gas, dagdag pasanin sa mga motorista
 featured: false
 draft: false
 locale: en
@@ -39,4 +39,3 @@ Samantala, patuloy na inaantabayanan ng mga nasa industriya ng langis ang paggal
 
 Patuloy namang pinapayuhan ang mga motorista at sektor ng transportasyon na maghanda sa epekto ng panibagong dagdag-presyo, lalo na sa diesel na pangunahing ginagamit ng mga pampublikong sasakyan at logistics.
 
-  
