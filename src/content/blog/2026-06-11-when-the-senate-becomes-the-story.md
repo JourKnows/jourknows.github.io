@@ -6,7 +6,7 @@ authorImage: /Untitled design-8.jpg
 illustrator: "Romel Ivan Salvadora "
 pubDatetime: 2026-06-11
 modDatetime: 2026-06-11
-title: When the Senate Becomes the Story
+title: When the Senate becomes the story
 featured: false
 draft: false
 locale: en
