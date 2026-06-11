@@ -18,7 +18,7 @@ description: Dismissed police official Rafael Dumlao III was arrested in Quezon
   Jee Ick Joo after authorities tracked him through a Facebook livestream of his
   daughter’s wedding.
 ---
-![](</Asni (2).jpg>)
+![](/asni_2.jpg)
 
 Dismissed police official Rafael Dumlao III was arrested in Quezon City on June 9, 2026 for the kidnapping and murder of South Korean businessman Jee Ick Joo after authorities tracked him through a Facebook livestream of his daughter’s wedding.
 
@@ -44,4 +44,3 @@ On June 30, 2025, Remulla stated that the Supreme Court denied Dumlao’s petiti
 
 “The Philippine National Police acted in accordance with its mandate and the arrest sends a strong message that no one is above the law regardless of rank, position, or former authority,” he added.
 
-  
