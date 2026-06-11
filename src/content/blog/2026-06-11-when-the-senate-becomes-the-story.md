@@ -24,7 +24,9 @@ I have always believed that the Senate should be where national problems are con
 
 At a time when Filipinos are struggling with rising food prices, worsening floods, and economic uncertainty, the country’s attention has once again been diverted—not by solutions, but by conflict within the Senate itself.
 
-The leadership dispute between Senator Alan Peter Cayetano and Senator Sherwin Gatchalian has transformed the upper chamber into the center of controversy. After two days of legislative deadlock, 12 senators convened and elected Gatchalian as acting Senate president. Yet Cayetano continued to assert his legitimacy, resulting in competing claims to leadership and raising questions about the Senate’s ability to carry out its constitutional duties, including the impeachment proceedings against Vice President Sara Duterte.
+The leadership dispute between Senator Alan Peter Cayetano and Senator Sherwin Gatchalian has transformed the upper chamber into the center of controversy. After two days of legislative deadlock, 12 senators convened and elected Gatchalian as acting Senate president. 
+
+Yet Cayetano continued to assert his legitimacy, resulting in competing claims to leadership and raising questions about the Senate’s ability to carry out its constitutional duties, including the impeachment proceedings against Vice President Sara Duterte.
 
 What is at stake now is no longer merely a question of who holds the gavel.
 
