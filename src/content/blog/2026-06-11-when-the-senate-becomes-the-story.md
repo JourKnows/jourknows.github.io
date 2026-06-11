@@ -65,4 +65,3 @@ Because the Senate was never meant to become the headline. It was meant to becom
 
 And once trust begins to crumble, even the strongest institutions risk collapsing under the weight of their own ambitions.
 
-  
