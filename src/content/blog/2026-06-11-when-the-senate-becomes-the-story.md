@@ -2,6 +2,7 @@
 author: "Elaine Santos "
 authorTitle: JourKnows Volunteer
 authorBio: Elaine Santos serves as a JourKnows Volunteer under the Opinion Desk Department
+authorImage: /Untitled design-8.jpg
 illustrator: "Romel Ivan Salvadora "
 pubDatetime: 2026-06-11
 modDatetime: 2026-06-11
