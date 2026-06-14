@@ -1,9 +1,13 @@
 ---
 author: Yllan Micaeli Santiago
 authorTitle: Features & Lifestyle Writer
-authorBio: "Yllan Micaeli Santiago is a writer under the Features & Lifestyle
-  desk of JourKnows. "
-authorImage: /Untitled design-8-1.jpg
+authorBio: Yllan has been a campus journalist for nearly four years,
+  specializing in science and technology writing for her school publication, The
+  Little Gazette. Beyond campus journalism, she maintains an excellent academic
+  record, particularly in English, and graduated as the class valedictorian.
+  Additionally, Yllan enjoys exploring various forms of creative writing, with a
+  focus on fiction and feature storytelling. She is also a volunteer for the
+  Developmental Communications and Literary Department here at JourKnows.
 illustrator: Von Bryan Alcantara
 pubDatetime: 2026-06-14
 modDatetime: 2026-06-14
