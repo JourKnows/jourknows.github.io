@@ -8,6 +8,7 @@ authorBio: Yllan has been a campus journalist for nearly four years,
   Additionally, Yllan enjoys exploring various forms of creative writing, with a
   focus on fiction and feature storytelling. She is also a volunteer for the
   Developmental Communications and Literary Department here at JourKnows.
+authorImage: /Untitled-design-8-1.jpg
 illustrator: Von Bryan Alcantara
 pubDatetime: 2026-06-14
 modDatetime: 2026-06-14
