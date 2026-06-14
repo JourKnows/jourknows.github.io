@@ -16,6 +16,8 @@ modDatetime: 2026-06-14
 title: Senate website hit by cyberattack, officials assure public of data security
 featured: true
 draft: false
+tags:
+  - news
 description: The Senate of the Philippines confirmed on Thursday, June 11, that
   its official website had been subjected to a cyberattack involving
   unauthorized modifications to its contents, commonly known as website
