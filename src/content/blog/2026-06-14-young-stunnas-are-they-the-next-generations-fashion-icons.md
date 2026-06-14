@@ -69,4 +69,3 @@ So the next time you see someone walking like the world is watching—maybe it i
 And maybe, just maybe, they’re not overdressed.
 
 *They’re just ahead.*
-
