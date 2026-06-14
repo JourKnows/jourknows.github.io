@@ -17,7 +17,7 @@ description: "At exactly 4:39 pm, just as the sun hits that golden, slightly
   Avenue. They catch your eye immediately—not because they’re loud, but because
   their presence feels loud. "
 ---
-![Young stunnas.](</FEATS TEMPLATE (1).png>)
+![](/young-stunnas.png)
 
 At exactly 4:39 pm, just as the sun hits that golden, slightly unforgiving Metro Manila glow, a group of students steps out onto Katipunan Avenue. They catch your eye immediately—not because they’re loud, but because their presence feels loud. 
 
