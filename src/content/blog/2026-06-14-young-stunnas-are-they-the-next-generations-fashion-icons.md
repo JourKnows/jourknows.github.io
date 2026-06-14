@@ -8,7 +8,7 @@ illustrator: Von Bryan Alcantara
 pubDatetime: 2026-06-14
 modDatetime: 2026-06-14
 title: "Young Stunnas: Are They the Next Generation's Fashion Icons?"
-featured: false
+featured: true
 draft: false
 tags:
   - feature
