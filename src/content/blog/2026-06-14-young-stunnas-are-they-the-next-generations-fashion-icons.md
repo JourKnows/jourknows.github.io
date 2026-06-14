@@ -12,7 +12,10 @@ featured: true
 draft: false
 tags:
   - feature
-description: "Young Stunnas: Are They the Next Generation's Fashion Icons?"
+description: "At exactly 4:39 pm, just as the sun hits that golden, slightly
+  unforgiving Metro Manila glow, a group of students steps out onto Katipunan
+  Avenue. They catch your eye immediately—not because they’re loud, but because
+  their presence feels loud. "
 ---
 ![](</FEATS TEMPLATE (1).png>)
 
