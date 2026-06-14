@@ -8,7 +8,7 @@ illustrator: Von Bryan Alcantara
 pubDatetime: 2026-06-14
 modDatetime: 2026-06-14
 title: "Young Stunnas: Are They the Next Generation's Fashion Icons?"
-featured: true
+featured: false
 draft: false
 tags:
   - feature
@@ -17,7 +17,7 @@ description: "At exactly 4:39 pm, just as the sun hits that golden, slightly
   Avenue. They catch your eye immediately—not because they’re loud, but because
   their presence feels loud. "
 ---
-![](</FEATS TEMPLATE (1).png>)
+![Young stunnas.](</FEATS TEMPLATE (1).png>)
 
 At exactly 4:39 pm, just as the sun hits that golden, slightly unforgiving Metro Manila glow, a group of students steps out onto Katipunan Avenue. They catch your eye immediately—not because they’re loud, but because their presence feels loud. 
 
