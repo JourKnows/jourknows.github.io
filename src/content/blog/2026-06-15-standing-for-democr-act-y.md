@@ -8,7 +8,7 @@ authorBio: "Jezreel’s journalism journey started in the newsroom of his school
   the digital space, writing with purpose, and sharing his voice online. "
 authorImage: /MONTERO_Jezreel.jpg
 illustrator: Alein Wahing
-copyeditor: Anika Mancao, Cassandra Khaine Odange
+copyeditor: Anika Mancao, Cassandra Khaine Odanga
 pubDatetime: 2026-06-15
 modDatetime: 2026-06-15
 title: Standing For Democr-ACT-y
