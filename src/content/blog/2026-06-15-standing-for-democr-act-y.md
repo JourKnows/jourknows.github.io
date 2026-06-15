@@ -19,11 +19,7 @@ tags:
   - opinion
 description: "One of the biggest problems that the Philippines is currently
   facing is the attack against democracy itself, which comes in forms like vote
-  buying and the existence of political families. However, the issue also
-  entails the loss of expression on the part of the voters to choose their
-  leaders properly. Moreover, the refusal to accept the results of an election
-  reflects a deeper problem: the rise of political fanaticism, in which loyalty
-  to a candidate or camp can outweigh respect for democratic outcomes. "
+  buying and the existence of political families. "
 ---
 ![](/2-3.jpg)
 
