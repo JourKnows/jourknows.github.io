@@ -27,7 +27,6 @@ description: "One of the biggest problems that the Philippines is currently
 ---
 ![](/2-3.jpg)
 
-  
 One of the biggest problems that the Philippines is currently facing is the attack against democracy itself, which comes in forms like vote buying and the existence of political families. However, the issue also entails the loss of expression on the part of the voters to choose their leaders properly. Moreover, the refusal to accept the results of an election reflects a deeper problem: the rise of political fanaticism, in which loyalty to a candidate or camp can outweigh respect for democratic outcomes. 
 
 The very centerpoint of this issue lies a more fundamental problem: the people themselves. Many older voters continue to engage in political patronage, viewing politicians not as public servants but as idols or benefactors. This mindset perpetuates a cycle of poor governance and hinders genuine change. Worse still, politicians often downplay or even fear the role of the youth in shaping the nation’s future. But they should beware that youth suffrage is not just a right—it is a force capable of defending and transforming democracy.
@@ -46,4 +45,3 @@ The advent of youth suffrage is not just another political phenomenon. Rather, i
 
 The future of democracy in the Philippines lies with our young people. And, I am prepared— we are prepared.
 
-  
