@@ -16,7 +16,10 @@ featured: true
 draft: false
 tags:
   - news
-description: "Palace to VP Sara: Senate turmoil not caused by admin, but by Duterte allies"
+description: Malacañang rejected Vice President Sara Duterte’s claim linking
+  Senate instability to the Marcos administration on Thursday, June 11, saying
+  the political tension in the upper chamber is rooted in actions taken by her
+  allies in the legislature.
 ---
 ![](/82b3054a-f5b8-4eb0-9746-151c7b260b66.jpg)
 
@@ -54,4 +57,3 @@ Meanwhile, Malacañang reiterated that President Marcos is not currently conside
 
 The ICC has since pursued investigations tied to the former government’s anti-drug campaign.
 
-  
