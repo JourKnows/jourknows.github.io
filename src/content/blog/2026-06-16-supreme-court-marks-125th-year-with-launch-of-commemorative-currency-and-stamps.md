@@ -13,8 +13,7 @@ illustrator: "Earl Inocencio "
 copyeditor: Trisha Amorin
 pubDatetime: 2026-06-16
 modDatetime: 2026-06-16
-title: "Supreme Court marks 125th year with launch of commemorative currency and
-  stamps "
+title: SC marks 125th year, launches commemorative currency, stamps
 featured: true
 draft: false
 tags:
