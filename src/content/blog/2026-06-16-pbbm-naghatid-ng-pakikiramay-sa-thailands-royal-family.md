@@ -12,7 +12,7 @@ illustrator: "Charles Magat "
 copyeditor: Shane Tabile
 pubDatetime: 2026-06-16
 modDatetime: 2026-06-16
-title: PBBM, naghatid ng pakikiramay sa Thailand’s Royal Family
+title: "PBBM, naghatid ng pakikiramay sa royal family ng Thailand "
 featured: true
 draft: false
 tags:
