@@ -16,7 +16,10 @@ featured: true
 draft: false
 tags:
   - news
-description: "Marcos urges Congress to act on priority bills in special session "
+description: President Ferdinand “Bongbong” R. Marcos Jr. has called Congress to
+  convene in a special session on June 17 to deliberate on priority legislative
+  measures aimed at strengthening social protection, education, healthcare, and
+  government assistance programs amid ongoing national challenges.
 ---
 ![](/jerald.jpg)
 
