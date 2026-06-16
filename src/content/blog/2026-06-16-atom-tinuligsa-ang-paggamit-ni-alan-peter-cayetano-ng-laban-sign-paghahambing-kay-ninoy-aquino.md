@@ -16,8 +16,10 @@ featured: true
 draft: false
 tags:
   - news
-description: ATOM, tinuligsa ang paggamit ni Alan Peter Cayetano ng Laban sign,
-  paghahambing kay Ninoy Aquino
+description: Nanawagan ang August Twenty-One Movement (ATOM) noong Hunyo 14,
+  2026 kay Senador Alan Peter Cayetano dahil sa paggamit ng “Laban” sign sa
+  kanyang livestream noong Hunyo 12, at sa paghahambing ng kanyang sarili sa
+  yumaong senador na si Benigno “Ninoy” Aquino Jr.
 ---
 ![](/tinuligsaalan.jpg)
 
@@ -28,5 +30,3 @@ Nanawagan ang August Twenty-One Movement (ATOM) noong Hunyo 14, 2026 kay Senador
 Sinabi rin ni Cayetano na walang pamilya ang may hawak na monopolyo sa pangalan ni Ninoy Aquino o sa mismong kabayanihan. 
 
 Binigyang-diin niya na hindi niya ikinukumpara ang kanyang sarili o ang kanyang grupo kay Ninoy, ngunit kinikilala niya ang mga halagang ipinaglaban ni Ninoy.
-
-  
