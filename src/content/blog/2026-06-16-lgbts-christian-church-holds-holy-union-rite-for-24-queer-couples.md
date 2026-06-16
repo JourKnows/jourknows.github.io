@@ -24,9 +24,9 @@ description: Twenty-four LGBTQIA+ couples were united in a Holy Union rite held
 
 Twenty-four LGBTQIA+ couples were united in a Holy Union rite held in Quezon City on Saturday, June 13.
 
-The ceremony was held by the LGBT Christian Church at UP Diliman in conjunction with the celebration of Pride Month this June.
+The ceremony was held by the LGBTS Christian Church at UP Diliman in conjunction with the celebration of Pride Month this June.
 
-According to Rev. Crecensio Agbayani Jr. of the LGBT Christian Church, they have been doing the ceremonies in the country for fifteen years for the same-sex couples who wants to get married.
+According to Rev. Crecensio Agbayani Jr. of the LGBTS Christian Church, they have been doing the ceremonies in the country for fifteen years for the same-sex couples who wants to get married.
 
 A Certificate of Holy Union is issued to the couples that they can use in countries that recognize marriage equality.
 
