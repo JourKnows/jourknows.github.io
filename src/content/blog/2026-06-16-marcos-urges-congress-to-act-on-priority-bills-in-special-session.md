@@ -44,4 +44,3 @@ The special session will also allow the COA to deliberate on pending nominations
 
 The Palace expressed confidence that lawmakers would prioritize measures aimed at improving the welfare of Filipinos and set aside political differences to address pressing national concerns.
 
-  
