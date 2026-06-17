@@ -8,10 +8,11 @@ authorBio: Elaine Santos is a volunteer for JourKnows with a passion for
   stories that matter. Beyond the newsroom, she enjoys exploring new places,
   staying active through sports, and embracing experiences that inspire
   curiosity and growth.
-authorImage: /Untitled design-8.jpg
+authorImage: /elaine_santos-1.png
 pubDatetime: 2026-06-17
 modDatetime: 2026-06-17
 title: Representing a nation does not end when the pageant does
+ogImage: /representing_a_nation-1.jpg
 featured: true
 draft: false
 tags:
