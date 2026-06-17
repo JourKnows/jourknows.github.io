@@ -8,6 +8,7 @@ authorBio: Elaine Santos is a volunteer for JourKnows with a passion for
   stories that matter. Beyond the newsroom, she enjoys exploring new places,
   staying active through sports, and embracing experiences that inspire
   curiosity and growth.
+authorImage: /Untitled design-8-5.jpg
 pubDatetime: 2026-06-17
 modDatetime: 2026-06-17
 title: A Classroom Is Not a Laboratory
@@ -76,4 +77,3 @@ But before asking millions of learners and educators to adjust once again, perha
 
 Before giving the test, make sure the lesson has been learned. And before changing the system, make sure the system is ready. Because a classroom is meant for learning—never for trial and error.
 
-  
