@@ -8,6 +8,7 @@ authorBio: Elaine Santos is a volunteer for JourKnows with a passion for
   stories that matter. Beyond the newsroom, she enjoys exploring new places,
   staying active through sports, and embracing experiences that inspire
   curiosity and growth.
+authorImage: /Untitled design-8.jpg
 pubDatetime: 2026-06-17
 modDatetime: 2026-06-17
 title: Representing a nation does not end when the pageant does
@@ -52,4 +53,3 @@ Long after the cameras stop rolling and the spotlights dim, what endures is not 
 
 National identity and representation are responsibilities, not accessories. Pride in one’s country should not disappear when the spotlight does. Because a sash may come off. A crown may be passed on. But if love for one’s country disappears when the pageant ends, then perhaps what was worn all along was never patriotism—only fabric.
 
-  
