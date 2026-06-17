@@ -10,7 +10,7 @@ illustrator: "Charles Magat "
 copyeditor: Khaine Odanga
 pubDatetime: 2026-06-16
 modDatetime: 2026-06-16
-title: LGBT Christian Church holds Holy Union rite for 24 queer couples
+title: LGBT Christian Church holds Holy Union rite for 24 LGBTQIA+ couples
 featured: true
 draft: false
 tags:
@@ -20,13 +20,13 @@ description: Twenty-four LGBTQIA+ couples were united in a Holy Union rite held
   Christian Church at UP Diliman in conjunction with the celebration of Pride
   Month this June.
 ---
-![](/lgbt-holy-union.png)
-
 Twenty-four LGBTQIA+ couples were united in a Holy Union rite held in Quezon City on Saturday, June 13.
 
 The ceremony was held by the LGBTS Christian Church at UP Diliman in conjunction with the celebration of Pride Month this June.
 
 According to Rev. Crecensio Agbayani Jr. of the LGBTS Christian Church, they have been doing the ceremonies in the country for fifteen years for the same-sex couples who wants to get married.
+
+![](/lgbt-holy-union.png)
 
 A Certificate of Holy Union is issued to the couples that they can use in countries that recognize marriage equality.
 
