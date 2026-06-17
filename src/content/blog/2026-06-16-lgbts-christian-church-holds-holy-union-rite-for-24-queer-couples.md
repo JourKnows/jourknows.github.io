@@ -10,7 +10,7 @@ illustrator: "Charles Magat "
 copyeditor: Khaine Odanga
 pubDatetime: 2026-06-16
 modDatetime: 2026-06-16
-title: LGBTS Christian Church holds Holy Union rite for 24 queer couples
+title: LGBT Christian Church holds Holy Union rite for 24 queer couples
 featured: true
 draft: false
 tags:
