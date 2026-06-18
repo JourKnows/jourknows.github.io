@@ -7,6 +7,7 @@ authorBio: Driven by the passion to be a voice for those who can't be heard,
   blind. Beyond the newsroom, she enjoys writing novels hoping to reach the
   right people.
 authorImage: /Untitled design-8-3.jpg
+illustrator: Eulyn Shantelle
 pubDatetime: 2026-06-17
 modDatetime: 2026-06-17
 title: The Greatest Show, Men
@@ -45,4 +46,3 @@ Hindi na lang dapat tayo nagtitiis sa ganitong bulok na sistema. Tayong mga nasa
 
 Ang gobyerno ay hindi entablado. Isa itong trabaho na kailangang pagsilbihan ang publiko. Hindi para sa anumang uri pasismo.
 
-  
