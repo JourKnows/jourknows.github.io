@@ -9,6 +9,7 @@ authorBio: Elaine Santos is a volunteer for JourKnows with a passion for
   staying active through sports, and embracing experiences that inspire
   curiosity and growth.
 authorImage: /elaine_santos.png
+illustrator: Malachi Garron Tenoria
 pubDatetime: 2026-06-17
 modDatetime: 2026-06-17
 title: A Classroom Is Not a Laboratory
