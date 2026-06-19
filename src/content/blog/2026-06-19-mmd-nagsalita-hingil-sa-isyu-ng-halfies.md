@@ -34,4 +34,3 @@ Nanggaling ang isyu matapos magviral ang pahayag ni Mister Supranational 2024 Br
 
 Binigyang-diin din niya ang papel ng mga tagasuportang Pilipino sa pagtulong sa mga kinatawan upang magtagumpay sa ibang bansa.
 
-  
