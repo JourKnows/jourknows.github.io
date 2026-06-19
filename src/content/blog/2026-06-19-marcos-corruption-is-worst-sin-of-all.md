@@ -47,4 +47,3 @@ Mismong Chief Executive ang whistleblower sa napakalaking katiwalian sa mga proy
 
 "In this anti-corruption drive that we have — that I have started, there was no way to do it easily or painlessly. We had to turn everything on its head and to make very, very clear that these abusive practices that we had to suffer from before will no longer be allowed. Because what they have taken is not my money or your money or a company's money. It's the money from the people. And that is the worst sin of all as far as I'm concerned.” Dagdag pa niya.
 
-  
