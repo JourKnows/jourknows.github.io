@@ -12,7 +12,7 @@ authorBio: >
   resilient, Rei views writing as both an act of freedom and self-acceptance.
   Through her work, she hopes to encourage others to embrace their feelings,
   tell their stories, and continue moving forward despite life's challenges.
-authorImage: /[FEATURES]/5-4.jpg
+authorImage: /5-4.jpg
 illustrator: "Von Bryan Alcantara "
 copyeditor: JD Daquiz
 pubDatetime: 2026-06-20
@@ -23,7 +23,7 @@ featured: false
 draft: false
 locale: en
 tags:
-  - features
+  - feature
 description: Ang pagiging tunay sa sarili ang pinakamalakas na anyo ng pagiging
   lalaki, hindi ang pagkukunwaring akma lang sa pamantayan ng lipunan.
 ---
@@ -47,4 +47,3 @@ Bukod dito, ang patuloy na pagsunod sa uso at pagpapakita para sa iba ay maaarin
 
 Walang masama sa pag-aayos ng sarili o pagsunod sa uso pero kung iisipin ang opinyon ng nakararami, tiyak na magiging hadlang ito sa tunay na kalayaan ng isang kalalakihan. Ang tunay na halaga ay hindi nasusukat sa dami ng likes, branded na gamit o pagsunod sa uso, kundi sa kakayahang tanggapin at mahalin ang sarili sa kabila ng inaasahan ng iba.
 
-  
