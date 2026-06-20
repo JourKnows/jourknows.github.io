@@ -11,7 +11,7 @@ authorImage: /anjapascual.png
 illustrator: Allen Jhay
 pubDatetime: 2026-06-20
 modDatetime: 2026-06-20
-title: Allen Jhay
+title: Hindi Pa Tapos ang Laban
 ogImage: /hindi-pa-tapos-ang-laban.png
 featured: true
 draft: false
@@ -43,4 +43,3 @@ Lumipas man ang Araw ng Kalayaan, nananatili pa rin ang tanong kung tunay nga ba
 
 Ngunit sana dumating ang panahong hindi na natin kailangang hanapin ang kalayaan, sapagkat tunay na natin itong nararanasan—hindi lamang bilang isang alaala ng nakaraan, kundi bilang isang katotohanang buhay sa kasalukuyan.
 
-  
