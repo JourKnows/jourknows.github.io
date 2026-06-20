@@ -39,7 +39,7 @@ Ang tunay na kalayaan ay hindi lamang nasusukat sa kawalan ng dayuhang mananakop
 
 Marahil kaya patuloy nating hinahanap ang kalayaan ay dahil hindi ito isang bagay na ganap na nakakamit. Hindi ito tropeo na minsang naiuwi at habang-buhay nang pag-aari. Ito ay isang adhikaing kailangang patuloy na isabuhay, pangalagaan, at palawakin para sa bawat henerasyon.
 
-Lumipas man ang Araw ng Kalayaan, nananatili pa rin ang tanong kung tunay nga ba tayong malaya./ Isa na namang taon ng paggunita sa Araw ng Kalayaan ang lumipas.
+Isa na namang taon ng paggunita sa Araw ng Kalayaan ang lumipas.
 
 Ngunit sana dumating ang panahong hindi na natin kailangang hanapin ang kalayaan, sapagkat tunay na natin itong nararanasan—hindi lamang bilang isang alaala ng nakaraan, kundi bilang isang katotohanang buhay sa kasalukuyan.
 
