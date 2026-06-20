@@ -43,4 +43,3 @@ To the Senate: amend it. Restructure it, and ensure that national progress is pr
 
 We voice these concerns because if not us, then who?
 
-  
