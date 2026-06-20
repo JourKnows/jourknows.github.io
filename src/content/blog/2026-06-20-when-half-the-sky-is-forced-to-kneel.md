@@ -47,4 +47,3 @@ Because when women are denied education, society loses wisdom. When women are de
 
 A nation does not rise by keeping its women on their knees. It rises when every girl is given the chance to stand.
 
-  
