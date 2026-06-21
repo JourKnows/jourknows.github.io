@@ -7,6 +7,7 @@ authorBio: John Brent Abo is a news writer with several years of experience in
   society. Through his writing, Brent dedicates himself to those struggling to
   have their voices recognized and understood. Outside the newsroom, he enjoys
   spending time with animals and watching boys’ love films and series.
+authorImage: /Untitled design-8-5.jpg
 illustrator: "Charles Magat "
 copyeditor: Trisha Amorin
 pubDatetime: 2026-06-19
