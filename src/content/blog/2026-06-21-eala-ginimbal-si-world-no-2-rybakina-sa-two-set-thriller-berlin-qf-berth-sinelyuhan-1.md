@@ -37,4 +37,3 @@ Sinubukang tapyasin ni Rybakina ang lamang nang magligtas ng isang laro ngunit a
 
 Pirming nakapokus si Eala sa kaniyang tuloy-tuloy na kampanya kung saan susunod na haharapin nito si World No. 8 Elina Svitolina ng Ukraine bilang bahagi ng preparasyon sa papalapit na Wimbledon. 
 
-  
