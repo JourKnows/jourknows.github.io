@@ -12,7 +12,7 @@ modDatetime: 2026-06-21
 title: Built to Break
 ogImage: /built-to-break.png
 featured: true
-draft: false
+draft: true
 tags:
   - opinion
 description: A team-building activity is supposed to strengthen trust. Yet on
