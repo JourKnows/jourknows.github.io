@@ -60,4 +60,3 @@ Fans also have new music to look forward to, as the singer recently revealed pla
 
 The launch of the Brighter Days Ahead Foundation marks a significant new chapter in Grande’s advocacy work, combining her global platform with a structured effort to support organizations focused on equality, mental health, and humanitarian assistance.
 
-  
