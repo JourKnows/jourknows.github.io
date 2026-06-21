@@ -1,4 +1,9 @@
 ---
+author: Elle Daclan
+authorTitle: Literary Writer
+authorBio: Elle Daclan serves as a JourKnows Staffer under the Literary Desk Department.
+authorImage: /Untitled design-8.jpg
+illustrator: Malachi Tenoria
 pubDatetime: 2026-06-21
 modDatetime: 2026-06-21
 title: Sulat at Sugat ng Isang Manunulat
