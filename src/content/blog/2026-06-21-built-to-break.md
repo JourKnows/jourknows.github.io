@@ -53,4 +53,3 @@ Team-building is meant to strengthen bonds, develop trust, and create unity. Yet
 
 Rene Baterbonia and Divine Adili deserved futures, not investigations. They deserved mentorship, not uncertainty. They deserved protection, not preventable danger. If their deaths leave the nation with any obligation, it is this: never allow the language of excellence to excuse the abandonment of responsibility. Achievement built on neglected safety is not excellence at all. It is failure wearing the uniform of success.
 
-  
