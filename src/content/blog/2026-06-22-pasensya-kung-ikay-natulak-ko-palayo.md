@@ -34,7 +34,6 @@ Hindi dahil hindi ka sapat,
 
 Kundi dahil nasanay akong mag-isa.
 
-  
 
 
 Kapag may lumalapit,
@@ -45,7 +44,6 @@ Kapag may *nagmamahal*,
 
 Nagtatago ako na parang *duwag*.
 
-  
 
 
 Paano mo ako magiging *tahanan*
@@ -56,7 +54,6 @@ Paano mo ito bubuksan
 
 Kung ang susi ay itinapon ko?
 
-  
 
 
 Noong ako’y nahuhulog na,
@@ -65,7 +62,6 @@ Hinawakan mo ang aking mga kamay,
 
 Ngunit ako mismo ang bumitaw.
 
-  
 
 
 Hindi mo kasalanan,
@@ -74,12 +70,10 @@ Hindi ikaw ang problema,
 
 Ako lamang itong isang tanga na natatakot mawalan ng mga bagay na nais kong manatili.
 
-  
 
 
 Lumayo ako.
 
-  
 
 
 Hindi dahil ayaw kitang makasama,
@@ -90,29 +84,24 @@ Hindi dahil makasarili ako,
 
 Hindi dahil hindi na kita mahal.
 
-  
 
 
 Kundi dahil *natatakot* akong masanay sa iyong *presensya*.
 
-  
 
 
 Mahal kita.
 
-  
 
 
 Ngunit *natatakot* ako na isang araw,
 
 Magising ako at wala nang ikaw.
 
-  
 
 
 Pasensya kung ika’y natulak ko palayo.
 
-  
 
 
-  
+&nbsp;
