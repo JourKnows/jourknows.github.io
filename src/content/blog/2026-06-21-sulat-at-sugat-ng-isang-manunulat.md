@@ -8,8 +8,8 @@ pubDatetime: 2026-06-21
 modDatetime: 2026-06-21
 title: Sulat at Sugat ng Isang Manunulat
 ogImage: /sulat-at-sugat-ng-isang-manunulat-1.png
-featured: true
-draft: false
+featured: false
+draft: true
 tags:
   - news
 description: Sa bawat pagdampi ng lapis sa papel, may kirot na muling
