@@ -1,6 +1,6 @@
 ---
 author: "Jan Gabrielle Visda "
-authorTitle: "News Writer "
+authorTitle: "JourKnows Volunteer "
 authorBio: Gab is a student journalist, multimedia creator, and campus leader
   dedicated to informing and inspiring communities through meaningful
   storytelling. He is passionate about journalism, digital media, and creative
@@ -17,6 +17,8 @@ title: ‘First Day High’ marks Esnyr's return to classroom humor content
 ogImage: /IMG_20260623_130614.png
 featured: false
 draft: false
+tags:
+  - news
 description: From relatable classroom skits to national television exposure,
   Esnyr Ranollo continues to prove that authenticity remains at the center of
   his craft through his new episode of the high school series entitled First Day
