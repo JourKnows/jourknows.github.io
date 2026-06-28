@@ -22,7 +22,7 @@ tags:
 description: "The question still stands: Do we rot because we are Filipinos, or
   do we rot because of the Philippines we have allowed ourselves to make?"
 ---
- 
+
 
 ![](/2-6.jpg)
 
@@ -56,4 +56,3 @@ The question still stands: Do we rot because we are Filipinos, or do we rot beca
 
 A nation left to rot lives with the tragedy of what it could have been. Unlike decay, renewal is still possible. Rot is uncontrolled destruction. Fermentation, however, is transformation guided with purpose. The Philippines stands between those two paths: Whether it continues to decay or it begins to ferment with the demand of having better.
 
-  
