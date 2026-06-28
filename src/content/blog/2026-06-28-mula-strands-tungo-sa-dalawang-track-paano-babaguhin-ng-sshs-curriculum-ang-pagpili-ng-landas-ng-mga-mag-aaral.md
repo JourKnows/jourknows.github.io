@@ -1,5 +1,5 @@
 ---
-author: Jan Gabrielle Visda, Ron Menard Abaja, at Seven Muñoz
+author: Jan Gabrielle Visda, Ron Menard Abaja, and Seven Muñoz
 authorTitle: "JourKnows Volunteers "
 authorBio: "Jan Gabrielle Visda, Ron Menard Abaja, and Seven Muñoz serve as
   JourKnows Volunteers under the News Desk Department "
@@ -30,13 +30,11 @@ Sa ilalim ng Strengthened Senior High School Curriculum, pinasimple at inayos an
 
 Sa gitna ng mga pagbabagong ito, mahalagang maunawaan ang nilalaman ng bagong kurikulum at ang epekto nito sa mga mag-aaral, guro, at paaralan.  
 
-
 **Ano ang Strengthened Senior High School Curriculum at paano ito naiiba sa dating Senior High School Curriculum?**
 
 Ang Strengthened Senior High School (SSHS) Curriculum ay bagong kurikulum ng DepEd na ipatutupad sa School Year 2026–2027 bilang bahagi ng reporma sa K to 12.
 
 Layunin nito na gawing mas simple at mas nakatuon sa skills at trabaho ang Senior High School.  
-
 
 **Ano ang SSHS Curriculum?**
 
@@ -77,7 +75,6 @@ Pangunahing maaapektuhan ng Strengthened Senior High School Curriculum ang mga m
 
 Maaapektuhan din ang mga guro na kailangang umangkop sa bagong asignatura at competencies, kaya may mga pagsasanay na ibibigay ang DepEd. Para naman sa mga paaralan, aayusin nila ang kanilang program offerings at resources ayon sa bagong sistema.  
 
-
 **Ano ang magiging epekto ng pagkakaroon ng dalawang track at pagkawala ng mga strand sa pagpili ng landas ng mga mag-aaral sa Senior High School?**
 
 Sa paglalangkap ng **Strengthened Senior High School (SSHS)** Curriculum sa taong panuruan, ganap nang naging dalawang track ang pamimilian ng mga mag-aaral mula sa apat, na ngayo’y binubuo ng: **Academic Track at Technical-Professional (TechPro) Track**. Kasunod nito ang pag-alis sa mga strands katulad na lamang ng **STEM, ABM, at HUMSS.**
@@ -115,7 +112,6 @@ Para sa mga guro, binibigyan-daan ng mga pagbabagong ito ang higit na pagpapalal
 
 Sa kabuuan, nakikita ang SSHS Curriculum bilang hakbang tungo sa matibay na ugnayan ng edukasyon, hanapbuhay, at pambansang kaunlaran.
 
-  
 
 
-  
+&nbsp;
