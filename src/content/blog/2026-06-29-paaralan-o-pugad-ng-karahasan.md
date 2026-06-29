@@ -35,4 +35,3 @@ Hindi kailanman magiging katanggap-tanggap ang simpleng pakikiramay at  pakikil
 
 Ang bawat insidente ay hindi lamang dapat magtapos sa mga  kandila, bulaklak, at salita ng pakikiramay, kundi dapat magbunsod ng konkretong  pagbabago. Sapagkat ang buhay ng mga mag-aaral ay hindi maaaring gawing paulit–ulit na sakripisyo sa ilalim ng sistemang tila hindi natututo. Kung patuloy na  magbibingi-bingihan ang mga kinauukulan sa panawagan ng aksyon, ang pananahimik ay magiging kasabwat lamang ng karahasan.
 
-  
