@@ -29,7 +29,7 @@ Some think that acceptance to the Big Four guarantees success, and when rejectio
 
 There is no denying the prestige that surrounds the Big Four. Their excellence has been recognized in and out of the Philippines, and it is usually just the four of them switching places at the top of the rankings.
 
-**STAT PLUG: QS WORLD UNIVERSITY RANKINGS 2026**
+ **QS WORLD UNIVERSITY RANKINGS 2026**
 
 1. UP — 362nd globally
 2. ADMU — 511th globally
@@ -62,4 +62,3 @@ The Big Four deserve every accolade they have earned. Their wide alumni network 
 
 However, they are not the only places where life begins. Success is not limited to four gates—it simply starts with walking into whatever school opened for you.
 
-  
