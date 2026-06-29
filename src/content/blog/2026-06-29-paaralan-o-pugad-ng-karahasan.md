@@ -1,5 +1,5 @@
 ---
-author: Fevie Rose MIguel
+author: Fevie Rose Miguel
 authorTitle: "JourKnows Volunteer "
 authorBio: Fevie Rose Miguel serves as a JourKnows Volunteer under the Opinion
   Desk Department
