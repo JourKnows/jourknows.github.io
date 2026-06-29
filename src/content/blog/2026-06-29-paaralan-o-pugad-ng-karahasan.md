@@ -4,7 +4,7 @@ authorTitle: "JourKnows Volunteer "
 authorBio: Fevie Rose Miguel serves as a JourKnows Volunteer under the Opinion
   Desk Department
 authorImage: /Untitled-design-8-1.jpg
-illustrator: Elle Daclan
+illustrator: "Eulyn Shantelle "
 copyeditor: JD Daquiz
 pubDatetime: 2026-06-29
 modDatetime: 2026-06-29
