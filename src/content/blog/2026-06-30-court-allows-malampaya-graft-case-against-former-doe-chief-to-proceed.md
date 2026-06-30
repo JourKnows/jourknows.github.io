@@ -2,12 +2,13 @@
 author: "Rheane Francisco "
 authorTitle: "JourKnows Volunteer "
 authorBio: Rheane Francisco serves as a JourKnows Volunteer under the News Desk Department
-authorImage: /sandigan.jpg
+authorImage: /Untitled design-8.jpg
 illustrator: Joshua Lian Cawilan
 copyeditor: "Khaine Odanga "
 pubDatetime: 2026-06-30
 modDatetime: 2026-06-30
 title: Court allows Malampaya graft case against former DOE chief to proceed
+ogImage: /sandigan-2.jpg
 featured: true
 draft: false
 locale: en
@@ -32,4 +33,3 @@ State prosecutors also argued that the complaint already explained how the appro
 
 ‎While the Malampaya gas project remains one of the country's key sources of natural gas for power generation, the court's latest ruling does not determine the guilt or innocence of the accused, only allowing the graft case to proceed to trial as they face charges for alleged violation of the Anti-Graft and Corrupt Practices Act.
 
-  
