@@ -3,6 +3,7 @@ author: "Elle Daclan "
 authorTitle: "JourKnows Staffer "
 authorBio: Elle Daclan serves as a JourKnows Staffer under the Literary Desk Department
 authorImage: /Untitled design-8.jpg
+illustrator: Malachi Tenoria
 pubDatetime: 2026-06-30
 modDatetime: 2026-06-30
 title: " Sulat at sugat ng isang manunulat"
@@ -31,4 +32,3 @@ Sulat at sugat—magkapatid sa paglalakbay ng isang manunulat. Kapwa sila nag-ii
 
 At sa gitna ng lahat ng ito, patuloy ang paglikha. Patuloy ang paglalakbay ng lapis sa papel, ng damdamin sa salita, ng sugat sa sulat. Sapagkat ang panitikan ay hindi lamang sining—ito’y saksi, tagapagdala, tagapagligtas. Ito ang paraan ng isang manunulat upang mabuhay sa gitna ng mga alaala, upang maghilom sa gitna ng mga sugat, at upang magmahal sa kabila ng lahat ng sakit.
 
-  
