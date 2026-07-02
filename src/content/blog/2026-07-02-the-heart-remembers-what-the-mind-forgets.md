@@ -4,7 +4,7 @@ authorTitle: JourKnows Volunteer
 authorBio: Reiza Jean Velasco serves as a JourKnows Volunteer under the Literary
   Desk Department
 authorImage: /Untitled design-8-4.jpg
-illustrator: "Malachi Garrion Tenoria "
+illustrator: "Malachi Garron Tenoria "
 pubDatetime: 2026-07-02
 modDatetime: 2026-07-02
 title: The Heart Remembers What The Mind Forgets
