@@ -3,6 +3,7 @@ author: Reiza Jean Velasco
 authorTitle: JourKnows Volunteer
 authorBio: Reiza Jean Velasco serves as a JourKnows Volunteer under the Literary
   Desk Department
+authorImage: /Untitled design-8-4.jpg
 illustrator: "Malachi Garrion Tenoria "
 pubDatetime: 2026-07-02
 modDatetime: 2026-07-02
@@ -40,4 +41,3 @@ The “stupider” part of your anatomy humbles you, on par with how the logical
 
 For the sake of you, the heart remembers what the mind forgets.
 
-  
