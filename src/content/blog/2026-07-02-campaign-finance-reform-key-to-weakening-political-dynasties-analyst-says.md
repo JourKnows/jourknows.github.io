@@ -11,8 +11,7 @@ copyeditor: Trisha Amorin
 pubDatetime: 2026-07-02
 modDatetime: 2026-07-02
 title: Campaign finance reform key to weakening political dynasties, analyst says
-ogImage: /Campaign finance reform key to weakening political dynasties, analyst
-  says (1)-1.png
+ogImage: /camp-1.png
 featured: false
 draft: false
 locale: en
@@ -23,7 +22,7 @@ description: " Dr. Fernando Casal Bértoa, Associate Professor of Comparative
   donations is one of the most significant reforms lawmakers could pursue while
   strengthening political parties through a more transparent financing system."
 ---
-![](</Campaign finance reform key to weakening political dynasties, analyst says (1).png>)
+![](/camp.png)
 
 Political scientist argues campaign finance reform should take priority over another anti-dynasty law.
 
@@ -49,4 +48,3 @@ Bértoa also said the Philippines has one of Asia's least institutionalized poli
 
 He noted that democratic institutions take decades to develop and described the Philippines' democratic system as "a work in progress.”
 
-  
