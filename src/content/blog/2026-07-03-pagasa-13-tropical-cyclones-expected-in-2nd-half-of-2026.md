@@ -21,7 +21,7 @@ description: "    The Philippine area of responsibility (PAR) is to expect the
 ---
 ![](/pagasa-1.jpg)
 
-The Philippine area of responsibility (PAR) is to expect the formation or entry of nine to 13 tropical cyclones from July to December 2026 as a result of intensifying El Niño, according to the Philippine Atmospheric, Geophysical and Astronomical Services Administration (PAGASAagasa) on Wednesday.
+The Philippine area of responsibility (PAR) is to expect the formation or entry of nine to 13 tropical cyclones from July to December 2026 as a result of intensifying El Niño, according to the Philippine Atmospheric, Geophysical and Astronomical Services Administration (PAGASA) on Wednesday.
 
 Two to four storms have been forecasted for the months of July and August, two to three in September, and one to two each in October, November, and December, with the next tropical cyclone names for the year including the following: Gardo, Henry, Inday, Josie, Kiyapo, Luis, Maymay, Neneng, Obet, Pilandok, Queenie, Rosal, Samuel, and Tomas.
 
@@ -43,4 +43,3 @@ Despite the projected rainfall decline at the end of the year, Pagasa is not yet
 
  “We are not trying to scare you. These are just some of the possible scenarios that could happen, so we need to prepare as early as now,” Solis clarified, adding that a hotter and drier warm and dry season is also likely, should El Niño persist through the first half of 2027.
 
-  
