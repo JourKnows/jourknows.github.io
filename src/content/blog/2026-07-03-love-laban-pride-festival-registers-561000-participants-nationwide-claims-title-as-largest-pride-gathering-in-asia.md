@@ -20,7 +20,7 @@ description: The annual Love Laban Pride Festival officially secured its
   record-breaking collective crowd of 561,000 participants nationwide during its
   synchronized events, according to Pride PH.
 ---
-![](</Love Laban Pride Festival registers 561,000 participants nationwide; claims title as largest Pride gathering in Asia (2).jpg>)
+![](/loevlabann.jpg)
 
 The annual Love Laban Pride Festival officially secured its position as the largest Pride celebration in Asia after drawing a record-breaking collective crowd of 561,000 participants nationwide during its synchronized events, according to Pride PH.
 
