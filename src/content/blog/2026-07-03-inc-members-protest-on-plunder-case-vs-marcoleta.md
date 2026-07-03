@@ -20,7 +20,7 @@ description: Members of the Iglesia ni Cristo (INC) gathered at the EDSA People
   Power Monument on Tuesday, June 30, to protest after the announcement of the
   filing of plunder charges against Sen. Rodante Marcoleta.
 ---
-![](</INC members protest on plunder case vs Marcoleta (2).jpg>)
+![](/inccc.jpg)
 
 Members of the Iglesia ni Cristo (INC) gathered at the EDSA People Power Monument on Tuesday, June 30, to protest after the announcement of the filing of plunder charges against Sen. Rodante Marcoleta.
 
@@ -48,4 +48,3 @@ Marcoleta condemned the possible filing of the case, which is said to be aimed a
 
 The Armed Forces of the Philippines said it was monitoring the situation and urged participants to keep the gathering peaceful and lawful.
 
-  
