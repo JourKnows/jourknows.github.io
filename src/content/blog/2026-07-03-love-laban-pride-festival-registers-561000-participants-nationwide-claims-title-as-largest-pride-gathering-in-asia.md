@@ -4,6 +4,8 @@ authorTitle: JourKnows Volunteer
 authorBio: "Brinsley Von Ebol serves as a JourKnows Volunteer under the News
   Desk Department "
 authorImage: /Untitled-design-8.jpg
+illustrator: Joshua Lian Cawilan
+copyeditor: Khaine Odanga
 pubDatetime: 2026-07-03
 modDatetime: 2026-07-03
 title: Love Laban Pride Festival registers 561,000 participants nationwide;
@@ -38,4 +40,3 @@ Furthermore, human rights organizers utilized the vast public platform to renew 
 
 Ultimately, independent economic analysts projected that the massive influx of regional visitors significantly boosted municipal tourism revenues through retail  markets, transport use, and hospitality services over the weekend.
 
-  
