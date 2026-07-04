@@ -28,4 +28,3 @@ Initial investigation showed that the victim sustained stab wounds on the left a
 
 Police are continuing their investigation to determine the motive behind the stabbing, including possible factors that led to the altercation between the two students.
 
-  
