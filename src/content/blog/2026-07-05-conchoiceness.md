@@ -36,4 +36,3 @@ Every day presents the same choice: the choice to pause before the screen demand
 
 Those who make this choice find something that cannot be optimized or purchased: a power in the pause, a courage in the reflection, a tenderness in truly living. Life's pace will never slow, death will always come unannounced, and the digital world will continue to demand attention. **The world may demand speed, but the conscious heart dictates the pace, not by fleeing modernity but by simply choosing, repeatedly, that a life lived on purpose is worth more than a life lived on autopilot.** The choice is individual, the choice is daily, the choice is now, and the clock, for once, can wait.
 
-  
