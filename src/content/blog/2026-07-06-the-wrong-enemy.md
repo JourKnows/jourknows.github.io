@@ -10,6 +10,8 @@ title: The Wrong Enemy
 featured: true
 draft: false
 locale: en
+tags:
+  - opinion
 description: "Every tragedy leaves behind two things: victims and questions. The
   victims deserve justice, and the questions deserve honest answers. But too
   often, we answer those questions by searching for the nearest villain instead
@@ -43,4 +45,3 @@ Before we ask what they played, perhaps we should first ask what they lived thro
 
 And when the answers finally come, let us have the courage to hold accountable those who truly failed them—not only the platforms that hosted a game, but also the adults who neglected warning signs, the systems that allowed bullying to persist, those who enabled minors to access deadly weapons, and every institution that could have intervened before tragedy unfolded.
 
-  
