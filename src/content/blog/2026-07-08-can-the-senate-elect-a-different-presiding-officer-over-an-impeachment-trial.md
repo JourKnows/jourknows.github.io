@@ -78,4 +78,3 @@ Vice President Sara Duterte’s trial marks the first time in Philippine history
 
 Who presides over an impeachment trial may seem like a procedural detail, but it raises important questions about constitutional limits and the Senate's rule-making authority.
 
-  
