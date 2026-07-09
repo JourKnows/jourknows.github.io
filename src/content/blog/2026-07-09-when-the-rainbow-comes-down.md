@@ -46,4 +46,3 @@ Compassion should not expire with the calendar. Respect should not end when the 
 
 Because Pride was never meant to be confined to a month. It was meant to remind us that while celebrations may be seasonal, human dignity never is.
 
-  
