@@ -1,5 +1,5 @@
 ---
-author: When the rainbow comes down
+author: "Elaine Santos "
 authorTitle: "JourKnows Volunteer "
 authorBio: Elaine Santos is a volunteer for JourKnows with a passion for
   journalism, literature, and storytelling. She believes that behind every
