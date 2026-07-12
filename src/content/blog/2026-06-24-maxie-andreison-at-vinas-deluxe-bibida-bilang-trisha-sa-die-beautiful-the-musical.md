@@ -1,6 +1,6 @@
 ---
 author: "Skilet Ocampo "
-authorTitle: Opinion Writer
+authorTitle: JourKnows Volunteer
 authorBio: Skilet is a senior high school student, student leader, and writer
   dedicated to serving the youth through journalism, leadership, and community
   engagement. He is passionate about storytelling and believes in the power of
