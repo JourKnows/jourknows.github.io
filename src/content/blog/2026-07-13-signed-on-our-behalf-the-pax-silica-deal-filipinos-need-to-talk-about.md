@@ -14,7 +14,7 @@ pubDatetime: 2026-07-13
 modDatetime: 2026-07-13
 title: "Signed on Our Behalf: The Pax Silica Deal Filipinos Need to Talk About"
 ogImage: /10-1.jpg
-featured: false
+featured: true
 draft: false
 locale: en
 tags:
