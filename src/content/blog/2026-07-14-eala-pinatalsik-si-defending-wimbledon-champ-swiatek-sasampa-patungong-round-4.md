@@ -46,7 +46,5 @@ Samantala, sinubukang tapyasin ni Swiatek ang kalamangan ni Eala gamit ang mapan
 
 Makasaysayang minarkahan ni Eala ang kaniyang pinakamalalim na kampanya sa isang Grand Slam tournament bunga ng kaniyang paggapi kay Swiatek na may 2-1 kartada sa kanilang paghaharap.  
 
-
 Nakatakdang makakasagupa ng Filipina underdog ang ika-13 seed na si  Jasmine Paolini ng Italy matapos pabagsakin si Maria Sakkari ng Greece, 6-1, 6-2 sa nasabing prestihiyosong torneo.
 
-  
