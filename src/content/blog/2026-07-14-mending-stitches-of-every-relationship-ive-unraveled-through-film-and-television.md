@@ -34,7 +34,6 @@ Below are the films and shows that echo that same tearing-and-fixing, not as a c
 
 ![](/giphy.gif)
 
-  
 They say human beings begin as blank slates, shaped by memories in both mundane and unforgettable alike. 
 
 *Eternal Sunshine of a Spotless Mind* asks what remains of a person when memories are erased. 
@@ -45,7 +44,6 @@ If Joel and Clementine can scrub every trace of each other from their minds and 
 
 The heart remembers what the mind forgets, some marks do not live in a memory but rather live in the shape of the person that becomes torn and mended enough times. 
 
-  
 **Little Women (2019)**
 
 ![](/3f729eebde7ec55cbaf17ee6c0a57a13.gif)
@@ -65,7 +63,6 @@ It is easy to read Jo's answer as simple heartbreak, but it's closer to the same
 Neither of them lies to protect the other from doubt, they just hand it back and forth until it is out in the open, undressed, with nowhere left to hide.
 
 **How to Lose a Guy in 10 Days (2003)**  
-
 
 ![](/giphy-2.gif)
 
@@ -99,19 +96,14 @@ Olivia Rodrigo never promised a cure in the song, only the wish for one. That is
 
 Maybe that's the closest thing to a cure any of us can get: not the absence of damage, but the willingness to keep reaching for the needle
 
-  
 
 
-  
+&nbsp;
 
+&nbsp;
 
-  
+&nbsp;
 
+&nbsp;
 
-  
-
-
-  
-
-
-  
+&nbsp;
