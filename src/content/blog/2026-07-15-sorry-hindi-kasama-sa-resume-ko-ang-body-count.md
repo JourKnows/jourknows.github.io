@@ -34,7 +34,5 @@ Nakakatawang isipin na sa dami ng mahahalagang bagay na maaaring itanong tungkol
 
 Ngunit hindi rin ibig sabihin nito na wala nang usaping dapat pagtuunan ng pansin. Kung may dapat pag-usapan, iyon ay ang respeto, kaligtasan, at pananagutan. Ang mahalaga ay kung marunong bang gumalang ang isang tao sa kapwa, kung responsable ba siya sa kanyang mga desisyon, at kung hindi ba siya nananakit o nananamantala. Iyon ang mga bagay na tunay na makikita sa isang tao—hindi ang bilang na pilit ginagawang malaking isyu ng mga taong walang ibang maipuna.  
 
-
 Kaya sa lahat ng gustong gawing résumé ang isang pribadong bagay, ito ang malinaw na sagot: “Sorry, hindi kasama sa résumé ko ang body count.” Hindi ito kwalipikasyon. Hindi ito medalya. Hindi ito sentro ng aking pagkatao. Ang nararapat na tingnan ay ang karakter, paggalang, at pananagutan—dahil doon tunay na nasusukat ang isang tao.
 
-  
