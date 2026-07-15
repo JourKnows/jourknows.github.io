@@ -9,7 +9,7 @@ authorBio: Skilet is a senior high school student, student leader, and writer
   promote civic participation, and highlight issues that matter to his
   community.
 authorImage: /ocampo.png
-illustrator: Rian James Patalita
+illustrator: "Romel Ivan Balidoy Salvadora "
 copyeditor: JD Daquiz
 pubDatetime: 2026-07-15
 modDatetime: 2026-07-15
