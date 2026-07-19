@@ -46,8 +46,7 @@ That fantasy, as it turns out, was already closer to reality than he knew. Barke
 
 The conjured Nikki duct-tapes doors and builds shrines from dead things because she has no self left to know any better, only the script Bear’s wish wrote for her. Meanwhile, the buried Nikki surfaces in seizures, catching her own reflection and remembering she was a writer before the wish turned her into a character she never auditioned for. She is still there, clawing at the glass, and the horror of the film is not that she became someone else but that she knows exactly who she used to be and cannot fight her way back.
 
-  
-**ACT II: Glassed Girl**
+**Act II: Glassed Girl**
 
 ![](/obsession-movie-obsession-nikki.gif)
 
@@ -63,8 +62,7 @@ His concern, when he finally looks at her, is not for her suffering but for how 
 
 Bear does not love Nikki. He loves being wanted, and when one source of validation runs dry, he moves to the next without a backward glance. This is the "nice guy" stripped of his disguise: a man who attached his entire identity to female validation, and when the woman he wished for becomes too difficult to maintain, he simply finds another.
 
-  
-**ACT III Man or Bear**
+**Act III: Man or Bear**
 
 ![](/tumblr_73cf6798186347ad1825cd49fe0eb8be_e5fb2328_540-2.gif)
 
@@ -78,6 +76,6 @@ When the real Nikki claws her way to the surface and begs him to end her, he ans
 
 **Every man who has ever believed his desire was harmless still thinks his wish would have been different, that his love would have saved her instead of erased her. But he cannot save anyone until he learns to save himself from the emptiness he keeps trying to fill with someone else. The Willow never truly breaks, because the men who reach for it never learn to break the pattern first.**
 
-  
 
 
+&nbsp;
