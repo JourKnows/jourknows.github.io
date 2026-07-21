@@ -1,8 +1,8 @@
 ---
 author: "Jessilyn Kate Piñeda "
 authorTitle: "JourKnows Volunteer "
-authorBio: Jessilyn Kate Piñeda serves as a JourKnows Volunteer under the News
-  Desk Department
+authorBio: Jessilyn Kate Piñeda serves as a JourKnows Volunteer under the
+  Opinion Desk Department
 authorImage: /Untitled design-8-5.jpg
 illustrator: "Romel Ivan Balidoy Salvadora "
 copyeditor: "Khaine Odanga "
@@ -58,4 +58,3 @@ For a campaign backed by a major gambling company, the ₱4.28 million Alawi spe
 
 Buying 100 iPhones, which costed ₱85,000 each, in this economy just to flaunt her ‘generosity’ is nothing but out of touch. The giveaway appears less likely an act of generosity and more likely a promotion which benefits Casino Plus’ and Alawi’s brand, while endangering the lives of Filipinos who anticipates for her content.
 
-  
