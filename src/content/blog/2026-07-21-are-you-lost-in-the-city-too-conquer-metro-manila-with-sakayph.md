@@ -8,6 +8,7 @@ copyeditor: "Maria Selma Aspe "
 pubDatetime: 2026-07-21
 modDatetime: 2026-07-21
 title: Are you lost in the city too? Conquer Metro Manila with Sakay.ph
+ogImage: /2-10.jpg
 featured: true
 draft: false
 locale: en
@@ -35,4 +36,3 @@ The software is continuously being updated, this includes the changes in routes 
 
 So, if you want to be a strong independent adventurer that wants to conquer the confusing twists and turns of Metro Manila, [Sakay.ph](http://Sakay.ph) will be your mightiest weapon. By supporting local softwares like this, we can make the city accessible not just for tourists but especially for Filipino commuters. Through this initiative, everyone can find their way through the busy streets of the city without getting lost again.
 
-  
