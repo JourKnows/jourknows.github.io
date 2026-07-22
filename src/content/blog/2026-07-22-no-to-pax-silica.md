@@ -24,8 +24,6 @@ description: Every generation is offered a promise. Some are wrapped in gold,
 ---
 ![](/33.jpg)
 
-![](/33-1.jpg)
-
 Every generation is offered a promise. Some are wrapped in gold, others in grand speeches. Today, ours is wrapped in silicon.
 
 The Philippine government calls Pax Silica a gateway to the future—a partnership that promises artificial intelligence, semiconductor industries, foreign investments, and economic growth. We are told it will create jobs, modernize our industries, and place the country on the global technological map.
@@ -50,5 +48,3 @@ The Philippines does not need progress at any price. It needs progress with prin
 
 Sometimes, the bravest decision a country can make is to say one simple word—No.
 
-  
-  
