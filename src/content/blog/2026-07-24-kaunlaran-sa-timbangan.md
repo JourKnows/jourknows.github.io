@@ -12,7 +12,7 @@ illustrator: Joshua Lian Cawilan
 copyeditor: JD Daquiz
 pubDatetime: 2026-07-24
 modDatetime: 2026-07-24
-title: Kaunlaran sa timbangan
+title: Kaunlaran sa Timbangan
 featured: true
 draft: false
 locale: en
