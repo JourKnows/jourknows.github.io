@@ -58,4 +58,3 @@ Hindi masama ang mangarap ng pag-unlad. Ngunit ang pag-unlad na tunay ay hindi l
 
 Tandaan na ang tunay na kaunlaran ay hindi lamang nasusukat sa dami ng mga gusaling naitatayo, kundi sa lawak ng ating napangangalagaan. Ang bawat hakbang tungo sa pag-unlad ay may kaakibat na bigat, at bawat desisyong ating ginagawa ay may katumbas na pananagutan. Kaya kapag tuluyan nang bumaba ang timbangan, alin kaya ang mas mananaig—ang bigat ng mga pangako o ang bigat ng kapakanan ng bayan?
 
-  
