@@ -24,6 +24,8 @@ description: President Ferdinand Marcos’ and Vice President Sara Duterte’s n
   satisfaction rating improved in most areas according to the Social Weather
   Stations (SWS) survey results released on Monday, July 13.
 ---
+![](/maa.png)
+
 President Ferdinand Marcos’ and Vice President Sara Duterte’s net satisfaction rating improved in most areas according to the Social Weather Stations (SWS) survey results released on Monday, July 13.
 
 The Second Quarter 2026 Social Weather Survey, conducted from June 20 to 29, revealed that 38 percent of adult Filipinos were satisfied with the President’s performance, while 45 percent were dissatisfied, and 17 percent were undecided.
