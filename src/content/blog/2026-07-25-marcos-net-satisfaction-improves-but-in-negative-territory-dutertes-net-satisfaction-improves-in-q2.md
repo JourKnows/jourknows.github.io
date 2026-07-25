@@ -52,7 +52,7 @@ This is an improvement of her net satisfaction (percent satisfied minus percent 
 
 For Vice President Duterte, she improved in Balance Luzon and Mindanao but declined in Metro Manila, while Visayas remained stable. 
 
-Her highest net satisfaction rate continued with Mindanao at “excellent” (+84), Visayas at “good” (+36), Balance Luzon at “moderate” (+10), and Metro Manila at “neutral” (+3). In comparison to their Q1 Survey to March 2026, net satisfaction for Duterte improved by five points from “neutral” (+5) in Balance Luzon, 2 points from “excellent” (+82). 
+Her highest net satisfaction rate continued with Mindanao at “excellent” (+84), Visayas at “good” (+36), Balance Luzon at "moderate” (+10), and Metro Manila at “neutral” (+3). In comparison to their Q1 Survey to March 2026, net satisfaction for Duterte improved by five points from “neutral” (+5) in Balance Luzon, 2 points from “excellent” (+82). 
 
 Though she declined by 2 points from “neutral” (+5) in Metro Manila, the VP’s numbers did remain unchanged at “good” (+36) in Visayas.
 
