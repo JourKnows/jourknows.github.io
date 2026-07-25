@@ -17,7 +17,7 @@ title: Marcos’ net satisfaction improves, but in negative territory; Duterte's
 ogImage: /Marcos’ net satisfaction improves, but in negative territory;
   Duterte's net satisfaction improves in Q2.jpg
 featured: true
-draft: true
+draft: false
 tags:
   - news
 description: President Ferdinand Marcos’ and Vice President Sara Duterte’s net
