@@ -9,7 +9,7 @@ pubDatetime: 2026-07-23
 modDatetime: 2026-07-23
 title: The Sky We Carry
 ogImage: /asniich.jpg
-featured: true
+featured: false
 draft: false
 locale: en
 tags:
@@ -29,10 +29,9 @@ description: Some souls arrive like morning after rain, Undoing grief with
 
 ***Y**et even the most glowing heart must rest from shining.*
 
-  
 
 
-
+&nbsp;
 
 ***RAINY***  
 
