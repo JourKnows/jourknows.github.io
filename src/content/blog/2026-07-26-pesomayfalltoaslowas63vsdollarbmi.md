@@ -10,7 +10,7 @@ illustrator: Joshua Lian Cawilan
 copyeditor: Khaine Odanga
 pubDatetime: 2026-07-26
 modDatetime: 2026-07-26
-title: Peso may fall to as low as 63 vs dollar —BMI
+title: Peso may fall to as low as 63 vs dollar — BMI
 ogImage: /Pesomayfalltoaslowas63vsdollar—BMI.jpg
 featured: true
 draft: false
