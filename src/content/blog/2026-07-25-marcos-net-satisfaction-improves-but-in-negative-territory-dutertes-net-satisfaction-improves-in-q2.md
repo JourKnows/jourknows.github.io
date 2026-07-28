@@ -16,7 +16,7 @@ title: Marcos’ net satisfaction improves, but in negative territory; Duterte's
   net satisfaction improves in Q2
 ogImage: /Marcos’ net satisfaction improves, but in negative territory;
   Duterte's net satisfaction improves in Q2.jpg
-featured: true
+featured: false
 draft: false
 tags:
   - news
