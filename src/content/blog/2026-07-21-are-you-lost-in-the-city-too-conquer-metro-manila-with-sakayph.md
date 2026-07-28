@@ -9,7 +9,7 @@ pubDatetime: 2026-07-21
 modDatetime: 2026-07-21
 title: Are you lost in the city too? Conquer Metro Manila with Sakay.ph
 ogImage: /2-10.jpg
-featured: true
+featured: false
 draft: false
 locale: en
 tags:
