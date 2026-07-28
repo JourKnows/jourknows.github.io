@@ -13,6 +13,7 @@ authorBio: Adriana is chaos carefully curated into art. An avid reader and an
   Writer for The Frontman, and a Feature Volunteer for Insight PH.
 authorImage: /Untitled-design-8.jpg
 illustrator: Eulyn Shantelle
+copyeditor: Khaine Odanga
 pubDatetime: 2026-07-29
 modDatetime: 2026-07-29
 title: Idolatry, Inc.
