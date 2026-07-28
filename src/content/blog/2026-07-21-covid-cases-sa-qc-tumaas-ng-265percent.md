@@ -15,7 +15,7 @@ pubDatetime: 2026-07-21
 modDatetime: 2026-07-21
 title: " COVID cases sa QC, tumaas ng 265%"
 ogImage: /2_20260720_145501_0001.png
-featured: true
+featured: false
 draft: false
 locale: en
 tags:
@@ -26,7 +26,6 @@ description: Nananawagan ang mga opisyal ng kalusugan na huwag magpabaya sa mga
 ---
 ![](/2_20260720_145501_0001-1.png)
 
-  
 Nananawagan ang mga opisyal ng kalusugan na huwag magpabaya sa mga pag-iingat kahit pa mababa ang panganib ng bagong pagtaas ng kaso ng COVID-19 sa ilang bahagi ng Metro Manila.
 
 Hinimok ng pamahalaang-lungsod ng Maynila ang publiko na muling magsuot ng face mask kasunod ng inilibas ng datos ng datos ng Quezon City Epidemiology and Surveillance Division (QCESD), na nagpakita ng matarik na pagtaas ng mga kaso sa nakaraang tatlong linggo.
@@ -43,4 +42,3 @@ Ipinaliwanag rin ng Department of Health (DOH) na kailangang maingat na basahin 
 
 "The 256 percent increase does not accurately reflect the small absolute number, and requires much caution in interpretation," paliwanag ng DOH.
 
-  
