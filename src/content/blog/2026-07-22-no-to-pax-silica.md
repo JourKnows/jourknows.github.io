@@ -14,7 +14,7 @@ copyeditor: "Khaine Odanga "
 pubDatetime: 2026-07-22
 modDatetime: 2026-07-22
 title: "No to Pax Silica "
-featured: true
+featured: false
 draft: false
 locale: en
 tags:
