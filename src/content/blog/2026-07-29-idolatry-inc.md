@@ -45,4 +45,4 @@ From here and on, it will only get worse. The red-tagging will escalate, the kil
 
 No one is coming. Not Marcos. Not Duterte. Not even Leni or Risa. Not any politician with a kind smile and a campaign promise. Not the Church. Not celebrities we praise. Not influencers we follow. No one is our savior. Only our self who is too afraid to speak, too comfortable to act, too tired to fight. And we are failing right now. We are failing every single day.
 
-So what do we do? We stop kneeling. We stop bowing. We stop clapping. We stop pretending that silence is neutrality, that complicity is safety. We start asking *bakit*?** We start demanding *nasaan*?** We start insisting *sino*? Because if we do not start now, then when? If we never stop kneeling, we will never be free.
+So what do we do? We stop kneeling. We stop bowing. We stop clapping. We stop pretending that silence is neutrality, that complicity is safety. We start asking *bakit*? We start demanding *nasaan*? We start insisting *sino*? Because if we do not start now, then when? If we never stop kneeling, we will never be free.
