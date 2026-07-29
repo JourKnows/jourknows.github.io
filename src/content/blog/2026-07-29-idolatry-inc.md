@@ -18,7 +18,7 @@ pubDatetime: 2026-07-29
 modDatetime: 2026-07-29
 title: Idolatry, Inc.
 ogImage: /ShantelleAsuncion(2).png
-featured: true
+featured: false
 draft: false
 tags:
   - opinion
