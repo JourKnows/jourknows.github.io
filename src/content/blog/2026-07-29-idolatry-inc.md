@@ -29,7 +29,7 @@ description: We are a nation of worshippers, and it is not just about religion.
   authority was bastos. So we bow to billboards, genuflect to names, build
   shrines out of campaign jingles, and grant offertories out of our votes.
 ---
-![](/ShantelleAsuncion(2)-1.png)
+![](/33333.png)
 
 We are a nation of worshippers, and it is not just about religion. We learned it from our *lolas* who prayed the rosary for politicians they never even met. We learned it from our *titos* who voted for the same surname for decades. We learned it from our teachers who told us that questioning authority was *bastos.* So we bow to billboards, genuflect to names, build shrines out of campaign jingles, and grant offertories out of our votes.
 
