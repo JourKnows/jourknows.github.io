@@ -23,8 +23,6 @@ description: Filipino pop group SB19 released its new single "Lawless" on
   Friday, along with an accompanying music video, marking the start of a new era
   for the P-pop act.
 ---
-
-
 ![](/lawless.jpg)
 
 Filipino pop group SB19 released its new single "Lawless" on Friday, along with an accompanying music video, marking the start of a new era for the P-pop act.
