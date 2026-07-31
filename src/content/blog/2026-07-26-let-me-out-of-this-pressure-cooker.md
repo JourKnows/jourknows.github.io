@@ -17,14 +17,9 @@ featured: true
 draft: false
 tags:
   - opinion
-description: "For years, the Philippines has been battling systemic problems in
+description: For years, the Philippines has been battling systemic problems in
   basic education, and later found a solution to decongest what the K-12
-  curriculum had done. Thus came the MATATAG curriculum, and now, with the
-  Strengthened Senior High School (SHS) Curriculum. These were created to
-  address the learning gap in the country and erase the chaotic state of
-  students who memorized things but learned nothing. Yes, I am one of the
-  students affected by this learning gap, but what I want to ask is: will these
-  revised and implemented curriculums guarantee to solve our learning crisis?"
+  curriculum had done.
 ---
 ![](/DewHannaFerrer-1.jpg)
 
