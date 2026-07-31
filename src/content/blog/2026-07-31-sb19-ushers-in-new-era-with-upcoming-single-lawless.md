@@ -29,7 +29,9 @@ Filipino pop group SB19 released its new single "Lawless" on Friday, along with 
 
 The release capped a milestone week for the five-member group — Pablo, Josh, Stell, Ken and Justin — who performed Thursday (Chicago time) at Lollapalooza in Chicago, becoming the first Filipino act to appear at the festival.
 
-SB19 promoted "Lawless" in the weeks leading up to its release with a teaser poster showing the group beside a black car and a large goat, alongside the tagline "GOATED." The group did not disclose details about the song's meaning, lyrics or sound before its release, though promotional messaging pointed to a bolder, more defiant direction for the act.
+SB19 promoted "Lawless" in the weeks leading up to its release with a teaser poster showing the group beside a black car and a large goat.
+
+The group did not disclose details about the song's meaning, lyrics or sound before its release, though promotional messaging pointed to a bolder, more defiant direction for the act.
 
 The single's release is part of a packed international schedule for the group. SB19 performed at the Grammy Museum's Global Spin Live on July 28 and took part in the ceremonial first pitch at a Chicago White Sox game on July 29, ahead of its Lollapalooza appearance. The group also planned a one-day pop-up event in Los Angeles featuring merchandise and Filipino-themed experiences for fans.
 
