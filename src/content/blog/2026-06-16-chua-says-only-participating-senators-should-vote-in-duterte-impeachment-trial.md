@@ -25,7 +25,7 @@ description: Only senators who participate in the impeachment trial of Vice
 ---
 ![](/chua-says-impeachment.png)
 
-MANILA, Philippines — Only senators who participate in the impeachment trial of Vice President Sara Duterte should be allowed to vote on her conviction or acquittal, House prosecutor and Manila 3rd District Representative Joel Chua said on Saturday, June 13.
+Only senators who participate in the impeachment trial of Vice President Sara Duterte should be allowed to vote on her conviction or acquittal, House prosecutor and Manila 3rd District Representative Joel Chua said on Saturday, June 13.
 
 Speaking at the Saturday News Forum, Chua emphasized the importance of active participation in the proceedings, saying senator-judges must personally hear testimonies and examine evidence before rendering a verdict.
 
