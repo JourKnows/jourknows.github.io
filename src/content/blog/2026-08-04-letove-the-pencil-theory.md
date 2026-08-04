@@ -9,6 +9,7 @@ authorBio: Hayden is whimsy built by hard facts, and a strong will to create
   to become a change-maker with the firm belief that the pen is mightier than
   the sword.
 authorImage: /Untitled-design-8.jpg
+illustrator: "Von Bryan Alcantara "
 copyeditor: "Maria Selma Aspe "
 pubDatetime: 2026-08-04
 modDatetime: 2026-08-04
