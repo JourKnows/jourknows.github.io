@@ -1,5 +1,5 @@
 ---
-author: Hayden Grace B. Jolito
+author: Hayden Grace Jolito
 authorTitle: Feature Desk Volunteer
 authorBio: Hayden is whimsy built by hard facts, and a strong will to create
   pieces that open new horizons to readers. She has devoted her time in
