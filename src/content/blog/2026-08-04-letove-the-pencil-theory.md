@@ -26,7 +26,7 @@ description: Love has the lifespan of a pencil. Fresh from the box, untouched,
   sketch drawn, its tip grows dull and its body grows small. It sacrifices
   pieces of itself to leave something meaningful behind.
 ---
-![](/FEATS-TEMPLATE(1).png)
+![](/featsss.png)
 
 Love has the lifespan of a pencil. 
 
