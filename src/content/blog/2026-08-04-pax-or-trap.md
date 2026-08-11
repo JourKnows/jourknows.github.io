@@ -1,6 +1,7 @@
 ---
 author: Fevie Rose Miguel
 authorTitle: Opinion Desk Volunteer
+authorBio: Fevie Rose Miguel is a JourKnows Volunteer under the Opinion Desk Department
 authorImage: /Untitled-design-8.jpg
 illustrator: Axelcris Garcia Suladay
 pubDatetime: 2026-08-04
@@ -9,9 +10,15 @@ title: Pax or Trap?
 ogImage: /Axelcris(1).png
 featured: true
 draft: false
-description: opinion
+locale: en
+tags:
+  - opinion
+description: Sa ika-21 na siglo, hindi na kailangan ng baril at sandata upang
+  sakupin ang isang  bansa, ito ay natatago na lamang sa likod ng mga kasunduan,
+  pamumuhunan, at  teknolohiyang may kasamang mga kondisyong maaaring magdikta
+  sa ating  kinabukasan.
 ---
-![](/Axelcris(1).png)
+![](/Axelcris.jpg)
 
 Sa ika-21 na siglo, hindi na kailangan ng baril at sandata upang sakupin ang isang  bansa, ito ay natatago na lamang sa likod ng mga kasunduan, pamumuhunan, at  teknolohiyang may kasamang mga kondisyong maaaring magdikta sa ating  kinabukasan. 
 
