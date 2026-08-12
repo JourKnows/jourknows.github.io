@@ -17,6 +17,8 @@ description: Nagbabala ang mga eksperto na patuloy na binabawasan ng climate
   temperatura sa gabi na nagdudulot ng mas malaking panganib sa kalusugan, ayon
   sa report nitong ika-21 ng Hulyo.
 ---
+![](</Mas maiinit na gabi, banta sa kalusugan at pagtulog.png>)
+
 Nagbabala ang mga eksperto na patuloy na binabawasan ng climate change ang kalidad ng pagtulog ng milyun-milyong tao dahil sa pagtaas ng temperatura sa gabi na nagdudulot ng mas malaking panganib sa kalusugan, ayon sa report nitong ika-21 ng Hulyo.
 
 Batay sa pagsusuri ng Climate Central, nawalan ng mahigit 50 oras ng tulog bawat taon ang karaniwang tao sa buong mundo mula 2020 hanggang 2025 dahil sa mas maiinit na  klima tuwing gabi. 
