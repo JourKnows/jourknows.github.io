@@ -8,7 +8,7 @@ authorBio: Andre is currently a student-journalist at the same time a part of
 authorImage: /Untitled-design-8.jpg
 illustrator: Joshua Lian Cawilan
 copyeditor: Khaine Odanga
-pubDatetime: 2026-07-20
+pubDatetime: 2026-08-12
 modDatetime: 2026-08-12
 title: Mayon Volcano shows renewed lava activity, remains under alert level 3
 ogImage: /Mayon Volcano shows renewed lava activity, remains under alert level 3.png
