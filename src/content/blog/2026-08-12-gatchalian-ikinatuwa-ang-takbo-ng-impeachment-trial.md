@@ -18,7 +18,7 @@ description: Ikinatuwa ni Senate President Sherwin Gatchalian ang maayos na
   sa maayos na koordinasyon, seguridad, at pagproseso ng mga subpoena sa Senado
   sa isinagawang press briefing nitong Huwebes, Hulyo 24.
 ---
-![](</PCG kinondena pagharang ng China sa Ayungin (2).png>)
+![](/pcggg.jpg)
 
 Ikinatuwa ni Senate President Sherwin Gatchalian ang maayos na takbo ng impeachment trial ni Vice President Sara Duterte, kasabay ng pagpuri sa maayos na koordinasyon, seguridad, at pagproseso ng mga subpoena sa Senado sa isinagawang press briefing nitong Huwebes, Hulyo 24.
 
