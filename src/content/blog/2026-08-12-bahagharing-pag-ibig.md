@@ -33,4 +33,3 @@ Walang alinlangan, ibubuhos ko ang kulay ng aking kalooban upang iparating sayo 
 
 Itong pag-ibig ay maihahalintulad sa isang espadang may dalawang talim na kayang bitbitin ang pusong nasa bingit ng hangganan. Taglay nito ang takot na dinadala sa isang pagmamahal na labas sa pang-unawa, ngunit kasabay rin nito ang pagpusta sa isang maliwanag na bukas. Ito ang kakayahang lampasan ang delubyo na dinadala, at pagmasdan ang pagsilang ng pambihirang ningning ng bahaghari. Sapagkat ito mismo ay bahagi ng mundo—kakaiba, makapigil-hininga ang ganda, at hindi mawari kung saan nagsisimula at nagwawakas. 
 
-  
