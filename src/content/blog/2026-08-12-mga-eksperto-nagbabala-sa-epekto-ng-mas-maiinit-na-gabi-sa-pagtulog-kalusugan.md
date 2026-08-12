@@ -11,7 +11,7 @@ ogImage: /Mas maiinit na gabi, banta sa kalusugan at pagtulog.png
 featured: false
 draft: false
 tags:
-  - news
+  - sci-tech
 description: Nagbabala ang mga eksperto na patuloy na binabawasan ng climate
   change ang kalidad ng pagtulog ng milyun-milyong tao dahil sa pagtaas ng
   temperatura sa gabi na nagdudulot ng mas malaking panganib sa kalusugan, ayon
