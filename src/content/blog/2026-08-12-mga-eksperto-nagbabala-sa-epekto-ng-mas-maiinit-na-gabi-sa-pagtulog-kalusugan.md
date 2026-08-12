@@ -1,6 +1,7 @@
 ---
 author: France Louie Palos
 authorTitle: News Desk Staffer
+authorBio: France Louie Palos serves as a JourKnows Staffer under the News Desk Department
 authorImage: /Untitled-design-8-1.jpg
 illustrator: Joshua Lian Cawilan
 copyeditor: Axel Delino
