@@ -17,6 +17,8 @@ description: Nilinaw ni Senate President Sherwin Gatchalian na walang nakalaang
   impeachment trial ni Vice President Sara Duterte nitong Huwebes, ika-23 ng
   Hulyo.
 ---
+![](</Senado walang pondo sa pagkain ng impeachment trial.png>)
+
 Nilinaw ni Senate President Sherwin Gatchalian na walang nakalaang pondo ang Senado upang sagutin ang pagkain ng prosecution at defense panel sa impeachment trial ni Vice President Sara Duterte nitong Huwebes, ika-23 ng Hulyo.
 
 Ayon kay Gatchalian, hindi pa niya pormal na sinasagot ang kahilingan ni Duterte na sagutin ng Senado ang pagkain ng kaniyang defense panel at gamitin ang accredited caterer ng Office of the Vice President OVP.
