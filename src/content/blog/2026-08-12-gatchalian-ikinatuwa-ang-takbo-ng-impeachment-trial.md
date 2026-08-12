@@ -4,7 +4,7 @@ authorTitle: News Desk Staffer
 authorImage: /Untitled-design-8-1.jpg
 illustrator: Joshua Lian Cawilan
 copyeditor: Axel Delino
-pubDatetime: 2026-08-12
+pubDatetime: 2026-07-23
 modDatetime: 2026-08-12
 title: "Gatchalian ikinatuwa ang takbo ng impeachment trial "
 ogImage: /PCG kinondena pagharang ng China sa Ayungin (2).png
