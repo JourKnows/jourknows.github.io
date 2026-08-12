@@ -29,7 +29,5 @@ Napapawis na mga kamay at nanginginig na tinig sa pagbigkas ng salita—tagpong 
 
 Walang alinlangan, ibubuhos ko ang kulay ng aking kalooban upang iparating sayo na ika’y hindi naiiba sakin. Kung ikaw man ay pula na masidhing lumiliyab at nag-uumapaw, hayaan mong tawirin ko ang pagitan natin. Hindi ko alintana kung paano inilalarawan ang iyong nakakapasong pagyapos sa pusong buhay at tumitibok. ‘Di bale na kung ano ang iyong kulay sa bahaghari, sapagkat ang pagiging parte nito ay kahanga-hanga, dahil ito’y sumasalamin sa diwa ng pagkatao ang sinag ng pahalang tinta. 
 
-
-
 Itong pag-ibig ay maihahalintulad sa isang espadang may dalawang talim na kayang bitbitin ang pusong nasa bingit ng hangganan. Taglay nito ang takot na dinadala sa isang pagmamahal na labas sa pang-unawa, ngunit kasabay rin nito ang pagpusta sa isang maliwanag na bukas. Ito ang kakayahang lampasan ang delubyo na dinadala, at pagmasdan ang pagsilang ng pambihirang ningning ng bahaghari. Sapagkat ito mismo ay bahagi ng mundo—kakaiba, makapigil-hininga ang ganda, at hindi mawari kung saan nagsisimula at nagwawakas. 
 
