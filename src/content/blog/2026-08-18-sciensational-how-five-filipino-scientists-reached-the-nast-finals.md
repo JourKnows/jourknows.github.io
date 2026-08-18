@@ -88,10 +88,6 @@ He developed a low-cost LAMP (loop-mediated isothermal amplification) assay for 
 
 Moreover, Pavon excelled as the 2nd placer in the NAST finals.
 
-The winners were announced during the 48th Annual Scientific Meeting of NAST PHL on July 9, 2026. The five scientists were recognized as Talent Search Finalists.
-
-Five remarkable scientists showcased true Filipino pride using their own intelligence in their own fields. And with that, Sci-FIVE for their outstanding performances. 
-
 
 
 &nbsp;
