@@ -22,7 +22,7 @@ description: Diesel and gasoline prices are expected to rise significantly next
 ---
 ![](</Screenshot 2026-08-17 214917-1.png>)
 
-Diesel and gasoline prices are expected to rise significantly next week due to higher global oil prices, according to an unnamed industry source on Friday, August 14.
+Diesel and gasoline prices are expected to rise significantly next week due to higher global oil prices, according to an oil industry source on Friday, August 14.
 
 Based on Mean of Platts Singapore (MOPS) prices and exchange rates recorded from Aug. 10 to 13, diesel prices could increase by P3.75 to P4.25 per liter, while gasoline prices may rise by P2.50 to P3.00 per liter next week.
 
@@ -34,4 +34,3 @@ Declining global oil inventories have also contributed to higher prices, as cons
 
 Meanwhile, potential sanctions-related disruptions have further raised concerns about tighter conditions in the global crude oil market.
 
-  
