@@ -15,14 +15,14 @@ draft: false
 locale: en
 tags:
   - news
-description: he Department of Budget and Management (DBM) formally submitted the
-  ₱7.2-trillion Fiscal Year 2027 National Expenditure Program (NEP) to President
-  Ferdinand Marcos Jr. on Aug. 11, marking a 6% increase from the previous
-  budget.
+description: The Department of Budget and Management (DBM) formally submitted
+  the ₱7.2-trillion Fiscal Year 2027 National Expenditure Program (NEP) to
+  President Ferdinand Marcos Jr. on Aug. 11, marking a 6% increase from the
+  previous budget.
 ---
 ![](/tempp.png)
 
-The Department of Budget and Management (DBM) formally submitted the P7.2-trillion Fiscal Year 2027 National Expenditure Program (NEP) to President Ferdinand Marcos Jr. on August 11, marking a 6% increase from the previous budget.
+The Department of Budget and Management (DBM) formally submitted the P7.2-trillion Fiscal Year 2027 National Expenditure Program (NEP) to President Ferdinand Marcos Jr. on Aug. 11, marking a 6% increase from the previous budget.
 
 The Palace announced that DBM Acting Secretary Kim Robert De Leon formally handed over the proposed 2027 NEP to President Marcos, which prioritizes education, healthcare, livelihood, security, and community empowerment in line with the government’s theme of “people-centered growth for an inclusive and resilient future”.
 
@@ -42,4 +42,3 @@ Moreover, the Department of the Interior and Local Government (DILG) received a 
 
 The proposed 2027 national budget of P7.2 trillion is equivalent to 21.7 percent of the gross domestic product (GDP).
 
-  
