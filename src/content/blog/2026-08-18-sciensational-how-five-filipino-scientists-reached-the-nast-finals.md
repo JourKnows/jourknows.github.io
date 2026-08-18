@@ -23,7 +23,7 @@ draft: false
 locale: "en "
 tags:
   - sci-tech
-  - features
+  - feature
 description: As the finals of the 2026 Talent Search for Young Scientists
   (NTSYS) of the National Academy of Science and Technology Philippines (NAST
   PHL) concluded, five emerging Filipino scientists showcased their exceptional
