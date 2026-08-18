@@ -22,7 +22,7 @@ description: About 2.4 million Afghan girls have been denied secondary education
 ---
 ![](</Screenshot 2026-08-18 105756.png>)
 
-About 2.4 million Afghan girls have been denied secondary education since the Taliban reclaimed power in 2021, according to the United Nations Educational, Scientific and Cultural Organization (UNESCO) on Tuesday.
+About 2.4 million Afghan girls have been denied secondary education since the Taliban reclaimed power in 2021, according to the United Nations Educational, Scientific and Cultural Organization (UNESCO) on Tuesday, Aug. 11. 
 
 "Afghanistan is the only country in the world to formally prohibit access to education for girls and women beyond the primary level," UNESCO said in its statement.
 
