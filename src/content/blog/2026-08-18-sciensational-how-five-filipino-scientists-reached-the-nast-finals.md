@@ -30,7 +30,7 @@ description: As the finals of the 2026 Talent Search for Young Scientists
   skills and presented their research before the academy on April 22 at the
   Admiral Hotel in Manila.
 ---
-![](/11.jpg)
+![](/sciensational.png)
 
 As the finals of the 2026 Talent Search for Young Scientists (NTSYS) of the National Academy of Science and Technology Philippines (NAST PHL) concluded, five emerging Filipino scientists showcased their exceptional skills and presented their research before the academy on April 22 at the Admiral Hotel in Manila.
 
@@ -102,5 +102,6 @@ Five remarkable scientists showcased true Filipino pride using their own intelli
 
 &nbsp;
 
+&nbsp;
 
-
+&nbsp;
