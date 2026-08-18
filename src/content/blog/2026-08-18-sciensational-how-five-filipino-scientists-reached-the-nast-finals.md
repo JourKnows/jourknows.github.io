@@ -40,8 +40,6 @@ The finalists’ research spans from artificial intelligence, environmental scie
 
 The winners were announced during the 48th Annual Scientific Meeting of NAST PHL on July 9, 2026. The five scientists were recognized as Talent Search Finalists.
 
-Five remarkable scientists showcased true Filipino pride using their own intelligence in their own fields. And with that, Sci-FIVE for their outstanding performances.
-
 ![](/chu.png)
 
 ### **Engineer Timothy Scott C. Chu**
