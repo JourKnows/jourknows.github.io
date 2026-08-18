@@ -78,7 +78,6 @@ His research focuses on the ecological and human health effects of toxic element
 
 John Vincent R. Pleto is a Filipino environmental scientist and Assistant Professor at the University of the Philippines Los Baños. His research focuses on freshwater ecology, plankton ecology, water quality, environmental pollution, and bioremediation.
 
-  
 He is particularly known for developing a phytoplankton-based method for assessing the ecological health of the Seven Lakes of San Pablo City, Laguna. In 2026, he was recognized by NAST Philippines as a third-prize awardee in the NTSYS alongside other finalists like Timothy Scott C. Chu, Ronnel C. Nolos, and Rance Derrick N. Pavon.
 
 ![](/orange.png)
@@ -99,14 +98,9 @@ Five remarkable scientists showcased true Filipino pride using their own intelli
 
 &nbsp;
 
-  
-  
+&nbsp;
 
+&nbsp;
 
-  
-  
-
-
-###   
 
 
