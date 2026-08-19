@@ -16,7 +16,7 @@ description: Dalawang estudyante, kabilang ang umano'y gunman, ang nasawi sa
   pamamaril sa loob ng high school campus ng Ateneo de Zamboanga sa Barangay
   Tumaga noong Martes, ayon sa mga awtoridad.
 ---
-
+![](/adzu.jpg)
 
 Dalawang estudyante, kabilang ang umano'y gunman, ang nasawi sa pamamaril sa Ateneo de Zamboanga University Junior High School campus sa Barangay Tumaga, Zamboanga City noong Martes, Agosto 18, ayon sa mga awtoridad. Siyam pang estudyante ang nasugatan sa insidente.
 
