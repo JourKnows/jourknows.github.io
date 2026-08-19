@@ -8,6 +8,7 @@ copyeditor: "Khaine Odanga "
 pubDatetime: 2026-08-19
 modDatetime: 2026-08-19
 title: 2 estudyante patay, 9 sugatan sa pamamaril sa Ateneo de Zamboanga
+ogImage: /adzu-1.jpg
 featured: true
 draft: false
 tags:
