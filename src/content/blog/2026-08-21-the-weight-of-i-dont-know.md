@@ -1,6 +1,8 @@
 ---
 author: Kent Ashley Galvezo
 authorTitle: Feature Desk Volunteer
+authorBio: Kent Ashley Galvezo is a JourKnows Volunteer under the Features &
+  Lifestyle Desk Department
 authorImage: /Untitled design-8-1.jpg
 illustrator: Von Bryan Alcantara
 copyeditor: Maria Selma Aspe
