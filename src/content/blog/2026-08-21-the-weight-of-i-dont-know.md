@@ -21,6 +21,8 @@ description: In every choice made, there is always a lingering feeling of
   future is not a clear destination, but an unanswered question that adds weight
   with each passing day.
 ---
+![](/FEATS-TEMPLATE.png)
+
 In every choice made, there is always a lingering feeling of uncertainty, wrapped and disguised as relief of finally making a decision. While many students confidently declare their future with a dream profession, not everyone has an answer ready. Yet, behind every smile and certainty of others, there are still students who freeze and tremble when asked with a simple question, "*What do you want to be after high school?”* For them, the future is not a clear destination, but an unanswered question that adds weight with each passing day. 
 
 Most students struggle when choosing a career. For many, making the right decision is a thin line between practicality and passion. Whether they choose to do what they love or question where they belong.
