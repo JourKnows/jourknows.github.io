@@ -2,7 +2,7 @@
 author: Jessilyn Kate Pineda
 authorTitle: JourKnows Volunteer
 authorBio: Jessilyn Kate Pineda serves as a JourKnows Staffer/Volunteer under
-  the [Section] Desk Department
+  the Opinion Desk Department
 authorImage: /Untitled-design-8.jpg
 illustrator: "Rian James Patalita "
 pubDatetime: 2026-08-24
@@ -39,4 +39,3 @@ The inclusion of AI in Buwan ng Wika only amplify anti-intellectualism. This too
 
 If a culture is deeply embedded with anti-intellectualism, treating critical inquiry as impractical or pretentious, AI can make it easier to bypass the effort altogether. It does not merely make information accessible. When misused, it may normalize the idea that thinking and understanding an idea by thinking for oneself is unnecessary. In a country already struggling with division and disinformation, the integration of AI and Buwan ng Wika is not innovation. It is simply adapting to what is technologically trendy. This undermines Buwan ng Wika’s purpose—for people to value their language, to discern, and comprehend. 
 
-  
