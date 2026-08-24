@@ -1,8 +1,8 @@
 ---
 author: Jessilyn Kate Pineda
 authorTitle: JourKnows Volunteer
-authorBio: Jessilyn Kate Pineda serves as a JourKnows Staffer/Volunteer under
-  the Opinion Desk Department
+authorBio: Jessilyn Kate Pineda serves as a JourKnows Volunteer under the
+  Opinion Desk Department
 authorImage: /Untitled-design-8.jpg
 illustrator: "Rian James Patalita "
 pubDatetime: 2026-08-24
