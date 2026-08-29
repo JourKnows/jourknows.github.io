@@ -21,7 +21,7 @@ description: The Department of Education (DepEd) is seeking new rules that would
 ---
 ![](/marcosch.png)
 
-The Department of Education (DepEd) is seeking new rules that would allow individual schools to resume classes amidst in effect class suspensions across an entire city or municipality to prevent prolonged disruption of classes after disasters.
+The Department of Education (DepEd) is seeking new rules that would allow individual schools to resume classes despite suspensions in effect across an entire city or municipality to prevent prolonged disruption of classes after disasters.
 
 DepEd has submitted a draft executive order (EO) to President Ferdinand Marcos Jr. following three weeks of monsoon rains that caused massive flooding and landslides, forcing thousands of schools to cancel classes.
 
