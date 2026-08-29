@@ -10,7 +10,7 @@ title: "JourKnows is opening its year-round recruitment. Here's what you need to
   know. "
 ogImage: /jkkk.jpg
 featured: true
-draft: true
+draft: false
 locale: en
 tags:
   - news
