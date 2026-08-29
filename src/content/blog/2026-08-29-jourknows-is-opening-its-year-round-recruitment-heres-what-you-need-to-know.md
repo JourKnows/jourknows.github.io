@@ -58,4 +58,3 @@ Just come as you are. Bring your curiosity, your initiative, and your willingnes
 
 **We’ll let your story, and your initiative, speak for itself.**
 
-  
