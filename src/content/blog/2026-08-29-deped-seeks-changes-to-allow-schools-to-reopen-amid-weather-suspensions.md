@@ -6,7 +6,7 @@ authorImage: /Untitled-design-8-2.jpg
 illustrator: Joshua Lian Cawilan
 pubDatetime: 2026-08-29
 modDatetime: 2026-08-29
-title: DepEd seeks changes to allow schools to reopen amid weather suspensions
+title: DepEd seeks changes to allow schools to resume classes amid weather suspensions
 ogImage: /marcosch-1.png
 featured: true
 draft: false
@@ -14,21 +14,19 @@ locale: en
 tags:
   - news
 description: The Department of Education (DepEd) is seeking new rules that would
-  allow individual schools to reopen amidst in effect class suspensions across
-  an entire city or municipality to prevent prolonged disruption of classes
-  after disasters.
+  allow individual schools to resume classes amidst in effect class suspensions
+  across an entire city or municipality to prevent prolonged disruption of
+  classes after disasters.
 ---
-
-
 ![](/marcosch.png)
 
-The Department of Education (DepEd) is seeking new rules that would allow individual schools to reopen amidst in effect class suspensions across an entire city or municipality to prevent prolonged disruption of classes after disasters.
+The Department of Education (DepEd) is seeking new rules that would allow individual schools to resume classes amidst in effect class suspensions across an entire city or municipality to prevent prolonged disruption of classes after disasters.
 
 DepEd has submitted a draft executive order (EO) to President Ferdinand Marcos Jr. following three weeks of monsoon rains that caused massive flooding and landslides, forcing thousands of schools to cancel classes.
 
 “While safety will always remain our nonnegotiable priority, we can no longer rely on broad, blanket suspensions where an entire city shuts down even when individual campuses are dry, safe, and ready to teach,” DepEd Secretary Juan Edgardo “Sonny” Angara stated.
 
-Under the proposed executive order (EO), schools that are safe and accessible may reopen based on site-specific safety assessment.
+Under the proposed executive order (EO), schools that are safe and accessible may continue "granular" operations based on site-specific safety assessment.
 
 “If a school is clear, accessible, and certified safe, our learners should be back in the classroom without delay,” Angara added.
 
