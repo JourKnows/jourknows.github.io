@@ -6,7 +6,8 @@ authorImage: /Untitled-design-8-2.jpg
 illustrator: Joshua Lian Cawilan
 pubDatetime: 2026-08-29
 modDatetime: 2026-08-29
-title: DepEd seeks changes to allow schools to resume classes amid weather suspensions
+title: DepEd seeks changes allowing  schools to resume classes amid weather
+  suspensions
 ogImage: /marcosch-1.png
 featured: true
 draft: false
