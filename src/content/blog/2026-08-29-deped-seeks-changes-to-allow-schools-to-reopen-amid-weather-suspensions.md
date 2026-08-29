@@ -18,7 +18,6 @@ description: The Department of Education (DepEd) is seeking new rules that would
   an entire city or municipality to prevent prolonged disruption of classes
   after disasters.
 ---
-  
 
 
 ![](/marcosch.png)
@@ -45,4 +44,3 @@ Meanwhile, private schools would be allowed to announce the resumption of classe
 
 DepEd stated that local government and school division offices would have a one-hour concurrence period upon receiving a school’s safety assessment.
 
-  
