@@ -52,9 +52,10 @@ And by **November**, JourKnows will release its first newsletter, featuring stor
 
 Whether you’ve covered a press conference, written your first article, picked up a camera for the first time, or have simply always wanted to tell a story, you have a place here.
 
-**JourKnows’ year-round recruitment is tentatively scheduled to begin on  Friday, Sept. 4.** 
+**JourKnows’ year-round recruitment is tentatively scheduled to begin on Friday, Sept. 4.**
 
 Just come as you are. Bring your curiosity, your initiative, and your willingness to learn.
 
 **We’ll let your story, and your initiative, speak for itself.**
 
+  
