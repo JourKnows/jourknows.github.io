@@ -21,8 +21,6 @@ description: Five days after catastrophic flash floods tore through the
   780](https://www.philstar.com/headlines/2026/08/31/2553067/5-days-after-nepal-tibet-flood-missing-filipino-doctors-family-still-waits)++
   and nearly 3,000 people remain unaccounted for.
 ---
-
-
 ![](/doctorrr-1.jpg)
 
 Five days after catastrophic flash floods tore through the Nepal-Tibet border, the family of Filipino doctor Juan Carlos Manalo is still waiting for official word on his fate, as the confirmed death toll from the disaster ++[climbs past 780](https://www.philstar.com/headlines/2026/08/31/2553067/5-days-after-nepal-tibet-flood-missing-filipino-doctors-family-still-waits)++ and nearly 3,000 people remain unaccounted for.
@@ -51,4 +49,3 @@ Search efforts along the border were briefly complicated after a ++[barrier lake
 
 The disaster, ++[triggered by a glacier collapse](https://www.aljazeera.com/news/2026/8/27/nepal-tibet-floods-what-happened-what-caused-them-and-who-is-missing)++ that sent a wall of water, ice and debris down the Himalayas, remains one of the deadliest flooding events in the region's recent history, with Nepali and Chinese rescue teams still working to reach areas cut off by damaged roads and unstable terrain.
 
-  
