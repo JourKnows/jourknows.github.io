@@ -9,9 +9,10 @@ pubDatetime: 2026-08-31
 modDatetime: 2026-08-31
 title: Family of Filipino doctor lost in Nepal floods still awaiting word from
   authorities
-ogImage: /doctorrr.jpg
+ogImage: /nepal-1.jpg
 featured: true
 draft: false
+locale: en
 tags:
   - news
 description: Five days after catastrophic flash floods tore through the
@@ -21,7 +22,7 @@ description: Five days after catastrophic flash floods tore through the
   780](https://www.philstar.com/headlines/2026/08/31/2553067/5-days-after-nepal-tibet-flood-missing-filipino-doctors-family-still-waits)++
   and nearly 3,000 people remain unaccounted for.
 ---
-![](/doctorrr-1.jpg)
+![](/nepal.jpg)
 
 Five days after catastrophic flash floods tore through the Nepal-Tibet border, the family of Filipino doctor Juan Carlos Manalo is still waiting for official word on his fate, as the confirmed death toll from the disaster ++[climbs past 780](https://www.philstar.com/headlines/2026/08/31/2553067/5-days-after-nepal-tibet-flood-missing-filipino-doctors-family-still-waits)++ and nearly 3,000 people remain unaccounted for.
 
