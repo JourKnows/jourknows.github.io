@@ -28,7 +28,7 @@ description: “Your dreams don’t live at home.” Madaling araw, mulat na ang
   papuntang Maynila, kundi para bumiyahe sa parehong kalsadang ilang taon mo
   nang kabisado.
 ---
-![](/AINT.png)
+![](/AINT.jpg)
 
 “Your dreams don’t live at home.”
 
