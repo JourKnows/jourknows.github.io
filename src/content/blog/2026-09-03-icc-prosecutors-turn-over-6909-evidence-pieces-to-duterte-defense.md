@@ -56,4 +56,3 @@ Trial Chamber III granted the request in June and reconstituted the same three-e
 
 Prosecutors expect to complete all remaining pre-trial disclosure and preparation steps by Sept. 30, ahead of the Nov. 30 trial.
 
-  
