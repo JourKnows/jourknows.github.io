@@ -25,7 +25,9 @@ The Department of Education (DepEd) launched an artificial intelligence-powered 
 
 Education Secretary Sonny Angara led the rollout of Project LIGTAS+, or Learning Institution Geohazard Tracking and Assessment for Safety, an AI-enabled multi-hazard analytics platform developed by DepEd's Disaster Risk Reduction and Management Service in partnership with the Education Center for AI Research.
 
-The platform monitors elevated risks near more than 47,000 public schools nationwide, tracking rainfall, extreme heat, wind speeds and temperature changes in real time to detect hazards early. It also features an interactive multi-hazard map, school-level risk profiles, flood intelligence using satellite synthetic aperture radar data, earthquake impact assessments, volcanic activity monitoring, and AI-powered weather forecasts up to 10 days in advance.
+The platform monitors elevated risks near more than 47,000 public schools nationwide, tracking rainfall, extreme heat, wind speeds and temperature changes in real time to detect hazards early. 
+
+It also features an interactive multi-hazard map, school-level risk profiles, flood intelligence using satellite synthetic aperture radar data, earthquake impact assessments, volcanic activity monitoring, and AI-powered weather forecasts up to 10 days in advance.
 
 Angara called for a shift from reactive to proactive disaster preparedness.
 
