@@ -21,7 +21,7 @@ description: The Department of Education launched an artificial
 ---
 ![](/depai-1.png)
 
-The Department of Education (DepEd) launched an artificial intelligence-powered platform nationwide to help schools monitor hazards using satellite imagery and geospatial data, part of a broader push to prepare for disasters that could disrupt classes.
+The Department of Education launched an artificial intelligence-powered platform nationwide to help schools monitor hazards using satellite imagery and geospatial data, part of a broader push to prepare for disasters that could disrupt classes.
 
 Education Secretary Sonny Angara led the rollout of Project LIGTAS+, or Learning Institution Geohazard Tracking and Assessment for Safety, an AI-enabled multi-hazard analytics platform developed by DepEd's Disaster Risk Reduction and Management Service in partnership with the Education Center for AI Research.
 
