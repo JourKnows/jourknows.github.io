@@ -2,6 +2,7 @@
 author: Alexa M. Lorena
 authorTitle: JourKnows Staffer
 authorBio: Alexa M. Lorena serves as a JourKnows Staffer under the News Desk Department
+authorImage: /Untitled design-8.jpg
 illustrator: Joshua Lian Cawilan
 copyeditor: "Khaine Odanga "
 pubDatetime: 2026-09-03
