@@ -16,6 +16,7 @@ title: Hontiveros gears up for potential presidential bid, ‘preparing very har
 ogImage: /news.png
 featured: true
 draft: false
+locale: en
 tags:
   - news
 description: Sen. Risa Hontiveros says that she is “preparing very hard” for a
