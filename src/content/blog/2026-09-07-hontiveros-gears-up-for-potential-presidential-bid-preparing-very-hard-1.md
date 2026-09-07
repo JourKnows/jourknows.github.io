@@ -57,5 +57,3 @@ Hontiveros was in Iloilo to address 200 young Filipinos attending the Youth Conv
 
 The event was organized by SAKDAG Philippines to promote youth leadership, civic engagement, and nation-building.
 
-  
-  
