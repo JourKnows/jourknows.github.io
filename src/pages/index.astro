@@ -10,10 +10,6 @@ import CartoonComicViewer from "@components/CartoonComicViewer";
 import LatestDeckViewer from "@components/LatestDeckViewer";
 import ExplainerGallery from "@components/ExplainerGallery";
 import AppFooter from "@components/AppFooter.astro";
-import SectionHeader from "@components/SectionHeader.astro";
-import HeaderCard from "@components/HeaderCard.astro";
-
-import SmallCard from "@components/SmallCard.astro";
 import { SECTION_COLORS } from "@utils/constants";
 import getFirstImage from "@utils/getFirstImage";
 import { slugifyAll } from "@utils/slugify";
@@ -36,11 +32,14 @@ const SECTION_ORDER = [
 const categoryTags = [...allTags].sort((a, b) => {
   const aIdx = SECTION_ORDER.indexOf(a.tag);
   const bIdx = SECTION_ORDER.indexOf(b.tag);
+
   if (aIdx !== -1 && bIdx !== -1) return aIdx - bIdx;
   if (aIdx !== -1) return -1;
   if (bIdx !== -1) return 1;
+
   return a.tagName.localeCompare(b.tagName);
 });
+
 const navLinks = [
   { label: "HOME", href: "/" },
   ...allTags.map(t => ({
@@ -51,16 +50,29 @@ const navLinks = [
 
 const latestPosts = sortedPosts;
 
-// Get categorised posts simply
 const getPostsByCategory = (cat: string) => {
   return sortedPosts
     .filter(p => slugifyAll(p.data.tags || []).includes(cat))
     .slice(0, 4);
 };
+
+const formatDate = (d?: Date | string) =>
+  d
+    ? new Date(d).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      })
+    : "Unknown Date";
+
+const FALLBACK_IMAGE =
+  "https://placehold.co/800x600/f4f1e1/1a1a1a?text=No+Image";
 ---
 
 <Layout title="JourKnows | Home">
-  <div class="font-display min-h-[100vh] bg-[#f5f6fa] m-0 p-0 text-[#1e1e1e]">
+  <div
+    class="font-display min-h-[100vh] bg-[#fdfdfb] m-0 p-0 text-[#1e1e1e]"
+  >
     <AppNavbar client:load activeHref="/" navLinks={navLinks} />
 
     <div>
@@ -75,13 +87,7 @@ const getPostsByCategory = (cat: string) => {
                 slug: p.slug || "",
                 author: p.data.author || "JourKnows",
                 image: getFirstImage(p.body) || null,
-                date: p.data.pubDatetime
-                  ? new Date(p.data.pubDatetime).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    })
-                  : "Unknown Date",
+                date: formatDate(p.data.pubDatetime),
                 tag: p.data.tags?.[0] || "NEWS",
                 description: p.data.description || "",
               }))}
@@ -90,109 +96,225 @@ const getPostsByCategory = (cat: string) => {
         )
       }
 
-      {/* ── Category sections ── */}
-      <div class="animate-glassFadeUp" style="animation-delay: 300ms;">
+      {/* ── Desk sections ── */}
+      <div
+        class="sm:mx-5 lg:mx-10 animate-glassFadeUp"
+        style="animation-delay: 300ms;"
+      >
         {
-          categoryTags.map(tagObj => {
+          categoryTags.map((tagObj, i) => {
             const catTag = tagObj.tag;
             const label = tagObj.tagName.toUpperCase();
-            const color = SECTION_COLORS[catTag] || SECTION_COLORS.default;
-
-            // grab posts for this category tag
+            const color =
+              SECTION_COLORS[catTag] || SECTION_COLORS.default;
+            const isEven = i % 2 === 0;
+            const bg = isEven ? "bg-white" : "bg-[#f8f8f6]";
             const catPosts = getPostsByCategory(catTag);
-            if (catPosts.length === 0) return null; // hide section if no posts
 
+            if (catPosts.length === 0) return null;
+
+            /* ── Cartoon: own viewer, spine wrapper only ── */
             if (catTag === "cartoon") {
               const mappedPosts = catPosts.map(p => ({
                 title: p.data.title || "Untitled",
                 slug: p.slug || "",
                 author: p.data.author || "JourKnows",
                 image:
-                  getFirstImage(p.body) ||
-                  "https://placehold.co/800x800/f4f1e1/1a1a1a?text=Artwork+Unavailable",
-                date: p.data.pubDatetime
-                  ? new Date(p.data.pubDatetime).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    })
-                  : "Unknown Date",
+                  getFirstImage(p.body) || FALLBACK_IMAGE,
+                date: formatDate(p.data.pubDatetime),
               }));
 
               return (
-                <div class="mb-3 sm:mb-5 sm:mx-5 lg:mx-10 sm:rounded-2xl bg-white overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.06)]">
-                  <CartoonComicViewer client:visible posts={mappedPosts} />
+                <div class={`flex ${bg} mb-3 sm:mb-4`}>
+                  <div
+                    class="w-1 shrink-0"
+                    style={{ background: color }}
+                  />
+
+                  <div class="flex-1 px-5 sm:px-8 py-7 sm:py-9">
+                    <h2
+                      class="font-display text-sm font-bold tracking-wide mb-5"
+                      style={{ color }}
+                    >
+                      {label}
+                    </h2>
+
+                    <CartoonComicViewer
+                      client:visible
+                      posts={mappedPosts}
+                    />
+                  </div>
                 </div>
               );
             }
 
+            /* ── Explainer: single lead item, no secondary list ── */
             if (catTag === "explainer") {
               const explainerPost = catPosts[0];
+
               if (!explainerPost) return null;
 
               const images = getAllImages(explainerPost.body);
 
               return (
-                <div class="bg-white px-[16px] sm:px-[28px] lg:px-[68px] py-[28px] sm:py-[34px] lg:py-[40px] pb-[36px] sm:pb-[42px] lg:pb-[48px] sm:mx-5 lg:mx-10 sm:rounded-2xl mb-3 sm:mb-5">
-                  <SectionHeader label={label} color={color} />
+                <div class={`flex ${bg} mb-3 sm:mb-4`}>
+                  <div
+                    class="w-1 shrink-0"
+                    style={{ background: color }}
+                  />
 
-                  <div class="mt-5 mb-8">
+                  <div class="flex-1 px-5 sm:px-8 py-7 sm:py-9">
+                    <div class="flex items-baseline justify-between mb-5">
+                      <h2
+                        class="font-display text-sm font-bold tracking-wide"
+                        style={{ color }}
+                      >
+                        {label}
+                      </h2>
+
+                      <a
+                        href={`/tags/${catTag}`}
+                        class="font-display text-xs font-medium text-[#00046d] whitespace-nowrap ml-4 no-underline"
+                      >
+                        View all &rarr;
+                      </a>
+                    </div>
+
                     <ExplainerGallery
                       client:visible
                       title={explainerPost.data.title || "Untitled"}
                       slug={explainerPost.slug || ""}
-                      author={explainerPost.data.author || "JourKnows"}
-                      date={
-                        explainerPost.data.pubDatetime
-                          ? new Date(
-                              explainerPost.data.pubDatetime
-                            ).toLocaleDateString("en-US", {
-                              year: "numeric",
-                              month: "long",
-                              day: "numeric",
-                            })
-                          : "Unknown Date"
+                      author={
+                        explainerPost.data.author || "JourKnows"
                       }
-                      description={explainerPost.data.description || ""}
+                      date={formatDate(
+                        explainerPost.data.pubDatetime
+                      )}
+                      description={
+                        explainerPost.data.description || ""
+                      }
                       images={images}
                     />
-                  </div>
-
-                  <div class="mt-8 text-center">
-                    <a
-                      href={`/tags/${catTag}`}
-                      class="bg-[#00046d] border-none rounded-[20px] px-8 py-2.5 cursor-pointer font-display font-medium text-white text-[12px] uppercase tracking-wide inline-block no-underline shadow-md"
-                    >
-                      READ MORE
-                    </a>
                   </div>
                 </div>
               );
             }
 
+            /* ── Default desks: lead + secondary list, image side alternates ── */
             const headerPost = catPosts[0];
             const smallPosts = catPosts.slice(1, 4);
+            const leadFirst = isEven;
+            const leadImage =
+              getFirstImage(headerPost.body) || FALLBACK_IMAGE;
 
             return (
-              <div class="bg-white px-[16px] sm:px-[28px] lg:px-[68px] py-[28px] sm:py-[34px] lg:py-[40px] pb-[36px] sm:pb-[42px] lg:pb-[48px] sm:mx-5 lg:mx-10 sm:rounded-2xl mb-3 sm:mb-5">
-                <SectionHeader label={label} color={color} />
-                <div class="mb-5">
-                  <HeaderCard post={headerPost} />
-                </div>
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-4 lg:gap-[18px]">
-                  {smallPosts.map((post, i) => (
-                    <div class={i === 2 ? "hidden sm:block" : ""}>
-                      <SmallCard post={post} category={label} />
-                    </div>
-                  ))}
-                </div>
-                <div class="mt-8 text-center">
-                  <a
-                    href={`/tags/${catTag}`}
-                    class="bg-[#00046d] border-none rounded-[20px] px-8 py-2.5 cursor-pointer font-display font-medium text-white text-[12px] uppercase tracking-wide inline-block no-underline shadow-md"
+              <div class={`flex ${bg} mb-3 sm:mb-4`}>
+                <div
+                  class="w-1 shrink-0"
+                  style={{ background: color }}
+                />
+
+                <div class="flex-1 px-5 sm:px-8 py-7 sm:py-9">
+                  <div class="flex items-baseline justify-between mb-5">
+                    <h2
+                      class="font-display text-sm font-bold tracking-wide"
+                      style={{ color }}
+                    >
+                      {label}
+                    </h2>
+
+                    <a
+                      href={`/tags/${catTag}`}
+                      class="font-display text-xs font-medium text-[#00046d] whitespace-nowrap ml-4 no-underline"
+                    >
+                      View all &rarr;
+                    </a>
+                  </div>
+
+                  <div
+                    class={`grid gap-6 sm:gap-8 ${
+                      leadFirst
+                        ? "sm:grid-cols-[1.1fr_1fr]"
+                        : "sm:grid-cols-[1fr_1.1fr]"
+                    }`}
                   >
-                    READ MORE
-                  </a>
+                    <a
+                      href={`/posts/${headerPost.slug}`}
+                      class={`block group ${
+                        leadFirst
+                          ? ""
+                          : "order-1 sm:order-2"
+                      }`}
+                    >
+                      <img
+                        src={leadImage}
+                        class="w-full h-56 sm:h-64 object-cover rounded-md mb-3"
+                        alt={
+                          headerPost.data.title || "Untitled"
+                        }
+                      />
+
+                      <h3 class="text-xl sm:text-2xl font-bold leading-snug mb-2 group-hover:underline">
+                        {headerPost.data.title || "Untitled"}
+                      </h3>
+
+                      {
+                        headerPost.data.description && (
+                          <p class="text-[14px] text-[#555] leading-relaxed mb-2">
+                            {headerPost.data.description}
+                          </p>
+                        )
+                      }
+
+                      <p class="font-display text-xs text-[#999]">
+                        {headerPost.data.author || "JourKnows"}
+                        &nbsp;&middot;&nbsp;{" "}
+                        {formatDate(
+                          headerPost.data.pubDatetime
+                        )}
+                      </p>
+                    </a>
+
+                    <div
+                      class={`space-y-4 ${
+                        leadFirst
+                          ? ""
+                          : "order-2 sm:order-1"
+                      }`}
+                    >
+                      {
+                        smallPosts.map(post => (
+                          <a
+                            href={`/posts/${post.slug}`}
+                            class="flex gap-3 group"
+                          >
+                            <img
+                              src={
+                                getFirstImage(post.body) ||
+                                FALLBACK_IMAGE
+                              }
+                              class="w-20 h-20 object-cover rounded-md shrink-0"
+                              alt={
+                                post.data.title || "Untitled"
+                              }
+                            />
+
+                            <div>
+                              <h4 class="text-[15px] font-bold leading-snug mb-1 group-hover:underline">
+                                {post.data.title || "Untitled"}
+                              </h4>
+
+                              <p class="font-display text-[11px] text-[#999]">
+                                {formatDate(
+                                  post.data.pubDatetime
+                                )}
+                              </p>
+                            </div>
+                          </a>
+                        ))
+                      }
+                    </div>
+                  </div>
                 </div>
               </div>
             );
