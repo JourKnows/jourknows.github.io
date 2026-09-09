@@ -20,10 +20,7 @@ description: A De La Salle University (DLSU) assistant professor won recognition
   Search for Young Scientists (NTSYS) for developing an artificial intelligence
   system that uses drones to detect structural damage.
 ---
-  
-
-
-![](/mission-1.jpg)
+![](/mission.jpg)
 
 A De La Salle University (DLSU) assistant professor won recognition at the 2026 National Academy of Science and Technology Philippines Talent Search for Young Scientists (NTSYS) for developing an artificial intelligence system that uses drones to detect structural damage.
 
@@ -39,4 +36,3 @@ The presentation comes amid ongoing concerns about infrastructure quality across
 
 NTSYS is held annually by the National Academy of Science and Technology, Philippines (NAST PHL), to honor young Filipino researchers and encourage careers in science.
 
-  
