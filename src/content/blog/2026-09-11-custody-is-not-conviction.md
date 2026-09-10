@@ -44,4 +44,3 @@ There is hope, but it must be turned into action.
 
 Romualdez’s arrest is not justice served. The long history of plunder cases ending in dismissals, acquittals, or pardons for the powerful should remind Filipinos to remain vigilant and skeptical. This is only the beginning. The real test is whether the justice system will finally hold him accountable.
 
-  
