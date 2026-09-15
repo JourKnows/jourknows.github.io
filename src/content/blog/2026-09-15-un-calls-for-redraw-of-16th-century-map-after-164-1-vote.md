@@ -12,6 +12,7 @@ title: UN Calls for Redraw of 16th-Century Map After 164-1 Vote
 ogImage: /un.jpeg
 featured: true
 draft: false
+locale: en
 tags:
   - sci-tech
 description: The United Nations General Assembly voted 164-1 to call for a
