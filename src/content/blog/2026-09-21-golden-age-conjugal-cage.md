@@ -18,8 +18,8 @@ pubDatetime: 2026-09-21
 modDatetime: 2026-09-21
 title: "Golden age, conjugal cage  "
 ogImage: /Golden age, conjugal cage.png
-featured: true
-draft: false
+featured: false
+draft: true
 tags:
   - feature
 description: Fifty-four years ago today, former President Ferdinand E. Marcos
