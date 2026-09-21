@@ -48,4 +48,3 @@ September 21, 2026 marks this proclamation's 54th anniversary, not a milestone b
 
 Gilded, not solid, describes that age best: a surface applied over a household that treated a nation's treasury the way other families treat a joint bank account. Fourteen years and fifty-four anniversaries later, the real question is not whether the past gleamed. It is who got to claim the gold, and who is still being asked to forget whose it rightfully is.
 
-  
