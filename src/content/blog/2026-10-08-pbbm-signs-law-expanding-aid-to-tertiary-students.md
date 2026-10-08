@@ -24,8 +24,6 @@ description: President Ferdinant Marcos Jr. signed amendments to the Universal
 
 President Ferdinand Marcos Jr. signed amendments to the Universal Access to Quality Tertiary Education Act, expanding government aid for college and vocational students.
 
-Republic Act No. 12325 or An Act Enhancing the Universal Access to Quality Tertiary Education, amended RA No. 10931 or the Universal Access to Quality Tertiary Education Act.
-
 The amendments seek to ensure that students from disadvantaged and underserved groups, including qualified beneficiaries of the Pantawid Pamilyang Pilipino Program (4Ps) receive government assistance.
 
 The law also creates Private Education Assistance to support disadvantaged students in priority programs at private colleges and technical-vocational schools.
