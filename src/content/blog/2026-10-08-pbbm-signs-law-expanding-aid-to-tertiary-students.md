@@ -22,14 +22,14 @@ description: President Ferdinant Marcos Jr. signed amendments to the Universal
 ---
 ![](/TERTIARYSTUDS.png)
 
-President Ferdinant Marcos Jr. signed amendments to the Universal Access to Quality Tertiary Education Act (UAQTEA) to expand government assistance for tertiary and vocational students. 
+President Ferdinand Marcos Jr. signed amendments to the Universal Access to Quality Tertiary Education Act, expanding government aid for college and vocational students.
 
 Republic Act No. 12325 or An Act Enhancing the Universal Access to Quality Tertiary Education, amended RA No. 10931 or the Universal Access to Quality Tertiary Education Act.
 
 The amendments seek to ensure that students from disadvantaged and underserved groups, including qualified beneficiaries of the Pantawid Pamilyang Pilipino Program (4Ps) receive government assistance.
 
-The law also established the Private Education Assistance which will support disadvantaged students in priority programs at private higher education institutions and technical-vocational institutions.
+The law also creates Private Education Assistance to support disadvantaged students in priority programs at private colleges and technical-vocational schools.
 
 “Poor and deserving students taking priority programs who are not covered by existing grants may also receive government support to pursue their students in a qualified private higher education and technical-vocational institutions,” Marcos said in his speech.
 
-The original law provides free tuition and other school fees in a public higher education and state-run technical-vocational institutions, while offering assistance to learning with limited financial means through the Tertiary Education Subsidy.
+The original law covers free tuition and other fees at public colleges and state-run technical-vocational schools, and offers subsidies for students with limited financial means.
