@@ -27,7 +27,7 @@ Executive Secretary Ralph Recto has directed government departments, particularl
 
 Recto also ordered early procurement to boost national preparedness for the possible impacts of the Super El Niño, following a meeting with department heads on Thursday at Malacañang.
 
-According to Philippine Atmospheric, Geophysical and Astronomical Services Administration (PAGASA) Climate Monitoring and Prediction Section chief Ana Liza Solis, a “very strong” El Niño caused by the unusual warming of Pacific Ocean waters will reach its peak between September and December 2026, and will continue through the first half of 2027, with the World Meteorological Organization (MWO) warning that it could rank among the strongest recorded since 1950.
+PAGASA climate monitoring chief Ana Liza Solis said a “very strong” El Niño will peak between September and December 2026 and persist through the first half of 2027, while the World Meteorological Organization warned it could rank among the strongest since 1950.
 
 Department of Science and Technology Secretary Renato Solidum Jr. said PAGASA considers two-month dry conditions and three-month dry spells as severe, prolonged drought. He said all 82 provinces may experience drought by March 2027.
 
