@@ -43,4 +43,4 @@ In a radio interview with DWIZ, Senator Francis Pangilinan urged government agen
 
 Senator Bam Aquino requested Senate President Sherwin Gatchalian to reconvene the Proactive Response and Oversight for Timely and Effective Crisis Strategy (PROTECT) Committee, originally created in March 2026 for Middle East crisis impacts, to align government readiness across livelihood, agriculture, health, education, and essential services ahead of El Niño.
 
-Recto stressed that preparedness is a reason to act early rather than panic, and that synchronized early procurement, local government coordination, and legislative checks will dictate the nation's resilience against the severe climate phenomenon lasting through mid-2027.
+Recto stressed that preparedness is a reason to act early rather than panic, and that synchronized early procurement, local government coordination, and legislative checks will dictate the nation's resilience against the severe climate phenomenon lasting through mid-2027. ***Irene O. Obniala/JourKnows PH***
