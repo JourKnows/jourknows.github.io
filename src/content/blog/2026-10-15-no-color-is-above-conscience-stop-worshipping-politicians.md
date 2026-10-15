@@ -1,6 +1,6 @@
 ---
 author: JourKnows PH Opinion
-authorTitle: "B. Hermio "
+authorTitle: "B. Hermo "
 authorBio: JourKnows PH is a student journalism publication committed to
   amplifying youth voices and delivering stories that matter — Journalism for
   All.
@@ -47,4 +47,3 @@ If we are serious about Palestine then our demands have to be consistent. We hav
 
 It's so easy to go after those we already don't trust. The real test is whether we will be prepared to call out our own allies. Human rights aren't the preserve of any one political party and our commitment to them shouldn't be contingent upon who's in the picture. ***B. Hermo/JourKnows PH*** 
 
-  
