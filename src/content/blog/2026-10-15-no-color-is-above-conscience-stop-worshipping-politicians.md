@@ -8,7 +8,7 @@ authorImage: /Untitled design-9.png
 illustrator: Dylan De Guzman
 pubDatetime: 2026-10-15
 modDatetime: 2026-10-15
-title: "No Color Is Above Conscience: Stop Worshipping Politicians"
+title: "No Color Is Above Conscience: When Politics Overrides Principle"
 ogImage: /nocolor.png
 featured: true
 draft: false
