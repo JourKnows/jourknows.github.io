@@ -1,0 +1,45 @@
+---
+interface Item {
+  title: string;
+  slug: string;
+  tag: string;
+}
+interface Props {
+  posts: Item[];
+}
+const { posts } = Astro.props;
+const items = posts.filter(p => p.title).slice(0, 8);
+const duration = Math.max(30, items.length * 7);
+---
+
+{
+  items.length > 0 && (
+    <div class="jk-ticker" role="region" aria-label="Latest headlines">
+      <div class="jk-ticker-label">
+        <span class="jk-live jk-live--white" />
+        LATEST
+      </div>
+      <div class="jk-ticker-viewport">
+        <div class="jk-ticker-track" style={`animation-duration:${duration}s`}>
+          {items.map(p => (
+            <a href={`/posts/${p.slug}`} class="jk-ticker-item">
+              <span class="jk-ticker-cat">{p.tag.toUpperCase()}</span>
+              {p.title}
+            </a>
+          ))}
+          {items.map(p => (
+            <a
+              href={`/posts/${p.slug}`}
+              class="jk-ticker-item"
+              tabindex="-1"
+              aria-hidden="true"
+            >
+              <span class="jk-ticker-cat">{p.tag.toUpperCase()}</span>
+              {p.title}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
