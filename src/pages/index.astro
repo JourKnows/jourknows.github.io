@@ -10,6 +10,11 @@ import CartoonComicViewer from "@components/CartoonComicViewer";
 import LatestDeckViewer from "@components/LatestDeckViewer";
 import ExplainerGallery from "@components/ExplainerGallery";
 import AppFooter from "@components/AppFooter.astro";
+import Dateline from "@components/Dateline.astro";
+import NewsTicker from "@components/NewsTicker.astro";
+import WeatherWidget from "@components/WeatherWidget";
+import StorySwipe from "@components/StorySwipe";
+import { summarizePost } from "@utils/summarize";
 import { SECTION_COLORS } from "@utils/constants";
 import getFirstImage from "@utils/getFirstImage";
 import { slugifyAll } from "@utils/slugify";
@@ -67,13 +72,50 @@ const formatDate = (d?: Date | string) =>
 
 const FALLBACK_IMAGE =
   "https://placehold.co/800x600/f4f1e1/1a1a1a?text=No+Image";
+
+/* ── Newsroom extras ── */
+
+// Headline ticker + "Top briefs" list
+const headlineItems = sortedPosts.slice(0, 8).map(p => ({
+  title: p.data.title || "Untitled",
+  slug: p.slug || "",
+  tag: p.data.tags?.[0] || "news",
+}));
+const briefs = headlineItems.slice(0, 5);
+
+// Swipe deck: 10 newest stories, each with a short summary.
+// If a post's frontmatter has `aiSummary` (string or string[]) it is used and
+// labelled "AI SUMMARY"; otherwise key sentences are extracted at build time.
+const swipePosts = sortedPosts.slice(0, 10).map(p => {
+  const s = summarizePost(
+    p.body,
+    p.data.description || "",
+    (p.data as { aiSummary?: string | string[] }).aiSummary
+  );
+  return {
+    title: p.data.title || "Untitled",
+    slug: p.slug || "",
+    author: p.data.author || "JourKnows",
+    image: getFirstImage(p.body) || null,
+    date: formatDate(p.data.pubDatetime),
+    tag: p.data.tags?.[0] || "news",
+    points: s.points,
+    source: s.source,
+  };
+});
 ---
 
 <Layout title="JourKnows | Home">
+  <script is:inline>
+    document.documentElement.classList.add("jk-js");
+  </script>
+
   <div
     class="font-display min-h-[100vh] bg-[#fdfdfb] m-0 p-0 text-[#1e1e1e]"
   >
+    <Dateline />
     <AppNavbar client:load activeHref="/" navLinks={navLinks} />
+    <NewsTicker posts={headlineItems} />
 
     <div>
       {/* ── Latest ── */}
@@ -95,6 +137,32 @@ const FALLBACK_IMAGE =
           </div>
         )
       }
+
+      {/* ── Top briefs + weather ── */}
+      {
+        briefs.length > 0 && (
+          <div class="jk-band mb-3 sm:mb-5" data-jk-reveal>
+            <div class="jk-band-in">
+              <div>
+                <h2 class="jk-briefs-title">TOP BRIEFS</h2>
+                {briefs.map((p, i) => (
+                  <a href={`/posts/${p.slug}`} class="jk-brief">
+                    <span class="jk-brief-num">{i + 1}</span>
+                    <span>
+                      <span class="jk-brief-cat">{p.tag.toUpperCase()}</span>
+                      <span class="jk-brief-head">{p.title}</span>
+                    </span>
+                  </a>
+                ))}
+              </div>
+              <WeatherWidget client:visible />
+            </div>
+          </div>
+        )
+      }
+
+      {/* ── Swipe deck ── */}
+      {swipePosts.length > 0 && <StorySwipe client:visible posts={swipePosts} />}
 
       {/* ── Desk sections ── */}
       <div
@@ -125,7 +193,7 @@ const FALLBACK_IMAGE =
               }));
 
               return (
-                <div class={`flex ${bg} mb-3 sm:mb-4`}>
+                <div class={`flex ${bg} mb-3 sm:mb-4`} data-jk-reveal>
                   <div
                     class="w-1 shrink-0"
                     style={{ background: color }}
@@ -157,7 +225,7 @@ const FALLBACK_IMAGE =
               const images = getAllImages(explainerPost.body);
 
               return (
-                <div class={`flex ${bg} mb-3 sm:mb-4`}>
+                <div class={`flex ${bg} mb-3 sm:mb-4`} data-jk-reveal>
                   <div
                     class="w-1 shrink-0"
                     style={{ background: color }}
@@ -208,7 +276,7 @@ const FALLBACK_IMAGE =
               getFirstImage(headerPost.body) || FALLBACK_IMAGE;
 
             return (
-              <div class={`flex ${bg} mb-3 sm:mb-4`}>
+              <div class={`flex ${bg} mb-3 sm:mb-4`} data-jk-reveal>
                 <div
                   class="w-1 shrink-0"
                   style={{ background: color }}
@@ -325,4 +393,34 @@ const FALLBACK_IMAGE =
       <AppFooter />
     </div>
   </div>
+
+  <script>
+    // Scroll-reveal for [data-jk-reveal] blocks. If anything goes wrong,
+    // fall back to showing everything so content is never left hidden.
+    const items = document.querySelectorAll<HTMLElement>("[data-jk-reveal]");
+    const showAll = () => items.forEach(el => el.classList.add("jk-in"));
+    try {
+      const reduce = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+      if (reduce || !("IntersectionObserver" in window)) {
+        showAll();
+      } else {
+        const io = new IntersectionObserver(
+          entries => {
+            entries.forEach(e => {
+              if (e.isIntersecting) {
+                e.target.classList.add("jk-in");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+        );
+        items.forEach(el => io.observe(el));
+      }
+    } catch {
+      showAll();
+    }
+  </script>
 </Layout>
