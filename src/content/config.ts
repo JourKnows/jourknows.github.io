@@ -51,4 +51,21 @@ const blog = defineCollection({
     }),
 });
 
-export const collections = { blog };
+// Broadcast desk videos (src/content/videos/*.md) — shown on the /videos page
+const videos = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    url: z.string(), // YouTube / Facebook link, or /path/to/file.mp4
+    pubDatetime: z.coerce.date(),
+    author: z.string().optional(),
+    description: z.string().optional(),
+    thumbnail: z.string().optional(), // optional image URL/path (YouTube gets one automatically)
+    show: z.string().optional(), // programme / series name, e.g. "Newsroom Live"
+    live: z.boolean().optional(), // red LIVE badge, moved to the front
+    featured: z.boolean().optional(), // no longer used; kept so older entries still validate
+    draft: z.boolean().optional(),
+  }),
+});
+
+export const collections = { blog, videos };
