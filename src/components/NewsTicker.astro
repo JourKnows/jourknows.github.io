@@ -1,0 +1,66 @@
+---
+interface Item {
+  title: string;
+  slug: string;
+  tag: string;
+}
+interface Props {
+  posts: Item[];
+}
+const { posts } = Astro.props;
+const items = posts.filter(p => p.title).slice(0, 8);
+---
+
+{
+  items.length > 0 && (
+    <div class="jk-ticker" role="region" aria-label="Latest headlines" data-jk-ticker>
+      <div class="jk-ticker-label">
+        <span class="jk-live jk-live--navy" />
+        LATEST
+      </div>
+      <div class="jk-ticker-viewport">
+        {items.map((p, i) => (
+          <a
+            href={`/posts/${p.slug}`}
+            class:list={["jk-ticker-item", i === 0 && "is-on"]}
+            aria-hidden={i === 0 ? undefined : "true"}
+            tabindex={i === 0 ? undefined : "-1"}
+          >
+            <span class="jk-ticker-cat">{p.tag.toUpperCase()}</span>
+            <span class="jk-ticker-title">{p.title}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+<script>
+  // Fade one headline in, hold it, fade it out, then the next.
+  const root = document.querySelector<HTMLElement>("[data-jk-ticker]");
+  if (root) {
+    const items = Array.from(root.querySelectorAll<HTMLElement>(".jk-ticker-item"));
+    if (items.length > 1) {
+      const HOLD = 4200;
+      let i = 0;
+      let paused = false;
+      const show = (n: number) => {
+        items.forEach((el, k) => {
+          const on = k === n;
+          el.classList.toggle("is-on", on);
+          el.setAttribute("aria-hidden", on ? "false" : "true");
+          el.tabIndex = on ? 0 : -1;
+        });
+      };
+      root.addEventListener("mouseenter", () => (paused = true));
+      root.addEventListener("mouseleave", () => (paused = false));
+      root.addEventListener("focusin", () => (paused = true));
+      root.addEventListener("focusout", () => (paused = false));
+      setInterval(() => {
+        if (paused || document.hidden) return;
+        i = (i + 1) % items.length;
+        show(i);
+      }, HOLD);
+    }
+  }
+</script>
