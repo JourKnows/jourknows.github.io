@@ -4,6 +4,7 @@ import AppNavbar from "@components/AppNavbar";
 import AppFooter from "@components/AppFooter.astro";
 
 import SmallCard from "@components/SmallCard.astro";
+import PostVideo from "@components/PostVideo.astro";
 import type { CollectionEntry } from "astro:content";
 import { slugifyStr } from "@utils/slugify";
 import { SITE } from "@config";
@@ -33,6 +34,7 @@ const {
   authorImage,
   illustrator,
   copyeditor,
+  video,
 } = post.data;
 
 const { Content } = await post.render();
@@ -256,6 +258,9 @@ const navLinks = [
         </div>
       </div>
       <hr class="border-black/5 mb-8" />
+
+      {/* ── Video (optional, from the "Video link" field) ── */}
+      {video && <PostVideo url={video} title={title} />}
 
       <article
         id="article"
