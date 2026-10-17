@@ -17,6 +17,8 @@ import { summarizePost } from "@utils/summarize";
 import { SECTION_COLORS } from "@utils/constants";
 import getFirstImage from "@utils/getFirstImage";
 import { slugifyAll } from "@utils/slugify";
+import VideoCarousel from "@components/VideoCarousel.astro";
+import { getVideos } from "@utils/videos";
 
 // Works at a domain root ("/") and under a sub-folder like "/jourknows.github.io-test/"
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -49,11 +51,11 @@ const categoryTags = [...allTags].sort((a, b) => {
 
 const navLinks = [
   { label: "HOME", href: `${BASE}/` },
-  { label: "VIDEOS", href: `${BASE}/videos` },
   ...allTags.map(t => ({
     label: t.tagName.toUpperCase(),
     href: `${BASE}/tags/${t.tag}`,
   })),
+  { label: "VIDEOS", href: `${BASE}/videos` },
 ];
 
 const latestPosts = sortedPosts;
@@ -103,6 +105,9 @@ const formatDate = (d?: Date | string) =>
 
 const FALLBACK_IMAGE =
   "https://placehold.co/800x600/f4f1e1/1a1a1a?text=No+Image";
+
+/* ── Videos (src/content/videos/*.md): newest 8 on the home page ── */
+const homeVideos = (await getVideos()).slice(0, 8);
 
 /* ── Newsroom extras ── */
 
@@ -169,7 +174,24 @@ const swipePosts = sortedPosts.slice(0, 10).map(p => {
         )
       }
 
-      {/* ── 2 · Stories (left) + sticky briefs & weather (right) ── */}
+      {/* ── 2 · Videos: sits right above the news section ── */}
+      {
+        homeVideos.length > 0 && (
+          <div class="jk-vid jk-vid-home">
+            <div class="jk-vid-in">
+              <VideoCarousel
+                title="Videos"
+                subtitle="From the JourKnows Broadcasting Desk."
+                videos={homeVideos}
+                href={`${BASE}/videos`}
+                hrefLabel="View all videos"
+              />
+            </div>
+          </div>
+        )
+      }
+
+      {/* ── 3 · Stories (left) + sticky briefs & weather (right) ── */}
       <div class="jk-home">
         <div class="jk-home-in">
         <div class="jk-home-main">
