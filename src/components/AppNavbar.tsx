@@ -40,6 +40,7 @@ export default function AppNavbar({
 
   const NAVBAR_ORDER = [
     "HOME",
+    "VIDEOS",
     "NEWS",
     "SPORTS",
     "OPINION",
@@ -104,9 +105,7 @@ export default function AppNavbar({
         pointer-events-none lets users click articles under the pill's negative space.
       */}
       <header
-        className={`sticky w-full z-[200] flex justify-center pointer-events-none transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
-          isScrolled && !compact ? "top-4 lg:top-5" : "top-0"
-        }`}
+        className="sticky top-0 w-full z-[200] flex justify-center pointer-events-none"
       >
         <div
           className={`pointer-events-auto flex items-center justify-between relative transition-all duration-[500ms] ease-[cubic-bezier(0.16,1,0.3,1)] transform-gpu origin-top will-change-transform ${
@@ -116,16 +115,24 @@ export default function AppNavbar({
                   "w-full bg-[#000020]/60 backdrop-blur-xl backdrop-saturate-[200%] shadow-[0_16px_32px_rgba(0,0,0,0.4)] border-b border-white/15"
                 : // Mobile: Solid Navy
                   "w-full bg-[#000060] border-[transparent] shadow-[0_2px_16px_rgba(0,0,77,0.15)]"
-              : isScrolled
-                ? // Desktop: VisionOS Apple Glass Pill (Isolated & Floating)
-                  "w-[min(1100px,92%)] rounded-[24px] bg-white/40 backdrop-blur-[32px] backdrop-saturate-[200%] shadow-[0_16px_40px_rgba(0,0,0,0.08)] border border-white/10"
-                : // Desktop: Solid Edge-to-Edge Architecture
-                  "w-full rounded-none bg-white border-b border-black/5 shadow-[0_2px_16px_rgba(0,0,0,0.03)]"
+              : // Desktop: fixed, full-width solid bar (flush with the page, no floating pill)
+                `w-full rounded-none bg-white border-b border-black/5 ${
+                  isScrolled
+                    ? "shadow-[0_6px_18px_rgba(0,0,0,0.12)]"
+                    : "shadow-[0_2px_16px_rgba(0,0,0,0.03)]"
+                }`
           }`}
           style={{
-            padding: compact ? "0 14px" : isScrolled ? "0 28px" : "0 32px",
-            height: compact ? (isScrolled ? 50 : 58) : isScrolled ? 54 : 60,
-            maxWidth: compact ? "100%" : isScrolled ? "1100px" : "1400px",
+            padding: compact ? "0 14px" : "0 32px",
+            height: compact ? (isScrolled ? 50 : 58) : 60,
+            maxWidth: "100%",
+            ...(compact
+              ? {}
+              : {
+                  display: "grid",
+                  gridTemplateColumns: "minmax(0,1fr) auto minmax(0,1fr)",
+                  columnGap: 16,
+                }),
           }}
         >
           {/* Left side / Search */}
@@ -178,7 +185,7 @@ export default function AppNavbar({
                     placeholder="Search..."
                     value={searchQuery}
                     onChange={e => setSearchQuery(e.target.value)}
-                    className="bg-black/5 rounded-full h-[32px] pl-10 pr-4 w-[200px] lg:w-[240px] outline-none text-[#000060] font-sans text-[13px] border border-black/5 focus:border-white/80 focus:bg-white/80 focus:w-[220px] lg:focus:w-[280px] transition-all duration-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.06)] placeholder:text-[#000060]/50 hover:bg-black/10"
+                    className="bg-black/5 rounded-full h-[32px] pl-10 pr-4 w-full max-w-[210px] outline-none text-[#000060] font-sans text-[13px] border border-black/5 focus:border-white/80 focus:bg-white/80 transition-all duration-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.06)] placeholder:text-[#000060]/50 hover:bg-black/10"
                   />
                 </div>
               </form>
@@ -202,15 +209,15 @@ export default function AppNavbar({
 
           {/* Desktop nav links */}
           {!compact && (
-            <nav className="flex items-center z-10 h-full">
-              <div className="flex items-center gap-4 lg:gap-5 h-full">
+            <nav className="flex items-center justify-center z-10 h-full">
+              <div className="flex items-center justify-center gap-0.5 lg:gap-1 h-full">
                 {sortedNavLinks.map(link => {
                   const active = isActive(link.href);
                   return (
                     <a
                       key={link.label}
                       href={link.href}
-                      className={`relative font-display flex items-center justify-center h-full text-[12px] lg:text-[14px] tracking-[0.5px] uppercase no-underline whitespace-nowrap transition-all duration-300 px-3 ${
+                      className={`relative font-display flex items-center justify-center h-full text-[12px] lg:text-[13px] tracking-[0.5px] uppercase no-underline whitespace-nowrap transition-all duration-300 px-2.5 lg:px-3 ${
                         active
                           ? "font-extrabold text-[#000060]"
                           : "font-semibold text-[#555555] hover:text-[#000060] hover:bg-white/40 rounded-md my-2"
