@@ -20,7 +20,8 @@ interface Saved {
 
 const THRESHOLD = 110;
 const SAVED_KEY = "jk_saved_stories_v1";
-const href = (slug: string) => `/posts/${slug}`;
+const BASE = (import.meta.env.BASE_URL || "/").replace(/\/$/, "");
+const href = (slug: string) => `${BASE}/posts/${slug}`;
 
 function loadSaved(): Saved[] {
   try {
