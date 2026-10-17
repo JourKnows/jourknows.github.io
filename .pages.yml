@@ -62,7 +62,13 @@ content:
       - { name: pubDatetime, label: Date, type: date, required: true, options: { time: true } }
       - { name: author, label: Author, type: string }
       - { name: description, label: Short description, type: text }
-      - { name: thumbnail, label: Thumbnail URL (optional), type: string }
+      - name: thumbnail
+        label: Thumbnail (optional)
+        type: image
+        description: "Upload a photo to use as the video thumbnail"
+        options:
+          input: public/images/video-thumbs
+          output: /images/video-thumbs
       - { name: show, label: Show / series, type: string, description: "Videos with the same show name are grouped in one row, e.g. Newsroom Live" }
       - { name: featured, label: Pin as hero video, type: boolean }
       - { name: live, label: Live now, type: boolean }
