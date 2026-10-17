@@ -1378,8 +1378,8 @@ body, body * { font-family: var(--jk-font) !important; }
   .jk-home-in { display: flex; flex-direction: column; align-items: stretch; gap: 22px; }
   .jk-side, .jk-side-in { display: contents; }
   .jk-side .jk-briefs { order: 0; }
-  .jk-home-main { order: 1; }
-  .jk-side-wx { order: 2; width: 100%; max-width: 380px; margin: 0 auto; }
+  .jk-side-wx { order: 1; width: 100%; max-width: 380px; margin: 0 auto; }   /* weather right under Top briefs */
+  .jk-home-main { order: 2; }
 }
 @media (max-width: 640px) {
   .jk-home { padding: 20px 12px 48px; }
