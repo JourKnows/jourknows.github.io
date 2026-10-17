@@ -1778,3 +1778,154 @@ body, body * { font-family: var(--jk-font) !important; }
 @media (max-width: 640px) {
   .jk-vid-more { margin-left: 0; }
 }
+
+/* ═══ v11: BROADCAST — white band, full-width compact reels, navy buttons ═══════
+   (replaces the navy look of v9/v10; video titles on the cards stay white) */
+.jk-vid {
+  color: #0b1f66;
+  background: #fff;
+  overflow-x: clip;
+  padding: 36px clamp(14px, 2.6vw, 44px) 0;
+}
+.jk-vid-in { padding-bottom: 36px; gap: 22px; }
+.jk-vid-in.is-rows { gap: 44px; }
+.jk-vid-home { padding-top: 34px; border-bottom: 1px solid #e3ebfb; }
+.jk-vid-head { gap: 6px 16px; }
+.jk-vid-title {
+  background: transparent;
+  color: #0b1f66;
+  padding: 2px 0 2px 14px;
+  border-left: 5px solid #0b1f66;
+  border-radius: 0;
+  font-size: 24px;
+}
+.jk-vid-head p { color: #4a5a8f; }
+.jk-vid-empty { color: #4a5a8f; }
+.jk-vid-more {
+  background: #fff;
+  color: #0b1f66;
+  border: 2px solid #0b1f66;
+}
+.jk-vid-more:hover, .jk-vid-more:focus-visible { background: #ecf2ff; color: #0b1f66; outline: none; }
+.jk-vid-more:focus-visible { box-shadow: 0 0 0 3px rgba(11, 31, 102, 0.25); }
+.jk-vid-count { color: #0b1f66; margin-top: 0; }
+
+/* Carousel breaks out to the full page width; arrows fill the side padding */
+.jk-vid-car {
+  --pad: max(clamp(14px, 2.6vw, 44px), calc((100vw - 1320px) / 2 + clamp(14px, 2.6vw, 44px)));
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  padding: 0;
+}
+.jk-vid-track {
+  gap: 14px;
+  padding: 4px var(--pad) 16px;
+  scroll-padding-inline: var(--pad);
+}
+
+/* Compact TikTok / Reels cards (9:16) */
+.jk-vid-card {
+  width: clamp(148px, 40vw, 184px);
+  border-radius: 18px;
+  box-shadow: 0 16px 30px -18px rgba(11, 31, 102, 0.6), 0 0 0 1px rgba(11, 31, 102, 0.08);
+}
+.jk-vid-card:hover { box-shadow: 0 22px 36px -18px rgba(11, 31, 102, 0.7), 0 0 0 1px rgba(11, 31, 102, 0.16); transform: translateY(-3px); }
+.jk-vid-card:focus-visible { outline: 3px solid #0b1f66; outline-offset: 3px; }
+.jk-vid-play { width: 44px; height: 44px; margin: -22px 0 0 -22px; }
+.jk-vid-play svg { width: 20px; height: 20px; margin-left: 2px; }
+.jk-vid-badge { left: 10px; top: 10px; font-size: 9.5px; padding: 3px 8px; }
+.jk-vid-meta { padding: 12px 12px 14px; gap: 4px; }
+.jk-vid-name { font-size: 13px; line-height: 1.25; -webkit-line-clamp: 3; color: #fff; }
+.jk-vid-by { font-size: 10.5px; color: rgba(255, 255, 255, 0.85); }
+
+/* Side arrows: full-height strips that fade from white, navy chevrons */
+.jk-vid-arrow {
+  top: 0; bottom: 0; margin: 0; height: auto;
+  width: clamp(48px, var(--pad), 110px);
+  border: 0; border-radius: 0; box-shadow: none; padding: 0;
+  color: #0b1f66; font-size: 38px; font-weight: 700;
+  display: flex; align-items: center;
+  transition: opacity 0.25s, transform 0.15s;
+}
+.jk-vid-arrow.is-prev { left: 0; justify-content: flex-start; padding-left: clamp(8px, 1.2vw, 18px); background: linear-gradient(to right, #fff 30%, rgba(255, 255, 255, 0)); }
+.jk-vid-arrow.is-next { right: 0; justify-content: flex-end; padding-right: clamp(8px, 1.2vw, 18px); background: linear-gradient(to left, #fff 30%, rgba(255, 255, 255, 0)); }
+.jk-vid-arrow:hover:not(:disabled) { background-color: transparent; color: #0b1f66; }
+.jk-vid-arrow:hover:not(:disabled), .jk-vid-arrow:active:not(:disabled) { transform: none; }
+.jk-vid-arrow.is-prev:hover:not(:disabled) { background: linear-gradient(to right, #ecf2ff 30%, rgba(236, 242, 255, 0)); }
+.jk-vid-arrow.is-next:hover:not(:disabled) { background: linear-gradient(to left, #ecf2ff 30%, rgba(236, 242, 255, 0)); }
+.jk-vid-arrow:disabled { opacity: 0; pointer-events: none; }
+.jk-vid-arrow:focus-visible { outline: 3px solid #0b1f66; outline-offset: -3px; }
+@media (max-width: 640px) {
+  .jk-vid-card { width: clamp(140px, 42vw, 170px); }
+  .jk-vid-arrow { width: 44px; font-size: 32px; }
+  .jk-vid-arrow.is-prev { padding-left: 6px; }
+  .jk-vid-arrow.is-next { padding-right: 6px; }
+}
+
+/* Pop-up player: navy text on the white close button */
+.jk-vid-close { color: #0b1f66; border-color: #0b1f66; box-shadow: 2px 3px 0 #0b1f66; }
+.jk-vid-close:focus-visible { outline-color: #fff; }
+
+/* ═══ v11: navbar = floating iOS 16 glass pill once you scroll · news ticker stays pinned ════
+   (classes are added by components/NavGlass.astro) */
+.jk-nav-stick { position: sticky; top: 0; z-index: 60; }
+.jk-nav { isolation: isolate; transition: background-color 0.35s ease, border-color 0.35s ease, top 0.45s cubic-bezier(0.32, 0.72, 0, 1); }
+
+/* The bar's own background is drawn by ::before, so it can morph rectangle -> pill */
+.jk-nav::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  left: 0; top: 0; width: 100%; height: 100%;
+  border-radius: 0;
+  background: rgb(var(--color-header-bg, 24, 37, 102));
+  -webkit-backdrop-filter: blur(22px) saturate(1.8);
+  backdrop-filter: blur(22px) saturate(1.8);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0);
+  transition:
+    left 0.45s cubic-bezier(0.32, 0.72, 0, 1),
+    top 0.45s cubic-bezier(0.32, 0.72, 0, 1),
+    width 0.45s cubic-bezier(0.32, 0.72, 0, 1),
+    height 0.45s cubic-bezier(0.32, 0.72, 0, 1),
+    border-radius 0.45s cubic-bezier(0.32, 0.72, 0, 1),
+    background 0.35s ease,
+    box-shadow 0.35s ease;
+}
+/* Scrolled: smaller padding, hugs the links, fully rounded, iOS 16 frosted glass */
+.jk-nav-scrolled { top: var(--jk-nav-top, 0px) !important; background-color: transparent !important; background-image: none !important; border-color: transparent !important; box-shadow: none !important; pointer-events: none; }
+.jk-nav-scrolled :where(a, button, input, select, summary, label, [role="button"]) { pointer-events: auto; }
+.jk-nav-scrolled > :where(div, nav, section) { background-color: transparent !important; background-image: none !important; }
+.jk-nav-scrolled::before {
+  left: var(--jk-pill-x); top: var(--jk-pill-y); width: var(--jk-pill-w); height: var(--jk-pill-h);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 55%),
+    rgba(24, 37, 102, 0.58);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 14px 34px -12px rgba(5, 11, 51, 0.6);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .jk-nav-scrolled::before { background: rgba(24, 37, 102, 0.94); }
+}
+@media (prefers-reduced-motion: reduce) { .jk-nav, .jk-nav::before { transition: none; } }
+
+/* News ticker: pinned right under the navbar while scrolling */
+.jk-ticker {
+  position: sticky;
+  top: var(--jk-nav-h, 0px);
+  z-index: 55;
+  background: rgba(255, 255, 255, 0.92);
+  -webkit-backdrop-filter: blur(14px) saturate(1.5);
+  backdrop-filter: blur(14px) saturate(1.5);
+  box-shadow: 0 8px 20px -16px rgba(11, 31, 102, 0.5);
+}
+
+
+/* ═══ v12: return-to-home fix ═════════════════════════════════════════════════
+   Reveal sections can never stay invisible: if the reveal script has not marked
+   them within 3s (e.g. after client-side navigation), they fade in anyway. */
+@keyframes jkRevealFailsafe { to { opacity: 1; transform: none; } }
+.jk-js [data-jk-reveal]:not(.jk-in) { animation: jkRevealFailsafe 0.6s ease 3s forwards; }
