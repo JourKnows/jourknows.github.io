@@ -49,11 +49,11 @@ const categoryTags = [...allTags].sort((a, b) => {
 
 const navLinks = [
   { label: "HOME", href: `${BASE}/` },
+  { label: "VIDEOS", href: `${BASE}/videos` },
   ...allTags.map(t => ({
     label: t.tagName.toUpperCase(),
     href: `${BASE}/tags/${t.tag}`,
   })),
-  { label: "VIDEOS", href: `${BASE}/videos` },
 ];
 
 const latestPosts = sortedPosts;
