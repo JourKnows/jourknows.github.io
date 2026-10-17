@@ -1,0 +1,170 @@
+---
+// Reels-style video carousel + pop-up player.
+// Used on the home page, /videos and every /videos/<show> page,
+// so all of them share the exact same look (styles: .jk-vid-* in base.css).
+import type { VideoItem } from "@utils/videos";
+
+interface Props {
+  videos: VideoItem[];
+  title: string;
+  subtitle?: string;
+  href?: string;
+  hrefLabel?: string;
+}
+const { videos, title, subtitle = "", href, hrefLabel = "View all" } = Astro.props;
+---
+
+<section class="jk-vc" data-vc aria-label={title}>
+  <header class="jk-vid-head">
+    <h2 class="jk-vid-title">{title}</h2>
+    {subtitle && <p>{subtitle}</p>}
+    {href && <a class="jk-vid-more" href={href}>{hrefLabel} ›</a>}
+  </header>
+
+  {
+    videos.length === 0 ? (
+      <p class="jk-vid-empty">No videos yet. Check back soon.</p>
+    ) : (
+      <div class="jk-vid-car" aria-roledescription="carousel">
+        <button type="button" class="jk-vid-arrow is-prev" data-vc-prev aria-label="Previous video">‹</button>
+        <div class="jk-vid-track" data-vc-track tabindex="0">
+          {videos.map(v => (
+            <button
+              type="button"
+              class="jk-vid-card"
+              style={`--desk:${v.color}`}
+              data-kind={v.kind}
+              data-embed={v.embed}
+              data-title={v.title}
+              aria-label={`Play video: ${v.title}`}
+            >
+              <span class="jk-vid-thumb">
+                {v.thumb && <img src={v.thumb} alt="" loading="lazy" decoding="async" />}
+                <span class="jk-vid-shade" aria-hidden="true" />
+                <span class="jk-vid-play" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                </span>
+                <span class:list={["jk-vid-badge", v.live && "is-live"]}>
+                  {v.live ? "LIVE" : v.show}
+                </span>
+              </span>
+              <span class="jk-vid-meta">
+                <span class="jk-vid-name">{v.title}</span>
+                <span class="jk-vid-by">{v.author}{v.date && ` · ${v.date}`}</span>
+              </span>
+            </button>
+          ))}
+        </div>
+        <button type="button" class="jk-vid-arrow is-next" data-vc-next aria-label="Next video">›</button>
+        <span class="jk-vid-count" data-vc-count aria-live="polite">1 / {videos.length}</span>
+      </div>
+    )
+  }
+
+  <div class="jk-vid-modal" data-vc-modal hidden>
+    <div class="jk-vid-panel" role="dialog" aria-modal="true" aria-label="Video player">
+      <button type="button" class="jk-vid-close" data-vc-close aria-label="Close video">✕</button>
+      <div class="jk-vid-stage" data-vc-stage></div>
+      <p class="jk-vid-cap" data-vc-cap></p>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-vc]").forEach(root => {
+    const q = <T extends HTMLElement>(s: string) => root.querySelector<T>(s);
+    const modal = q("[data-vc-modal]");
+    const stage = q("[data-vc-stage]");
+    const cap = q("[data-vc-cap]");
+    const closeBtn = q("[data-vc-close]");
+    const track = q("[data-vc-track]");
+    const prev = q<HTMLButtonElement>("[data-vc-prev]");
+    const next = q<HTMLButtonElement>("[data-vc-next]");
+    const count = q("[data-vc-count]");
+    let lastFocus: HTMLElement | null = null;
+
+    // Move the pop-up to <body> so no parent can clip or offset it
+    if (modal) document.body.appendChild(modal);
+
+    const close = () => {
+      if (!modal || !stage) return;
+      modal.hidden = true;
+      stage.innerHTML = ""; // removes the player so playback stops
+      document.body.style.overflow = "";
+      lastFocus?.focus();
+    };
+
+    const open = (card: HTMLElement) => {
+      if (!modal || !stage || !cap) return;
+      const src = card.dataset.embed || "";
+      lastFocus = card;
+      stage.innerHTML = "";
+      if (card.dataset.kind === "file") {
+        const v = document.createElement("video");
+        v.src = src;
+        v.controls = true;
+        v.autoplay = true;
+        v.playsInline = true;
+        stage.appendChild(v);
+      } else {
+        const f = document.createElement("iframe");
+        f.src = src;
+        f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+        f.allowFullscreen = true;
+        f.title = card.dataset.title || "Video";
+        stage.appendChild(f);
+      }
+      cap.textContent = card.dataset.title || "";
+      modal.hidden = false;
+      document.body.style.overflow = "hidden";
+      closeBtn?.focus();
+    };
+
+    root
+      .querySelectorAll<HTMLElement>("[data-embed]")
+      .forEach(c => c.addEventListener("click", () => open(c)));
+
+    closeBtn?.addEventListener("click", close);
+    modal?.addEventListener("mousedown", e => {
+      if (e.target === modal) close();
+    });
+    window.addEventListener("keydown", e => {
+      if (e.key === "Escape" && modal && !modal.hidden) close();
+    });
+
+    // Carousel: [<] [>] move one video at a time
+    if (track && prev && next) {
+      const cards = Array.from(track.querySelectorAll<HTMLElement>(".jk-vid-card"));
+      const step = () =>
+        cards[1] ? cards[1].offsetLeft - cards[0].offsetLeft : track.clientWidth;
+      const current = () =>
+        Math.min(cards.length - 1, Math.round(track.scrollLeft / Math.max(1, step())));
+      const sync = () => {
+        const max = track.scrollWidth - track.clientWidth - 2;
+        prev.disabled = track.scrollLeft <= 2;
+        next.disabled = track.scrollLeft >= max;
+        if (count) count.textContent = `${current() + 1} / ${cards.length}`;
+      };
+      prev.addEventListener("click", () => track.scrollBy({ left: -step() }));
+      next.addEventListener("click", () => track.scrollBy({ left: step() }));
+      track.addEventListener("keydown", e => {
+        if (e.key === "ArrowRight") { e.preventDefault(); track.scrollBy({ left: step() }); }
+        if (e.key === "ArrowLeft") { e.preventDefault(); track.scrollBy({ left: -step() }); }
+      });
+      // Dim any card that is cut off at the edge
+      if ("IntersectionObserver" in window) {
+        const io = new IntersectionObserver(
+          entries =>
+            entries.forEach(e =>
+              e.target.classList.toggle("is-dim", e.intersectionRatio < 0.97)
+            ),
+          { root: track, threshold: Array.from({ length: 21 }, (_, i) => i / 20) }
+        );
+        cards.forEach(c => io.observe(c));
+      }
+      track.addEventListener("scroll", () => requestAnimationFrame(sync), { passive: true });
+      window.addEventListener("resize", sync);
+      sync();
+    }
+  });
+</script>
