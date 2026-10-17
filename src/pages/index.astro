@@ -87,6 +87,9 @@ const colorFor = (tag: string) => {
   return TAG_COLORS[h % TAG_COLORS.length];
 };
 
+// Broadcast desk gets its own colour from the same palette (never the same as the first desk below it)
+let broadcastColor = colorFor("broadcast");
+
 const desks = categoryTags
   .map(t => ({
     ...t,
@@ -94,6 +97,10 @@ const desks = categoryTags
     posts: getPostsByCategory(t.tag),
   }))
   .filter(d => d.posts.length > 0);
+
+if (desks[0] && desks[0].color === broadcastColor) {
+  broadcastColor = TAG_COLORS[(TAG_COLORS.indexOf(broadcastColor) + 3) % TAG_COLORS.length];
+}
 
 const formatDate = (d?: Date | string) =>
   d
@@ -176,27 +183,25 @@ const swipePosts = sortedPosts.slice(0, 10).map(p => {
         )
       }
 
-      {/* ── 2 · Broadcast: sits right above the news section (white band) ── */}
-      {
-        homeVideos.length > 0 && (
-          <div class="jk-vid jk-vid-home">
-            <div class="jk-vid-in">
-              <VideoCarousel
-                title="Broadcast"
-                subtitle="From the JourKnows Broadcasting Desk."
-                videos={homeVideos}
-                href={`${BASE}/broadcast`}
-                hrefLabel="View all broadcasts"
-              />
-            </div>
-          </div>
-        )
-      }
-
-      {/* ── 3 · Stories (left) + sticky briefs & weather (right) ── */}
+      {/* ── 2 · Two columns: LEFT = Broadcast + section desks · RIGHT = top briefs + weather ── */}
       <div class="jk-home">
         <div class="jk-home-in">
         <div class="jk-home-main">
+          {/* Broadcast: first desk of the left column, same look as every section desk */}
+          {
+            homeVideos.length > 0 && (
+              <section id="desk-broadcast" class="jk-desk jk-desk--broadcast" style={`--desk:${broadcastColor}`} data-jk-reveal>
+                <VideoCarousel
+                  variant="desk"
+                  title="Broadcast"
+                  subtitle="From the JourKnows Broadcasting Desk."
+                  videos={homeVideos}
+                  href={`${BASE}/broadcast`}
+                  hrefLabel="View all"
+                />
+              </section>
+            )
+          }
           {
             desks.map((d, i) => {
               const catTag = d.tag;
