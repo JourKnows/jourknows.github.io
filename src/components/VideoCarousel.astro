@@ -23,10 +23,10 @@ const { videos, title, subtitle = "", href, hrefLabel = "View all" } = Astro.pro
 
   {
     videos.length === 0 ? (
-      <p class="jk-vid-empty">No videos yet. Check back soon.</p>
+      <p class="jk-vid-empty">No broadcasts yet. Check back soon.</p>
     ) : (
       <div class="jk-vid-car" aria-roledescription="carousel">
-        <button type="button" class="jk-vid-arrow is-prev" data-vc-prev aria-label="Previous video">‹</button>
+        <button type="button" class="jk-vid-arrow is-prev" data-vc-prev aria-label="Previous">‹</button>
         <div class="jk-vid-track" data-vc-track tabindex="0">
           {videos.map(v => (
             <button
@@ -55,7 +55,7 @@ const { videos, title, subtitle = "", href, hrefLabel = "View all" } = Astro.pro
             </button>
           ))}
         </div>
-        <button type="button" class="jk-vid-arrow is-next" data-vc-next aria-label="Next video">›</button>
+        <button type="button" class="jk-vid-arrow is-next" data-vc-next aria-label="Next">›</button>
         <span class="jk-vid-count" data-vc-count aria-live="polite">1 / {videos.length}</span>
       </div>
     )
@@ -71,7 +71,15 @@ const { videos, title, subtitle = "", href, hrefLabel = "View all" } = Astro.pro
 </section>
 
 <script>
+  const initCarousels = () => {
+  // Drop pop-ups orphaned in <body> by a previous page
+  document.querySelectorAll<HTMLElement>("body > [data-vc-modal]").forEach(m => {
+    const owner = (m as any).__vcRoot as HTMLElement | undefined;
+    if (!owner || !owner.isConnected) m.remove();
+  });
   document.querySelectorAll<HTMLElement>("[data-vc]").forEach(root => {
+    if (root.dataset.vcInit === "1") return;
+    root.dataset.vcInit = "1";
     const q = <T extends HTMLElement>(s: string) => root.querySelector<T>(s);
     const modal = q("[data-vc-modal]");
     const stage = q("[data-vc-stage]");
@@ -84,7 +92,10 @@ const { videos, title, subtitle = "", href, hrefLabel = "View all" } = Astro.pro
     let lastFocus: HTMLElement | null = null;
 
     // Move the pop-up to <body> so no parent can clip or offset it
-    if (modal) document.body.appendChild(modal);
+    if (modal) {
+      (modal as any).__vcRoot = root;
+      document.body.appendChild(modal);
+    }
 
     const close = () => {
       if (!modal || !stage) return;
@@ -128,9 +139,14 @@ const { videos, title, subtitle = "", href, hrefLabel = "View all" } = Astro.pro
     modal?.addEventListener("mousedown", e => {
       if (e.target === modal) close();
     });
-    window.addEventListener("keydown", e => {
+    const onKey = (e: KeyboardEvent) => {
+      if (!root.isConnected) {
+        window.removeEventListener("keydown", onKey);
+        return;
+      }
       if (e.key === "Escape" && modal && !modal.hidden) close();
-    });
+    };
+    window.addEventListener("keydown", onKey);
 
     // Carousel: [<] [>] move one video at a time
     if (track && prev && next) {
@@ -163,8 +179,20 @@ const { videos, title, subtitle = "", href, hrefLabel = "View all" } = Astro.pro
         cards.forEach(c => io.observe(c));
       }
       track.addEventListener("scroll", () => requestAnimationFrame(sync), { passive: true });
-      window.addEventListener("resize", sync);
+      const onResize = () => {
+        if (!root.isConnected) {
+          window.removeEventListener("resize", onResize);
+          return;
+        }
+        sync();
+      };
+      window.addEventListener("resize", onResize);
       sync();
     }
   });
+  };
+  initCarousels();
+  document.addEventListener("astro:page-load", initCarousels);
+  document.addEventListener("astro:after-swap", initCarousels);
+  window.addEventListener("pageshow", initCarousels);
 </script>

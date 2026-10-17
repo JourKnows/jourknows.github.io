@@ -1,0 +1,101 @@
+---
+// Scroll behaviour for the top of the page (no markup):
+//  1. NAVBAR  → stays on top; once you scroll it shrinks from the full-width bar into a
+//               rounded pill that hugs the links, in iOS 16-style frosted glass.
+//  2. TICKER  → the news ticker (.jk-ticker) pins itself right under the navbar.
+// It finds the navbar by itself (first sticky/fixed <header>/<nav>, else the first one),
+// so AppNavbar does not need to change. Styles: "v11" block at the end of base.css.
+---
+
+<script>
+  const run = () => {
+    const root = document.querySelector<HTMLElement>(".font-display") || document.body;
+    const all = Array.from(root.querySelectorAll<HTMLElement>("header, nav")).filter(
+      el => !el.closest("main, footer, .jk-ticker, .jk-vid-modal")
+    );
+    if (!all.length) return;
+
+    const pos = (el: HTMLElement) => getComputedStyle(el).position;
+    let target =
+      all.find(el => /sticky|fixed/.test(pos(el))) ||
+      all.find(el => !all.some(o => o !== el && o.contains(el))) ||
+      all[0];
+
+    // Pin the right element: if we have to make it sticky ourselves, climb to the
+    // outermost wrapper so "sticky" can work across the whole page.
+    let el = target;
+    if (!/sticky|fixed/.test(pos(el))) {
+      while (el.parentElement && el.parentElement !== root) {
+        const p = el.parentElement;
+        if (p.tagName === "ASTRO-ISLAND" && p.parentElement === root) break;
+        el = p;
+      }
+      el.classList.add("jk-nav-stick");
+    }
+    el.classList.add("jk-nav");
+
+    const ticker = document.querySelector<HTMLElement>(".jk-ticker");
+    const GAP = 10; // space between the top of the screen and the floating pill
+    const PAD_X = 24;
+    const PAD_Y = 8;
+    const apply = () => {
+      const st = document.documentElement.style;
+      const er = el.getBoundingClientRect();
+
+      // Pill = the row of links/buttons, plus a little padding (rectangle -> rounded pill)
+      const parts = Array.from(
+        el.querySelectorAll<HTMLElement>("a, button, input, select")
+      )
+        .map(n => n.getBoundingClientRect())
+        .filter(r => r.width > 0 && r.height > 0 && r.height <= 72);
+      let x = 0, y = 0, pw = er.width, ph = er.height;
+      if (parts.length) {
+        const l = Math.min(...parts.map(r => r.left));
+        const r = Math.max(...parts.map(r => r.right));
+        const t = Math.min(...parts.map(r => r.top));
+        const bt = Math.max(...parts.map(r => r.bottom));
+        x = l - er.left - PAD_X;
+        y = t - er.top - PAD_Y;
+        pw = r - l + PAD_X * 2;
+        ph = bt - t + PAD_Y * 2;
+      }
+      st.setProperty("--jk-pill-x", `${Math.max(0, Math.round(x))}px`);
+      st.setProperty("--jk-pill-y", `${Math.round(y)}px`);
+      st.setProperty("--jk-pill-w", `${Math.min(Math.round(pw), Math.round(er.width))}px`);
+      st.setProperty("--jk-pill-h", `${Math.round(ph)}px`);
+      // Slide the bar up so the pill floats GAP px from the top of the screen
+      st.setProperty("--jk-nav-top", `${Math.round(GAP - y)}px`);
+
+      const scrolled = window.scrollY > 6;
+      el.classList.toggle("jk-nav-scrolled", scrolled);
+
+      // The ticker pins right under the navbar (under the pill once it is floating)
+      const navH = scrolled ? GAP + Math.round(ph) + 6 : Math.round(er.height);
+      const th = ticker ? Math.round(ticker.getBoundingClientRect().height) : 0;
+      st.setProperty("--jk-nav-h", `${navH}px`);
+      // Sidebar (briefs + weather) sticks below navbar + ticker
+      st.setProperty("--jk-sticky-top", `${navH + th + 16}px`);
+    };
+
+    const w = window as any;
+    if (w.__jkNavScroll) window.removeEventListener("resize", w.__jkNavScroll);
+    if (w.__jkNavScroll) window.removeEventListener("scroll", w.__jkNavScroll);
+    w.__jkNavScroll = () => requestAnimationFrame(apply);
+    window.addEventListener("scroll", w.__jkNavScroll, { passive: true });
+    window.addEventListener("resize", w.__jkNavScroll);
+    if (w.__jkNavRO) w.__jkNavRO.disconnect();
+    if ("ResizeObserver" in window) {
+      const ro = new ResizeObserver(apply);
+      w.__jkNavRO = ro;
+      ro.observe(el);
+      if (ticker) ro.observe(ticker);
+    }
+    apply();
+  };
+
+  run();
+  window.addEventListener("load", run, { once: true });
+  document.addEventListener("astro:page-load", run);
+  document.addEventListener("astro:after-swap", run);
+  window.addEventListener("pageshow", run);
+</script>
