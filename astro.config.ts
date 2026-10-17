@@ -9,6 +9,8 @@ import { SITE } from "./src/config";
 // https://astro.build/config
 export default defineConfig({
   site: SITE.website,
+  // GitHub Pages serves this repo from a sub-folder; Vercel (and any root domain) serves from "/".
+  base: process.env.GITHUB_ACTIONS ? "/jourknows.github.io-test" : "/",
   integrations: [
     tailwind({
       applyBaseStyles: false,

@@ -1,0 +1,26 @@
+---
+import WeatherChip from "@components/WeatherChip";
+---
+
+<div class="jk-dateline">
+  <div class="jk-dateline-in">
+    <span class="jk-dateline-date">
+      <span class="jk-live"></span><span id="jk-date"></span>
+    </span>
+    <span class="jk-dateline-mid">JourKnows PH · Campus Newsroom</span>
+    <WeatherChip client:load />
+  </div>
+</div>
+
+<script>
+  // Rendered in the visitor's own locale/timezone, so it never goes stale after a build.
+  const el = document.getElementById("jk-date");
+  if (el) {
+    el.textContent = new Date().toLocaleDateString("en-US", {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
+  }
+</script>

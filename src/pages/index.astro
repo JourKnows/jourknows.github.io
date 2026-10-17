@@ -10,13 +10,19 @@ import CartoonComicViewer from "@components/CartoonComicViewer";
 import LatestDeckViewer from "@components/LatestDeckViewer";
 import ExplainerGallery from "@components/ExplainerGallery";
 import AppFooter from "@components/AppFooter.astro";
-import SectionHeader from "@components/SectionHeader.astro";
-import HeaderCard from "@components/HeaderCard.astro";
-
-import SmallCard from "@components/SmallCard.astro";
+import NewsTicker from "@components/NewsTicker.astro";
+import WeatherWidget from "@components/WeatherWidget";
+import SwipeLauncher from "@components/SwipeLauncher";
+import { summarizePost } from "@utils/summarize";
 import { SECTION_COLORS } from "@utils/constants";
 import getFirstImage from "@utils/getFirstImage";
 import { slugifyAll } from "@utils/slugify";
+import VideoCarousel from "@components/VideoCarousel.astro";
+import { getVideos } from "@utils/videos";
+import NavGlass from "@components/NavGlass.astro";
+
+// Works at a domain root ("/") and under a sub-folder like "/jourknows.github.io-test/"
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 const posts = await getCollection("blog");
 const sortedPosts = getSortedPosts(posts);
@@ -36,38 +42,131 @@ const SECTION_ORDER = [
 const categoryTags = [...allTags].sort((a, b) => {
   const aIdx = SECTION_ORDER.indexOf(a.tag);
   const bIdx = SECTION_ORDER.indexOf(b.tag);
+
   if (aIdx !== -1 && bIdx !== -1) return aIdx - bIdx;
   if (aIdx !== -1) return -1;
   if (bIdx !== -1) return 1;
+
   return a.tagName.localeCompare(b.tagName);
 });
+
 const navLinks = [
-  { label: "HOME", href: "/" },
+  { label: "HOME", href: `${BASE}/` },
   ...allTags.map(t => ({
     label: t.tagName.toUpperCase(),
-    href: `/tags/${t.tag}`,
+    href: `${BASE}/tags/${t.tag}`,
   })),
+  { label: "BROADCAST", href: `${BASE}/broadcast` },
 ];
 
 const latestPosts = sortedPosts;
 
-// Get categorised posts simply
 const getPostsByCategory = (cat: string) => {
   return sortedPosts
     .filter(p => slugifyAll(p.data.tags || []).includes(cat))
     .slice(0, 4);
 };
+
+// Desks that actually have stories, in newsroom order
+// Tag label colours: one vivid, different colour per section (white text on top)
+const TAG_COLORS = [
+  "#e63946", // red
+  "#1d4ed8", // blue
+  "#f77f00", // orange
+  "#2a9d8f", // teal
+  "#7b2cbf", // purple
+  "#d6336c", // pink
+  "#2b9348", // green
+  "#0b1f66", // navy
+];
+const colorFor = (tag: string) => {
+  const i = categoryTags.findIndex(t => t.tag === tag);
+  if (i >= 0) return TAG_COLORS[i % TAG_COLORS.length];
+  let h = 0;
+  for (const c of tag) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+  return TAG_COLORS[h % TAG_COLORS.length];
+};
+
+// Broadcast desk gets its own colour from the same palette (never the same as the first desk below it)
+let broadcastColor = colorFor("broadcast");
+
+const desks = categoryTags
+  .map(t => ({
+    ...t,
+    color: colorFor(t.tag),
+    posts: getPostsByCategory(t.tag),
+  }))
+  .filter(d => d.posts.length > 0);
+
+if (desks[0] && desks[0].color === broadcastColor) {
+  broadcastColor = TAG_COLORS[(TAG_COLORS.indexOf(broadcastColor) + 3) % TAG_COLORS.length];
+}
+
+const formatDate = (d?: Date | string) =>
+  d
+    ? new Date(d).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      })
+    : "Unknown Date";
+
+const FALLBACK_IMAGE =
+  "https://placehold.co/800x600/f4f1e1/1a1a1a?text=No+Image";
+
+/* ── Videos (src/content/videos/*.md): newest 8 on the home page ── */
+const homeVideos = (await getVideos()).slice(0, 8);
+
+/* ── Newsroom extras ── */
+
+// Headline ticker + "Top briefs" list
+const headlineItems = sortedPosts.slice(0, 8).map(p => ({
+  title: p.data.title || "Untitled",
+  slug: p.slug || "",
+  tag: p.data.tags?.[0] || "news",
+}));
+const briefs = headlineItems.slice(0, 5);
+
+// Swipe deck: 10 newest stories, each with a short summary.
+// If a post's frontmatter has `aiSummary` (string or string[]) it is used and
+// labelled "AI SUMMARY"; otherwise key sentences are extracted at build time.
+const swipePosts = sortedPosts.slice(0, 10).map(p => {
+  const s = summarizePost(
+    p.body,
+    p.data.description || "",
+    (p.data as { aiSummary?: string | string[] }).aiSummary
+  );
+  return {
+    title: p.data.title || "Untitled",
+    slug: p.slug || "",
+    author: p.data.author || "JourKnows",
+    image: getFirstImage(p.body) || null,
+    date: formatDate(p.data.pubDatetime),
+    tag: p.data.tags?.[0] || "news",
+    points: s.points,
+    source: s.source,
+  };
+});
 ---
 
 <Layout title="JourKnows | Home">
-  <div class="font-display min-h-[100vh] bg-[#f5f6fa] m-0 p-0 text-[#1e1e1e]">
-    <AppNavbar client:load activeHref="/" navLinks={navLinks} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" />
+  <script is:inline data-astro-rerun>
+    document.documentElement.classList.add("jk-js");
+  </script>
 
-    <div>
-      {/* ── Latest ── */}
+  <div class="font-display min-h-[100vh] bg-[#fdfdfb] m-0 p-0 text-[#1e1e1e]">
+    <AppNavbar client:load activeHref={`${BASE}/`} navLinks={navLinks} />
+    <NewsTicker posts={headlineItems} />
+    <NavGlass />
+
+    <main id="main">
+      {/* ── 1 · Hero: latest stories ── */}
       {
         latestPosts.length > 0 && (
-          <div class="w-full relative bg-white overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.06)] mb-3 sm:mb-5">
+          <div class="jk-latest">
             <LatestDeckViewer
               client:visible
               posts={latestPosts.map(p => ({
@@ -75,13 +174,7 @@ const getPostsByCategory = (cat: string) => {
                 slug: p.slug || "",
                 author: p.data.author || "JourKnows",
                 image: getFirstImage(p.body) || null,
-                date: p.data.pubDatetime
-                  ? new Date(p.data.pubDatetime).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    })
-                  : "Unknown Date",
+                date: formatDate(p.data.pubDatetime),
                 tag: p.data.tags?.[0] || "NEWS",
                 description: p.data.description || "",
               }))}
@@ -90,117 +183,252 @@ const getPostsByCategory = (cat: string) => {
         )
       }
 
-      {/* ── Category sections ── */}
-      <div class="animate-glassFadeUp" style="animation-delay: 300ms;">
-        {
-          categoryTags.map(tagObj => {
-            const catTag = tagObj.tag;
-            const label = tagObj.tagName.toUpperCase();
-            const color = SECTION_COLORS[catTag] || SECTION_COLORS.default;
+      {/* ── 2 · Two columns: LEFT = Broadcast + section desks · RIGHT = top briefs + weather ── */}
+      <div class="jk-home">
+        <div class="jk-home-in">
+        <div class="jk-home-main">
+          {/* Broadcast: first desk of the left column, same look as every section desk */}
+          {
+            homeVideos.length > 0 && (
+              <section id="desk-broadcast" class="jk-desk jk-desk--broadcast" style={`--desk:${broadcastColor}`} data-jk-reveal>
+                <VideoCarousel
+                  variant="desk"
+                  title="Broadcast"
+                  subtitle="From the JourKnows Broadcasting Desk."
+                  videos={homeVideos}
+                  href={`${BASE}/broadcast`}
+                  hrefLabel="View all"
+                />
+              </section>
+            )
+          }
+          {
+            desks.map((d, i) => {
+              const catTag = d.tag;
+              const catPosts = d.posts;
+              const flip = i % 2 === 1;
 
-            // grab posts for this category tag
-            const catPosts = getPostsByCategory(catTag);
-            if (catPosts.length === 0) return null; // hide section if no posts
-
-            if (catTag === "cartoon") {
-              const mappedPosts = catPosts.map(p => ({
-                title: p.data.title || "Untitled",
-                slug: p.slug || "",
-                author: p.data.author || "JourKnows",
-                image:
-                  getFirstImage(p.body) ||
-                  "https://placehold.co/800x800/f4f1e1/1a1a1a?text=Artwork+Unavailable",
-                date: p.data.pubDatetime
-                  ? new Date(p.data.pubDatetime).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    })
-                  : "Unknown Date",
-              }));
-
-              return (
-                <div class="mb-3 sm:mb-5 sm:mx-5 lg:mx-10 sm:rounded-2xl bg-white overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.06)]">
-                  <CartoonComicViewer client:visible posts={mappedPosts} />
-                </div>
+              const head = (
+                <header class="jk-desk-head">
+                  <h2 class="jk-desk-title">
+                    <i aria-hidden="true" />
+                    {d.tagName}
+                  </h2>
+                  <a href={`${BASE}/tags/${catTag}`} class="jk-desk-all">
+                    View all
+                    <svg class="jk-ic" viewBox="0 0 24 24" aria-hidden="true" style="width:14px;height:14px">
+                      <path d="m9 6 6 6-6 6" />
+                    </svg>
+                  </a>
+                </header>
               );
-            }
 
-            if (catTag === "explainer") {
-              const explainerPost = catPosts[0];
-              if (!explainerPost) return null;
+              /* Cartoon: own viewer */
+              if (catTag === "cartoon") {
+                const mappedPosts = catPosts.map(p => ({
+                  title: p.data.title || "Untitled",
+                  slug: p.slug || "",
+                  author: p.data.author || "JourKnows",
+                  image: getFirstImage(p.body) || FALLBACK_IMAGE,
+                  date: formatDate(p.data.pubDatetime),
+                }));
+                return (
+                  <section id={`desk-${catTag}`} class="jk-desk" style={`--desk:${d.color}`} data-jk-reveal>
+                    {head}
+                    <CartoonComicViewer client:visible posts={mappedPosts} />
+                  </section>
+                );
+              }
 
-              const images = getAllImages(explainerPost.body);
-
-              return (
-                <div class="bg-white px-[16px] sm:px-[28px] lg:px-[68px] py-[28px] sm:py-[34px] lg:py-[40px] pb-[36px] sm:pb-[42px] lg:pb-[48px] sm:mx-5 lg:mx-10 sm:rounded-2xl mb-3 sm:mb-5">
-                  <SectionHeader label={label} color={color} />
-
-                  <div class="mt-5 mb-8">
+              /* Explainer: single lead item gallery */
+              if (catTag === "explainer") {
+                const ex = catPosts[0];
+                return (
+                  <section id={`desk-${catTag}`} class="jk-desk" style={`--desk:${d.color}`} data-jk-reveal>
+                    {head}
                     <ExplainerGallery
                       client:visible
-                      title={explainerPost.data.title || "Untitled"}
-                      slug={explainerPost.slug || ""}
-                      author={explainerPost.data.author || "JourKnows"}
-                      date={
-                        explainerPost.data.pubDatetime
-                          ? new Date(
-                              explainerPost.data.pubDatetime
-                            ).toLocaleDateString("en-US", {
-                              year: "numeric",
-                              month: "long",
-                              day: "numeric",
-                            })
-                          : "Unknown Date"
-                      }
-                      description={explainerPost.data.description || ""}
-                      images={images}
+                      title={ex.data.title || "Untitled"}
+                      slug={ex.slug || ""}
+                      author={ex.data.author || "JourKnows"}
+                      date={formatDate(ex.data.pubDatetime)}
+                      description={ex.data.description || ""}
+                      images={getAllImages(ex.body)}
                     />
-                  </div>
+                  </section>
+                );
+              }
 
-                  <div class="mt-8 text-center">
-                    <a
-                      href={`/tags/${catTag}`}
-                      class="bg-[#00046d] border-none rounded-[20px] px-8 py-2.5 cursor-pointer font-display font-medium text-white text-[12px] uppercase tracking-wide inline-block no-underline shadow-md"
-                    >
-                      READ MORE
+              /* Default desk: immersive lead card + compact list */
+              const lead = catPosts[0];
+              const rest = catPosts.slice(1, 4);
+              return (
+                <section id={`desk-${catTag}`} class="jk-desk" style={`--desk:${d.color}`} data-jk-reveal>
+                  {head}
+                  <div class:list={["jk-desk-grid", flip && "is-flip", rest.length === 0 && "is-solo"]}>
+                    <a href={`${BASE}/posts/${lead.slug}`} class="jk-lead">
+                      <img
+                        src={getFirstImage(lead.body) || FALLBACK_IMAGE}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="jk-lead-shade" aria-hidden="true" />
+                      <span class="jk-lead-txt">
+                        <span class="jk-lead-tag">{d.tagName}</span>
+                        <h3>{lead.data.title || "Untitled"}</h3>
+                        {lead.data.description && <p>{lead.data.description}</p>}
+                        <span class="jk-lead-by">
+                          {lead.data.author || "JourKnows"} · {formatDate(lead.data.pubDatetime)}
+                        </span>
+                      </span>
                     </a>
+
+                    {rest.length > 0 && (
+                      <div class="jk-rows">
+                        {rest.map(post => (
+                          <a href={`${BASE}/posts/${post.slug}`} class="jk-row">
+                            <img
+                              src={getFirstImage(post.body) || FALLBACK_IMAGE}
+                              alt=""
+                              loading="lazy"
+                              decoding="async"
+                            />
+                            <span>
+                              <h4>{post.data.title || "Untitled"}</h4>
+                              <time>{formatDate(post.data.pubDatetime)}</time>
+                            </span>
+                          </a>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                </div>
+                </section>
               );
-            }
+            })
+          }
+        </div>
 
-            const headerPost = catPosts[0];
-            const smallPosts = catPosts.slice(1, 4);
-
-            return (
-              <div class="bg-white px-[16px] sm:px-[28px] lg:px-[68px] py-[28px] sm:py-[34px] lg:py-[40px] pb-[36px] sm:pb-[42px] lg:pb-[48px] sm:mx-5 lg:mx-10 sm:rounded-2xl mb-3 sm:mb-5">
-                <SectionHeader label={label} color={color} />
-                <div class="mb-5">
-                  <HeaderCard post={headerPost} />
-                </div>
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-4 lg:gap-[18px]">
-                  {smallPosts.map((post, i) => (
-                    <div class={i === 2 ? "hidden sm:block" : ""}>
-                      <SmallCard post={post} category={label} />
-                    </div>
-                  ))}
-                </div>
-                <div class="mt-8 text-center">
-                  <a
-                    href={`/tags/${catTag}`}
-                    class="bg-[#00046d] border-none rounded-[20px] px-8 py-2.5 cursor-pointer font-display font-medium text-white text-[12px] uppercase tracking-wide inline-block no-underline shadow-md"
-                  >
-                    READ MORE
+        <aside class="jk-side" aria-label="Top briefs and weather">
+          <div class="jk-side-in">
+            {briefs.length > 0 && (
+              <div class="jk-briefs">
+                <h2 class="jk-briefs-title">Top briefs</h2>
+                {briefs.map((p, i) => (
+                  <a href={`${BASE}/posts/${p.slug}`} class="jk-brief">
+                    <span class="jk-brief-num">{i + 1}</span>
+                    <span>
+                      <span class="jk-brief-cat" style={`--desk:${colorFor(p.tag)}`}>{p.tag}</span>
+                      <span class="jk-brief-head">{p.title}</span>
+                    </span>
                   </a>
-                </div>
+                ))}
               </div>
-            );
-          })
-        }
+            )}
+            <div class="jk-side-wx">
+              <WeatherWidget client:visible />
+            </div>
+          </div>
+        </aside>
+        </div>
       </div>
 
       <AppFooter />
-    </div>
+    </main>
+
+    {/* Floating prompt → story-swipe pop-up */}
+    {swipePosts.length > 0 && <SwipeLauncher client:idle posts={swipePosts} />}
   </div>
+
+  <script>
+    // Scroll-reveal for [data-jk-reveal] blocks. Re-runs on every page load,
+    // client-side navigation and back/forward restore, so returning from an
+    // article never leaves the sections hidden. Falls back to showing everything.
+    let revealIO: IntersectionObserver | null = null;
+    const initReveal = () => {
+      document.documentElement.classList.add("jk-js");
+      revealIO?.disconnect();
+      revealIO = null;
+      const items = document.querySelectorAll<HTMLElement>("[data-jk-reveal]");
+      const showAll = () => items.forEach(el => el.classList.add("jk-in"));
+      try {
+        const reduce = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
+        if (reduce || !("IntersectionObserver" in window)) {
+          showAll();
+          return;
+        }
+        const io = new IntersectionObserver(
+          entries => {
+            entries.forEach(e => {
+              if (e.isIntersecting) {
+                e.target.classList.add("jk-in");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+        );
+        revealIO = io;
+        items.forEach(el => io.observe(el));
+        // Safety net: never leave content hidden
+        setTimeout(showAll, 2500);
+      } catch {
+        showAll();
+      }
+    };
+    initReveal();
+    document.addEventListener("astro:page-load", initReveal);
+    document.addEventListener("astro:after-swap", initReveal);
+    window.addEventListener("pageshow", initReveal);
+  </script>
+
+  <script>
+    // Tag the Latest control bar so CSS can make it navy (slide text stays white).
+    // Re-runs after every navigation so the bar and buttons keep their styling.
+    let latestMO: MutationObserver | null = null;
+    const initLatest = () => {
+      latestMO?.disconnect();
+      latestMO = null;
+      const latest = document.querySelector<HTMLElement>(".jk-latest");
+      if (!latest) return;
+      const txt = (el: Element) => (el.textContent || "").trim().toLowerCase();
+      const mark = () => {
+        const ctl = Array.from(
+          latest.querySelectorAll<HTMLElement>("button, a, [role='button']")
+        );
+        const exp = ctl.find(b => /^(expand|collapse|show less|less)$/.test(txt(b)));
+        const lucky = ctl.find(b => txt(b).includes("feeling lucky"));
+        if (!exp) return;
+        let bar: HTMLElement | null = exp.parentElement;
+        while (bar && bar !== latest && lucky && !bar.contains(lucky)) {
+          bar = bar.parentElement;
+        }
+        if (!bar || bar === latest) bar = exp.parentElement;
+        bar?.setAttribute("data-jk-bar", "");
+        lucky?.setAttribute("data-jk-dark", "");
+      };
+      let queued = false;
+      const run = () => {
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(() => {
+          queued = false;
+          mark();
+        });
+      };
+      latestMO = new MutationObserver(run);
+      latestMO.observe(latest, {
+        childList: true,
+        subtree: true,
+        characterData: true,
+      });
+      run();
+    };
+    initLatest();
+    document.addEventListener("astro:page-load", initLatest);
+    document.addEventListener("astro:after-swap", initLatest);
+    window.addEventListener("pageshow", initLatest);
+  </script>
 </Layout>
