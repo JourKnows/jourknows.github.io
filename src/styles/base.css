@@ -3013,3 +3013,49 @@ body, body * { font-family: var(--jk-font) !important; }
   top: min(var(--jk-sticky-top, 16px), calc(100vh - var(--jk-side-h, 0px) - 16px));
 }
 .jk-side-in { max-height: none; overflow: visible; }
+
+
+/* ═══ v14: ticker fade in / fade out fix · white glass navbar ═══════════════════════════════════
+   Ticker: the old headline fades fully OUT first, then the new one fades IN (no overlapping text,
+   no flash), with a tiny upward drift. Navbar: scrolled pill is white frosted glass. */
+.jk-ticker-item {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(6px);
+  will-change: opacity, transform;
+  transition:
+    opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0s linear 0.45s;
+}
+.jk-ticker-item.is-on {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition:
+    opacity 0.55s cubic-bezier(0.2, 0.6, 0.2, 1) 0.45s,
+    transform 0.55s cubic-bezier(0.2, 0.6, 0.2, 1) 0.45s,
+    visibility 0s linear 0s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .jk-ticker-item, .jk-ticker-item.is-on { transition: none !important; transform: none; }
+}
+
+/* Navbar: white glass pill once scrolled (full-width bar before scrolling is unchanged) */
+.jk-nav-scrolled::before {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.45) 100%),
+    rgba(255, 255, 255, 0.35);
+  -webkit-backdrop-filter: blur(22px) saturate(1.8);
+  backdrop-filter: blur(22px) saturate(1.8);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.9),
+    inset 0 1px 0 #fff,
+    0 0 0 1px rgba(11, 31, 102, 0.08),
+    0 14px 34px -14px rgba(11, 31, 102, 0.35);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .jk-nav-scrolled::before { background: rgba(255, 255, 255, 0.96); }
+}
