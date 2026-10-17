@@ -10,7 +10,7 @@ description: >-
   Alamin natin kung ano ang solusyon ni Pangulong Ferdinand “Bong-bong” Marcos
   Jr. sa mga problema ng enerhiya at isyu ng mga konsyumer sa mataas na singil
   ng kuryente.
-thumbnail: file:///Users/p./Desktop/Screenshot%202026-10-17%20at%207.57.15%E2%80%AFPM.png
+thumbnail: /thumb1.png
 show: Explainer
 featured: false
 live: false
