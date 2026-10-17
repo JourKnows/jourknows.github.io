@@ -1,0 +1,377 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import getSortedPosts from "@utils/getSortedPosts";
+import getUniqueTags from "@utils/getUniqueTags";
+import getAllImages from "@utils/getAllImages";
+import "@styles/base.css";
+import AppNavbar from "@components/AppNavbar";
+import CartoonComicViewer from "@components/CartoonComicViewer";
+import LatestDeckViewer from "@components/LatestDeckViewer";
+import ExplainerGallery from "@components/ExplainerGallery";
+import AppFooter from "@components/AppFooter.astro";
+import NewsTicker from "@components/NewsTicker.astro";
+import WeatherWidget from "@components/WeatherWidget";
+import SwipeLauncher from "@components/SwipeLauncher";
+import { summarizePost } from "@utils/summarize";
+import { SECTION_COLORS } from "@utils/constants";
+import getFirstImage from "@utils/getFirstImage";
+import { slugifyAll } from "@utils/slugify";
+
+const posts = await getCollection("blog");
+const sortedPosts = getSortedPosts(posts);
+const allTags = getUniqueTags(posts);
+
+const SECTION_ORDER = [
+  "news",
+  "sports",
+  "opinion",
+  "feature",
+  "sci-tech",
+  "explainer",
+  "literary",
+  "cartoon",
+];
+
+const categoryTags = [...allTags].sort((a, b) => {
+  const aIdx = SECTION_ORDER.indexOf(a.tag);
+  const bIdx = SECTION_ORDER.indexOf(b.tag);
+
+  if (aIdx !== -1 && bIdx !== -1) return aIdx - bIdx;
+  if (aIdx !== -1) return -1;
+  if (bIdx !== -1) return 1;
+
+  return a.tagName.localeCompare(b.tagName);
+});
+
+const navLinks = [
+  { label: "HOME", href: "/" },
+  ...allTags.map(t => ({
+    label: t.tagName.toUpperCase(),
+    href: `/tags/${t.tag}`,
+  })),
+];
+
+const latestPosts = sortedPosts;
+
+const getPostsByCategory = (cat: string) => {
+  return sortedPosts
+    .filter(p => slugifyAll(p.data.tags || []).includes(cat))
+    .slice(0, 4);
+};
+
+// Desks that actually have stories, in newsroom order
+// Tag label colours: one vivid, different colour per section (white text on top)
+const TAG_COLORS = [
+  "#e63946", // red
+  "#1d4ed8", // blue
+  "#f77f00", // orange
+  "#2a9d8f", // teal
+  "#7b2cbf", // purple
+  "#d6336c", // pink
+  "#2b9348", // green
+  "#0b1f66", // navy
+];
+const colorFor = (tag: string) => {
+  const i = categoryTags.findIndex(t => t.tag === tag);
+  if (i >= 0) return TAG_COLORS[i % TAG_COLORS.length];
+  let h = 0;
+  for (const c of tag) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+  return TAG_COLORS[h % TAG_COLORS.length];
+};
+
+const desks = categoryTags
+  .map(t => ({
+    ...t,
+    color: colorFor(t.tag),
+    posts: getPostsByCategory(t.tag),
+  }))
+  .filter(d => d.posts.length > 0);
+
+const formatDate = (d?: Date | string) =>
+  d
+    ? new Date(d).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      })
+    : "Unknown Date";
+
+const FALLBACK_IMAGE =
+  "https://placehold.co/800x600/f4f1e1/1a1a1a?text=No+Image";
+
+/* ── Newsroom extras ── */
+
+// Headline ticker + "Top briefs" list
+const headlineItems = sortedPosts.slice(0, 8).map(p => ({
+  title: p.data.title || "Untitled",
+  slug: p.slug || "",
+  tag: p.data.tags?.[0] || "news",
+}));
+const briefs = headlineItems.slice(0, 5);
+
+// Swipe deck: 10 newest stories, each with a short summary.
+// If a post's frontmatter has `aiSummary` (string or string[]) it is used and
+// labelled "AI SUMMARY"; otherwise key sentences are extracted at build time.
+const swipePosts = sortedPosts.slice(0, 10).map(p => {
+  const s = summarizePost(
+    p.body,
+    p.data.description || "",
+    (p.data as { aiSummary?: string | string[] }).aiSummary
+  );
+  return {
+    title: p.data.title || "Untitled",
+    slug: p.slug || "",
+    author: p.data.author || "JourKnows",
+    image: getFirstImage(p.body) || null,
+    date: formatDate(p.data.pubDatetime),
+    tag: p.data.tags?.[0] || "news",
+    points: s.points,
+    source: s.source,
+  };
+});
+---
+
+<Layout title="JourKnows | Home">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" />
+  <script is:inline>
+    document.documentElement.classList.add("jk-js");
+  </script>
+
+  <div class="font-display min-h-[100vh] bg-[#fdfdfb] m-0 p-0 text-[#1e1e1e]">
+    <AppNavbar client:load activeHref="/" navLinks={navLinks} />
+    <NewsTicker posts={headlineItems} />
+
+    <main id="main">
+      {/* ── 1 · Hero: latest stories ── */}
+      {
+        latestPosts.length > 0 && (
+          <div class="jk-latest">
+            <LatestDeckViewer
+              client:visible
+              posts={latestPosts.map(p => ({
+                title: p.data.title || "Untitled",
+                slug: p.slug || "",
+                author: p.data.author || "JourKnows",
+                image: getFirstImage(p.body) || null,
+                date: formatDate(p.data.pubDatetime),
+                tag: p.data.tags?.[0] || "NEWS",
+                description: p.data.description || "",
+              }))}
+            />
+          </div>
+        )
+      }
+
+      {/* ── 2 · Stories (left) + sticky briefs & weather (right) ── */}
+      <div class="jk-home">
+        <div class="jk-home-in">
+        <div class="jk-home-main">
+          {
+            desks.map((d, i) => {
+              const catTag = d.tag;
+              const catPosts = d.posts;
+              const flip = i % 2 === 1;
+
+              const head = (
+                <header class="jk-desk-head">
+                  <h2 class="jk-desk-title">
+                    <i aria-hidden="true" />
+                    {d.tagName}
+                  </h2>
+                  <a href={`/tags/${catTag}`} class="jk-desk-all">
+                    View all
+                    <svg class="jk-ic" viewBox="0 0 24 24" aria-hidden="true" style="width:14px;height:14px">
+                      <path d="m9 6 6 6-6 6" />
+                    </svg>
+                  </a>
+                </header>
+              );
+
+              /* Cartoon: own viewer */
+              if (catTag === "cartoon") {
+                const mappedPosts = catPosts.map(p => ({
+                  title: p.data.title || "Untitled",
+                  slug: p.slug || "",
+                  author: p.data.author || "JourKnows",
+                  image: getFirstImage(p.body) || FALLBACK_IMAGE,
+                  date: formatDate(p.data.pubDatetime),
+                }));
+                return (
+                  <section id={`desk-${catTag}`} class="jk-desk" style={`--desk:${d.color}`} data-jk-reveal>
+                    {head}
+                    <CartoonComicViewer client:visible posts={mappedPosts} />
+                  </section>
+                );
+              }
+
+              /* Explainer: single lead item gallery */
+              if (catTag === "explainer") {
+                const ex = catPosts[0];
+                return (
+                  <section id={`desk-${catTag}`} class="jk-desk" style={`--desk:${d.color}`} data-jk-reveal>
+                    {head}
+                    <ExplainerGallery
+                      client:visible
+                      title={ex.data.title || "Untitled"}
+                      slug={ex.slug || ""}
+                      author={ex.data.author || "JourKnows"}
+                      date={formatDate(ex.data.pubDatetime)}
+                      description={ex.data.description || ""}
+                      images={getAllImages(ex.body)}
+                    />
+                  </section>
+                );
+              }
+
+              /* Default desk: immersive lead card + compact list */
+              const lead = catPosts[0];
+              const rest = catPosts.slice(1, 4);
+              return (
+                <section id={`desk-${catTag}`} class="jk-desk" style={`--desk:${d.color}`} data-jk-reveal>
+                  {head}
+                  <div class:list={["jk-desk-grid", flip && "is-flip", rest.length === 0 && "is-solo"]}>
+                    <a href={`/posts/${lead.slug}`} class="jk-lead">
+                      <img
+                        src={getFirstImage(lead.body) || FALLBACK_IMAGE}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="jk-lead-shade" aria-hidden="true" />
+                      <span class="jk-lead-txt">
+                        <span class="jk-lead-tag">{d.tagName}</span>
+                        <h3>{lead.data.title || "Untitled"}</h3>
+                        {lead.data.description && <p>{lead.data.description}</p>}
+                        <span class="jk-lead-by">
+                          {lead.data.author || "JourKnows"} · {formatDate(lead.data.pubDatetime)}
+                        </span>
+                      </span>
+                    </a>
+
+                    {rest.length > 0 && (
+                      <div class="jk-rows">
+                        {rest.map(post => (
+                          <a href={`/posts/${post.slug}`} class="jk-row">
+                            <img
+                              src={getFirstImage(post.body) || FALLBACK_IMAGE}
+                              alt=""
+                              loading="lazy"
+                              decoding="async"
+                            />
+                            <span>
+                              <h4>{post.data.title || "Untitled"}</h4>
+                              <time>{formatDate(post.data.pubDatetime)}</time>
+                            </span>
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </section>
+              );
+            })
+          }
+        </div>
+
+        <aside class="jk-side" aria-label="Top briefs and weather">
+          <div class="jk-side-in">
+            {briefs.length > 0 && (
+              <div class="jk-briefs">
+                <h2 class="jk-briefs-title">Top briefs</h2>
+                {briefs.map((p, i) => (
+                  <a href={`/posts/${p.slug}`} class="jk-brief">
+                    <span class="jk-brief-num">{i + 1}</span>
+                    <span>
+                      <span class="jk-brief-cat" style={`--desk:${colorFor(p.tag)}`}>{p.tag}</span>
+                      <span class="jk-brief-head">{p.title}</span>
+                    </span>
+                  </a>
+                ))}
+              </div>
+            )}
+            <div class="jk-side-wx">
+              <WeatherWidget client:visible />
+            </div>
+          </div>
+        </aside>
+        </div>
+      </div>
+
+      <AppFooter />
+    </main>
+
+    {/* Floating prompt → story-swipe pop-up */}
+    {swipePosts.length > 0 && <SwipeLauncher client:idle posts={swipePosts} />}
+  </div>
+
+  <script>
+    // Scroll-reveal for [data-jk-reveal] blocks. If anything goes wrong,
+    // fall back to showing everything so content is never left hidden.
+    const items = document.querySelectorAll<HTMLElement>("[data-jk-reveal]");
+    const showAll = () => items.forEach(el => el.classList.add("jk-in"));
+    try {
+      const reduce = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+      if (reduce || !("IntersectionObserver" in window)) {
+        showAll();
+      } else {
+        const io = new IntersectionObserver(
+          entries => {
+            entries.forEach(e => {
+              if (e.isIntersecting) {
+                e.target.classList.add("jk-in");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+        );
+        items.forEach(el => io.observe(el));
+      }
+    } catch {
+      showAll();
+    }
+  </script>
+
+  <script>
+    // Tag the Latest control bar so CSS can make it navy (slide text stays white).
+    const latest = document.querySelector<HTMLElement>(".jk-latest");
+    if (latest) {
+      const txt = (el: Element) => (el.textContent || "").trim().toLowerCase();
+      const mark = () => {
+        const ctl = Array.from(
+          latest.querySelectorAll<HTMLElement>("button, a, [role='button']")
+        );
+        const exp = ctl.find(b => /^(expand|collapse|show less|less)$/.test(txt(b)));
+        const lucky = ctl.find(b => txt(b).includes("feeling lucky"));
+        if (!exp) return;
+        let bar: HTMLElement | null = exp.parentElement;
+        while (bar && bar !== latest && lucky && !bar.contains(lucky)) {
+          bar = bar.parentElement;
+        }
+        if (!bar || bar === latest) bar = exp.parentElement;
+        bar?.setAttribute("data-jk-bar", "");
+        lucky?.setAttribute("data-jk-dark", "");
+      };
+      let queued = false;
+      const run = () => {
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(() => {
+          queued = false;
+          mark();
+        });
+      };
+      new MutationObserver(run).observe(latest, {
+        childList: true,
+        subtree: true,
+        characterData: true,
+      });
+      run();
+    }
+  </script>
+</Layout>
