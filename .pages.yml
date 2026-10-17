@@ -38,8 +38,34 @@ content:
   - name: about
     label: About page
     type: file
-    path: src/pages/about.md
+    path: src/pages/about.md'
+
     fields:
       - { name: layout, type: string, hidden: true, default: "../layouts/AboutLayout.astro" }
       - { name: title, label: Title, type: string }
       - { name: body, label: Body, type: rich-text, options: { input: public/assets, output: /assets } }
+
+      content:
+  - name: videos
+    label: Videos
+    type: collection
+    path: src/content/videos
+    filename: "{primary}.md"
+    view:
+      fields: [title, pubDatetime]
+      primary: title
+      sort: [pubDatetime]
+      default:
+        sort: pubDatetime
+        order: desc
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - { name: url, label: Video link, type: string, required: true, description: "YouTube or Facebook link, or a file path like /videos/clip.mp4" }
+      - { name: pubDatetime, label: Date, type: date, required: true, options: { time: true } }
+      - { name: author, label: Author, type: string }
+      - { name: description, label: Short description, type: text }
+      - { name: thumbnail, label: Thumbnail URL (optional), type: string }
+      - { name: show, label: Show / series, type: string, description: "Videos with the same show name are grouped in one row, e.g. Newsroom Live" }
+      - { name: featured, label: Pin as hero video, type: boolean }
+      - { name: live, label: Live now, type: boolean }
+      - { name: draft, label: Draft (hide from site), type: boolean }
