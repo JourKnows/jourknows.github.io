@@ -9,6 +9,7 @@ import { SITE } from "./src/config";
 // https://astro.build/config
 export default defineConfig({
   site: SITE.website,
+  base: "/jourknows.github.io-test", // remove this line when publishing at a domain root
   integrations: [
     tailwind({
       applyBaseStyles: false,
