@@ -1,54 +1,20 @@
 ---
-import Layout from "@layouts/Layout.astro";
-import { getCollection } from "astro:content";
-import getUniqueTags from "@utils/getUniqueTags";
 import { getVideos, getShows } from "@utils/videos";
-import "@styles/base.css";
-import AppNavbar from "@components/AppNavbar";
-import AppFooter from "@components/AppFooter.astro";
-import VideoCarousel from "@components/VideoCarousel.astro";
-
-// One page per desk / show: /videos/<show-name>. Same look as /videos.
+// Old address: /videos/<show> is now /broadcast/<show> (kept so existing links still work).
 export async function getStaticPaths() {
-  const shows = getShows(await getVideos());
-  return shows.map(s => ({ params: { show: s.slug }, props: { show: s } }));
+  return getShows(await getVideos()).map(s => ({ params: { show: s.slug } }));
 }
-
-const { show } = Astro.props;
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
-
-const posts = await getCollection("blog");
-const allTags = getUniqueTags(posts);
-const navLinks = [
-  { label: "HOME", href: `${BASE}/` },
-  ...allTags.map(t => ({
-    label: t.tagName.toUpperCase(),
-    href: `${BASE}/tags/${t.tag}`,
-  })),
-  { label: "VIDEOS", href: `${BASE}/videos` },
-];
+const to = `${BASE}/broadcast/${Astro.params.show}`;
 ---
-
-<Layout title={`JourKnows | ${show.name} Videos`}>
-  <script is:inline>
-    document.documentElement.classList.add("jk-js");
-  </script>
-
-  <div class="font-display min-h-[100vh] bg-[#fdfdfb] m-0 p-0 text-[#1e1e1e]">
-    <AppNavbar client:load activeHref={`${BASE}/videos`} navLinks={navLinks} />
-
-    <main id="main" class="jk-vid">
-      <div class="jk-vid-in">
-        <VideoCarousel
-          title={show.name}
-          subtitle="From the JourKnows Broadcasting Desk."
-          videos={show.videos}
-          href={`${BASE}/videos`}
-          hrefLabel="All videos"
-        />
-      </div>
-    </main>
-
-    <AppFooter />
-  </div>
-</Layout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0; url=${to}`} />
+    <link rel="canonical" href={to} />
+    <meta name="robots" content="noindex" />
+    <title>Redirecting…</title>
+  </head>
+  <body><a href={to}>Continue to Broadcast</a></body>
+</html>

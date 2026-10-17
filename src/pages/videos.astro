@@ -1,64 +1,16 @@
 ---
-import Layout from "@layouts/Layout.astro";
-import { getCollection } from "astro:content";
-import getUniqueTags from "@utils/getUniqueTags";
-import { getVideos, getShows } from "@utils/videos";
-import "@styles/base.css";
-import AppNavbar from "@components/AppNavbar";
-import AppFooter from "@components/AppFooter.astro";
-import VideoCarousel from "@components/VideoCarousel.astro";
-
-// Works at a domain root ("/") and under a sub-folder
+// Old address: /videos is now /broadcast (kept so existing links still work).
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
-
-/* Navbar links: same as the home page, VIDEOS is always last */
-const posts = await getCollection("blog");
-const allTags = getUniqueTags(posts);
-const navLinks = [
-  { label: "HOME", href: `${BASE}/` },
-  ...allTags.map(t => ({
-    label: t.tagName.toUpperCase(),
-    href: `${BASE}/tags/${t.tag}`,
-  })),
-  { label: "VIDEOS", href: `${BASE}/videos` },
-];
-
-/* Videos (src/content/videos/*.md) */
-const videos = await getVideos();
-const shows = getShows(videos);
+const to = `${BASE}/broadcast`;
 ---
-
-<Layout title="JourKnows | Videos">
-  <script is:inline>
-    document.documentElement.classList.add("jk-js");
-  </script>
-
-  <div class="font-display min-h-[100vh] bg-[#fdfdfb] m-0 p-0 text-[#1e1e1e]">
-    <AppNavbar client:load activeHref={`${BASE}/videos`} navLinks={navLinks} />
-
-    <main id="main" class="jk-vid">
-      <div class="jk-vid-in is-rows">
-        <VideoCarousel
-          title="Videos"
-          subtitle="From the JourKnows Broadcasting Desk."
-          videos={videos}
-        />
-
-        {/* One row per desk / show, each with its own page */}
-        {
-          shows.length > 1 &&
-            shows.map(s => (
-              <VideoCarousel
-                title={s.name}
-                videos={s.videos}
-                href={`${BASE}/videos/${s.slug}`}
-                hrefLabel={`Open ${s.name}`}
-              />
-            ))
-        }
-      </div>
-    </main>
-
-    <AppFooter />
-  </div>
-</Layout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0; url=${to}`} />
+    <link rel="canonical" href={to} />
+    <meta name="robots" content="noindex" />
+    <title>Redirecting…</title>
+  </head>
+  <body><a href={to}>Continue to Broadcast</a></body>
+</html>
