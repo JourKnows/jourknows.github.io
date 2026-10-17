@@ -221,3 +221,12 @@ export function getShows(videos: VideoItem[]) {
   }
   return [...map.values()];
 }
+
+/** Embed for a single video inside an article (no autoplay). */
+export function getInlineEmbed(raw: string) {
+  const d = describe(raw);
+  const src = d.embed
+    .replace("autoplay=1", "autoplay=0")
+    .replace("autoplay=true", "autoplay=false");
+  return { kind: d.kind, src };
+}
