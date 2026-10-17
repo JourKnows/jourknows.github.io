@@ -1691,3 +1691,90 @@ body, body * { font-family: var(--jk-font) !important; }
 .jk-latest [data-jk-bar] button { border-color: rgba(11, 31, 102, 0.4); }
 .jk-latest [data-jk-bar] [data-jk-dark],
 .jk-latest [data-jk-bar] [data-jk-dark] * { color: #fff !important; }
+
+/* ═══ v9: Videos page — navy gradient, ONE reels-style (9:16) carousel with side arrows ═══ */
+.jk-vid {
+  color: #fff;
+  padding: 40px clamp(14px, 2.6vw, 44px) 0;
+  background:
+    radial-gradient(900px 520px at 12% 0%, rgba(40, 70, 220, 0.55), transparent 62%),
+    radial-gradient(800px 500px at 100% 100%, rgba(20, 30, 120, 0.7), transparent 60%),
+    linear-gradient(160deg, #0b1f66 0%, #08154a 55%, #050b33 100%);
+}
+.jk-vid-in { max-width: 1320px; margin: 0 auto; padding-bottom: 72px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 26px; }
+.jk-vid-in > *, .jk-vid-car { min-width: 0; }
+.jk-vid-head { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.jk-vid-title { display: inline-flex; padding: 8px 18px; border-radius: 6px; background: #fff; color: #0b1f66; font-size: 22px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.1; margin: 0; }
+.jk-vid-head p { color: rgba(255, 255, 255, 0.8); font-size: 14px; margin: 0; }
+.jk-vid-empty { padding: 48px 0; color: rgba(255, 255, 255, 0.8); font-size: 15px; }
+
+/* Carousel with [<] [>] at the sides */
+.jk-vid-car { position: relative; padding: 0 68px; }
+.jk-vid-arrow { position: absolute; top: 50%; z-index: 3; width: 50px; height: 50px; margin-top: -25px; border-radius: 50%; border: 2.5px solid #fff; background: #fff; color: #0b1f66; font-size: 26px; font-weight: 800; line-height: 1; cursor: pointer; display: grid; place-items: center; padding: 0 0 4px; box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.6); transition: background 0.2s, color 0.2s, transform 0.15s; }
+.jk-vid-arrow.is-prev { left: 0; }
+.jk-vid-arrow.is-next { right: 0; }
+.jk-vid-arrow:hover:not(:disabled) { background: #0b1f66; color: #fff; }
+.jk-vid-arrow:active:not(:disabled) { transform: scale(0.94); }
+.jk-vid-arrow:disabled { opacity: 0.3; cursor: default; }
+.jk-vid-arrow:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.jk-vid-count { display: block; text-align: center; margin-top: 4px; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; color: rgba(255, 255, 255, 0.85); }
+
+.jk-vid-track { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 6px 2px 18px; scrollbar-width: none; -ms-overflow-style: none; }
+.jk-vid-track::-webkit-scrollbar { display: none; }
+
+/* Reels / TikTok card — 9:16 (1080 × 1920) */
+.jk-vid-card { position: relative; flex: none; width: min(62vw, 300px); aspect-ratio: 9 / 16; scroll-snap-align: start; display: block; padding: 0; border: 0; border-radius: 26px; overflow: hidden; cursor: pointer; text-align: left; color: #fff; font: inherit; background: linear-gradient(160deg, #1530d6, #0b1f66); box-shadow: 0 24px 44px -22px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.14); transition: transform 0.2s, box-shadow 0.2s; }
+.jk-vid-card:hover { transform: translateY(-4px); box-shadow: 0 30px 50px -22px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.28); }
+.jk-vid-card:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.jk-vid-thumb { position: absolute; inset: 0; display: block; }
+.jk-vid-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+.jk-vid-card:hover .jk-vid-thumb img { transform: scale(1.05); }
+.jk-vid-shade { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0) 22%, rgba(5, 11, 51, 0.55) 55%, rgba(5, 11, 51, 0.96) 100%); pointer-events: none; }
+.jk-vid-play { position: absolute; left: 50%; top: 44%; width: 62px; height: 62px; margin: -31px 0 0 -31px; border-radius: 50%; background: #fff; display: grid; place-items: center; box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.55); transition: transform 0.2s; }
+.jk-vid-card:hover .jk-vid-play { transform: scale(1.1); }
+.jk-vid-play svg { width: 26px; height: 26px; margin-left: 3px; fill: #0b1f66; stroke: none; }
+.jk-vid-badge { position: absolute; left: 14px; top: 14px; background: var(--desk, #0b1f66); color: #fff; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; }
+.jk-vid-badge.is-live { background: #e63946; display: inline-flex; align-items: center; gap: 6px; }
+.jk-vid-badge.is-live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #fff; animation: jkLivePulse 1.4s ease-in-out infinite; }
+@keyframes jkLivePulse { 50% { opacity: 0.25; } }
+.jk-vid-meta { position: absolute; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; gap: 6px; padding: 18px 18px 20px; }
+.jk-vid-name { font-size: 17px; font-weight: 800; line-height: 1.25; color: #fff; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5); }
+.jk-vid-desc { display: none; }
+.jk-vid-by { font-size: 12px; color: rgba(255, 255, 255, 0.82); }
+
+@media (max-width: 700px) {
+  .jk-vid-car { padding: 0; }
+  .jk-vid-arrow { width: 42px; height: 42px; margin-top: -21px; font-size: 22px; }
+  .jk-vid-arrow.is-prev { left: 6px; }
+  .jk-vid-arrow.is-next { right: 6px; }
+  .jk-vid-card { width: min(74vw, 300px); }
+}
+@media (prefers-reduced-motion: reduce) { .jk-vid-badge.is-live::before { animation: none; } .jk-vid-track { scroll-behavior: auto; } }
+
+/* Cards cut off at the carousel edge are shown at lower opacity */
+.jk-vid-card { transition: transform 0.2s, box-shadow 0.2s, opacity 0.3s; }
+.jk-vid-card.is-dim { opacity: 0.35; }
+.jk-vid-card.is-dim:hover { opacity: 0.7; }
+
+/* Player pop-up — reels format */
+.jk-vid-modal { position: fixed; inset: 0; z-index: 1100; display: grid; place-items: center; padding: 16px; background: rgba(5, 11, 51, 0.88); }
+.jk-vid-modal[hidden] { display: none; }
+.jk-vid-panel { position: relative; width: fit-content; max-width: 100%; background: #0b1f66; border-radius: 22px; padding: 12px 12px 14px; box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.16); }
+.jk-vid-stage { aspect-ratio: 9 / 16; height: min(78vh, 820px); max-width: calc(100vw - 56px); margin: 0 auto; border-radius: 14px; overflow: hidden; background: #000; }
+.jk-vid-stage iframe, .jk-vid-stage video { width: 100%; height: 100%; border: 0; display: block; background: #000; object-fit: contain; }
+.jk-vid-cap { margin: 10px 4px 0; max-width: 100%; font-weight: 700; color: #fff; font-size: 14px; text-align: center; }
+.jk-vid-close { position: absolute; top: -14px; right: -6px; z-index: 2; width: 36px; height: 36px; border-radius: 50%; border: 2.5px solid #0a0a0f; background: #fff; color: #0a0a0f; font-size: 15px; font-weight: 800; cursor: pointer; box-shadow: 2px 3px 0 #0a0a0f; }
+.jk-vid-close:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+/* ═══ v10: shared video carousel (home, /videos, /videos/<show>) ═══ */
+.jk-vc { display: grid; gap: 26px; min-width: 0; }
+.jk-vc > * { min-width: 0; }
+.jk-vid-more { margin-left: auto; padding: 7px 16px; border: 2px solid rgba(255, 255, 255, 0.55); border-radius: 999px; color: #fff; font-size: 12.5px; font-weight: 700; letter-spacing: 0.06em; text-decoration: none; text-transform: uppercase; white-space: nowrap; transition: background 0.2s, color 0.2s; }
+.jk-vid-more:hover, .jk-vid-more:focus-visible { background: #fff; color: #0b1f66; outline: none; }
+.jk-vid-in.is-rows { gap: 56px; }
+/* Home page band: sits between the Latest hero and the news section */
+.jk-vid-home { padding-top: 36px; }
+.jk-vid-home .jk-vid-in { padding-bottom: 40px; }
+@media (max-width: 640px) {
+  .jk-vid-more { margin-left: 0; }
+}
