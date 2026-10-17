@@ -1,8 +1,9 @@
 ---
 // Scroll behaviour for the top of the page (no markup):
 //  1. NAVBAR  → stays on top; once you scroll it shrinks from the full-width bar into a
-//               rounded pill that hugs the links, in iOS 16-style frosted glass.
-//  2. TICKER  → the news ticker (.jk-ticker) pins itself right under the navbar.
+//               rounded pill that hugs the links, CENTERED on the screen, in white frosted glass.
+//  2. TICKER  → the news ticker (.jk-ticker) pins under the navbar and becomes a rounded rectangle.
+//  3. SIDEBAR → measures the sticky briefs/weather column so it never gets cut off.
 // It finds the navbar by itself (first sticky/fixed <header>/<nav>, else the first one),
 // so AppNavbar does not need to change. Styles: "v11" block at the end of base.css.
 ---
@@ -35,18 +36,32 @@
     el.classList.add("jk-nav");
 
     const ticker = document.querySelector<HTMLElement>(".jk-ticker");
+    const side = document.querySelector<HTMLElement>(".jk-side");
     const GAP = 10; // space between the top of the screen and the floating pill
     const PAD_X = 24;
     const PAD_Y = 8;
+    const kids = Array.from(el.children) as HTMLElement[];
+    // Current horizontal translate of a child (so we can measure its real layout position)
+    const txOf = (k: HTMLElement) => {
+      const t = getComputedStyle(k).transform;
+      if (!t || t === "none") return 0;
+      try { return new DOMMatrixReadOnly(t).m41; } catch { return 0; }
+    };
     const apply = () => {
       const st = document.documentElement.style;
       const er = el.getBoundingClientRect();
+      const shifts = new Map(kids.map(k => [k, txOf(k)]));
 
       // Pill = the row of links/buttons, plus a little padding (rectangle -> rounded pill)
       const parts = Array.from(
         el.querySelectorAll<HTMLElement>("a, button, input, select")
       )
-        .map(n => n.getBoundingClientRect())
+        .map(n => {
+          const r = n.getBoundingClientRect();
+          const k = kids.find(c => c.contains(n));
+          const d = k ? shifts.get(k) || 0 : 0; // undo our own centering shift
+          return { left: r.left - d, right: r.right - d, top: r.top, bottom: r.bottom, width: r.width, height: r.height };
+        })
         .filter(r => r.width > 0 && r.height > 0 && r.height <= 72);
       let x = 0, y = 0, pw = er.width, ph = er.height;
       if (parts.length) {
@@ -59,15 +74,22 @@
         pw = r - l + PAD_X * 2;
         ph = bt - t + PAD_Y * 2;
       }
-      st.setProperty("--jk-pill-x", `${Math.max(0, Math.round(x))}px`);
+      pw = Math.min(Math.round(pw), Math.round(er.width));
+      // Center the pill in the bar, and slide the links along with it
+      const cx = Math.max(0, Math.round((er.width - pw) / 2));
+      const shift = cx - x;
+      st.setProperty("--jk-pill-x", `${cx}px`);
       st.setProperty("--jk-pill-y", `${Math.round(y)}px`);
-      st.setProperty("--jk-pill-w", `${Math.min(Math.round(pw), Math.round(er.width))}px`);
+      st.setProperty("--jk-pill-w", `${pw}px`);
       st.setProperty("--jk-pill-h", `${Math.round(ph)}px`);
+      st.setProperty("--jk-shift", `${Math.round(shift)}px`);
       // Slide the bar up so the pill floats GAP px from the top of the screen
       st.setProperty("--jk-nav-top", `${Math.round(GAP - y)}px`);
 
       const scrolled = window.scrollY > 6;
       el.classList.toggle("jk-nav-scrolled", scrolled);
+      el.classList.toggle("jk-nav-shifted", scrolled && Math.abs(shift) > 1);
+      ticker?.classList.toggle("jk-ticker-scrolled", scrolled);
 
       // The ticker pins right under the navbar (under the pill once it is floating)
       const navH = scrolled ? GAP + Math.round(ph) + 6 : Math.round(er.height);
@@ -75,6 +97,8 @@
       st.setProperty("--jk-nav-h", `${navH}px`);
       // Sidebar (briefs + weather) sticks below navbar + ticker
       st.setProperty("--jk-sticky-top", `${navH + th + 16}px`);
+      // Height of the sidebar: lets CSS keep a tall sidebar fully reachable (no inner scrolling, no cut-off)
+      st.setProperty("--jk-side-h", `${side ? Math.round(side.getBoundingClientRect().height) : 0}px`);
     };
 
     const w = window as any;
@@ -89,6 +113,7 @@
       w.__jkNavRO = ro;
       ro.observe(el);
       if (ticker) ro.observe(ticker);
+      if (side) ro.observe(side);
     }
     apply();
   };

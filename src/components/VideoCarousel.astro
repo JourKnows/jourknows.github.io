@@ -10,16 +10,41 @@ interface Props {
   subtitle?: string;
   href?: string;
   hrefLabel?: string;
+  /** "band" = stand-alone white band (default, /broadcast pages) · "desk" = styled like a home section desk */
+  variant?: "band" | "desk";
 }
-const { videos, title, subtitle = "", href, hrefLabel = "View all" } = Astro.props;
+const { videos, title, subtitle = "", href, hrefLabel = "View all", variant = "band" } = Astro.props;
+const isDesk = variant === "desk";
 ---
 
-<section class="jk-vc" data-vc aria-label={title}>
-  <header class="jk-vid-head">
-    <h2 class="jk-vid-title">{title}</h2>
-    {subtitle && <p>{subtitle}</p>}
-    {href && <a class="jk-vid-more" href={href}>{hrefLabel} ›</a>}
-  </header>
+<section class:list={["jk-vc", isDesk && "jk-vc--desk"]} data-vc aria-label={title}>
+  {
+    isDesk ? (
+      <>
+        <header class="jk-desk-head">
+          <h2 class="jk-desk-title">
+            <i aria-hidden="true" />
+            {title}
+          </h2>
+          {href && (
+            <a class="jk-desk-all" href={href}>
+              {hrefLabel}
+              <svg class="jk-ic" viewBox="0 0 24 24" aria-hidden="true" style="width:14px;height:14px">
+                <path d="m9 6 6 6-6 6" />
+              </svg>
+            </a>
+          )}
+        </header>
+        {subtitle && <p class="jk-vc-sub">{subtitle}</p>}
+      </>
+    ) : (
+      <header class="jk-vid-head">
+        <h2 class="jk-vid-title">{title}</h2>
+        {subtitle && <p>{subtitle}</p>}
+        {href && <a class="jk-vid-more" href={href}>{hrefLabel} ›</a>}
+      </header>
+    )
+  }
 
   {
     videos.length === 0 ? (
