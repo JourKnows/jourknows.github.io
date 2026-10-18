@@ -1,9 +1,10 @@
 ---
 author: JourKnows PH Sci-Tech
-authorTitle: Andrea Lorraine C. Resente/JourKnows PH
+authorTitle: Andrea Lorraine C. Resente
 authorBio: JourKnows PH is a student journalism publication committed to
   amplifying youth voices and delivering stories that matter — Journalism for
   All.
+authorImage: /Untitled design-9.png
 pubDatetime: 2026-10-18
 modDatetime: 2026-10-18
 title: "Super El Niño: A Patch to the Leakage"
@@ -44,4 +45,3 @@ The Filipino people deserve more than mere advice that leaves them to fend for t
 
 *A bucket itself can temporarily serve as a patch to collect the leakage, but it cannot contain the heaviness of both the national crisis and government negligence. **Andrea Lorraine C. Resente/JourKnows PH***
 
-  
