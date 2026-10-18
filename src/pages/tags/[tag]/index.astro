@@ -1,32 +1,460 @@
 ---
+import Layout from "@layouts/Layout.astro";
 import { getCollection } from "astro:content";
-import TagPosts from "@layouts/TagPosts.astro";
-import getPostsByTag from "@utils/getPostsByTag";
-import getPagination from "@utils/getPagination";
+import getSortedPosts from "@utils/getSortedPosts";
 import getUniqueTags from "@utils/getUniqueTags";
+import getFirstImage from "@utils/getFirstImage";
+import { slugifyAll } from "@utils/slugify";
+import { sortDesks, deskColor, DESK_TAGLINES } from "@utils/desks";
+import "@styles/base.css";
+import AppNavbar from "@components/AppNavbar";
+import AppFooter from "@components/AppFooter.astro";
+import NewsTicker from "@components/NewsTicker.astro";
+import WeatherWidget from "@components/WeatherWidget";
+import NavGlass from "@components/NavGlass.astro";
 
+// One page per desk: /tags/news, /tags/sports, ... (replaces the old paginated desk pages)
+// Same two-column layout and styling as the home page, with a desk masthead,
+// a lead + pair opener and a month-by-month archive.
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-
-  const tags = getUniqueTags(posts);
-
-  return tags.map(({ tag, tagName }) => {
-    return {
-      params: { tag },
-      props: { tag, tagName, posts },
-    };
-  });
+  return getUniqueTags(posts).map(t => ({
+    params: { tag: t.tag },
+    props: { tag: t.tag, tagName: t.tagName },
+  }));
 }
 
-const { tag, tagName, posts } = Astro.props;
+const { tag, tagName } = Astro.props;
 
-const postsByTag = getPostsByTag(posts, tag);
+// Works at a domain root ("/") and under a sub-folder
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 
-const pagination = getPagination({
-  posts: postsByTag,
-  page: 1,
-  isIndex: true,
-});
+const posts = await getCollection("blog");
+const sortedPosts = getSortedPosts(posts);
+const allTags = getUniqueTags(posts);
+const desksSorted = sortDesks(allTags);
+
+const navLinks = [
+  { label: "HOME", href: `${BASE}/` },
+  ...allTags.map(t => ({
+    label: t.tagName.toUpperCase(),
+    href: `${BASE}/tags/${t.tag}`,
+  })),
+  { label: "BROADCAST", href: `${BASE}/broadcast` },
+];
+
+const color = deskColor(desksSorted, tag);
+const tagline = DESK_TAGLINES[tag] || `Stories from the JourKnows ${tagName} Desk.`;
+
+const inDesk = (p: (typeof sortedPosts)[number]) =>
+  slugifyAll(p.data.tags || []).includes(tag);
+
+const deskPosts = sortedPosts.filter(inDesk);
+const lead = deskPosts[0];
+const pair = deskPosts.slice(1, 3);
+const archive = deskPosts.slice(3);
+
+const formatDate = (d?: Date | string) =>
+  d
+    ? new Date(d).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      })
+    : "Unknown Date";
+
+const monthOf = (d?: Date | string) =>
+  d
+    ? new Date(d).toLocaleDateString("en-US", { month: "long", year: "numeric" })
+    : "Undated";
+
+const FALLBACK_IMAGE =
+  "https://placehold.co/800x600/f4f1e1/1a1a1a?text=No+Image";
+
+// Root-relative images ("/assets/x.jpg") break when the site lives in a sub-folder
+// (e.g. user.github.io/repo/), so prefix them with the base path. Full URLs are untouched.
+const imgSrc = (body?: string) => {
+  const src = getFirstImage(body) || FALLBACK_IMAGE;
+  return src.startsWith("/") && !src.startsWith("//") && BASE && !src.startsWith(BASE + "/")
+    ? `${BASE}${src}`
+    : src;
+};
+
+// Archive: 15 stories per page, grouped by month (month label restarts at the top of each page)
+const PER_PAGE = 15;
+const archivePages = Array.from({ length: Math.ceil(archive.length / PER_PAGE) }, (_, n) =>
+  archive.slice(n * PER_PAGE, (n + 1) * PER_PAGE).map((p, i, arr) => ({
+    post: p,
+    month: monthOf(p.data.pubDatetime),
+    newMonth: i === 0 || monthOf(arr[i - 1].data.pubDatetime) !== monthOf(p.data.pubDatetime),
+  }))
+);
+
+// Chips to hop between desks (only desks that have stories)
+const deskChips = desksSorted
+  .filter(t => sortedPosts.some(p => slugifyAll(p.data.tags || []).includes(t.tag)))
+  .map(t => ({ ...t, color: deskColor(desksSorted, t.tag), active: t.tag === tag }));
+
+// Ticker + sidebar: latest headlines; the sidebar prefers stories from the OTHER desks
+const headlineItems = sortedPosts.slice(0, 8).map(p => ({
+  title: p.data.title || "Untitled",
+  slug: p.slug || "",
+  tag: p.data.tags?.[0] || "news",
+}));
+const elsewhere = sortedPosts.filter(p => !inDesk(p)).slice(0, 5);
+const briefs = (elsewhere.length ? elsewhere : sortedPosts.slice(0, 5)).map(p => ({
+  title: p.data.title || "Untitled",
+  slug: p.slug || "",
+  tag: p.data.tags?.[0] || "news",
+}));
+const briefColor = (t: string) => deskColor(desksSorted, slugifyAll([t])[0] || t);
 ---
 
-<TagPosts {...pagination} {tag} {tagName} />
+<Layout title={`JourKnows | ${tagName}`}>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" />
+  <script is:inline data-astro-rerun>
+    document.documentElement.classList.add("jk-js");
+  </script>
+  <noscript><style>[data-page][hidden] { display: revert !important; }</style></noscript>
+
+  <div class="font-display jk-dp-page min-h-[100vh] bg-[#fdfdfb] m-0 p-0 text-[#1e1e1e]">
+    <AppNavbar client:load activeHref={`${BASE}/tags/${tag}`} navLinks={navLinks} />
+    <NewsTicker posts={headlineItems} />
+    <NavGlass />
+
+    <main id="main">
+      <div class="jk-home">
+        {/* ── Twist 1 · Desk masthead: the whole page takes the desk's colour ── */}
+        <header class="jk-dp-mast" style={`--desk:${color}`}>
+          <span class="jk-dp-ghost" aria-hidden="true">{tagName}</span>
+          <p class="jk-dp-kicker">JourKnows Desk</p>
+          <h1 class="jk-dp-title">{tagName}</h1>
+          <p class="jk-dp-tag">{tagline}</p>
+          <p class="jk-dp-stats">
+            <b>{deskPosts.length}</b> {deskPosts.length === 1 ? "story" : "stories"}
+            {lead && <span> · Latest <span class="jk-date">{formatDate(lead.data.pubDatetime)}</span></span>}
+          </p>
+          <nav class="jk-dp-chips" aria-label="Switch desk">
+            <a href={`${BASE}/`} class="jk-dp-chip">All desks</a>
+            {
+              deskChips.map(c => (
+                <a
+                  href={`${BASE}/tags/${c.tag}`}
+                  class:list={["jk-dp-chip", c.active && "is-active"]}
+                  aria-current={c.active ? "page" : undefined}
+                  style={`--c:${c.color}`}
+                >
+                  <i aria-hidden="true" />
+                  {c.tagName}
+                </a>
+              ))
+            }
+          </nav>
+        </header>
+
+        {/* ── Same two columns as the home page ── */}
+        <div class="jk-home-in">
+          <div class="jk-home-main">
+            {/* Opener: lead story + two cards */}
+            {
+              lead && (
+                <section id="desk-top" class="jk-desk" style={`--desk:${color}`} data-jk-reveal>
+                  <header class="jk-desk-head">
+                    <h2 class="jk-desk-title">
+                      <i aria-hidden="true" />
+                      Top of the desk
+                    </h2>
+                    <span class="jk-dp-count">{deskPosts.length} in {tagName}</span>
+                  </header>
+                  <div class:list={["jk-desk-grid", pair.length === 0 && "is-solo"]}>
+                    <a href={`${BASE}/posts/${lead.slug}`} class="jk-lead jk-dp-lead">
+                      <img
+                        src={imgSrc(lead.body)}
+                        alt=""
+                        decoding="async"
+                      />
+                      <span class="jk-lead-shade" aria-hidden="true" />
+                      <span class="jk-lead-txt">
+                        <span class="jk-lead-tag">{tagName}</span>
+                        <h3>{lead.data.title || "Untitled"}</h3>
+                        {lead.data.description && <p>{lead.data.description}</p>}
+                        <span class="jk-lead-by">
+                          {lead.data.author || "JourKnows"} · <span class="jk-date">{formatDate(lead.data.pubDatetime)}</span>
+                        </span>
+                      </span>
+                    </a>
+
+                    {pair.length > 0 && (
+                      <div class="jk-dp-pair">
+                        {pair.map(post => (
+                          <a href={`${BASE}/posts/${post.slug}`} class="jk-dp-card">
+                            <img
+                              src={imgSrc(post.body)}
+                              alt=""
+                              loading="lazy"
+                              decoding="async"
+                            />
+                            <span class="jk-dp-card-body">
+                              <span class="jk-lead-tag">{tagName}</span>
+                              <h4>{post.data.title || "Untitled"}</h4>
+                              <time>
+                                {post.data.author || "JourKnows"} · <span class="jk-date">{formatDate(post.data.pubDatetime)}</span>
+                              </time>
+                            </span>
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </section>
+              )
+            }
+
+            {/* Twist 2 · Earlier stories: 15 per page with < > pager */}
+            {
+              archivePages.length > 0 && (
+                <section id="desk-archive" class="jk-desk" style={`--desk:${color}`} data-jk-reveal>
+                  <header class="jk-desk-head">
+                    <h2 class="jk-desk-title">
+                      <i aria-hidden="true" />
+                      Earlier stories
+                    </h2>
+                    <span class="jk-dp-count">{archive.length} more</span>
+                  </header>
+                  <div class="jk-dp-pager-box" data-jk-pager>
+                    {archivePages.map((rows, n) => (
+                      <div class="jk-dp-list" data-page={n} hidden={n > 0}>
+                        {rows.map(r => (
+                          <>
+                            {r.newMonth && (
+                              <div class="jk-dp-month">
+                                <span>{r.month}</span>
+                                <i aria-hidden="true" />
+                              </div>
+                            )}
+                            <a href={`${BASE}/posts/${r.post.slug}`} class="jk-row">
+                              <img
+                                src={imgSrc(r.post.body)}
+                                alt=""
+                                loading="lazy"
+                                decoding="async"
+                              />
+                              <span>
+                                <h4>{r.post.data.title || "Untitled"}</h4>
+                                <time class="jk-date">{formatDate(r.post.data.pubDatetime)}</time>
+                              </span>
+                            </a>
+                          </>
+                        ))}
+                      </div>
+                    ))}
+                    {archivePages.length > 1 && (
+                      <nav class="jk-dp-pager" aria-label="Earlier stories pages">
+                        <button type="button" class="jk-dp-pg" data-prev aria-label="Previous page">&lt;</button>
+                        <span class="jk-dp-pginfo" data-info>Page 1 of {archivePages.length}</span>
+                        <button type="button" class="jk-dp-pg" data-next aria-label="Next page">&gt;</button>
+                      </nav>
+                    )}
+                  </div>
+                </section>
+              )
+            }
+          </div>
+
+          <aside class="jk-side" aria-label="Top briefs and weather">
+            <div class="jk-side-in">
+              {briefs.length > 0 && (
+                <div class="jk-briefs">
+                  <h2 class="jk-briefs-title">Elsewhere in the newsroom</h2>
+                  {briefs.map((p, i) => (
+                    <a href={`${BASE}/posts/${p.slug}`} class="jk-brief">
+                      <span class="jk-brief-num">{i + 1}</span>
+                      <span>
+                        <span class="jk-brief-cat" style={`--desk:${briefColor(p.tag)}`}>{p.tag}</span>
+                        <span class="jk-brief-head">{p.title}</span>
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              )}
+              <div class="jk-side-wx">
+                <WeatherWidget client:visible />
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <AppFooter />
+    </main>
+  </div>
+
+  <script>
+    // Scroll-reveal (same as the home page)
+    let revealIO: IntersectionObserver | null = null;
+    const initReveal = () => {
+      document.documentElement.classList.add("jk-js");
+      revealIO?.disconnect();
+      revealIO = null;
+      const items = document.querySelectorAll<HTMLElement>("[data-jk-reveal]");
+      const showAll = () => items.forEach(el => el.classList.add("jk-in"));
+      try {
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (reduce || !("IntersectionObserver" in window)) {
+          showAll();
+          return;
+        }
+        const io = new IntersectionObserver(
+          entries => {
+            entries.forEach(e => {
+              if (e.isIntersecting) {
+                e.target.classList.add("jk-in");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+        );
+        revealIO = io;
+        items.forEach(el => io.observe(el));
+        setTimeout(showAll, 2500);
+      } catch {
+        showAll();
+      }
+    };
+    initReveal();
+    document.addEventListener("astro:page-load", initReveal);
+    document.addEventListener("astro:after-swap", initReveal);
+    window.addEventListener("pageshow", initReveal);
+  </script>
+
+  <script>
+    // Earlier stories pager: < > buttons, 15 stories per page
+    const initPager = () => {
+      document.querySelectorAll<HTMLElement>("[data-jk-pager]").forEach(box => {
+        if (box.dataset.bound) return;
+        box.dataset.bound = "1";
+        const pages = Array.from(box.querySelectorAll<HTMLElement>("[data-page]"));
+        const prev = box.querySelector<HTMLButtonElement>("[data-prev]");
+        const next = box.querySelector<HTMLButtonElement>("[data-next]");
+        const info = box.querySelector<HTMLElement>("[data-info]");
+        let cur = 0;
+        const show = (n: number, scroll = false) => {
+          cur = Math.min(Math.max(n, 0), pages.length - 1);
+          pages.forEach((el, i) => (el.hidden = i !== cur));
+          if (info) info.textContent = `Page ${cur + 1} of ${pages.length}`;
+          if (prev) prev.disabled = cur === 0;
+          if (next) next.disabled = cur === pages.length - 1;
+          if (scroll) document.getElementById("desk-archive")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        };
+        prev?.addEventListener("click", () => show(cur - 1, true));
+        next?.addEventListener("click", () => show(cur + 1, true));
+        show(0);
+      });
+    };
+    initPager();
+    document.addEventListener("astro:page-load", initPager);
+    document.addEventListener("astro:after-swap", initPager);
+  </script>
+</Layout>
+
+<style is:global>
+/* Desk masthead, colour-coded per desk via --desk.
+   Shipped with the page itself so it still renders if base.css is stale on the deploy. */
+/* Masthead */
+.jk-dp-mast {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin: 0 0 clamp(20px, 2vw, 32px);
+  padding: clamp(26px, 4vw, 50px) clamp(22px, 4vw, 52px) clamp(22px, 3vw, 34px);
+  border-radius: 32px;
+  color: #fff;
+  background:
+    radial-gradient(120% 140% at 100% 0%, rgba(255, 255, 255, 0.22), transparent 55%),
+    linear-gradient(135deg, var(--desk), color-mix(in srgb, var(--desk) 58%, #00046d));
+  box-shadow: 0 26px 46px -26px color-mix(in srgb, var(--desk) 70%, #00046d);
+  isolation: isolate;
+}
+.jk-dp-ghost {
+  position: absolute;
+  right: -0.04em;
+  bottom: -0.2em;
+  z-index: -1;
+  font-size: clamp(96px, 17vw, 230px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.26);
+  pointer-events: none;
+  user-select: none;
+}
+.jk-dp-kicker {
+  margin: 0 0 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+.jk-dp-title {
+  display: inline-block;
+  margin: 0;
+  padding: 8px 20px;
+  border-radius: 6px;
+  background: #fff;
+  color: var(--desk);
+  font-size: clamp(30px, 5vw, 56px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.jk-dp-tag { margin: 16px 0 6px; max-width: 34ch; font-size: clamp(15px, 1.7vw, 19px); line-height: 1.45; color: #fff; }
+.jk-dp-stats { margin: 0 0 20px; font-size: 13px; color: rgba(255, 255, 255, 0.85); }
+.jk-dp-stats b { font-size: 15px; color: #fff; }
+
+.jk-dp-chips { display: flex; flex-wrap: wrap; gap: 8px; max-width: 760px; }
+.jk-dp-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 13px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s, color 0.2s;
+}
+.jk-dp-chip i { width: 9px; height: 9px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 2px #fff; }
+.jk-dp-chip:hover { background: rgba(255, 255, 255, 0.3); transform: translateY(-1px); }
+.jk-dp-chip.is-active { background: #fff; color: var(--desk); border-color: #fff; }
+.jk-dp-chip:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+/* Pager (< >) */
+.jk-dp-list[hidden] { display: none !important; }
+.jk-dp-pager { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 18px; }
+.jk-dp-pg {
+  width: 44px; height: 44px; border: 0; border-radius: 50%;
+  background: var(--desk); color: #fff; font: inherit; font-size: 20px; line-height: 1;
+  cursor: pointer; transition: filter 0.2s, transform 0.2s, opacity 0.2s;
+}
+.jk-dp-pg:hover:not(:disabled) { filter: brightness(1.1); transform: translateY(-1px); }
+.jk-dp-pg:disabled { opacity: 0.3; cursor: default; }
+.jk-dp-pg:focus-visible { outline: 3px solid var(--jk-navy, #00046d); outline-offset: 3px; }
+.jk-dp-pginfo { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #4a5a8f; }
+
+/* Typography: everything bold, dates in Montserrat Black */
+.jk-dp-page, .jk-dp-page * { font-weight: 700 !important; }
+.jk-dp-page .jk-date { font-weight: 900 !important; }
+</style>

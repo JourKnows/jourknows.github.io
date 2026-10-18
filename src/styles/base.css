@@ -3061,7 +3061,163 @@ body, body * { font-family: var(--jk-font) !important; }
 }
 
 
-/* ═══ v15: FIX — Broadcast desk must never widen the left column ═══════════════════════════════
+/* ═══ v15: DESK PAGES (/tags/<desk>) ═════════════════════════════════════════════════════════
+   Same two columns, panels, lead card, rows and sidebar as the home page, plus a twist:
+   a full-width desk masthead in the desk colour, a lead + pair opener, and a month-by-month
+   archive with a < > pager (15 per page). Colour comes from --desk (same colour the home page
+   gives the desk). */
+
+.jk-home [hidden], .jk-dp-list [hidden] { display: none !important; }
+
+/* Masthead */
+.jk-dp-mast {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin: 0 0 clamp(20px, 2vw, 32px);
+  padding: clamp(26px, 4vw, 50px) clamp(22px, 4vw, 52px) clamp(22px, 3vw, 34px);
+  border-radius: 32px;
+  color: #fff;
+  background:
+    radial-gradient(120% 140% at 100% 0%, rgba(255, 255, 255, 0.22), transparent 55%),
+    linear-gradient(135deg, var(--desk), color-mix(in srgb, var(--desk) 58%, #00046d));
+  box-shadow: 0 26px 46px -26px color-mix(in srgb, var(--desk) 70%, #00046d);
+  isolation: isolate;
+}
+.jk-dp-ghost {
+  position: absolute;
+  right: -0.04em;
+  bottom: -0.2em;
+  z-index: -1;
+  font-size: clamp(96px, 17vw, 230px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.26);
+  pointer-events: none;
+  user-select: none;
+}
+.jk-dp-kicker {
+  margin: 0 0 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+.jk-dp-title {
+  display: inline-block;
+  margin: 0;
+  padding: 8px 20px;
+  border-radius: 6px;
+  background: #fff;
+  color: var(--desk);
+  font-size: clamp(30px, 5vw, 56px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.jk-dp-tag { margin: 16px 0 6px; max-width: 34ch; font-size: clamp(15px, 1.7vw, 19px); line-height: 1.45; color: #fff; }
+.jk-dp-stats { margin: 0 0 20px; font-size: 13px; color: rgba(255, 255, 255, 0.85); }
+.jk-dp-stats b { font-size: 15px; color: #fff; }
+
+.jk-dp-chips { display: flex; flex-wrap: wrap; gap: 8px; max-width: 760px; }
+.jk-dp-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 13px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s, color 0.2s;
+}
+.jk-dp-chip i { width: 9px; height: 9px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 2px #fff; }
+.jk-dp-chip:hover { background: rgba(255, 255, 255, 0.3); transform: translateY(-1px); }
+.jk-dp-chip.is-active { background: #fff; color: var(--desk); border-color: #fff; }
+.jk-dp-chip:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+/* Panel header count */
+.jk-dp-count { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #4a5a8f; }
+
+/* Opener: bigger lead, two cards on the right */
+.jk-dp-lead { min-height: 420px; }
+.jk-dp-pair { display: grid; gap: 14px; grid-template-rows: 1fr 1fr; }
+.jk-dp-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 22px;
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  background: #fff;
+  border: 1px solid #e6edfa;
+  border-top: 4px solid var(--desk);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.jk-dp-card:hover { transform: translateY(-2px); box-shadow: 0 14px 26px -16px rgba(20, 30, 90, 0.45); }
+.jk-dp-card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
+.jk-dp-card-body { display: block; padding: 12px 14px 14px; }
+.jk-dp-card h4 {
+  margin: 0 0 4px;
+  font-size: 15.5px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--jk-ink, #14163a);
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.jk-dp-card time { font-size: 12px; color: #6b6f8c; }
+
+/* Archive, grouped by month */
+.jk-dp-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.jk-dp-month {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 10px 2px 2px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--desk);
+}
+.jk-dp-month:first-child { margin-top: 0; }
+.jk-dp-month i { flex: 1; height: 2px; border-radius: 2px; background: linear-gradient(90deg, var(--desk), transparent); opacity: 0.55; }
+
+/* Responsive (the main column is a size container, same as the home page) */
+@container (max-width: 760px) {
+  .jk-dp-list { grid-template-columns: 1fr; }
+  .jk-dp-lead { min-height: 340px; }
+  .jk-dp-pair { grid-template-rows: none; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@container (max-width: 480px) {
+  .jk-dp-pair { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .jk-dp-mast { border-radius: 26px; }
+  .jk-dp-title { letter-spacing: 0.04em; padding: 6px 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .jk-dp-card, .jk-dp-chip, .jk-dp-pg { transition: none !important; }
+}
+
+/* v15b: desk pages use Montserrat for every piece of text (headlines, labels, buttons, sidebar, weather) */
+.jk-dp-page { --jk-serif: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif; }
+.jk-dp-page,
+.jk-dp-page * { font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif !important; }
+
+/* ═══ v16: FIX — Broadcast desk must never widen the left column ═══════════════════════════════
    Cause: .jk-home-main is a grid with no explicit column, so its single (implicit, `auto`) column
    grew to the min-content width of the carousel track (N fixed-width cards, flex: none). With 5
    videos the desk stretched past the column and sat on top of Top briefs + weather.
