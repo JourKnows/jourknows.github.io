@@ -1,4 +1,6 @@
 import { getCollection } from "astro:content";
+import fs from "node:fs";
+import path from "node:path";
 
 // Works at a domain root ("/") and under a sub-folder
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -89,31 +91,86 @@ async function timedFetch(url: string, init: RequestInit = {}) {
   }
 }
 
+const UAS = [
+  FB_UA,
+  "Mozilla/5.0 (compatible; Twitterbot/1.0)",
+  "Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Mobile Safari/537.36",
+  "WhatsApp/2.23.20.0",
+];
+
+const fbVideoId = (url: string) =>
+  url.match(/(?:videos\/(?:[^/?#]+\/)?|reel\/|[?&]v=|story_fbid=)(\d{8,})/)?.[1] || null;
+
+async function grabImage(img: string, ua: string): Promise<Thumb | null> {
+  try {
+    const pic = await timedFetch(img, { headers: { "user-agent": ua, accept: "image/*" } });
+    if (!pic.ok) return null;
+    const type = pic.headers.get("content-type") || "";
+    if (!type.startsWith("image/")) return null;
+    const bytes = new Uint8Array(await pic.arrayBuffer());
+    return bytes.length > 500 ? { bytes, type } : null;
+  } catch {
+    return null;
+  }
+}
+
 /** The picture Facebook chose for this video link (null if unavailable). */
 export function getFacebookThumb(url: string): Promise<Thumb | null> {
   if (!fbCache.has(url)) {
     fbCache.set(
       url,
       (async () => {
-        try {
-          const page = await timedFetch(url, {
-            headers: { "user-agent": FB_UA, accept: "text/html" },
-          });
-          if (!page.ok) return null;
-          const img = parseOgImage(await page.text());
-          if (!img) return null;
-          const pic = await timedFetch(img, { headers: { "user-agent": FB_UA } });
-          if (!pic.ok) return null;
-          const type = pic.headers.get("content-type") || "image/jpeg";
-          if (!type.startsWith("image/")) return null;
-          return { bytes: new Uint8Array(await pic.arrayBuffer()), type };
-        } catch {
-          return null;
+        // 1) the page's og:image, asking as several different crawlers
+        const pages = [url, url.replace("://www.facebook.com", "://m.facebook.com")];
+        for (const pageUrl of pages) {
+          for (const ua of UAS) {
+            try {
+              const page = await timedFetch(pageUrl, {
+                headers: { "user-agent": ua, accept: "text/html", "accept-language": "en-US,en;q=0.9" },
+              });
+              if (!page.ok) continue;
+              const img = parseOgImage(await page.text());
+              if (!img) continue;
+              const got = (await grabImage(img, ua)) || (await grabImage(img, FB_UA));
+              if (got) return got;
+            } catch {
+              /* try the next one */
+            }
+          }
         }
+        // 2) Graph picture endpoint (works for public videos without a token)
+        const id = fbVideoId(url);
+        if (id) {
+          const got = await grabImage(`https://graph.facebook.com/${id}/picture?type=large`, UAS[2]);
+          if (got) return got;
+        }
+        console.warn(
+          `[videos] No Facebook thumbnail for ${url}. Facebook blocked the build server; upload a Thumbnail in the video's entry instead.`
+        );
+        return null;
       })()
     );
   }
   return fbCache.get(url)!;
+}
+
+
+/* Find an uploaded thumbnail inside /public, wherever the CMS saved it.
+   If the path in the .md does not exist, look in the usual upload folders by file name. */
+const PUBLIC_DIR = path.join(process.cwd(), "public");
+function resolveThumb(raw: string): string {
+  const t = raw.trim();
+  if (/^https?:\/\//i.test(t)) return t;
+  const rel = t.replace(/^\/+/, "").replace(/^public\//, "");
+  const name = path.basename(rel);
+  const tries = [rel, `images/video-thumbs/${name}`, name, `images/${name}`, `assets/${name}`, `uploads/${name}`];
+  for (const c of tries) {
+    try {
+      if (fs.existsSync(path.join(PUBLIC_DIR, c))) return withBase("/" + c);
+    } catch {}
+  }
+  console.warn(`[videos] Thumbnail "${t}" was not found in /public. Check the file was uploaded.`);
+  return withBase(t.startsWith("/") ? t : "/" + t);
 }
 
 const formatDate = (d?: Date | string) =>
@@ -170,7 +227,7 @@ export async function getVideos(): Promise<VideoItem[]> {
   for (const v of entries) {
     const d = describe(v.data.url);
     const thumbId = slugShow(String(v.id).replace(/\.mdx?$/, ""));
-    let thumb: string | null = v.data.thumbnail ? withBase(v.data.thumbnail) : d.thumb;
+    let thumb: string | null = v.data.thumbnail ? resolveThumb(v.data.thumbnail) : d.thumb;
     let thumbFromFacebook = false;
     if (!thumb && d.kind === "facebook" && (await getFacebookThumb(v.data.url.trim()))) {
       thumb = `${BASE}/video-thumbs/${thumbId}.jpg`;
@@ -220,4 +277,13 @@ export function getShows(videos: VideoItem[]) {
     map.get(v.showSlug)!.videos.push(v);
   }
   return [...map.values()];
+}
+
+/** Embed for a single video inside an article (no autoplay). */
+export function getInlineEmbed(raw: string) {
+  const d = describe(raw);
+  const src = d.embed
+    .replace("autoplay=1", "autoplay=0")
+    .replace("autoplay=true", "autoplay=false");
+  return { kind: d.kind, src };
 }

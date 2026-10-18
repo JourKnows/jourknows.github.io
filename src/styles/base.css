@@ -3064,7 +3064,8 @@ body, body * { font-family: var(--jk-font) !important; }
 /* ═══ v15: DESK PAGES (/tags/<desk>) ═════════════════════════════════════════════════════════
    Same two columns, panels, lead card, rows and sidebar as the home page, plus a twist:
    a full-width desk masthead in the desk colour, a lead + pair opener, and a month-by-month
-   archive with "show more". Colour comes from --desk (same colour the home page gives the desk). */
+   archive with a < > pager (15 per page). Colour comes from --desk (same colour the home page
+   gives the desk). */
 
 .jk-home [hidden], .jk-dp-list [hidden] { display: none !important; }
 
@@ -3193,24 +3194,6 @@ body, body * { font-family: var(--jk-font) !important; }
 }
 .jk-dp-month:first-child { margin-top: 0; }
 .jk-dp-month i { flex: 1; height: 2px; border-radius: 2px; background: linear-gradient(90deg, var(--desk), transparent); opacity: 0.55; }
-.jk-dp-morewrap { grid-column: 1 / -1; display: flex; justify-content: center; margin-top: 8px; }
-.jk-dp-more {
-  padding: 11px 24px;
-  border: 0;
-  border-radius: 999px;
-  background: var(--desk);
-  color: #fff;
-  font: inherit;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  cursor: pointer;
-  box-shadow: 0 10px 20px -10px color-mix(in srgb, var(--desk) 80%, #00046d);
-  transition: filter 0.2s, transform 0.2s;
-}
-.jk-dp-more:hover { filter: brightness(1.1); transform: translateY(-1px); }
-.jk-dp-more:focus-visible { outline: 3px solid var(--jk-navy); outline-offset: 3px; }
 
 /* Responsive (the main column is a size container, same as the home page) */
 @container (max-width: 760px) {
@@ -3226,10 +3209,39 @@ body, body * { font-family: var(--jk-font) !important; }
   .jk-dp-title { letter-spacing: 0.04em; padding: 6px 14px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .jk-dp-card, .jk-dp-chip, .jk-dp-more { transition: none !important; }
+  .jk-dp-card, .jk-dp-chip, .jk-dp-pg { transition: none !important; }
 }
 
 /* v15b: desk pages use Montserrat for every piece of text (headlines, labels, buttons, sidebar, weather) */
 .jk-dp-page { --jk-serif: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif; }
 .jk-dp-page,
 .jk-dp-page * { font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif !important; }
+
+/* ═══ v16: FIX — Broadcast desk must never widen the left column ═══════════════════════════════
+   Cause: .jk-home-main is a grid with no explicit column, so its single (implicit, `auto`) column
+   grew to the min-content width of the carousel track (N fixed-width cards, flex: none). With 5
+   videos the desk stretched past the column and sat on top of Top briefs + weather.
+   Fix: lock the column to the container width and let the TRACK scroll; the [<] [>] arrows
+   move one video at a time, so the desk keeps the same size for 1 or 50 videos. */
+.jk-home-main {
+  grid-template-columns: minmax(0, 1fr);   /* column can never be wider than the left column */
+  min-width: 0;
+  max-width: 100%;
+}
+.jk-home-main > * { min-width: 0; max-width: 100%; }
+.jk-home .jk-desk--broadcast,
+.jk-home .jk-vc--desk,
+.jk-home .jk-vc--desk .jk-vid-car {
+  min-width: 0;
+  max-width: 100%;
+}
+.jk-vc--desk .jk-vid-track {
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;            /* extra videos scroll inside the desk, never push it wider */
+  overscroll-behavior-x: contain;
+}
+/* mobile / tablet: .jk-home-in becomes a flex container — keep the left column shrinkable */
+@media (max-width: 1000px) {
+  .jk-home-in > .jk-home-main { flex: 1 1 auto; width: 100%; min-width: 0; }
+}
