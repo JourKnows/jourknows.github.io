@@ -255,6 +255,19 @@ const swipePosts = sortedPosts.slice(0, 10).map(p => {
                       description={ex.data.description || ""}
                       images={getAllImages(ex.body)}
                     />
+                    {/* Interactive explainer: static scroll page in /public/explainers */}
+                    <div class="jk-desk-grid is-solo" style="margin-top:18px">
+                      <a href={`${BASE}/explainers/france-protests.html`} class="jk-lead" style="min-height:260px">
+                        <img src={`${BASE}/explainers/france-cover.jpg`} alt="A protester runs past burning barricades during a night protest in Paris" loading="lazy" decoding="async" />
+                        <span class="jk-lead-shade" aria-hidden="true" />
+                        <span class="jk-lead-txt">
+                          <span class="jk-lead-tag">Interactive Explainer</span>
+                          <h3>Paris Is Marching. Why Filipinos Must Care.</h3>
+                          <p>Scroll through 237 years of French protest, the numbers behind October 2026, and what it means for us.</p>
+                          <span class="jk-lead-by">JourKnows PH · Photo: Sky News</span>
+                        </span>
+                      </a>
+                    </div>
                   </section>
                 );
               }
