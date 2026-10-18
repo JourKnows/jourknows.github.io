@@ -71,14 +71,24 @@ const monthOf = (d?: Date | string) =>
 const FALLBACK_IMAGE =
   "https://placehold.co/800x600/f4f1e1/1a1a1a?text=No+Image";
 
-// Archive rows, grouped by month (a month label is added before the first row of each month)
-const INITIAL = 8;
-const archiveRows = archive.map((p, i) => ({
-  post: p,
-  idx: i,
-  month: monthOf(p.data.pubDatetime),
-  newMonth: i === 0 || monthOf(archive[i - 1].data.pubDatetime) !== monthOf(p.data.pubDatetime),
-}));
+// Root-relative images ("/assets/x.jpg") break when the site lives in a sub-folder
+// (e.g. user.github.io/repo/), so prefix them with the base path. Full URLs are untouched.
+const imgSrc = (body?: string) => {
+  const src = getFirstImage(body) || FALLBACK_IMAGE;
+  return src.startsWith("/") && !src.startsWith("//") && BASE && !src.startsWith(BASE + "/")
+    ? `${BASE}${src}`
+    : src;
+};
+
+// Archive: 15 stories per page, grouped by month (month label restarts at the top of each page)
+const PER_PAGE = 15;
+const archivePages = Array.from({ length: Math.ceil(archive.length / PER_PAGE) }, (_, n) =>
+  archive.slice(n * PER_PAGE, (n + 1) * PER_PAGE).map((p, i, arr) => ({
+    post: p,
+    month: monthOf(p.data.pubDatetime),
+    newMonth: i === 0 || monthOf(arr[i - 1].data.pubDatetime) !== monthOf(p.data.pubDatetime),
+  }))
+);
 
 // Chips to hop between desks (only desks that have stories)
 const deskChips = desksSorted
@@ -107,7 +117,7 @@ const briefColor = (t: string) => deskColor(desksSorted, slugifyAll([t])[0] || t
   <script is:inline data-astro-rerun>
     document.documentElement.classList.add("jk-js");
   </script>
-  <noscript><style>[data-idx][hidden] { display: revert !important; }</style></noscript>
+  <noscript><style>[data-page][hidden] { display: revert !important; }</style></noscript>
 
   <div class="font-display jk-dp-page min-h-[100vh] bg-[#fdfdfb] m-0 p-0 text-[#1e1e1e]">
     <AppNavbar client:load activeHref={`${BASE}/tags/${tag}`} navLinks={navLinks} />
@@ -124,7 +134,7 @@ const briefColor = (t: string) => deskColor(desksSorted, slugifyAll([t])[0] || t
           <p class="jk-dp-tag">{tagline}</p>
           <p class="jk-dp-stats">
             <b>{deskPosts.length}</b> {deskPosts.length === 1 ? "story" : "stories"}
-            {lead && <span> · Latest {formatDate(lead.data.pubDatetime)}</span>}
+            {lead && <span> · Latest <span class="jk-date">{formatDate(lead.data.pubDatetime)}</span></span>}
           </p>
           <nav class="jk-dp-chips" aria-label="Switch desk">
             <a href={`${BASE}/`} class="jk-dp-chip">All desks</a>
@@ -161,7 +171,7 @@ const briefColor = (t: string) => deskColor(desksSorted, slugifyAll([t])[0] || t
                   <div class:list={["jk-desk-grid", pair.length === 0 && "is-solo"]}>
                     <a href={`${BASE}/posts/${lead.slug}`} class="jk-lead jk-dp-lead">
                       <img
-                        src={getFirstImage(lead.body) || FALLBACK_IMAGE}
+                        src={imgSrc(lead.body)}
                         alt=""
                         decoding="async"
                       />
@@ -171,7 +181,7 @@ const briefColor = (t: string) => deskColor(desksSorted, slugifyAll([t])[0] || t
                         <h3>{lead.data.title || "Untitled"}</h3>
                         {lead.data.description && <p>{lead.data.description}</p>}
                         <span class="jk-lead-by">
-                          {lead.data.author || "JourKnows"} · {formatDate(lead.data.pubDatetime)}
+                          {lead.data.author || "JourKnows"} · <span class="jk-date">{formatDate(lead.data.pubDatetime)}</span>
                         </span>
                       </span>
                     </a>
@@ -181,7 +191,7 @@ const briefColor = (t: string) => deskColor(desksSorted, slugifyAll([t])[0] || t
                         {pair.map(post => (
                           <a href={`${BASE}/posts/${post.slug}`} class="jk-dp-card">
                             <img
-                              src={getFirstImage(post.body) || FALLBACK_IMAGE}
+                              src={imgSrc(post.body)}
                               alt=""
                               loading="lazy"
                               decoding="async"
@@ -190,7 +200,7 @@ const briefColor = (t: string) => deskColor(desksSorted, slugifyAll([t])[0] || t
                               <span class="jk-lead-tag">{tagName}</span>
                               <h4>{post.data.title || "Untitled"}</h4>
                               <time>
-                                {post.data.author || "JourKnows"} · {formatDate(post.data.pubDatetime)}
+                                {post.data.author || "JourKnows"} · <span class="jk-date">{formatDate(post.data.pubDatetime)}</span>
                               </time>
                             </span>
                           </a>
@@ -202,51 +212,51 @@ const briefColor = (t: string) => deskColor(desksSorted, slugifyAll([t])[0] || t
               )
             }
 
-            {/* Twist 2 · Month-by-month archive with "show more" */}
+            {/* Twist 2 · Earlier stories: 15 per page with < > pager */}
             {
-              archiveRows.length > 0 && (
+              archivePages.length > 0 && (
                 <section id="desk-archive" class="jk-desk" style={`--desk:${color}`} data-jk-reveal>
                   <header class="jk-desk-head">
                     <h2 class="jk-desk-title">
                       <i aria-hidden="true" />
                       Earlier stories
                     </h2>
-                    <span class="jk-dp-count">{archiveRows.length} more</span>
+                    <span class="jk-dp-count">{archive.length} more</span>
                   </header>
-                  <div class="jk-dp-list" data-jk-more={INITIAL}>
-                    {archiveRows.map(r => (
-                      <>
-                        {r.newMonth && (
-                          <div class="jk-dp-month" data-idx={r.idx} hidden={r.idx >= INITIAL}>
-                            <span>{r.month}</span>
-                            <i aria-hidden="true" />
-                          </div>
-                        )}
-                        <a
-                          href={`${BASE}/posts/${r.post.slug}`}
-                          class="jk-row"
-                          data-idx={r.idx}
-                          data-row
-                          hidden={r.idx >= INITIAL}
-                        >
-                          <img
-                            src={getFirstImage(r.post.body) || FALLBACK_IMAGE}
-                            alt=""
-                            loading="lazy"
-                            decoding="async"
-                          />
-                          <span>
-                            <h4>{r.post.data.title || "Untitled"}</h4>
-                            <time>{formatDate(r.post.data.pubDatetime)}</time>
-                          </span>
-                        </a>
-                      </>
+                  <div class="jk-dp-pager-box" data-jk-pager>
+                    {archivePages.map((rows, n) => (
+                      <div class="jk-dp-list" data-page={n} hidden={n > 0}>
+                        {rows.map(r => (
+                          <>
+                            {r.newMonth && (
+                              <div class="jk-dp-month">
+                                <span>{r.month}</span>
+                                <i aria-hidden="true" />
+                              </div>
+                            )}
+                            <a href={`${BASE}/posts/${r.post.slug}`} class="jk-row">
+                              <img
+                                src={imgSrc(r.post.body)}
+                                alt=""
+                                loading="lazy"
+                                decoding="async"
+                              />
+                              <span>
+                                <h4>{r.post.data.title || "Untitled"}</h4>
+                                <time class="jk-date">{formatDate(r.post.data.pubDatetime)}</time>
+                              </span>
+                            </a>
+                          </>
+                        ))}
+                      </div>
                     ))}
-                    <div class="jk-dp-morewrap" data-jk-morewrap hidden={archiveRows.length <= INITIAL}>
-                      <button type="button" class="jk-dp-more" data-jk-more-btn>
-                        Show more stories
-                      </button>
-                    </div>
+                    {archivePages.length > 1 && (
+                      <nav class="jk-dp-pager" aria-label="Earlier stories pages">
+                        <button type="button" class="jk-dp-pg" data-prev aria-label="Previous page">&lt;</button>
+                        <span class="jk-dp-pginfo" data-info>Page 1 of {archivePages.length}</span>
+                        <button type="button" class="jk-dp-pg" data-next aria-label="Next page">&gt;</button>
+                      </nav>
+                    )}
                   </div>
                 </section>
               )
@@ -321,34 +331,130 @@ const briefColor = (t: string) => deskColor(desksSorted, slugifyAll([t])[0] || t
   </script>
 
   <script>
-    // "Show more stories": reveals the archive 8 rows at a time
-    const initMore = () => {
-      document.querySelectorAll<HTMLElement>("[data-jk-more]").forEach(box => {
+    // Earlier stories pager: < > buttons, 15 stories per page
+    const initPager = () => {
+      document.querySelectorAll<HTMLElement>("[data-jk-pager]").forEach(box => {
         if (box.dataset.bound) return;
         box.dataset.bound = "1";
-        const step = Number(box.dataset.jkMore) || 8;
-        const btn = box.querySelector<HTMLButtonElement>("[data-jk-more-btn]");
-        const wrap = box.querySelector<HTMLElement>("[data-jk-morewrap]");
-        const items = Array.from(box.querySelectorAll<HTMLElement>("[data-idx]"));
-        const total = items.filter(el => el.hasAttribute("data-row")).length;
-        let shown = step;
-        const apply = () => {
-          items.forEach(el => {
-            el.hidden = Number(el.dataset.idx) >= shown;
-          });
-          const left = Math.max(0, total - shown);
-          if (btn) btn.textContent = `Show more stories (${left})`;
-          if (wrap) wrap.hidden = left <= 0;
+        const pages = Array.from(box.querySelectorAll<HTMLElement>("[data-page]"));
+        const prev = box.querySelector<HTMLButtonElement>("[data-prev]");
+        const next = box.querySelector<HTMLButtonElement>("[data-next]");
+        const info = box.querySelector<HTMLElement>("[data-info]");
+        let cur = 0;
+        const show = (n: number, scroll = false) => {
+          cur = Math.min(Math.max(n, 0), pages.length - 1);
+          pages.forEach((el, i) => (el.hidden = i !== cur));
+          if (info) info.textContent = `Page ${cur + 1} of ${pages.length}`;
+          if (prev) prev.disabled = cur === 0;
+          if (next) next.disabled = cur === pages.length - 1;
+          if (scroll) document.getElementById("desk-archive")?.scrollIntoView({ behavior: "smooth", block: "start" });
         };
-        btn?.addEventListener("click", () => {
-          shown += step;
-          apply();
-        });
-        apply();
+        prev?.addEventListener("click", () => show(cur - 1, true));
+        next?.addEventListener("click", () => show(cur + 1, true));
+        show(0);
       });
     };
-    initMore();
-    document.addEventListener("astro:page-load", initMore);
-    document.addEventListener("astro:after-swap", initMore);
+    initPager();
+    document.addEventListener("astro:page-load", initPager);
+    document.addEventListener("astro:after-swap", initPager);
   </script>
 </Layout>
+
+<style is:global>
+/* Desk masthead, colour-coded per desk via --desk.
+   Shipped with the page itself so it still renders if base.css is stale on the deploy. */
+/* Masthead */
+.jk-dp-mast {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin: 0 0 clamp(20px, 2vw, 32px);
+  padding: clamp(26px, 4vw, 50px) clamp(22px, 4vw, 52px) clamp(22px, 3vw, 34px);
+  border-radius: 32px;
+  color: #fff;
+  background:
+    radial-gradient(120% 140% at 100% 0%, rgba(255, 255, 255, 0.22), transparent 55%),
+    linear-gradient(135deg, var(--desk), color-mix(in srgb, var(--desk) 58%, #00046d));
+  box-shadow: 0 26px 46px -26px color-mix(in srgb, var(--desk) 70%, #00046d);
+  isolation: isolate;
+}
+.jk-dp-ghost {
+  position: absolute;
+  right: -0.04em;
+  bottom: -0.2em;
+  z-index: -1;
+  font-size: clamp(96px, 17vw, 230px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.26);
+  pointer-events: none;
+  user-select: none;
+}
+.jk-dp-kicker {
+  margin: 0 0 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+.jk-dp-title {
+  display: inline-block;
+  margin: 0;
+  padding: 8px 20px;
+  border-radius: 6px;
+  background: #fff;
+  color: var(--desk);
+  font-size: clamp(30px, 5vw, 56px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.jk-dp-tag { margin: 16px 0 6px; max-width: 34ch; font-size: clamp(15px, 1.7vw, 19px); line-height: 1.45; color: #fff; }
+.jk-dp-stats { margin: 0 0 20px; font-size: 13px; color: rgba(255, 255, 255, 0.85); }
+.jk-dp-stats b { font-size: 15px; color: #fff; }
+
+.jk-dp-chips { display: flex; flex-wrap: wrap; gap: 8px; max-width: 760px; }
+.jk-dp-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 13px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s, color 0.2s;
+}
+.jk-dp-chip i { width: 9px; height: 9px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 2px #fff; }
+.jk-dp-chip:hover { background: rgba(255, 255, 255, 0.3); transform: translateY(-1px); }
+.jk-dp-chip.is-active { background: #fff; color: var(--desk); border-color: #fff; }
+.jk-dp-chip:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+/* Pager (< >) */
+.jk-dp-list[hidden] { display: none !important; }
+.jk-dp-pager { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 18px; }
+.jk-dp-pg {
+  width: 44px; height: 44px; border: 0; border-radius: 50%;
+  background: var(--desk); color: #fff; font: inherit; font-size: 20px; line-height: 1;
+  cursor: pointer; transition: filter 0.2s, transform 0.2s, opacity 0.2s;
+}
+.jk-dp-pg:hover:not(:disabled) { filter: brightness(1.1); transform: translateY(-1px); }
+.jk-dp-pg:disabled { opacity: 0.3; cursor: default; }
+.jk-dp-pg:focus-visible { outline: 3px solid var(--jk-navy, #00046d); outline-offset: 3px; }
+.jk-dp-pginfo { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #4a5a8f; }
+
+/* Typography: everything bold, dates in Montserrat Black */
+.jk-dp-page, .jk-dp-page * { font-weight: 700 !important; }
+.jk-dp-page .jk-date { font-weight: 900 !important; }
+</style>
