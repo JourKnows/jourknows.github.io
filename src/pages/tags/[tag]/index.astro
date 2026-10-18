@@ -1,0 +1,354 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import getSortedPosts from "@utils/getSortedPosts";
+import getUniqueTags from "@utils/getUniqueTags";
+import getFirstImage from "@utils/getFirstImage";
+import { slugifyAll } from "@utils/slugify";
+import { sortDesks, deskColor, DESK_TAGLINES } from "@utils/desks";
+import "@styles/base.css";
+import AppNavbar from "@components/AppNavbar";
+import AppFooter from "@components/AppFooter.astro";
+import NewsTicker from "@components/NewsTicker.astro";
+import WeatherWidget from "@components/WeatherWidget";
+import NavGlass from "@components/NavGlass.astro";
+
+// One page per desk: /tags/news, /tags/sports, ... (replaces the old paginated desk pages)
+// Same two-column layout and styling as the home page, with a desk masthead,
+// a lead + pair opener and a month-by-month archive.
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return getUniqueTags(posts).map(t => ({
+    params: { tag: t.tag },
+    props: { tag: t.tag, tagName: t.tagName },
+  }));
+}
+
+const { tag, tagName } = Astro.props;
+
+// Works at a domain root ("/") and under a sub-folder
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+const posts = await getCollection("blog");
+const sortedPosts = getSortedPosts(posts);
+const allTags = getUniqueTags(posts);
+const desksSorted = sortDesks(allTags);
+
+const navLinks = [
+  { label: "HOME", href: `${BASE}/` },
+  ...allTags.map(t => ({
+    label: t.tagName.toUpperCase(),
+    href: `${BASE}/tags/${t.tag}`,
+  })),
+  { label: "BROADCAST", href: `${BASE}/broadcast` },
+];
+
+const color = deskColor(desksSorted, tag);
+const tagline = DESK_TAGLINES[tag] || `Stories from the JourKnows ${tagName} Desk.`;
+
+const inDesk = (p: (typeof sortedPosts)[number]) =>
+  slugifyAll(p.data.tags || []).includes(tag);
+
+const deskPosts = sortedPosts.filter(inDesk);
+const lead = deskPosts[0];
+const pair = deskPosts.slice(1, 3);
+const archive = deskPosts.slice(3);
+
+const formatDate = (d?: Date | string) =>
+  d
+    ? new Date(d).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      })
+    : "Unknown Date";
+
+const monthOf = (d?: Date | string) =>
+  d
+    ? new Date(d).toLocaleDateString("en-US", { month: "long", year: "numeric" })
+    : "Undated";
+
+const FALLBACK_IMAGE =
+  "https://placehold.co/800x600/f4f1e1/1a1a1a?text=No+Image";
+
+// Archive rows, grouped by month (a month label is added before the first row of each month)
+const INITIAL = 8;
+const archiveRows = archive.map((p, i) => ({
+  post: p,
+  idx: i,
+  month: monthOf(p.data.pubDatetime),
+  newMonth: i === 0 || monthOf(archive[i - 1].data.pubDatetime) !== monthOf(p.data.pubDatetime),
+}));
+
+// Chips to hop between desks (only desks that have stories)
+const deskChips = desksSorted
+  .filter(t => sortedPosts.some(p => slugifyAll(p.data.tags || []).includes(t.tag)))
+  .map(t => ({ ...t, color: deskColor(desksSorted, t.tag), active: t.tag === tag }));
+
+// Ticker + sidebar: latest headlines; the sidebar prefers stories from the OTHER desks
+const headlineItems = sortedPosts.slice(0, 8).map(p => ({
+  title: p.data.title || "Untitled",
+  slug: p.slug || "",
+  tag: p.data.tags?.[0] || "news",
+}));
+const elsewhere = sortedPosts.filter(p => !inDesk(p)).slice(0, 5);
+const briefs = (elsewhere.length ? elsewhere : sortedPosts.slice(0, 5)).map(p => ({
+  title: p.data.title || "Untitled",
+  slug: p.slug || "",
+  tag: p.data.tags?.[0] || "news",
+}));
+const briefColor = (t: string) => deskColor(desksSorted, slugifyAll([t])[0] || t);
+---
+
+<Layout title={`JourKnows | ${tagName}`}>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" />
+  <script is:inline data-astro-rerun>
+    document.documentElement.classList.add("jk-js");
+  </script>
+  <noscript><style>[data-idx][hidden] { display: revert !important; }</style></noscript>
+
+  <div class="font-display jk-dp-page min-h-[100vh] bg-[#fdfdfb] m-0 p-0 text-[#1e1e1e]">
+    <AppNavbar client:load activeHref={`${BASE}/tags/${tag}`} navLinks={navLinks} />
+    <NewsTicker posts={headlineItems} />
+    <NavGlass />
+
+    <main id="main">
+      <div class="jk-home">
+        {/* ── Twist 1 · Desk masthead: the whole page takes the desk's colour ── */}
+        <header class="jk-dp-mast" style={`--desk:${color}`}>
+          <span class="jk-dp-ghost" aria-hidden="true">{tagName}</span>
+          <p class="jk-dp-kicker">JourKnows Desk</p>
+          <h1 class="jk-dp-title">{tagName}</h1>
+          <p class="jk-dp-tag">{tagline}</p>
+          <p class="jk-dp-stats">
+            <b>{deskPosts.length}</b> {deskPosts.length === 1 ? "story" : "stories"}
+            {lead && <span> · Latest {formatDate(lead.data.pubDatetime)}</span>}
+          </p>
+          <nav class="jk-dp-chips" aria-label="Switch desk">
+            <a href={`${BASE}/`} class="jk-dp-chip">All desks</a>
+            {
+              deskChips.map(c => (
+                <a
+                  href={`${BASE}/tags/${c.tag}`}
+                  class:list={["jk-dp-chip", c.active && "is-active"]}
+                  aria-current={c.active ? "page" : undefined}
+                  style={`--c:${c.color}`}
+                >
+                  <i aria-hidden="true" />
+                  {c.tagName}
+                </a>
+              ))
+            }
+          </nav>
+        </header>
+
+        {/* ── Same two columns as the home page ── */}
+        <div class="jk-home-in">
+          <div class="jk-home-main">
+            {/* Opener: lead story + two cards */}
+            {
+              lead && (
+                <section id="desk-top" class="jk-desk" style={`--desk:${color}`} data-jk-reveal>
+                  <header class="jk-desk-head">
+                    <h2 class="jk-desk-title">
+                      <i aria-hidden="true" />
+                      Top of the desk
+                    </h2>
+                    <span class="jk-dp-count">{deskPosts.length} in {tagName}</span>
+                  </header>
+                  <div class:list={["jk-desk-grid", pair.length === 0 && "is-solo"]}>
+                    <a href={`${BASE}/posts/${lead.slug}`} class="jk-lead jk-dp-lead">
+                      <img
+                        src={getFirstImage(lead.body) || FALLBACK_IMAGE}
+                        alt=""
+                        decoding="async"
+                      />
+                      <span class="jk-lead-shade" aria-hidden="true" />
+                      <span class="jk-lead-txt">
+                        <span class="jk-lead-tag">{tagName}</span>
+                        <h3>{lead.data.title || "Untitled"}</h3>
+                        {lead.data.description && <p>{lead.data.description}</p>}
+                        <span class="jk-lead-by">
+                          {lead.data.author || "JourKnows"} · {formatDate(lead.data.pubDatetime)}
+                        </span>
+                      </span>
+                    </a>
+
+                    {pair.length > 0 && (
+                      <div class="jk-dp-pair">
+                        {pair.map(post => (
+                          <a href={`${BASE}/posts/${post.slug}`} class="jk-dp-card">
+                            <img
+                              src={getFirstImage(post.body) || FALLBACK_IMAGE}
+                              alt=""
+                              loading="lazy"
+                              decoding="async"
+                            />
+                            <span class="jk-dp-card-body">
+                              <span class="jk-lead-tag">{tagName}</span>
+                              <h4>{post.data.title || "Untitled"}</h4>
+                              <time>
+                                {post.data.author || "JourKnows"} · {formatDate(post.data.pubDatetime)}
+                              </time>
+                            </span>
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </section>
+              )
+            }
+
+            {/* Twist 2 · Month-by-month archive with "show more" */}
+            {
+              archiveRows.length > 0 && (
+                <section id="desk-archive" class="jk-desk" style={`--desk:${color}`} data-jk-reveal>
+                  <header class="jk-desk-head">
+                    <h2 class="jk-desk-title">
+                      <i aria-hidden="true" />
+                      Earlier stories
+                    </h2>
+                    <span class="jk-dp-count">{archiveRows.length} more</span>
+                  </header>
+                  <div class="jk-dp-list" data-jk-more={INITIAL}>
+                    {archiveRows.map(r => (
+                      <>
+                        {r.newMonth && (
+                          <div class="jk-dp-month" data-idx={r.idx} hidden={r.idx >= INITIAL}>
+                            <span>{r.month}</span>
+                            <i aria-hidden="true" />
+                          </div>
+                        )}
+                        <a
+                          href={`${BASE}/posts/${r.post.slug}`}
+                          class="jk-row"
+                          data-idx={r.idx}
+                          data-row
+                          hidden={r.idx >= INITIAL}
+                        >
+                          <img
+                            src={getFirstImage(r.post.body) || FALLBACK_IMAGE}
+                            alt=""
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span>
+                            <h4>{r.post.data.title || "Untitled"}</h4>
+                            <time>{formatDate(r.post.data.pubDatetime)}</time>
+                          </span>
+                        </a>
+                      </>
+                    ))}
+                    <div class="jk-dp-morewrap" data-jk-morewrap hidden={archiveRows.length <= INITIAL}>
+                      <button type="button" class="jk-dp-more" data-jk-more-btn>
+                        Show more stories
+                      </button>
+                    </div>
+                  </div>
+                </section>
+              )
+            }
+          </div>
+
+          <aside class="jk-side" aria-label="Top briefs and weather">
+            <div class="jk-side-in">
+              {briefs.length > 0 && (
+                <div class="jk-briefs">
+                  <h2 class="jk-briefs-title">Elsewhere in the newsroom</h2>
+                  {briefs.map((p, i) => (
+                    <a href={`${BASE}/posts/${p.slug}`} class="jk-brief">
+                      <span class="jk-brief-num">{i + 1}</span>
+                      <span>
+                        <span class="jk-brief-cat" style={`--desk:${briefColor(p.tag)}`}>{p.tag}</span>
+                        <span class="jk-brief-head">{p.title}</span>
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              )}
+              <div class="jk-side-wx">
+                <WeatherWidget client:visible />
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <AppFooter />
+    </main>
+  </div>
+
+  <script>
+    // Scroll-reveal (same as the home page)
+    let revealIO: IntersectionObserver | null = null;
+    const initReveal = () => {
+      document.documentElement.classList.add("jk-js");
+      revealIO?.disconnect();
+      revealIO = null;
+      const items = document.querySelectorAll<HTMLElement>("[data-jk-reveal]");
+      const showAll = () => items.forEach(el => el.classList.add("jk-in"));
+      try {
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (reduce || !("IntersectionObserver" in window)) {
+          showAll();
+          return;
+        }
+        const io = new IntersectionObserver(
+          entries => {
+            entries.forEach(e => {
+              if (e.isIntersecting) {
+                e.target.classList.add("jk-in");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+        );
+        revealIO = io;
+        items.forEach(el => io.observe(el));
+        setTimeout(showAll, 2500);
+      } catch {
+        showAll();
+      }
+    };
+    initReveal();
+    document.addEventListener("astro:page-load", initReveal);
+    document.addEventListener("astro:after-swap", initReveal);
+    window.addEventListener("pageshow", initReveal);
+  </script>
+
+  <script>
+    // "Show more stories": reveals the archive 8 rows at a time
+    const initMore = () => {
+      document.querySelectorAll<HTMLElement>("[data-jk-more]").forEach(box => {
+        if (box.dataset.bound) return;
+        box.dataset.bound = "1";
+        const step = Number(box.dataset.jkMore) || 8;
+        const btn = box.querySelector<HTMLButtonElement>("[data-jk-more-btn]");
+        const wrap = box.querySelector<HTMLElement>("[data-jk-morewrap]");
+        const items = Array.from(box.querySelectorAll<HTMLElement>("[data-idx]"));
+        const total = items.filter(el => el.hasAttribute("data-row")).length;
+        let shown = step;
+        const apply = () => {
+          items.forEach(el => {
+            el.hidden = Number(el.dataset.idx) >= shown;
+          });
+          const left = Math.max(0, total - shown);
+          if (btn) btn.textContent = `Show more stories (${left})`;
+          if (wrap) wrap.hidden = left <= 0;
+        };
+        btn?.addEventListener("click", () => {
+          shown += step;
+          apply();
+        });
+        apply();
+      });
+    };
+    initMore();
+    document.addEventListener("astro:page-load", initMore);
+    document.addEventListener("astro:after-swap", initMore);
+  </script>
+</Layout>
