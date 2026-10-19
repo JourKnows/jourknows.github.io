@@ -36,7 +36,11 @@ const blog = defineCollection({
         .transform(val => val || "Untitled"),
       featured: z.boolean().optional(),
       draft: z.boolean().optional(),
-      tags: z.array(z.string()).default(["others"]),
+      // Accept a single string too (e.g. `tags: news`) and wrap it into an array
+      tags: z.preprocess(
+        val => (typeof val === "string" ? [val.trim()] : val),
+        z.array(z.string()).default(["others"])
+      ),
       ogImage: image()
         .refine(img => img.width >= 1200 && img.height >= 630, {
           message: "OpenGraph image must be at least 1200 X 630 pixels!",
