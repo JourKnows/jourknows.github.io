@@ -10,7 +10,7 @@ pubDatetime: 2026-10-19
 modDatetime: 2026-10-19
 title: Prosecution rests Article II case, says VP Duterte hid P817 million
 ogImage: /TENORIA-1.png
-featured: true
+featured: false
 draft: true
 locale: en
 tags:
