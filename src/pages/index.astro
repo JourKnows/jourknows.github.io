@@ -328,6 +328,20 @@ const swipePosts = sortedPosts.slice(0, 10).map(p => {
                       </div>
                     )}
                   </div>
+                  {catTag === "feature" && (
+                    <div class="jk-desk-grid is-solo" style="margin-top:18px">
+                      <a href={`${BASE}/features/museums.html`} class="jk-lead" style="min-height:260px">
+                        <img src={`${BASE}/features/museums-cover.webp`} alt="Framed paintings on a magenta gallery wall in a Philippine museum" loading="lazy" decoding="async" />
+                        <span class="jk-lead-shade" aria-hidden="true" />
+                        <span class="jk-lead-txt">
+                          <span class="jk-lead-tag">Feature · Lifestyle</span>
+                          <h3>Want a Side Quest? Visit Philippine Museums</h3>
+                          <p>A 3D gallery walk through museums around the Philippines.</p>
+                          <span class="jk-lead-by">JourKnows PH · Photo: National Museum of the Philippines</span>
+                        </span>
+                      </a>
+                    </div>
+                  )}
                 </section>
               );
             })
