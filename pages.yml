@@ -31,8 +31,8 @@ content:
       - name: tags
         label: Tags
         type: select
-        multiple: true
         options:
+          multiple: true
           values: [news, sports, opinion, feature, sci-tech, explainer, literary, cartoon]
       - { name: description, label: Description, type: string, required: true }
       - { name: body, label: Body, type: rich-text }
