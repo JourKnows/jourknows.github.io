@@ -11,10 +11,9 @@ modDatetime: 2026-10-19
 title: Prosecution rests Article II case, says VP Duterte hid P817 million
 ogImage: /TENORIA-1.png
 featured: false
-draft: true
+draft: false
 locale: en
-tags:
-  - "news "
+tags: news
 description: The House prosecution panel wrapped up its Article II evidence in
   the Senate impeachment trial, presenting expert testimony that Vice President
   Sara Duterte hid P817.87 million in assets.
