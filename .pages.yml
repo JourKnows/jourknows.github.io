@@ -1,0 +1,75 @@
+media:
+  input: public
+  output: /
+content:
+  - name: posts
+    label: Posts
+    type: collection
+    path: src/content/blog
+    view:
+      fields: [ title, draft, pubDatetime ]
+    fields:
+      - { name: author, label: Author, type: string }
+      - { name: authorTitle, label: Author Title/Role, type: string }
+      - { name: authorBio, label: Author Bio, type: text }
+      - { name: authorImage, label: Author Profile Image, type: image }
+      - { name: illustrator, label: Illustrator / Graphics, type: string }
+      - { name: copyeditor, label: Copyeditor, type: string }
+      - { name: pubDatetime, label: Date, type: date, required: true }
+      - { name: modDatetime, label: Date Modified, type: date }
+      - { name: title, label: Title, type: string, required: true }
+      - { name: ogImage, label: OpenGraph Image, type: image }
+      - { name: slug, label: Slug, type: string }
+      - { name: featured, label: Featured, type: boolean }
+      - { name: draft, label: Draft, type: boolean }
+      - { name: video, label: Video link (YouTube or Facebook), type: string }
+      - name: locale
+        label: Language Locale
+        type: string
+        options:
+          values: [en, fil]
+      - name: tags
+        label: Tags
+        type: select
+        multiple: true
+        options:
+          values: [news, sports, opinion, feature, sci-tech, explainer, literary, cartoon]
+      - { name: description, label: Description, type: string, required: true }
+      - { name: body, label: Body, type: rich-text }
+  - name: about
+    label: About page
+    type: file
+    path: src/pages/about.md
+    fields:
+      - { name: layout, type: string, hidden: true, default: "../layouts/AboutLayout.astro" }
+      - { name: title, label: Title, type: string }
+      - { name: body, label: Body, type: rich-text, options: { input: public/assets, output: /assets } }
+  - name: videos
+    label: Videos
+    type: collection
+    path: src/content/videos
+    filename: "{primary}.md"
+    view:
+      fields: [title, pubDatetime]
+      primary: title
+      sort: [pubDatetime]
+      default:
+        sort: pubDatetime
+        order: desc
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - { name: url, label: Video link, type: string, required: true, description: "YouTube or Facebook link, or a file path like /videos/clip.mp4" }
+      - { name: pubDatetime, label: Date, type: date, required: true, options: { time: true } }
+      - { name: author, label: Author, type: string }
+      - { name: description, label: Short description, type: text }
+      - name: thumbnail
+        label: Thumbnail (optional)
+        type: image
+        description: "Upload a photo to use as the video thumbnail"
+        options:
+          input: public/images/video-thumbs
+          output: /images/video-thumbs
+      - { name: show, label: Show / series, type: string, description: "Videos with the same show name are grouped in one row, e.g. Newsroom Live" }
+      - { name: featured, label: Pin as hero video, type: boolean }
+      - { name: live, label: Live now, type: boolean }
+      - { name: draft, label: Draft (hide from site), type: boolean }
