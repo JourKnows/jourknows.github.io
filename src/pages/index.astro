@@ -345,13 +345,27 @@ const swipePosts = sortedPosts.slice(0, 10).map(p => {
                   {catTag === "sci-tech" && (
                     <div class="jk-desk-grid is-solo" style="margin-top:18px">
                       <a href={`${BASE}/sci-tech/super-el-nino.html`} class="jk-lead" style="min-height:260px">
-                        <img src={`${BASE}/sci-tech/el-nino-cover.jpg`} alt="A farmer walks across cracked, dried-out rice paddy soil" loading="lazy" decoding="async" />
+                        <img src={`${BASE}/sci-tech/el-nino-cover.svg`} alt="A glowing globe with orange pillars rising over the Pacific" loading="lazy" decoding="async" />
                         <span class="jk-lead-shade" aria-hidden="true" />
                         <span class="jk-lead-txt">
                           <span class="jk-lead-tag">Sci-Tech · Interactive</span>
                           <h3>Super El Niño: 451,000 Lives at Risk</h3>
                           <p>Scroll through a globe of the projected heat deaths, country by country, from September 2026 to February 2027.</p>
-                          <span class="jk-lead-by">By: Rjay Khian V. Cuizon · Photo: PhilSTAR</span>
+                          <span class="jk-lead-by">JourKnows PH · Data: Climate Impact Lab</span>
+                        </span>
+                      </a>
+                    </div>
+                  )}
+                  {catTag === "opinion" && (
+                    <div class="jk-desk-grid is-solo" style="margin-top:18px">
+                      <a href={`${BASE}/opinion/walang-pamamahayag-kung-walang-pakikibaka.html`} class="jk-lead" style="min-height:260px">
+                        <img src={`${BASE}/opinion/pamamahayag-cover.webp`} alt="Mga nagpoprotesta na may hawak na placard laban sa katiwalian sa flood control" loading="lazy" decoding="async" />
+                        <span class="jk-lead-shade" aria-hidden="true" />
+                        <span class="jk-lead-txt">
+                          <span class="jk-lead-tag">Opinion</span>
+                          <h3>Walang Pamamahayag Kung Walang Pakikibaka</h3>
+                          <p>Sa kasaysayan ng Pilipinas, iisa ang ugat ng mamamahayag at ng aktibista.</p>
+                          <span class="jk-lead-by">JourKnows PH · Larawan: The Guardian</span>
                         </span>
                       </a>
                     </div>
