@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Modernization is not the path towards progression</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,800;1,400;1,800&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#0b1b3a;--ink:#ffffff;--mute:#b4bfd6;--acc:#e0262f;--serif:'Montserrat',system-ui,sans-serif;--sans:'Poppins',system-ui,sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.1rem/1.8 var(--sans);transition:background .2s;overflow-x:hidden}
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:var(--acc);z-index:20}
+#grid{position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(circle at 50% 30%,#000,transparent 70%);-webkit-mask-image:radial-gradient(circle at 50% 30%,#000,transparent 70%)}
+#water{position:fixed;left:0;right:0;bottom:0;height:0;pointer-events:none;background:linear-gradient(transparent,rgba(70,110,140,.35));z-index:5}
+#grain{position:fixed;inset:0;pointer-events:none;opacity:.07;z-index:6;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+header{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:8vh 7vw;position:relative}
+header h1{font:800 clamp(2.1rem,6.6vw,5.6rem)/1.08 var(--serif);margin:0 0 .4em;max-width:14ch;letter-spacing:-.02em}
+header h1 em{font-style:italic;font-weight:400;color:var(--acc);text-decoration:line-through;text-decoration-thickness:.05em}
+header p{max-width:36rem;color:var(--mute);font-size:1.25rem;margin:0}
+.hint{position:absolute;bottom:4vh;left:7vw;font-size:.8rem;letter-spacing:.25em;text-transform:uppercase;color:var(--mute);animation:b 2s infinite}
+@keyframes b{50%{transform:translateY(8px)}}
+main{position:relative;z-index:2;max-width:44rem;margin:0 auto;padding:0 6vw 30vh}
+section{padding:12vh 0 2vh}
+h2{font:800 clamp(1.8rem,5vw,3rem)/1.1 var(--serif);margin:0 0 1em;letter-spacing:-.01em}
+h2 small{display:block;font:500 .75rem var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--acc);margin-bottom:.8em}
+p{margin:0 0 1.5em}
+.r{opacity:0;transform:translateY(34px);transition:opacity .9s,transform .9s}
+.r.in{opacity:1;transform:none}
+mark{background:none;color:var(--acc);font-weight:500;border-bottom:2px solid currentColor}
+.lead{font:400 italic clamp(1.4rem,3.4vw,2rem)/1.4 var(--serif);border-left:3px solid var(--acc);padding-left:1.2rem;margin:2em 0}
+.pull{font:800 clamp(1.5rem,4vw,2.4rem)/1.25 var(--serif);margin:2.2em 0}
+.end{min-height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 7vw;position:relative;z-index:2}
+.end p{font:italic 800 clamp(1.8rem,6vw,4.4rem)/1.15 var(--serif);margin:0}
+.end span{display:block;font:400 clamp(1.1rem,2.5vw,1.6rem)/1.5 var(--sans);font-style:normal;color:var(--mute);margin-bottom:1.5em}
+@media(prefers-reduced-motion:reduce){.r{transition:none}.hint{animation:none}}
+#c{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+header h1,header p{text-shadow:0 2px 24px #000c}
+main{background:linear-gradient(90deg,transparent,rgba(3,7,20,.72) 18%,rgba(3,7,20,.72) 82%,transparent)}
+main p,main h2{text-shadow:0 2px 14px #000}
+:root{--acc:#ff3b45;--mute:#b4bfd6}
+header p{font-size:1.15rem}
+#grain{box-shadow:inset 0 0 20vmin 4vmin rgba(0,0,0,.65)}
+header::before{content:'';display:block;width:84px;height:6px;margin-bottom:2rem;background:linear-gradient(90deg,#e0262f 50%,#fff 50%)}
+mark{color:#fff;border-bottom:2px solid #e0262f;background:linear-gradient(transparent 60%,rgba(224,38,47,.4) 60%)}
+.lead{border-left-color:#e0262f}
+.pull{border-top:1px solid rgba(255,255,255,.3);padding-top:1rem}
+h2 small::before{content:'';display:inline-block;width:28px;height:2px;background:#e0262f;vertical-align:middle;margin-right:.8em}
+:root{--mute:#e3e9f7;--acc:#ff5a63}
+header{z-index:2}
+#scrim{position:fixed;inset:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,rgba(3,7,20,.88),rgba(3,7,20,.5) 65%,transparent)}
+header h1,header p,.hint{text-shadow:0 2px 6px #000,0 0 28px #000}
+header p{color:#fff}
+main{background:linear-gradient(90deg,transparent,rgba(3,7,20,.9) 10%,rgba(3,7,20,.9) 90%,transparent)}
+main p,main h2{text-shadow:0 1px 3px #000}
+mark{color:#fff;background:linear-gradient(transparent 60%,rgba(224,38,47,.55) 60%)}
+.end{background:radial-gradient(ellipse at center,rgba(3,7,20,.88),transparent 72%)}
+.end span{color:#fff}
+.end p{text-shadow:0 2px 8px #000,0 0 30px #000}
+#stage{position:fixed;inset:0;z-index:3;pointer-events:none;overflow:hidden}
+.beat{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:6vh 6vw;opacity:0;will-change:opacity,transform}
+header.beat{align-items:flex-start;min-height:0}
+.end.beat{min-height:0;z-index:auto}
+.card{max-width:44rem;width:100%;padding:clamp(1.2rem,3vw,2.2rem);background:linear-gradient(rgba(3,7,20,.9),rgba(3,7,20,.82));border-left:4px solid #e0262f;box-shadow:0 20px 60px rgba(0,0,0,.6);max-height:90vh;overflow:hidden}
+.card p{margin:0;font-size:clamp(.95rem,.55rem + 1.25vw,1.12rem);line-height:1.7;text-shadow:none}
+.card h2{margin-bottom:.8em;font-size:clamp(1.4rem,3.6vw,2.2rem);text-shadow:none}
+.card .lead,.card .pull{margin:0}
+#sp{width:1px;pointer-events:none}
+</style></head><body>
+<div id="bar"></div><canvas id="c"></canvas><div id="grain"></div>
+<header>
+<h1>Modernization is not the path towards <em>progression.</em></h1>
+<p>It is a distraction from what the Philippines has become and a measure to chase what the Philippines can never reach. The introduction of modernization has become a warm-up distraction.</p>
+<div class="hint">Scroll ↓</div>
+</header>
+<main>
+<section class="r"><p>Last April 20, 2026, during the Philippine Executive Forum, Finance Secretary Frederick D. Go outlined the Philippine’s economic case. The center of the Philippine’s current administrative strategy is directing investments toward sectors seen as modernizing the economy and generating sustainable development. On a surface level, it could lead to the progress the Philippines needs, but we must also look at the situation of a country where its countrymen are left uncalled for.</p>
+<p>Said investments outline <mark>eight priority sectors</mark>; semiconductors and electronics, mineral processing, pharmaceuticals and medical devices, agriculture, steel, renewable energy, infrastructure and tourism. These industries are viewed as critical for technology transfer, with major potential to boost the Philippines into a technological era. With the push in the development of these industries, there’s a pull for Filipinos that cannot even receive basic education.</p></section>
+
+<section><h2 class="r"><small>01</small>Blindsided by modernization</h2>
+<p class="r">Modernization’s push towards a digital era has created a country that prioritizes projects using technology instead of addressing the need for basic necessities in sectors like agriculture.</p>
+<p class="r">The Philippine Civil Service Modernization Project (PCSMP) was launched in 2025 as a reform initiative to harness digital tools and automate human resources. The Civil Service Commission (CSC) Chairperson Marilyn B. Yap stated that the PCSMP is the offspring of a vision for a revitalized government in which policy infrastructure and systems are managed by competent civil servants enabled by technology. The project aims to utilize digital tools to reform human resources, with a budget of <mark>PHP 3.88 billion</mark>.</p>
+<p class="r">With this digitization, agriculture is left behind. The National Food Authority (NFA) rice storage program raises concerns as they already have <mark>one million metric tons</mark> yet full utilization is prevented. This digital era recenters the importance of long-standing problems that must be addressed. Rather than pushing for farmers’ better storage, logistics, and facilities, the Philippines continues to highlight the digital world as an advanced world.</p></section>
+
+<section><h2 class="r"><small>02</small>Illusion of progress</h2>
+<p class="lead r">Modernization remains an illusion for progress as long-standing problems are normalized, and never addressed.</p>
+<p class="r">Problems such as corruption, poverty, solid waste management issues, and flooding are not foreign terms for Filipinos. These problems have become familiar strangers, and unwelcomed guests.</p></section>
+
+<section><h2 class="r"><small>03</small>Illusion of progress: Corruption</h2>
+<p class="r">Systematic corruption traces over <mark>400 years</mark> during the Spanish and American colonial eras, evolving into modern structures when the country gained its independence in 1946. Corruption has become a lineage of inheritance for the Philippine government with concentration in political families thus reducing political competition and weakening checks and balances.</p>
+<p class="r">In the Philippines, the oligarch and clan corruption manifests itself in the political systems where there is a lack of separation between what is public and what is private. Despite the framework to combat corruption such as Republic Act No. 3019 (Anti Graft and Corruption Practices Act), Republic Act No. 6713 (Code of Conduct and Ethical Standards for Public Officials and Employees), and Republic Act no. 670 (Ombudsman Act), corruption remains rampant. The Philippine Constitution of 1987 enshrines principles of accountability but indices such as the Corruption Perceptions Index shows a disconnect between legal intent and practical outcome.</p></section>
+
+<section><h2 class="r"><small>04</small>Illusion of progress: Poverty</h2>
+<p class="pull r">A country had to develop its own poverty index just to measure the extent of poverty it is facing, that country is the Philippines.</p>
+<p class="r">The Multidimensional Poverty Index (MPI) was developed to measure poverty considering the different aspects of well-being. It measures deprivation in four dimensions which are education, health and nutrition, water and sanitation, and employment.</p>
+<p class="r">Based on the 2026 community-based monitoring systems, <mark>14.4 million</mark> Filipinos live in multidimensional poverty with education being the largest single contributor with <mark>40.7%</mark> in the MPI with adults aged 19 and older not finishing high school. Having to create your own poverty index to measure its different aspects should be a call to action. It should be a call that Filipinos are suffering as their country “progresses”, and as they are left behind.</p></section>
+
+<section><h2 class="r"><small>05</small>Illusion of progress: Waste management and floods</h2>
+<p class="r">For a country known for its refreshing and beautiful islands, it is a dismay that <mark>269 thousand tons</mark> of hazardous waste was procured. Solid waste management is considered a pressing global issue, calling for immediate response.</p>
+<p class="r">The ultimate solution of the Philippines has been RA 9003 (Ecological Solid Waste management of 2000) which highlights practices of segregation, yet the country ranks <mark>27th</mark> globally in the World Bank What a Waste Global Database with local academic framework like the Green Policing Index as one of the few LGU initiatives to solve a global problem.</p>
+<p class="r">In relation to this, thunderstorms, hurricanes, and heavy rain are natural disasters but that does not mean flooding should be considered a natural occurrence. Elevated water levels disrupt traffic, make commuting difficult, and cause financial strains due to insufficient savings to support recovery efforts with more than a quarter of the population living below the poverty threshold.</p>
+<p class="r">Authorities are not addressing long standing problems because they remain prevalent today. It has worsened with rotational outages just to save electricity, basic necessities sky rocketing in prices, and Filipinos surviving day-by-day instead of thriving in a country that’s supposed to be one of the best tourist destinations in Asia.</p></section>
+
+<section><h2 class="r"><small>06</small>Modernization as long term facade</h2>
+<p class="r">In the high-risk act presented by modernization, the country has created a paradox for itself.</p>
+<p class="r">As the country celebrates macroeconomic milestones, millions of ordinary Filipinos are being pushed back to the margins because of the leap towards a tech-and-service driven economy. Despite rapid development, it is without a doubt that sectors such as agriculture and education remain the country’s achilles heel. If Filipinos are left behind by this transition, it means that modernization is not progress.</p>
+<p class="r">Modernization has become a final manifestation of normalized systematic displacement, negligence, and erosion of traditional lifestyle. The forced modernization paints the Philippines as a country that creates modernization projects not because it is necessary, but for the country to be called modern.</p>
+<p class="pull r">Millions of farmers survive because of economic exile. Millions of Filipinos eat and sell scraps to survive labelling it as “diskarte” instead of systematic negligence.</p>
+<p class="r">Modernization at the cost of its people is not progress—it is a distraction. It is a distraction from long-standing problems and what Filipinos truly deserve. It is a distraction that patriotism should not be observed when the people are being ignored.</p></section>
+</main>
+<div class="end r"><p><span>The people, voted by a democratic process to serve the people,</span>saan na ba sila?</p></div>
+<script>
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script><script>
+{try{
+const T=THREE,c=document.getElementById('c'),R=new T.WebGLRenderer({canvas:c,antialias:true});
+R.setPixelRatio(Math.min(devicePixelRatio,2));R.shadowMap.enabled=true;R.shadowMap.type=T.PCFSoftShadowMap;R.toneMapping=T.ACESFilmicToneMapping;R.toneMappingExposure=1.15;R.outputEncoding=T.sRGBEncoding;
+const sc=new T.Scene(),cam=new T.PerspectiveCamera(60,1,.3,500),cl=h=>new T.Color(h),sm=(a,b,x)=>{x=Math.min(1,Math.max(0,(x-a)/(b-a)));return x*x*(3-2*x)};
+const sA=cl(0x1f3868),sB=cl(0x0c1730),sC=cl(0x040408),bg=cl(0x1f3868);sc.background=bg;sc.fog=new T.Fog(0x1f3868,20,240);
+const hemi=new T.HemisphereLight(0xdbe6ff,0x0a0a14,.85);sc.add(hemi);
+const dl=new T.DirectionalLight(0xf2f6ff,1.8);dl.castShadow=true;dl.shadow.mapSize.set(2048,2048);const sh=dl.shadow.camera;sh.left=sh.bottom=-75;sh.right=sh.top=75;sh.near=1;sh.far=300;dl.shadow.bias=-.0005;sc.add(dl,dl.target);const rim=new T.DirectionalLight(0xe0262f,.2);sc.add(rim,rim.target);const bk=[];
+const M=(h,r=.9)=>new T.MeshStandardMaterial({color:h,roughness:r});
+const add=(g,m,x,y,z,s=true)=>{const o=new T.Mesh(g,m);o.position.set(x,y,z);o.castShadow=s;o.receiveShadow=true;sc.add(o);return o};
+const wc=document.createElement('canvas');wc.width=32;wc.height=64;const x2=wc.getContext('2d'),ec=document.createElement('canvas');ec.width=32;ec.height=64;const y2=ec.getContext('2d');x2.fillStyle='#c4cddd';x2.fillRect(0,0,32,64);y2.fillStyle='#000';y2.fillRect(0,0,32,64);
+for(let a=0;a<8;a++)for(let q=0;q<16;q++){const on=Math.random()<.5;x2.fillStyle=on?'#e6ecf8':'#0a1330';x2.fillRect(a*4+1,q*4+1,2,2.4);if(on){y2.fillStyle='#eaf2ff';y2.fillRect(a*4+1,q*4+1,2,2.4)}}
+const tm=new T.CanvasTexture(wc),te=new T.CanvasTexture(ec);[tm,te].forEach(t=>{t.wrapS=t.wrapT=T.RepeatWrapping;t.magFilter=T.NearestFilter;t.encoding=T.sRGBEncoding});
+const fm=new T.MeshStandardMaterial({color:0xffffff,map:tm,emissive:0xffffff,emissiveMap:te,roughness:.8,metalness:.1});
+function tw(n,z0,z1){for(let i=0;i<n;i++){const h=8+Math.random()*Math.random()*75,w=5+Math.random()*8,d=5+Math.random()*8,g=new T.BoxGeometry(w,h,d),u=g.attributes.uv;for(let j=0;j<u.count;j++)u.setXY(j,u.getX(j)*Math.max(w,d)/10,u.getY(j)*h/24);const o=add(g,fm,(Math.random()<.5?-1:1)*(12+Math.random()*45),h/2,z0-Math.random()*(z0-z1));if(h>40)bk.push([o.position.x,h,o.position.z])}}
+tw(110,10,-95);tw(35,-225,-330);
+const gp=(z0,z1,h)=>add(new T.PlaneGeometry(500,z0-z1).rotateX(-Math.PI/2),M(h,1),0,0,(z0+z1)/2,false);
+gp(30,-92,0x0b0e15);gp(-92,-152,0x1d3557);gp(-152,-214,0x1a1a22);gp(-214,-340,0x0c0c10);
+add(new T.PlaneGeometry(10,122).rotateX(-Math.PI/2),M(0x15181b,1),0,.03,-31,false);
+const fi=new T.InstancedMesh(new T.BoxGeometry(.35,.7,58),M(0x4f78b0,1),110),d4=new T.Object3D();for(let i=0;i<110;i++){const x=-50+i*.9;d4.position.set(x,.35,-122);d4.scale.y=(Math.abs(x+16)<9||Math.abs(x)<4)?.001:1;d4.updateMatrix();fi.setMatrixAt(i,d4.matrix)}fi.receiveShadow=true;sc.add(fi);
+add(new T.BoxGeometry(14,7,24),M(0xdfe3ec),-16,3.5,-122);add(new T.BoxGeometry(15.5,.5,25.5),M(0x1d2f5c),-16,7.2,-122);add(new T.BoxGeometry(.3,5,6),M(0x0a0a0a),-8.85,2.5,-122);add(new T.BoxGeometry(.5,.6,.3),M(0xe0262f,.4),-8.6,2.4,-122);
+for(let i=0;i<8;i++){const g=new T.Group(),x=(Math.random()<.5?-1:1)*(6+Math.random()*30),b=new T.Mesh(new T.CylinderGeometry(.3,.4,1.3,8),M(0xb5232b)),hd=new T.Mesh(new T.SphereGeometry(.26,10,8),M(0xb08060)),ht=new T.Mesh(new T.ConeGeometry(.65,.3,12),M(0xf2f2f2));b.position.y=.8;hd.position.y=1.65;ht.position.y=1.95;g.add(b,hd,ht);g.position.set(x,0,-100-Math.random()*45);g.rotation.set(.4,Math.random()*6,0);g.traverse(o=>o.castShadow=true);sc.add(g)}
+const cols=[0xb5232b,0xf2f2f2,0x1d2f5c,0x111114,0xd8d8dc,0x8f1d24],sw=new T.MeshStandardMaterial({color:0x111111,emissive:0xffffff,emissiveIntensity:1.4});
+for(let i=0;i<40;i++){const w=3+Math.random()*2,h=2.5+Math.random()*1.5,d=3+Math.random()*2,x=(Math.random()<.5?-1:1)*(6+Math.random()*26),z=-153-Math.random()*60;
+add(new T.BoxGeometry(w,h,d),M(cols[i%6]),x,1+h/2,z);add(new T.BoxGeometry(w+.8,.2,d+.8),M(0x23345f,.5),x,1+h+.2,z).rotation.z=.12;add(new T.BoxGeometry(.9,.9,.1),sw,x,1+h*.55,z+d/2+.05,false);
+[[-1,-1],[1,-1],[-1,1],[1,1]].forEach(q=>add(new T.CylinderGeometry(.1,.1,1,6),M(0x101014),x+q[0]*w*.42,.5,z+q[1]*d*.42))}
+const gc=document.createElement('canvas');gc.width=gc.height=128;const gx=gc.getContext('2d'),gg=gx.createRadialGradient(64,64,0,64,64,64);gg.addColorStop(0,'rgba(225,238,255,1)');gg.addColorStop(.25,'rgba(150,190,255,.35)');gg.addColorStop(1,'rgba(150,190,255,0)');gx.fillStyle=gg;gx.fillRect(0,0,128,128);const gt=new T.CanvasTexture(gc);
+const SM=o=>new T.SpriteMaterial(Object.assign({map:gt,blending:T.AdditiveBlending,depthWrite:false,transparent:true,fog:false},o)),glow=SM({}),sun=new T.Sprite(SM({color:0xcfe0ff}));sun.scale.set(150,150,1);sc.add(sun);
+const bm=new T.MeshStandardMaterial({color:0x222222,emissive:0xeaf2ff,emissiveIntensity:2});
+for(let i=0;i<12;i++)for(const s of[-1,1]){const x=s*7.5,z=-8-i*7;add(new T.CylinderGeometry(.12,.12,7,6),M(0x2a2a2a),x,3.5,z);add(new T.SphereGeometry(.35,10,8),bm,x,7.1,z,false);const g=new T.Sprite(glow);g.scale.set(8,8,1);g.position.set(x,7.1,z);sc.add(g)}
+const rbm=new T.MeshStandardMaterial({color:0x220000,emissive:0xff1a1a,emissiveIntensity:3}),rgl=SM({color:0xff2a2a});bk.forEach(q=>{add(new T.SphereGeometry(.45,8,6),rbm,q[0],q[1]+.5,q[2],false);const s=new T.Sprite(rgl);s.scale.set(14,14,1);s.position.set(q[0],q[1]+.5,q[2]);sc.add(s)});
+const pc=[0xf0f0f0,0x111111,0x1d3a7a,0xc8c8cc,0xb5232b,0x0b1630],ws=[];for(let i=0;i<170;i++){const o=add(new T.IcosahedronGeometry(.5+Math.random()*1.4,0),M(pc[i%6],.8),(Math.random()-.5)*70,0,-185-Math.random()*130);o.scale.y=.5;o.rotation.set(Math.random()*3,Math.random()*3,0);o.userData.o=Math.random()*9;ws.push(o)}
+const wg=new T.PlaneGeometry(500,480,100,100).rotateX(-Math.PI/2),pa=wg.attributes.position,bx=[],bz=[];for(let i=0;i<pa.count;i++){bx.push(pa.getX(i));bz.push(pa.getZ(i))}
+const wm=new T.MeshPhongMaterial({color:0x1c3d73,transparent:true,opacity:.88,shininess:220,specular:0xffffff}),wt=new T.Mesh(wg,wm),w1=cl(0x1c3d73),w2=cl(0x4a0d14);wt.position.z=-90;wt.receiveShadow=true;sc.add(wt);
+const NR=2500,rp=new Float32Array(NR*6),rg=new T.BufferGeometry();for(let i=0;i<NR;i++){const x=(Math.random()-.5)*80,y=Math.random()*40,z=-Math.random()*70;rp.set([x,y,z,x,y+1.4,z-.1],i*6)}rg.setAttribute('position',new T.BufferAttribute(rp,3));const rm=new T.LineBasicMaterial({color:0xe8f0ff,transparent:true,opacity:0}),rn=new T.LineSegments(rg,rm);sc.add(rn);
+let sp=0,mx=0,my=0,fl=0;addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+function rs(){R.setSize(innerWidth,innerHeight,false);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix()}rs();addEventListener('resize',rs);
+function f(t){t*=.001;const m=document.documentElement.scrollHeight-innerHeight,tp=Math.min(1,Math.max(0,scrollY/m));sp+=(tp-sp)*.05;const p=sp;
+if(p<.6)bg.copy(sA).lerp(sB,p/.6);else bg.copy(sB).lerp(sC,(p-.6)/.4);sc.fog.color.copy(bg);sc.fog.far=240-p*120;
+if(p>.6&&Math.random()<.004)fl=1;fl*=.88;bg.offsetHSL(0,0,fl*.2);
+hemi.intensity=.85-p*.45+fl*2.5;dl.intensity=1.8-sm(.2,.8,p)*1.45+fl*1.5;
+const em=Math.max(0,1-sm(.25,.7,p)*1.1)*(p>.45&&Math.random()<p*.12?.2:1);fm.emissiveIntensity=em;bm.emissiveIntensity=2*em;glow.opacity=em;{const bl=.5+.5*Math.sin(t*2.6);rbm.emissiveIntensity=1+3*bl;rgl.opacity=bl}rim.intensity=.2+sm(.45,1,p)*1.4;sun.material.opacity=1-sm(.15,.7,p);
+const wl=-2.5+sm(.35,1,p)*7,a=.15+p*.5;wt.position.y=wl;wm.color.copy(w1).lerp(w2,sm(.4,1,p));
+for(let i=0;i<pa.count;i++)pa.setY(i,(Math.sin(bx[i]*.22+t*1.3)+Math.cos(bz[i]*.17+t))*a);pa.needsUpdate=true;wg.computeVertexNormals();
+ws.forEach(o=>{o.position.y=wl+Math.sin(t*1.4+o.userData.o)*.25});
+const cz=8-p*310,cy=3.2+sm(.62,.85,p)*5+sm(.85,1,p)*12+(1-sm(0,.1,p))*9;
+cam.position.set(Math.sin(p*7)*3+mx*4,cy+Math.sin(t*1.2)*.05-my*1.5,cz);cam.lookAt(cam.position.x*.3+mx*10,cy-1.5-my*4-sm(.85,1,p)*6,cz-30);
+dl.position.set(cam.position.x-40,28,cz-80+0);dl.target.position.set(cam.position.x,0,cz-30);sun.position.set(cam.position.x-100,70,cz-200);rim.position.set(cam.position.x+50,14,cz-70);rim.target.position.set(cam.position.x,2,cz-30);
+rm.opacity=Math.min(1,Math.max(0,p-.3)*1.3)*.5;const r=rg.attributes.position;for(let i=0;i<NR*2;i++){let y=r.getY(i)-1.1;if(y<0)y+=40;r.setY(i,y)}r.needsUpdate=true;rn.position.set(cam.position.x,cy-12,cz-10);
+R.render(sc,cam);requestAnimationFrame(f)}requestAnimationFrame(f);
+}catch(e){console.error(e)}}
+</script><script>
+const w={style:{}},g={style:{}},b=document.body,bar=document.getElementById('bar');
+const A=[11,27,58],B=[3,3,8];
+function s(){const m=document.documentElement.scrollHeight-innerHeight,p=Math.min(1,Math.max(0,scrollY/m));
+bar.style.width=p*100+'%';
+b.style.background='rgb('+A.map((a,i)=>Math.round(a+(B[i]-a)*p)).join(',')+')';
+g.style.opacity=Math.max(0,1-p*2.2);
+w.style.height=(p>.55?(p-.55)/.45*22:0)+'vh'}
+addEventListener('scroll',s,{passive:true});s();
+const o=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');o.unobserve(x.target)}}),{threshold:.12});
+document.querySelectorAll('.r').forEach(e=>o.observe(e));
+</script><script>
+(function(){
+const K=.75,hdr=document.querySelector('header'),main=document.querySelector('main'),end=document.querySelector('.end'),st=document.createElement('div'),sp=document.createElement('div'),beats=[];
+document.querySelectorAll('.r').forEach(e=>e.classList.remove('r'));
+st.id='stage';sp.id='sp';const sc2=document.createElement('div');sc2.id='scrim';document.body.append(sc2,st,sp);
+function split(el){const w=[];(function walk(n){[...n.childNodes].forEach(c=>{if(c.nodeType===3){const f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(t=>{if(!t)return;if(/^\s+$/.test(t))f.appendChild(document.createTextNode(t));else{const s=document.createElement('span');s.textContent=t;f.appendChild(s);w.push(s)}});c.replaceWith(f)}else if(c.nodeType===1)walk(c)})})(el);return w}
+hdr.classList.add('beat');st.appendChild(hdr);beats.push({el:hdr});
+main.querySelectorAll('section').forEach(sec=>{const h=sec.querySelector('h2');sec.querySelectorAll('p').forEach(p=>{const b=document.createElement('div'),c=document.createElement('div');b.className='beat';c.className='card';if(h)c.appendChild(h.cloneNode(true));c.appendChild(p);b.appendChild(c);st.appendChild(b);beats.push({el:b,w:split(p)})})});
+main.remove();end.classList.add('beat');st.appendChild(end);beats.push({el:end});
+const N=beats.length;let cur=0,tg=0;
+function rs(){sp.style.height=(((N-1)*K+1)*innerHeight)+'px';tg=scrollY/(innerHeight*K)}
+addEventListener('resize',rs);addEventListener('scroll',()=>{tg=scrollY/(innerHeight*K)},{passive:true});rs();
+const cl=(x,a,b)=>Math.min(b,Math.max(a,x));
+let lt=performance.now();function f(){const n0=performance.now(),dt=Math.min(.5,(n0-lt)/1000);lt=n0;cur+=(tg-cur)*(1-Math.exp(-dt*9));beats.forEach((o,i)=>{const d=cur-i,a=Math.abs(d),s=o.el.style;if(i==0)sc2.style.opacity=cl(1-(a-.2)/.28,0,1);if(a>.55){s.display='none';return}s.display='';s.opacity=cl(1-(a-.2)/.28,0,1);s.transform='translateY('+(-d*120)+'px) scale('+(1-a*.05)+')';if(o.w){const r=cl((d+.42)/.42,0,1),n=o.w.length;o.w.forEach((x,j)=>{x.style.opacity=cl((r*1.2-j/n)/.2,0,1)})}});requestAnimationFrame(f)}
+f();
+})();
+</script></body></html>
