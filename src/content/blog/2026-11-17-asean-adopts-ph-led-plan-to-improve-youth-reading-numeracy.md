@@ -8,6 +8,7 @@ authorImage: /Untitled design-9.png
 pubDatetime: 2026-11-17
 modDatetime: 2026-11-17
 title: ASEAN adopts PH-led plan to improve youth reading, numeracy
+ogImage: /aseanch-1.png
 featured: false
 draft: false
 locale: english
