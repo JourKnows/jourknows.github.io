@@ -9,15 +9,13 @@ modDatetime: 2026-11-24
 title: Ressa warns youth on AI overreliance amid ASEAN digital push
 ogImage: /jlch.png
 featured: true
-draft: true
+draft: false
 tags:
   - news
 description: Rappler CEO and Nobel Peace Prize laureate Maria Ressa warned
   Sunday that overreliance on generative artificial intelligence (AI) leads to
   "cognitive surrender" among students, limiting their critical thinking.
 ---
-
-
 ![](/jlch-1.png)
 
 Rappler CEO and Nobel Peace Prize laureate Maria Ressa warned Sunday that overreliance on generative artificial intelligence (AI) leads to "cognitive surrender" among students, limiting their critical thinking.
