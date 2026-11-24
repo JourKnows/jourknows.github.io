@@ -6,6 +6,7 @@ authorImage: /Untitled design-8.jpg
 pubDatetime: 2026-11-24
 modDatetime: 2026-11-24
 title: Trump dismisses West Philippine Sea worries, seals new defense funds
+ogImage: /trumoppp-1.png
 featured: true
 draft: false
 locale: en
