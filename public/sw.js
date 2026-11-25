@@ -8,7 +8,7 @@
  *
  * Bump VERSION when this file's behaviour changes so old caches are cleared.
  */
-const VERSION = "jk-v1";
+const VERSION = "jk-v2";
 const SHELL = VERSION + "-shell";
 const PAGES = VERSION + "-pages";
 const ASSETS = VERSION + "-assets";
@@ -42,10 +42,17 @@ async function trim(name, max) {
 }
 
 async function put(name, max, req, res) {
-  if (!res || !res.ok || res.type !== "basic") return;
-  const cache = await caches.open(name);
-  await cache.put(req, res.clone());
-  trim(name, max);
+  try {
+    if (!res || !res.ok || res.type !== "basic") return;
+    // Clone first, synchronously: once the page starts reading `res`, cloning it throws
+    // "Response body is already used".
+    const copy = res.clone();
+    const cache = await caches.open(name);
+    await cache.put(req, copy);
+    await trim(name, max);
+  } catch (e) {
+    /* caching is best effort; never break the page because of it */
+  }
 }
 
 function networkFirstPage(req) {
@@ -107,6 +114,7 @@ self.addEventListener("fetch", event => {
   if (url.origin !== self.location.origin) return; // fonts, Firebase, analytics: browser handles them
   if (url.pathname.indexOf("/community/") === 0) return; // live chat: never cached here
   if (url.pathname === "/sw.js") return;
+  if (url.pathname.indexOf("/__/") === 0) return; // Firebase sign-in helper pages
 
   if (req.mode === "navigate") {
     event.respondWith(networkFirstPage(req));

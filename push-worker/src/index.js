@@ -45,15 +45,46 @@ async function accessToken(env) {
   return cached.token;
 }
 
+const JWK_URL = "https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com";
+let jwks = { at: 0, keys: [] };
+const fromB64u = s => {
+  s = s.replace(/-/g, "+").replace(/_/g, "/");
+  while (s.length % 4) s += "=";
+  return Uint8Array.from(atob(s), c => c.charCodeAt(0));
+};
+
+/**
+ * Verifies the Firebase ID token here (RS256 signature, audience, issuer, expiry) instead of calling
+ * Google with the browser API key. That key is restricted to your websites, so a call from a worker
+ * (which has no website referrer) would be refused and every push would fail with "sign in required".
+ */
 async function verifyUser(req, env) {
   const m = /^Bearer (.+)$/.exec(req.headers.get("Authorization") || "");
   if (!m) return null;
-  const r = await fetch("https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=" + env.FIREBASE_API_KEY, {
-    method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ idToken: m[1] }),
-  });
-  if (!r.ok) return null;
-  const u = ((await r.json()).users || [])[0];
-  return u && u.emailVerified ? { uid: u.localId } : null;
+  try {
+    const parts = m[1].split(".");
+    if (parts.length !== 3) return null;
+    const dec = s => JSON.parse(new TextDecoder().decode(fromB64u(s)));
+    const head = dec(parts[0]), claims = dec(parts[1]);
+    if (head.alg !== "RS256" || !head.kid) return null;
+    const now = Math.floor(Date.now() / 1000);
+    if (!jwks.keys.some(k => k.kid === head.kid) || now - jwks.at > 3600) {
+      const r = await fetch(JWK_URL);
+      if (!r.ok) return null;
+      jwks = { at: now, keys: (await r.json()).keys || [] };
+    }
+    const jwk = jwks.keys.find(k => k.kid === head.kid);
+    if (!jwk) return null;
+    const key = await crypto.subtle.importKey("jwk", jwk, { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" }, false, ["verify"]);
+    const ok = await crypto.subtle.verify("RSASSA-PKCS1-v1_5", key, fromB64u(parts[2]), enc.encode(parts[0] + "." + parts[1]));
+    if (!ok) return null;
+    if (claims.aud !== env.PROJECT_ID || claims.iss !== "https://securetoken.google.com/" + env.PROJECT_ID) return null;
+    if (!claims.sub || !(claims.exp > now) || !(claims.iat <= now + 60)) return null;
+    if (claims.email_verified !== true) return null;
+    return { uid: claims.sub };
+  } catch (e) {
+    return null;
+  }
 }
 
 function cors(req, env) {

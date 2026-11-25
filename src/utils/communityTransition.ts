@@ -42,7 +42,10 @@ export const DOT_CSS =
   "@keyframes jkDotFast{0%,60%,100%{transform:translateY(0) scale(1);opacity:.45}30%{transform:translateY(-5px) scale(1.2);opacity:1}}" +
   "@keyframes jkIcPop{from{opacity:0;transform:scale(.55)}to{opacity:1;transform:none}}" +
   ".jk-pop{animation:jkIcPop .5s cubic-bezier(.34,1.56,.64,1) .1s both}" +
-  "@media (prefers-reduced-motion:reduce){.jk-dot,.jk-pop{animation:none!important;opacity:1}}";
+  "@media (prefers-reduced-motion:reduce){.jk-dot,.jk-pop{animation:none!important;opacity:1}}" +
+  // The site has a global `svg { width/height: 1.5rem }` rule (base.css). Without this the icon on the
+  // cover renders at 24px instead of 76px, which looks like the icon shrinking mid-transition.
+  "[data-jk-cover] svg{width:100%!important;height:100%!important;max-width:none!important;display:block!important}";
 
 const COVER_CSS =
   "position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;pointer-events:auto;" +

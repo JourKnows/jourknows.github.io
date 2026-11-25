@@ -11,7 +11,7 @@
 self.JK_FIREBASE = {
   config: {
     apiKey: "AIzaSyAKyGY0CDo_kxJLOIz7k1HFtZqkTYKHtP4",
-    authDomain: "jourknowsph.com",
+    authDomain: "jourknows-community.firebaseapp.com",
     projectId: "jourknows-community",
     storageBucket: "jourknows-community.firebasestorage.app",
     messagingSenderId: "1027551161926",

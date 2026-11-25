@@ -4,7 +4,6 @@ compatibility_date = "2024-11-01"
 
 [vars]
 PROJECT_ID = "jourknows-community"
-FIREBASE_API_KEY = "AIzaSyAKyGY0CDo_kxJLOIz7k1HFtZqkTYKHtP4"        # same apiKey as in public/community/firebase-config.js
 ALLOWED_ORIGINS = "https://jourknowsph.com,https://jourknows.github.io"
 APP_URL = "https://jourknowsph.com/community/"
 
