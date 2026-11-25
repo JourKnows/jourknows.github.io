@@ -382,7 +382,7 @@ function bubble(m){if(m.sys)return '<div class="sysm">📋 '+esc(m.t)+'</div>';i
 return '<div class="m'+(mine?' me2':'')+'">'+(mine?'':'<div class="who" style="color:'+col(m.u)+'">'+esc(m.u)+(m.ed?SH:'')+'</div>')+'<div class="bub">'+(m.ref?quote(m.ref):fx(m.t))+'</div><div class="tm">'+fmt(m.ts)+'</div>'+acts(m)+'</div>'}
 function renderMsgs(keep){var el=$('msgs'),a=S.msgs[S.cur],st=el.scrollTop;el.innerHTML=a.length?'<div class="day">Today</div>'+a.map(bubble).join(''):'<div class="empty">No messages yet. Say hello 👋</div>';
 if(keep){el.style.scrollBehavior='auto';el.scrollTop=st;el.style.scrollBehavior='';Array.prototype.forEach.call(el.querySelectorAll('.m,.upd'),function(n){n.style.animation='none'})}else el.scrollTop=1e9}
-function open(id){S.cur=id;S.unread[id]=0;var c=CH.filter(function(x){return x.id===id})[0];
+function openRoom(id){S.cur=id;S.unread[id]=0;var c=CH.filter(function(x){return x.id===id})[0];
 $('hic').style.background=c.c+'33';$('hic').textContent=c.e;$('ht').textContent=c.n;$('cm').classList.toggle('tool',!!c.sp);if(c.sp){$('hs').innerHTML=c.d;S.lkm=false;S.lk=null;S.pick=null;$('app').classList.add('in');renderTool();renderList();return}
 $('hs').innerHTML='<span class="dot"></span>'+(FBON?'':(12+id.length*3)+' online · ')+c.d;
 var lock=id==='breaking'&&!S.ed;$('in').disabled=lock;$('send').disabled=lock;$('att').style.display=id==='breaking'&&S.ed?'block':'none';$('in').placeholder=lock?'Only editors can post updates':id==='breaking'?'Write a breaking update':'Message';if(id!=='breaking')clearImg();$('app').classList.add('in');renderMsgs();renderList()}
@@ -392,7 +392,7 @@ function send(){var t=$('in').value.trim();if(!t||!S.cur)return;var id=S.cur;if(
 var who=['Ate Mia','Kuya JM','Lia','Tin','Ben','Jai','Pia'],w=who[Math.floor(Math.random()*who.length)],r=REPLY[id],x=r[Math.floor(Math.random()*r.length)];
 setTimeout(function(){if(S.cur===id)$('typing').classList.add('on')},500);
 setTimeout(function(){$('typing').classList.remove('on');add(id,w,x)},1800+Math.random()*1200)}
-$('list').addEventListener('click',function(e){var r=e.target.closest('.row');if(r)open(r.dataset.id)});
+$('list').addEventListener('click',function(e){var r=e.target.closest('.row');if(r)openRoom(r.dataset.id)});
 $('q').addEventListener('input',renderList);
 $('back').onclick=function(){$('app').classList.remove('in');S.cur=null;renderList()};
 $('send').onclick=send;
@@ -410,7 +410,7 @@ function clearImg(){PIMG=null;$('pv').className='pv';$('pv').innerHTML='';$('fil
 $('att').onclick=function(){$('file').click()};
 $('file').onchange=function(){var f=this.files[0];if(!f)return;var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){var s=Math.min(1,1080/im.width),c=document.createElement('canvas');c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);c.getContext('2d').drawImage(im,0,0,c.width,c.height);PIMG=c.toDataURL('image/jpeg',.8);if(PIMG.length>800000)PIMG=c.toDataURL('image/jpeg',.5);$('pv').className='pv on';$('pv').innerHTML='<img src="'+PIMG+'" alt=""><button id="px" aria-label="Remove image">×</button>';$('px').onclick=clearImg};im.src=r.result};r.readAsDataURL(f)};
 $('edt').onclick=function(){EDOPEN=!EDOPEN;$('edbox').style.display=EDOPEN?'block':'none';$('nick').style.display=EDOPEN?'none':'block'};
-function join(){if(FBON)return fbRename();var n=$('nick').value.trim(),ed=false;if(EDOPEN){var f=$('fn').value.trim(),l=$('ln').value.trim();if(!f||!l)return;if($('cd').value!==CODE){$('er').style.display='block';return}n=f+' '+l;ed=true}if(!n)return;S.me=n;S.ed=ed;save();$('er').style.display='none';$('sheet').classList.add('off');renderMe();renderList();if(S.cur)open(S.cur)}
+function join(){if(FBON)return fbRename();var n=$('nick').value.trim(),ed=false;if(EDOPEN){var f=$('fn').value.trim(),l=$('ln').value.trim();if(!f||!l)return;if($('cd').value!==CODE){$('er').style.display='block';return}n=f+' '+l;ed=true}if(!n)return;S.me=n;S.ed=ed;save();$('er').style.display='none';$('sheet').classList.add('off');renderMe();renderList();if(S.cur)openRoom(S.cur)}
 $('join').onclick=join;
 function showLink(){var l=$('lk');if(!l){l=document.createElement('input');l.id='lk';l.readOnly=true;l.className='search';$('inv').insertAdjacentElement('afterend',l)}l.value=SITE;l.focus();l.select()}
 $('inv').onclick=function(){var b=$('inv'),t='Join the JourKnows community chat',fall=function(){copyAny(t+' '+SITE,function(ok){if(ok){b.textContent='Link copied ✓';setTimeout(function(){b.textContent='Invite friends 🔗'},1800)}else{showLink()}})};if(navigator.share){navigator.share({title:'JourKnows Community',text:t,url:SITE}).catch(function(e){if(!e||e.name!=='AbortError')fall()})}else{fall()}};
@@ -501,7 +501,7 @@ if(a==='chk')return;
 if(S.lkm&&ev&&a!=='evx'&&a!=='evv'){linkTap(ev.dataset.id);return}
 if(a==='np'){$('npt').value='';$('nps').classList.remove('off');$('npt').focus()}
 else if(a==='bk'&&s)mv(s,-1);else if(a==='fw'&&s)mv(s,1);
-else if(a==='evb'&&s){S.board=s.id;open('board')}
+else if(a==='evb'&&s){S.board=s.id;openRoom('board')}
 else if(a==='bn'){var o=addItem({k:'note',t:''}),n=document.querySelector('.ev[data-id="'+o.id+'"] .evb');if(n)n.focus()}
 else if(a==='bp')$('bfile').click();
 else if(a==='bl'){S.lkm=!S.lkm;S.lk=null;renderBoard()}
@@ -539,13 +539,13 @@ function perm(){return ('Notification' in window)?Notification.permission:'unsup
 function updBell(){var b=$('bell'),p=perm();b.textContent=p==='granted'?'🔔 Notifications on · send test':p==='denied'?'🔕 Notifications blocked':p==='unsupported'?(IOSWEB?'📲 Install app for notifications':'🔕 Not supported here'):'🔔 Enable notifications'}
 function permDone(){updBell();if(FBON)registerPushIfGranted()}
 function askNotif(){if(perm()!=='default'){updBell();return}try{var r=Notification.requestPermission(permDone);if(r&&r.then)r.then(permDone)}catch(e){}}
-function sysNotify(title,body,room){if(perm()!=='granted')return;try{var ic=document.querySelector('.logo img'),n=new Notification(title,{body:body,tag:'jk-everyone',renotify:true,icon:ic?ic.src:undefined});n.onclick=function(){try{window.focus()}catch(e){}if(room)open(room);n.close()}}catch(e){}}
+function sysNotify(title,body,room){if(perm()!=='granted')return;try{var ic=document.querySelector('.logo img'),n=new Notification(title,{body:body,tag:'jk-everyone',renotify:true,icon:ic?ic.src:undefined});n.onclick=function(){try{window.focus()}catch(e){}if(room)openRoom(room);n.close()}}catch(e){}}
 function banner(id,u,t,c){var b=$('nb');b.innerHTML='<b>📣 @everyone</b><small>'+esc(u)+' · '+esc(c.n)+'</small><span>'+esc(t)+'</span>';b.dataset.room=id;b.classList.add('on');clearTimeout(NBT);NBT=setTimeout(function(){b.classList.remove('on')},7000)}
 function mentionAlert(id,u,t){var c=CH.filter(function(x){return x.id===id})[0];if(!c)return;var own=u===S.me,here=S.cur===id&&!document.hidden,txt=t.replace(/\s+/g,' ').trim().slice(0,140);
 beep();try{if(navigator.vibrate)navigator.vibrate([200,100,200])}catch(e){}
 sysNotify(own?'📣 You mentioned @everyone':'📣 @everyone · '+c.n,own?c.n+' · '+txt:u+': '+txt,id);
 if(own)toast('📣 @everyone notified');else if(!here)banner(id,u,txt,c)}
-$('nb').onclick=function(){this.classList.remove('on');if(this.dataset.room)open(this.dataset.room)};
+$('nb').onclick=function(){this.classList.remove('on');if(this.dataset.room)openRoom(this.dataset.room)};
 $('bell').onclick=function(){var p=perm();if(p==='unsupported'){toast(IOSWEB?'On iPhone: tap Share, then Add to Home Screen, and open the app from your Home Screen to turn on notifications.':'Notifications are not supported in this browser');return}
 if(p==='denied'){toast('Notifications are blocked. Allow them in your browser site settings.');return}
 if(p==='granted'){sysNotify('📣 @everyone · test','Notifications are working on this device.',null);beep();toast('Test notification sent');return}askNotif()};
@@ -575,9 +575,9 @@ FB.uid=u.uid;FB.email=(u.email||'').toLowerCase();var F=FB.F,uref=F.doc(FB.db,'u
 F.getDoc(uref).then(function(snap){var name=snap.exists()?snap.data().name:'';
 if(!name){name=cleanName(u.displayName||FB.email.split('@')[0])||'Member';return F.setDoc(uref,{name:name,createdAt:F.serverTimestamp()}).then(function(){return name})}return name})
 .then(function(name){S.me=cleanName(name)||'Member';return F.getDoc(F.doc(FB.db,'editors',FB.email)).then(function(e){S.ed=e.exists()},function(){S.ed=false})})
-.then(function(){renderMe();$('sheet').classList.add('off');startListen();registerPushIfGranted();if(S.cur)open(S.cur);routeHash()})
+.then(function(){renderMe();$('sheet').classList.add('off');startListen();registerPushIfGranted();if(S.cur)openRoom(S.cur);routeHash()})
 .catch(function(err){console.error(err);setSheet('denied')})}
-function routeHash(){var h=(location.hash||'').slice(1);if(CH.some(function(c){return c.id===h&&!c.sp}))open(h)}
+function routeHash(){var h=(location.hash||'').slice(1);if(CH.some(function(c){return c.id===h&&!c.sp}))openRoom(h)}
 function stopListen(){UN.forEach(function(u){try{u()}catch(e){}});UN=[]}
 function startListen(){stopListen();var F=FB.F,db=FB.db,er=function(e){console.error(e)};
 CH.forEach(function(c){if(c.sp)return;var first=true;
@@ -641,11 +641,11 @@ function registerPushIfGranted(){if(!FBON||!FB||!FB.uid||PUSHREG||perm()!=='gran
 Promise.all([navigator.serviceWorker.register('firebase-messaging-sw.js',{scope:'./'}),import(FBU+'firebase-messaging.js')]).then(function(r){var M=r[1];
 return M.isSupported().then(function(ok){if(!ok)return;return M.getToken(M.getMessaging(FB.app),{vapidKey:JK.vapidKey,serviceWorkerRegistration:r[0]}).then(function(tok){
 if(!tok)return;return pushCall('/register',{token:tok})})})}).catch(function(e){PUSHREG=false;console.warn('Push registration failed',e)})}
-if(FBON&&'serviceWorker' in navigator)navigator.serviceWorker.addEventListener('message',function(e){var d=e.data||{};if(d.type==='open-room'&&CH.some(function(c){return c.id===d.room&&!c.sp}))open(d.room)});
+if(FBON&&'serviceWorker' in navigator)navigator.serviceWorker.addEventListener('message',function(e){var d=e.data||{};if(d.type==='open-room'&&CH.some(function(c){return c.id===d.room&&!c.sp}))openRoom(d.room)});
 
 load();renderMe();renderList();
 if(FBON)fbBoot();else if(S.me){$('sheet').classList.add('off')}
-if(window.matchMedia('(min-width:800px)').matches)open('breaking');
+if(window.matchMedia('(min-width:800px)').matches)openRoom('breaking');
 </script>
 </body>
 </html>
