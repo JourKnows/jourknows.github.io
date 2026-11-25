@@ -4,6 +4,7 @@ import {
   ARRIVE_SCRIPT,
   CHAT_ICON_SVG,
   COMMUNITY_HREF,
+  DOT_CSS,
   clearCovers,
   isPlainLeftClick,
   openCommunity,
@@ -54,6 +55,9 @@ const CSS = `
   .jkfab{ right:calc(24px + var(--jk-gx,0px)); bottom:calc(32px + var(--jk-gy,0px)); }
 }
 
+/* The three chat dots wave on their own (DOT_CSS); pressing or hovering the button makes them eager */
+.jkfab:active .jk-dot{ animation-duration:1.1s; animation-name:jkDotFast; }
+@media (hover:hover){ .jkfab:hover .jk-dot{ animation-duration:1.1s; animation-name:jkDotFast; } }
 .jkfab.is-pop{ animation:jkfabPop .7s cubic-bezier(.34,1.56,.64,1) both; }
 @keyframes jkfabPop{ 0%{ transform:translateX(80px) scale(.8); opacity:0 } 100%{ transform:none; opacity:1 } }
 
@@ -161,7 +165,7 @@ export default function CommunityFab() {
 
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: CSS }} />
+      <style dangerouslySetInnerHTML={{ __html: DOT_CSS + CSS }} />
       <a
         ref={ref}
         href={COMMUNITY_HREF}

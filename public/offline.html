@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#000E4B" />
+    <title>Offline · JourKnows PH</title>
+    <style>
+      html, body { height: 100%; margin: 0; }
+      body {
+        display: grid; place-items: center; text-align: center;
+        padding: env(safe-area-inset-top) 24px env(safe-area-inset-bottom);
+        background: radial-gradient(120% 90% at 50% 40%, #0a1f8a 0%, #000e4b 70%);
+        color: #fff; font-family: "Poppins", -apple-system, "SF Pro Text", system-ui, sans-serif;
+      }
+      main { max-width: 340px; }
+      img { width: 84px; height: 84px; border-radius: 20px; }
+      h1 { margin: 20px 0 8px; font-size: 22px; font-weight: 700; }
+      p { margin: 0 0 24px; font-size: 15px; line-height: 1.5; color: rgba(255, 255, 255, 0.75); }
+      button {
+        border: 0; border-radius: 999px; padding: 13px 28px; font: 700 14px/1 inherit; font-family: inherit;
+        background: #fff; color: #000e4b; cursor: pointer; -webkit-tap-highlight-color: transparent;
+      }
+      button:active { transform: scale(0.96); }
+    </style>
+  </head>
+  <body>
+    <main>
+      <img src="/icons/icon-192.png" alt="" />
+      <h1>You're offline</h1>
+      <p>JourKnows can't reach the internet right now. Stories you've already opened are still available.</p>
+      <button type="button" onclick="location.reload()">Try again</button>
+    </main>
+    <script>
+      addEventListener("online", function () { location.reload(); });
+    </script>
+  </body>
+</html>

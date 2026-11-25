@@ -41,9 +41,18 @@ const socialImageURL = new URL(
     <meta charset="UTF-8" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
+
+    <!-- Installable app (iOS: Share > Add to Home Screen) -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="JourKnows" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="format-detection" content="telephone=no" />
     <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
 
@@ -121,7 +130,39 @@ const socialImageURL = new URL(
     <ViewTransitions />
 
     <script is:inline src="/toggle-theme.js"></script>
+    <script is:inline>
+      // Offline support + installability. Registered once; the worker never touches /community/.
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("/sw.js", { scope: "/" }).catch(function () {});
+        });
+      }
+    </script>
     <meta name="zoomment" content="69de0ac732fb806868716f59" />
+
+    <style is:global>
+      /* App-like feel once the site is on the home screen; harmless in a normal browser tab */
+      html {
+        -webkit-tap-highlight-color: transparent;
+      }
+      /* viewport-fit=cover lets the page reach the screen edges, so keep content clear of the notch in landscape */
+      body {
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+      }
+      @media (display-mode: standalone) {
+        html {
+          overscroll-behavior-y: none;
+        }
+        body {
+          padding-bottom: env(safe-area-inset-bottom);
+        }
+        a,
+        img {
+          -webkit-touch-callout: none;
+        }
+      }
+    </style>
   </head>
   <body>
     <slot />

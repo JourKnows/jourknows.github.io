@@ -1,0 +1,26 @@
+{
+  "id": "/",
+  "name": "JourKnows PH",
+  "short_name": "JourKnows",
+  "description": "JourKnows PH: campus journalism, stories and the community chat. Journalism for All.",
+  "lang": "en-PH",
+  "start_url": "/?source=app",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000E4B",
+  "categories": ["news"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "Community chat",
+      "short_name": "Community",
+      "url": "/community/",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    }
+  ]
+}
