@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { makeDraggable } from "../utils/draggable";
 import {
   ARRIVE_SCRIPT,
   CHAT_ICON_SVG,
@@ -20,39 +21,37 @@ export function CommunityArriveGuard() {
 
 const CSS = `
 .jkfab{
-  position:fixed; right:0; bottom:calc(20px + env(safe-area-inset-bottom,0px)); z-index:150;
-  display:flex; flex-direction:column; align-items:center; gap:6px;
-  min-width:64px; max-width:84px; padding:11px 8px 10px;
-  border-radius:12px 0 0 12px;
-  background:#000E4B; border:1px solid rgba(255,255,255,.14); border-right:0;
-  box-shadow:-4px 6px 20px rgba(0,0,0,.35);
+  position:fixed; right:calc(16px + var(--jk-gx,0px)); bottom:calc(20px + env(safe-area-inset-bottom,0px) + var(--jk-gy,0px)); z-index:150;
+  display:flex; flex-direction:row; align-items:center;
+  height:48px; padding:0 18px 0 12px;
+  border-radius:999px;
+  background:#000E4B; border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 8px 24px rgba(0,0,0,.4);
   color:#fff; text-decoration:none; cursor:pointer;
-  -webkit-tap-highlight-color:transparent; touch-action:manipulation; user-select:none;
-  transform-origin:right center;
-  transition:transform .45s cubic-bezier(.16,1,.3,1), min-width .35s cubic-bezier(.16,1,.3,1), padding .35s cubic-bezier(.16,1,.3,1), background .25s ease, box-shadow .3s ease;
+  -webkit-tap-highlight-color:transparent; touch-action:none; user-select:none; -webkit-user-drag:none;
+  transition:transform .35s cubic-bezier(.16,1,.3,1), padding .3s ease, background .25s ease, box-shadow .3s ease;
 }
 .jkfab:active{ transform:scale(.96); }
-.jkfab:focus-visible{ outline:3px solid #fff; outline-offset:3px; }
-@media (hover:hover){ .jkfab:hover{ transform:translateX(-3px); background:#000; box-shadow:-6px 8px 24px rgba(0,0,0,.45); } }
+.jkfab:focus-visible{ outline:3px solid #fff; outline-offset:2px; }
+@media (hover:hover){ .jkfab:hover{ transform:translateY(-2px); background:#000; box-shadow:0 12px 28px rgba(0,0,0,.5); } }
 
-.jkfab-ic{ position:relative; width:32px; height:32px; flex:none; }
+.jkfab.is-drag{ transition:none; cursor:grabbing; transform:scale(1.04); box-shadow:0 16px 34px rgba(0,0,0,.55); }
+.jkfab-ic{ position:relative; width:28px; height:28px; flex:none; }
 .jkfab-ic > span{ display:block; width:100%; height:100%; }
 .jkfab-ic svg{ width:100%; height:100%; display:block; }
 .jkfab-lb{
-  display:block; text-align:center; font-weight:700; font-size:10px; line-height:1.15;
-  letter-spacing:.08em; text-transform:uppercase; color:#fff;
-  max-height:32px; overflow:hidden; opacity:1;
-  transition:max-height .3s ease, opacity .2s ease, margin .3s ease;
+  display:block; margin-left:10px; white-space:nowrap; overflow:hidden;
+  font-weight:700; font-size:12px; line-height:1; letter-spacing:.06em; text-transform:uppercase; color:#fff;
+  max-width:160px; opacity:1;
+  transition:max-width .3s ease, opacity .2s ease, margin .3s ease;
 }
 
-/* Collapsed while reading: icon only, so it never covers an article */
-.jkfab.is-min{ min-width:52px; padding:10px 8px; }
-.jkfab.is-min .jkfab-lb{ max-height:0; opacity:0; margin-top:-6px; }
+/* Collapsed while reading: icon-only circle, so it never covers an article */
+.jkfab.is-min{ padding:0 9px; }
+.jkfab.is-min .jkfab-lb{ max-width:0; opacity:0; margin-left:0; }
 
 @media (min-width:1024px){
-  .jkfab{ bottom:32px; min-width:80px; max-width:96px; padding:14px 12px 13px; gap:7px; }
-  .jkfab-ic{ width:36px; height:36px; }
-  .jkfab-lb{ font-size:11px; max-height:34px; }
+  .jkfab{ right:calc(24px + var(--jk-gx,0px)); bottom:calc(32px + var(--jk-gy,0px)); }
 }
 
 .jkfab.is-pop{ animation:jkfabPop .7s cubic-bezier(.34,1.56,.64,1) both; }
@@ -114,6 +113,9 @@ export default function CommunityFab() {
     };
   }, []);
 
+  // Drag the floating buttons anywhere on screen, together as a group; a plain tap still opens the chat.
+  useEffect(() => (ref.current ? makeDraggable(ref.current) : undefined), []);
+
   // Coming back from the chat: collapse the navy cover into this button, then pop the button.
   // Also clean up if the browser restores the page from its back-forward cache.
   useEffect(() => {
@@ -172,9 +174,7 @@ export default function CommunityFab() {
           <span dangerouslySetInnerHTML={{ __html: CHAT_ICON_SVG }} />
         </span>
         <span className="jkfab-lb">
-          Community
-          <br />
-          chat
+          Community chat
         </span>
       </a>
     </>

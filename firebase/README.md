@@ -36,7 +36,10 @@ firebase deploy --only firestore,functions
 ```
 
 ## 4. Publish the site
-Commit `public/community/`, `firebase/` and the nav change, then push. GitHub Actions deploys the site.
+Copy this package over the site repo, **delete `src/components/CommunityFab.astro`** (the old left-side pill, no longer used),
+then commit `public/community/`, `firebase/` and the `src/` changes and push. GitHub Actions deploys the site.
+The files under `src/` that changed or are new: `components/CommunityFab.tsx`, `components/SwipeLauncher.tsx`,
+`layouts/Layout.astro`, `styles/base.css` (new block at the end), `utils/communityTransition.ts`, `utils/draggable.ts`.
 
 ## 5. Protect the API key
 Google Cloud console > APIs & Services > Credentials > the browser key for your web app >
@@ -60,9 +63,15 @@ You can test the rules without touching real data: `firebase emulators:start --o
 - Reaction names are stored by display name, so someone could in theory add a reaction under another
   person's name. Only the ✓ Verified reaction is protected (editors only).
 - Possible next steps: rate limiting (App Check + Cloud Function), reporting and muting tools.
-- The site shows a floating **Community chat** button on every page (`src/components/CommunityFab.tsx`, rendered by
-  `AppNavbar`). It collapses to an icon while scrolling down. Tapping it, or the COMMUNITY nav link, plays an
-  expanding-circle transition into `/community/`; the house button in the chat plays it in reverse and returns to the
-  page the person came from. Both directions respect "reduce motion".
+- The site shows two floating navy/white pills on the right (nothing on the left): **Community chat**
+  (`src/components/CommunityFab.tsx`, rendered by `AppNavbar` on every page) and **Stories for you**
+  (`src/components/SwipeLauncher.tsx`, home page; its styles are the block at the end of `src/styles/base.css`).
+  Both collapse to an icon while scrolling down and bring the label back on scroll up or when idle.
+  They can be dragged anywhere **as one group** (`src/utils/draggable.ts`); the position is kept in the browser's
+  localStorage (`jk-fab-group`) and shared through the `--jk-gx` / `--jk-gy` CSS variables.
+- Tapping the Community chat pill, or the COMMUNITY nav link, plays an expanding-circle transition into `/community/`;
+  the house button in the chat plays it in reverse, collapsing into the pill wherever it was dragged, and returns to the
+  page the person came from. The cover icon in `public/community/index.html` uses the same white-on-navy artwork.
+  Both directions respect "reduce motion". Nothing here touches Firebase, so no redeploy of the rules or function is needed.
 - Members can delete their own messages and editors can delete any message (Delete button under each message, with a
   confirmation sheet). The `firestore.rules` delete rule already enforces this; nothing needs redeploying.

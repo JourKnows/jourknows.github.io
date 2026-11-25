@@ -1,0 +1,638 @@
+diff --git a/src/components/CommunityFab.astro b/src/components/CommunityFab.astro
+deleted file mode 100644
+index 2c31926..0000000
+--- a/src/components/CommunityFab.astro
++++ /dev/null
+@@ -1,97 +0,0 @@
+----
+-// Floating "Community" button. The chat is a standalone page in /public/community (not an Astro
+-// route), so the link opens with a full page load (data-astro-reload) and respects the site base path.
+-const BASE = (import.meta.env.BASE_URL || "/").replace(/\/$/, "");
+-const href = `${BASE}/community/`;
+----
+-
+-<div class="jk-comm" id="jk-comm" hidden>
+-  <a href={href} data-astro-reload class="jk-comm-link" aria-label="Open the JourKnows Community chat">
+-    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+-      <path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.5-4.6A8 8 0 1 1 21 12Z"></path>
+-    </svg>
+-    <span class="jk-comm-t">Community</span>
+-  </a>
+-  <button type="button" class="jk-comm-x" id="jk-comm-x" aria-label="Hide the Community button">×</button>
+-</div>
+-
+-<style>
+-  .jk-comm {
+-    position: fixed;
+-    left: max(16px, env(safe-area-inset-left));
+-    bottom: max(16px, env(safe-area-inset-bottom));
+-    z-index: 890;
+-    display: flex;
+-    align-items: center;
+-    background: #000e4b;
+-    color: #fff;
+-    border-radius: 999px;
+-    box-shadow: 0 8px 24px rgba(0, 14, 75, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+-    animation: jk-comm-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.6s both;
+-  }
+-  .jk-comm[hidden] { display: none; }
+-  .jk-comm-link {
+-    display: flex;
+-    align-items: center;
+-    gap: 8px;
+-    padding: 12px 6px 12px 16px;
+-    min-height: 44px;
+-    color: inherit;
+-    text-decoration: none;
+-    font: 700 13.5px/1 "Poppins", system-ui, sans-serif;
+-    letter-spacing: 0.2px;
+-  }
+-  .jk-comm-link::after {
+-    content: "";
+-    width: 8px;
+-    height: 8px;
+-    border-radius: 50%;
+-    background: #f5c84b;
+-    margin-left: 2px;
+-  }
+-  .jk-comm-x {
+-    border: 0;
+-    background: transparent;
+-    color: rgba(255, 255, 255, 0.65);
+-    font-size: 18px;
+-    line-height: 1;
+-    width: 34px;
+-    height: 44px;
+-    cursor: pointer;
+-    border-radius: 0 999px 999px 0;
+-  }
+-  .jk-comm-x:hover { color: #fff; }
+-  .jk-comm-link:focus-visible,
+-  .jk-comm-x:focus-visible { outline: 3px solid #f5c84b; outline-offset: 2px; }
+-  @keyframes jk-comm-in {
+-    from { opacity: 0; transform: translateY(14px); }
+-    to { opacity: 1; transform: none; }
+-  }
+-  @media (max-width: 480px) {
+-    /* keep it compact on phones: icon + short label, clear of the bottom-right prompt */
+-    .jk-comm-link { padding-left: 14px; }
+-  }
+-  @media (prefers-reduced-motion: reduce) { .jk-comm { animation: none; } }
+-  @media print { .jk-comm { display: none; } }
+-</style>
+-
+-<script>
+-  // Remember a dismissal for this browser tab only (wrapped: storage can be blocked).
+-  function initComm() {
+-    const el = document.getElementById("jk-comm");
+-    if (!el) return;
+-    let gone = false;
+-    try { gone = sessionStorage.getItem("jk-comm-x") === "1"; } catch (e) {}
+-    el.hidden = gone;
+-    const x = document.getElementById("jk-comm-x");
+-    if (x && !x.dataset.b) {
+-      x.dataset.b = "1";
+-      x.addEventListener("click", () => {
+-        el.hidden = true;
+-        try { sessionStorage.setItem("jk-comm-x", "1"); } catch (e) {}
+-      });
+-    }
+-  }
+-  initComm();
+-  document.addEventListener("astro:page-load", initComm);
+-</script>
+diff --git a/src/components/CommunityFab.tsx b/src/components/CommunityFab.tsx
+index 1170bad..e9254a1 100644
+--- a/src/components/CommunityFab.tsx
++++ b/src/components/CommunityFab.tsx
+@@ -1,4 +1,5 @@
+ import React, { useEffect, useRef, useState } from "react";
++import { makeDraggable } from "../utils/draggable";
+ import {
+   ARRIVE_SCRIPT,
+   CHAT_ICON_SVG,
+@@ -20,39 +21,37 @@ export function CommunityArriveGuard() {
+ 
+ const CSS = `
+ .jkfab{
+-  position:fixed; right:0; bottom:calc(20px + env(safe-area-inset-bottom,0px)); z-index:150;
+-  display:flex; flex-direction:column; align-items:center; gap:6px;
+-  min-width:64px; max-width:84px; padding:11px 8px 10px;
+-  border-radius:12px 0 0 12px;
+-  background:#000E4B; border:1px solid rgba(255,255,255,.14); border-right:0;
+-  box-shadow:-4px 6px 20px rgba(0,0,0,.35);
++  position:fixed; right:calc(16px + var(--jk-gx,0px)); bottom:calc(20px + env(safe-area-inset-bottom,0px) + var(--jk-gy,0px)); z-index:150;
++  display:flex; flex-direction:row; align-items:center;
++  height:48px; padding:0 18px 0 12px;
++  border-radius:999px;
++  background:#000E4B; border:1px solid rgba(255,255,255,.18);
++  box-shadow:0 8px 24px rgba(0,0,0,.4);
+   color:#fff; text-decoration:none; cursor:pointer;
+-  -webkit-tap-highlight-color:transparent; touch-action:manipulation; user-select:none;
+-  transform-origin:right center;
+-  transition:transform .45s cubic-bezier(.16,1,.3,1), min-width .35s cubic-bezier(.16,1,.3,1), padding .35s cubic-bezier(.16,1,.3,1), background .25s ease, box-shadow .3s ease;
++  -webkit-tap-highlight-color:transparent; touch-action:none; user-select:none; -webkit-user-drag:none;
++  transition:transform .35s cubic-bezier(.16,1,.3,1), padding .3s ease, background .25s ease, box-shadow .3s ease;
+ }
+ .jkfab:active{ transform:scale(.96); }
+-.jkfab:focus-visible{ outline:3px solid #fff; outline-offset:3px; }
+-@media (hover:hover){ .jkfab:hover{ transform:translateX(-3px); background:#000; box-shadow:-6px 8px 24px rgba(0,0,0,.45); } }
++.jkfab:focus-visible{ outline:3px solid #fff; outline-offset:2px; }
++@media (hover:hover){ .jkfab:hover{ transform:translateY(-2px); background:#000; box-shadow:0 12px 28px rgba(0,0,0,.5); } }
+ 
+-.jkfab-ic{ position:relative; width:32px; height:32px; flex:none; }
++.jkfab.is-drag{ transition:none; cursor:grabbing; transform:scale(1.04); box-shadow:0 16px 34px rgba(0,0,0,.55); }
++.jkfab-ic{ position:relative; width:28px; height:28px; flex:none; }
+ .jkfab-ic > span{ display:block; width:100%; height:100%; }
+ .jkfab-ic svg{ width:100%; height:100%; display:block; }
+ .jkfab-lb{
+-  display:block; text-align:center; font-weight:700; font-size:10px; line-height:1.15;
+-  letter-spacing:.08em; text-transform:uppercase; color:#fff;
+-  max-height:32px; overflow:hidden; opacity:1;
+-  transition:max-height .3s ease, opacity .2s ease, margin .3s ease;
++  display:block; margin-left:10px; white-space:nowrap; overflow:hidden;
++  font-weight:700; font-size:12px; line-height:1; letter-spacing:.06em; text-transform:uppercase; color:#fff;
++  max-width:160px; opacity:1;
++  transition:max-width .3s ease, opacity .2s ease, margin .3s ease;
+ }
+ 
+-/* Collapsed while reading: icon only, so it never covers an article */
+-.jkfab.is-min{ min-width:52px; padding:10px 8px; }
+-.jkfab.is-min .jkfab-lb{ max-height:0; opacity:0; margin-top:-6px; }
++/* Collapsed while reading: icon-only circle, so it never covers an article */
++.jkfab.is-min{ padding:0 9px; }
++.jkfab.is-min .jkfab-lb{ max-width:0; opacity:0; margin-left:0; }
+ 
+ @media (min-width:1024px){
+-  .jkfab{ bottom:32px; min-width:80px; max-width:96px; padding:14px 12px 13px; gap:7px; }
+-  .jkfab-ic{ width:36px; height:36px; }
+-  .jkfab-lb{ font-size:11px; max-height:34px; }
++  .jkfab{ right:calc(24px + var(--jk-gx,0px)); bottom:calc(32px + var(--jk-gy,0px)); }
+ }
+ 
+ .jkfab.is-pop{ animation:jkfabPop .7s cubic-bezier(.34,1.56,.64,1) both; }
+@@ -114,6 +113,9 @@ export default function CommunityFab() {
+     };
+   }, []);
+ 
++  // Drag the floating buttons anywhere on screen, together as a group; a plain tap still opens the chat.
++  useEffect(() => (ref.current ? makeDraggable(ref.current) : undefined), []);
++
+   // Coming back from the chat: collapse the navy cover into this button, then pop the button.
+   // Also clean up if the browser restores the page from its back-forward cache.
+   useEffect(() => {
+@@ -172,9 +174,7 @@ export default function CommunityFab() {
+           <span dangerouslySetInnerHTML={{ __html: CHAT_ICON_SVG }} />
+         </span>
+         <span className="jkfab-lb">
+-          Community
+-          <br />
+-          chat
++          Community chat
+         </span>
+       </a>
+     </>
+diff --git a/src/components/SwipeLauncher.tsx b/src/components/SwipeLauncher.tsx
+index 6580136..1d8f79d 100644
+--- a/src/components/SwipeLauncher.tsx
++++ b/src/components/SwipeLauncher.tsx
+@@ -1,5 +1,6 @@
+ import { useEffect, useRef, useState } from "react";
+ import StorySwipe from "./StorySwipe";
++import { makeDraggable } from "../utils/draggable";
+ import type { SwipePost } from "./StorySwipe";
+ 
+ const MIN_KEY = "jk_fab_min";
+@@ -9,8 +10,11 @@ export default function SwipeLauncher({ posts }: { posts: SwipePost[] }) {
+   const [open, setOpen] = useState(false);
+   const [mounted, setMounted] = useState(false); // keep deck mounted after first open so progress is kept
+   const [min, setMin] = useState(false);
++  const [scrollMin, setScrollMin] = useState(false); // collapses while scrolling, like the chat pill
++  const [pop, setPop] = useState(true); // slide-in on arrival
+   const btn = useRef<HTMLButtonElement>(null);
+   const panel = useRef<HTMLDivElement>(null);
++  const fab = useRef<HTMLDivElement>(null);
+ 
+   useEffect(() => {
+     try {
+@@ -20,6 +24,57 @@ export default function SwipeLauncher({ posts }: { posts: SwipePost[] }) {
+     }
+   }, []);
+ 
++  // Same behaviour as the community chat pill: collapse to the icon while scrolling down,
++  // bring the label back on scroll up or when idle.
++  useEffect(() => {
++    const t = window.setTimeout(() => setPop(false), 800);
++    let lastY = window.scrollY;
++    let dir = 0;
++    let acc = 0;
++    let ticking = false;
++    let idle: number | undefined;
++    const onScroll = () => {
++      if (ticking) return;
++      ticking = true;
++      requestAnimationFrame(() => {
++        const y = window.scrollY;
++        const d = y - lastY;
++        lastY = y;
++        if (d > 0) {
++          if (dir !== 1) {
++            dir = 1;
++            acc = 0;
++          }
++          acc += d;
++          if (acc > 24 && y > 120) setScrollMin(true);
++        } else if (d < 0) {
++          if (dir !== -1) {
++            dir = -1;
++            acc = 0;
++          }
++          acc -= d;
++          if (acc > 16) setScrollMin(false);
++        }
++        if (y <= 120) setScrollMin(false);
++        ticking = false;
++        window.clearTimeout(idle);
++        idle = window.setTimeout(() => setScrollMin(false), 1800);
++      });
++    };
++    window.addEventListener("scroll", onScroll, { passive: true });
++    return () => {
++      window.removeEventListener("scroll", onScroll);
++      window.clearTimeout(idle);
++      window.clearTimeout(t);
++    };
++  }, []);
++
++  // Drag the floating buttons anywhere on screen, together as a group; a plain tap still opens the deck.
++  useEffect(() => {
++    if (open || !fab.current) return;
++    return makeDraggable(fab.current, { ignore: ".jk-fab-x" });
++  }, [open, posts.length]);
++
+   useEffect(() => {
+     if (!open) return;
+     const prev = document.body.style.overflow;
+@@ -62,7 +117,7 @@ export default function SwipeLauncher({ posts }: { posts: SwipePost[] }) {
+   return (
+     <>
+       {!open && (
+-        <div className={`jk-fab${min ? " is-min" : ""}`}>
++        <div ref={fab} className={`jk-fab${min || scrollMin ? " is-min" : ""}${pop ? " is-pop" : ""}`}>
+           <button
+             ref={btn}
+             className="jk-fab-main"
+@@ -81,9 +136,7 @@ export default function SwipeLauncher({ posts }: { posts: SwipePost[] }) {
+               </svg>
+             </span>
+             <span className="jk-fab-text">
+-              Stories
+-              <br />
+-              for you
++              Stories for you
+             </span>
+           </button>
+           {!min && (
+diff --git a/src/styles/base.css b/src/styles/base.css
+index 4789232..a5d0da9 100644
+--- a/src/styles/base.css
++++ b/src/styles/base.css
+@@ -3246,102 +3246,114 @@ body, body * { font-family: var(--jk-font) !important; }
+   .jk-home-in > .jk-home-main { flex: 1 1 auto; width: 100%; min-width: 0; }
+ }
+ 
+-
+-/* ═══ Floating buttons: formal navy / white / black tab (matches the Community chat tab) ═══ */
++/* ═══ Floating "Stories for you" pill: muted navy-white with navy text; same motion as the Community chat pill ═══ */
+ .jk-fab, .jk-fab * { font-family: inherit !important; }
+ .jk-fab {
+   position: fixed;
+-  right: 0;
+-  bottom: calc(112px + env(safe-area-inset-bottom, 0px));
++  right: calc(16px + var(--jk-gx, 0px));
++  bottom: calc(78px + env(safe-area-inset-bottom, 0px) + var(--jk-gy, 0px));
+   z-index: 149;
+   display: flex;
+   align-items: center;
+-  justify-content: center;
+-  gap: 0;
+-  max-width: 84px;
++  height: 48px;
++  max-width: calc(100vw - 32px);
+   padding: 0;
+-  border-radius: 12px 0 0 12px;
+-  background: #000e4b;
+-  border: 1px solid rgba(255, 255, 255, 0.14);
+-  border-right: 0;
++  border-radius: 999px;
++  background: #e9ecf8;
++  border: 1px solid rgba(0, 14, 75, 0.16);
+   backdrop-filter: none;
+   -webkit-backdrop-filter: none;
+-  box-shadow: -4px 6px 20px rgba(0, 0, 0, 0.35);
+-  color: #fff;
++  box-shadow: 0 8px 24px rgba(0, 14, 75, 0.28), inset 0 1px 0 #fff;
++  color: #000e4b;
+   animation: none;
+-  transition: background 0.25s ease, box-shadow 0.3s ease;
++  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s ease, box-shadow 0.3s ease;
+ }
+-.jk-fab:hover { background: #000; box-shadow: -6px 8px 24px rgba(0, 0, 0, 0.45); }
++.jk-fab:hover { background: #dde2f5; transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0, 14, 75, 0.36), inset 0 1px 0 #fff; }
++.jk-fab { touch-action: none; user-select: none; -webkit-user-select: none; }
++.jk-fab.is-pop { animation: jkPillPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
++@keyframes jkPillPop { 0% { transform: translateX(80px) scale(0.8); opacity: 0; } 100% { transform: none; opacity: 1; } }
+ .jk-fab-main {
+-  position: relative;
++  position: static;
+   display: flex;
+-  flex-direction: column;
++  flex-direction: row;
+   align-items: center;
+-  gap: 6px;
+-  min-width: 64px;
+-  padding: 11px 8px 10px;
+-  color: #fff;
++  gap: 0;
++  height: 46px;
++  min-width: 0;
++  padding: 0 18px 0 12px;
++  color: #000e4b;
+   background: none;
+   border: 0;
+-  border-radius: 12px 0 0 12px;
+-  text-align: center;
++  border-radius: 999px;
++  text-align: left;
+   animation: none;
+   cursor: pointer;
++  transition: padding 0.3s ease;
+ }
+ .jk-fab-ic {
+   order: 0;
+-  width: 32px;
+-  height: 32px;
++  width: 28px;
++  height: 28px;
+   background: none;
+   border: 0;
+   border-radius: 0;
+   box-shadow: none;
+-  color: #fff;
++  color: #000e4b;
+   animation: none;
+ }
+ .jk-fab-ic svg.jk-fab-glyph { width: 100%; height: 100%; max-width: none; fill: none; stroke: currentColor; }
+ .jk-fab-text {
+   order: 1;
+-  margin: 0;
++  display: block;
++  margin: 0 0 0 10px;
+   padding: 0;
+   background: none;
+   border: 0;
+   border-radius: 0;
+   box-shadow: none;
+-  color: #fff;
+-  font-size: 10px;
++  color: #000e4b;
++  font-size: 12px;
+   font-weight: 700;
+-  line-height: 1.15;
+-  letter-spacing: 0.08em;
++  line-height: 1;
++  letter-spacing: 0.06em;
+   text-transform: uppercase;
++  white-space: nowrap;
++  overflow: hidden;
++  max-width: 160px;
++  opacity: 1;
++  transition: max-width 0.3s ease, opacity 0.2s ease, margin 0.3s ease;
+ }
++.jk-fab-text br { display: none; }
+ .jk-fab-x {
+   position: absolute;
+-  top: 3px;
+-  left: 3px;
++  top: -7px;
++  left: -7px;
+   right: auto;
+   z-index: 2;
+-  width: 18px;
+-  height: 18px;
++  width: 20px;
++  height: 20px;
+   margin: 0;
+-  background: rgba(255, 255, 255, 0.14);
++  background: #000e4b;
+   color: #fff;
+-  border: 0;
++  border: 1px solid #fff;
+   box-shadow: none;
+ }
+-.jk-fab-x:hover { background: rgba(255, 255, 255, 0.3); }
++.jk-fab-x:hover { background: #000; }
+ .jk-fab.is-min { padding: 0; }
+-.jk-fab.is-min .jk-fab-main { min-width: 52px; padding: 10px 8px; }
+-.jk-fab.is-min .jk-fab-text { display: none; }
++.jk-fab.is-min .jk-fab-main { padding: 0 9px; }
++.jk-fab.is-min .jk-fab-text { display: block; max-width: 0; opacity: 0; margin-left: 0; }
++.jk-fab.is-drag { transition: none; cursor: grabbing; transform: scale(1.04); box-shadow: 0 16px 34px rgba(0, 14, 75, 0.42), inset 0 1px 0 #fff; }
++.jk-fab.is-drag .jk-fab-main { cursor: grabbing; }
+ .jk-fab-main:focus-visible .jk-fab-ic,
+ .jk-fab-main:focus-visible .jk-fab-text { outline: none; }
+-.jk-fab-main:focus-visible { outline: 3px solid #fff; outline-offset: -3px; }
+-.jk-fab-main:active { transform: scale(0.97); }
++.jk-fab-main:focus-visible { outline: 3px solid #000e4b; outline-offset: 2px; }
++.jk-fab-main:active { transform: scale(0.96); }
+ @media (min-width: 1024px) {
+-  .jk-fab { bottom: 140px; max-width: 96px; }
+-  .jk-fab-main { min-width: 80px; padding: 14px 12px 13px; gap: 7px; }
+-  .jk-fab-ic { width: 36px; height: 36px; }
+-  .jk-fab-text { font-size: 11px; }
++  .jk-fab { right: calc(24px + var(--jk-gx, 0px)); bottom: calc(90px + var(--jk-gy, 0px)); }
++}
++@media (max-width: 640px) { .jk-fab { right: calc(16px + var(--jk-gx, 0px)); bottom: calc(78px + env(safe-area-inset-bottom, 0px) + var(--jk-gy, 0px)); } .jk-fab-text { font-size: 11.5px; } }
++@media (prefers-reduced-motion: reduce) {
++  .jk-fab, .jk-fab-text { transition: none; }
++  .jk-fab.is-pop { animation: none; }
+ }
+-@media (max-width: 640px) { .jk-fab { right: 0; bottom: calc(112px + env(safe-area-inset-bottom, 0px)); } .jk-fab-text { font-size: 10px; } }
+ @media print { .jk-fab { display: none; } }
+diff --git a/src/utils/draggable.ts b/src/utils/draggable.ts
+new file mode 100644
+index 0000000..34251df
+--- /dev/null
++++ b/src/utils/draggable.ts
+@@ -0,0 +1,171 @@
++/*
++ * Drag the floating buttons anywhere on screen, as ONE group.
++ *
++ * Every floating pill registers itself here. Dragging any of them moves all of them together,
++ * keeping their stacking. The shared offset lives in two CSS variables on <html>
++ * (--jk-gx / --jk-gy, in px, added to each pill's right / bottom), so pills that are mounted
++ * separately (the Community chat on every page, "Stories for you" on the home page) stay in sync,
++ * and the position is remembered in localStorage.
++ *
++ * A short press-and-move (more than a few pixels) drags; a plain tap or click still opens the pill.
++ * Returns a cleanup function.
++ */
++const KEY = "jk-fab-group";
++const THRESHOLD = 6; // px of movement before a press becomes a drag
++const EDGE = 4; // px kept between the group and the screen edge
++
++const group = new Set<HTMLElement>();
++let gx = 0; // how far the group has moved left of its default spot
++let gy = 0; // how far the group has moved up from its default spot
++let loaded = false;
++let swallowClick = false;
++
++const root = () => document.documentElement;
++const vw = () => root().clientWidth || window.innerWidth;
++const vh = () => window.innerHeight;
++
++function setOffset(x: number, y: number) {
++  gx = x;
++  gy = y;
++  root().style.setProperty("--jk-gx", x + "px");
++  root().style.setProperty("--jk-gy", y + "px");
++}
++
++function load() {
++  if (loaded) return;
++  loaded = true;
++  try {
++    const v = JSON.parse(localStorage.getItem(KEY) || "null");
++    if (v && typeof v.x === "number" && typeof v.y === "number") setOffset(v.x, v.y);
++  } catch {
++    /* ignore */
++  }
++}
++
++function save() {
++  try {
++    localStorage.setItem(KEY, JSON.stringify({ x: gx, y: gy }));
++  } catch {
++    /* storage can be blocked; the position just isn't remembered */
++  }
++}
++
++/** Bounding box of every pill currently on screen. */
++function union() {
++  let l = Infinity, t = Infinity, r = -Infinity, b = -Infinity;
++  group.forEach(el => {
++    if (!el.isConnected) return;
++    const q = el.getBoundingClientRect();
++    if (!q.width) return;
++    l = Math.min(l, q.left);
++    t = Math.min(t, q.top);
++    r = Math.max(r, q.right);
++    b = Math.max(b, q.bottom);
++  });
++  return isFinite(l) ? { l, t, r, b } : null;
++}
++
++/** Largest screen movement (dx, dy) that keeps the whole group on screen. */
++function clampMove(u: { l: number; t: number; r: number; b: number }, dx: number, dy: number) {
++  return {
++    dx: Math.min(Math.max(dx, EDGE - u.l), vw() - EDGE - u.r),
++    dy: Math.min(Math.max(dy, EDGE - u.t), vh() - EDGE - u.b),
++  };
++}
++
++function keepOnScreen() {
++  const u = union();
++  if (!u || (gx === 0 && gy === 0)) return;
++  const m = clampMove(u, 0, 0);
++  if (m.dx || m.dy) setOffset(gx - m.dx, gy - m.dy);
++}
++
++let resizeBound = false;
++
++export function makeDraggable(el: HTMLElement, opts: { ignore?: string } = {}): () => void {
++  load();
++  group.add(el);
++  el.style.touchAction = "none";
++  if (!resizeBound) {
++    resizeBound = true;
++    window.addEventListener("resize", keepOnScreen);
++  }
++  requestAnimationFrame(keepOnScreen);
++
++  let startX = 0;
++  let startY = 0;
++  let startGx = 0;
++  let startGy = 0;
++  let box: { l: number; t: number; r: number; b: number } | null = null;
++  let pid = -1;
++  let dragging = false;
++
++  const onMove = (e: PointerEvent) => {
++    if (e.pointerId !== pid || !box) return;
++    const dx = e.clientX - startX;
++    const dy = e.clientY - startY;
++    if (!dragging) {
++      if (Math.hypot(dx, dy) < THRESHOLD) return;
++      dragging = true;
++      group.forEach(n => n.classList.add("is-drag"));
++    }
++    e.preventDefault();
++    const m = clampMove(box, dx, dy);
++    setOffset(startGx - m.dx, startGy - m.dy);
++  };
++
++  const end = (e: PointerEvent) => {
++    if (e.pointerId !== pid) return;
++    window.removeEventListener("pointermove", onMove);
++    window.removeEventListener("pointerup", end);
++    window.removeEventListener("pointercancel", end);
++    pid = -1;
++    if (dragging) {
++      dragging = false;
++      group.forEach(n => n.classList.remove("is-drag"));
++      save();
++      swallowClick = true; // the click that follows a drag must not open the pill
++      window.setTimeout(() => (swallowClick = false), 60);
++    }
++  };
++
++  const onDown = (e: PointerEvent) => {
++    if (e.pointerType === "mouse" && e.button !== 0) return;
++    if (opts.ignore && (e.target as Element).closest(opts.ignore)) return;
++    box = union();
++    if (!box) return;
++    startX = e.clientX;
++    startY = e.clientY;
++    startGx = gx;
++    startGy = gy;
++    pid = e.pointerId;
++    dragging = false;
++    window.addEventListener("pointermove", onMove, { passive: false });
++    window.addEventListener("pointerup", end);
++    window.addEventListener("pointercancel", end);
++  };
++
++  const onClickCapture = (e: Event) => {
++    if (!swallowClick) return;
++    swallowClick = false;
++    e.preventDefault();
++    e.stopPropagation();
++  };
++
++  const noGhost = (e: Event) => e.preventDefault(); // stops the browser's link-drag ghost image
++
++  el.addEventListener("pointerdown", onDown);
++  el.addEventListener("click", onClickCapture, true);
++  el.addEventListener("dragstart", noGhost);
++
++  return () => {
++    window.removeEventListener("pointermove", onMove);
++    window.removeEventListener("pointerup", end);
++    window.removeEventListener("pointercancel", end);
++    el.removeEventListener("pointerdown", onDown);
++    el.removeEventListener("click", onClickCapture, true);
++    el.removeEventListener("dragstart", noGhost);
++    el.classList.remove("is-drag");
++    group.delete(el);
++  };
++}

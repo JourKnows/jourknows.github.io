@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import StorySwipe from "./StorySwipe";
+import { makeDraggable } from "../utils/draggable";
 import type { SwipePost } from "./StorySwipe";
 
 const MIN_KEY = "jk_fab_min";
@@ -9,8 +10,11 @@ export default function SwipeLauncher({ posts }: { posts: SwipePost[] }) {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false); // keep deck mounted after first open so progress is kept
   const [min, setMin] = useState(false);
+  const [scrollMin, setScrollMin] = useState(false); // collapses while scrolling, like the chat pill
+  const [pop, setPop] = useState(true); // slide-in on arrival
   const btn = useRef<HTMLButtonElement>(null);
   const panel = useRef<HTMLDivElement>(null);
+  const fab = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     try {
@@ -19,6 +23,57 @@ export default function SwipeLauncher({ posts }: { posts: SwipePost[] }) {
       /* ignore */
     }
   }, []);
+
+  // Same behaviour as the community chat pill: collapse to the icon while scrolling down,
+  // bring the label back on scroll up or when idle.
+  useEffect(() => {
+    const t = window.setTimeout(() => setPop(false), 800);
+    let lastY = window.scrollY;
+    let dir = 0;
+    let acc = 0;
+    let ticking = false;
+    let idle: number | undefined;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        const d = y - lastY;
+        lastY = y;
+        if (d > 0) {
+          if (dir !== 1) {
+            dir = 1;
+            acc = 0;
+          }
+          acc += d;
+          if (acc > 24 && y > 120) setScrollMin(true);
+        } else if (d < 0) {
+          if (dir !== -1) {
+            dir = -1;
+            acc = 0;
+          }
+          acc -= d;
+          if (acc > 16) setScrollMin(false);
+        }
+        if (y <= 120) setScrollMin(false);
+        ticking = false;
+        window.clearTimeout(idle);
+        idle = window.setTimeout(() => setScrollMin(false), 1800);
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.clearTimeout(idle);
+      window.clearTimeout(t);
+    };
+  }, []);
+
+  // Drag the floating buttons anywhere on screen, together as a group; a plain tap still opens the deck.
+  useEffect(() => {
+    if (open || !fab.current) return;
+    return makeDraggable(fab.current, { ignore: ".jk-fab-x" });
+  }, [open, posts.length]);
 
   useEffect(() => {
     if (!open) return;
@@ -62,7 +117,7 @@ export default function SwipeLauncher({ posts }: { posts: SwipePost[] }) {
   return (
     <>
       {!open && (
-        <div className={`jk-fab${min ? " is-min" : ""}`}>
+        <div ref={fab} className={`jk-fab${min || scrollMin ? " is-min" : ""}${pop ? " is-pop" : ""}`}>
           <button
             ref={btn}
             className="jk-fab-main"
@@ -81,9 +136,7 @@ export default function SwipeLauncher({ posts }: { posts: SwipePost[] }) {
               </svg>
             </span>
             <span className="jk-fab-text">
-              Stories
-              <br />
-              for you
+              Stories for you
             </span>
           </button>
           {!min && (
