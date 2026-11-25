@@ -633,7 +633,7 @@ FB.F.setDoc(FB.F.doc(FB.db,'users',FB.uid),{name:n},{merge:true}).then(function(
 $('gsign').onclick=function(){if(!FB)return;var er=$('gerr');er.style.display='none';var p=new FB.A.GoogleAuthProvider();
 FB.A.signInWithPopup(FB.auth,p).catch(function(e){var c=e&&e.code;
 if(c==='auth/popup-blocked'||c==='auth/operation-not-supported-in-this-environment')return FB.A.signInWithRedirect(FB.auth,p);
-if(c!=='auth/popup-closed-by-user'&&c!=='auth/cancelled-popup-request'){er.textContent='Sign-in failed. Please try again.';er.style.display='block'}})};
+if(c!=='auth/popup-closed-by-user'&&c!=='auth/cancelled-popup-request'){console.error('Sign-in error',c,e);er.textContent='Sign-in failed ('+String(c||'unknown').replace('auth/','')+'). Please try again.';er.style.display='block'}})};
 $('sout').onclick=function(){if(FB)FB.A.signOut(FB.auth)};
 $('scn').onclick=function(){$('sheet').classList.add('off')};
 /* ---- push notifications (works with push-worker/src/index.js) ---- */

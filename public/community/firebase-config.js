@@ -20,5 +20,5 @@ self.JK_FIREBASE = {
   vapidKey: "BOpM1cnkCd0t3O9WwlKjjjC3mU1T1hZMfwVFuudGnU74MBOkSvPygB4jF9b8zcyvgFfUv5qAnnVIZ_qP9oCAbvQ",
   appUrl: "https://jourknowsph.com/community/",
   // Address of the free push worker (see push-worker/), e.g. https://jourknows-push.YOURNAME.workers.dev
-  pushUrl: ""
+  pushUrl: "https://jourknows-push.jourknowsph.workers.dev"
 };
