@@ -1,0 +1,156 @@
+rules_version = '2';
+
+// JourKnows Community security rules.
+// Editors are the people who have a document in the `editors` collection whose ID is their
+// lowercase Google email. Only you can create those, from the Firebase console.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null && request.auth.token.email_verified == true;
+    }
+    function email() {
+      return request.auth.token.email.lower();
+    }
+    function isEditor() {
+      return signedIn() && exists(/databases/$(database)/documents/editors/$(email()));
+    }
+    function myName() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.name;
+    }
+    function okId(id) {
+      return id.matches('^[A-Za-z0-9_-]{1,64}$');
+    }
+    function changed() {
+      return request.resource.data.diff(resource.data).affectedKeys();
+    }
+    function okImg(d) {
+      return !('img' in d) ||
+        (d.img is string && d.img.size() < 900000 &&
+         d.img.matches('data:image/(jpeg|png|webp);base64,.*'));
+    }
+
+    // Editors list: a person can only check their own entry. Nobody can write from the app.
+    match /editors/{e} {
+      allow get: if signedIn() && email() == e.lower();
+      allow list, write: if false;
+    }
+
+    match /users/{uid} {
+      allow read: if signedIn() && request.auth.uid == uid;
+      allow create: if signedIn() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['name', 'createdAt'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() >= 1 && request.resource.data.name.size() <= 20
+        && request.resource.data.createdAt == request.time;
+      allow update: if signedIn() && request.auth.uid == uid
+        && changed().hasOnly(['name'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() >= 1 && request.resource.data.name.size() <= 20;
+
+      // Push notification tokens (one per device). Only the server reads them.
+      match /tokens/{t} {
+        allow read: if false;
+        allow create, update: if signedIn() && request.auth.uid == uid
+          && request.resource.data.keys().hasOnly(['uid', 'createdAt'])
+          && request.resource.data.uid == uid;
+        allow delete: if signedIn() && request.auth.uid == uid;
+      }
+    }
+
+    match /rooms/{room}/messages/{id} {
+      allow read: if signedIn();
+
+      allow create: if signedIn() && okId(id)
+        && room in ['breaking', 'lobby', 'news', 'sports', 'scitech', 'opinion', 'pitch', 'literacy', 'design', 'campus']
+        && request.resource.data.keys().hasOnly(['uid', 'u', 't', 'ts', 'ed', 'sys', 'img', 'ref', 'r'])
+        && request.resource.data.keys().hasAll(['uid', 'u', 't', 'ts', 'ed', 'r'])
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.ts == request.time
+        && request.resource.data.t is string && request.resource.data.t.size() <= 2000
+        && request.resource.data.r == {}
+        && okImg(request.resource.data)
+        && (!('ref' in request.resource.data) || request.resource.data.ref is map)
+        && (room != 'breaking' || isEditor())
+        && (request.resource.data.get('sys', false) == true
+            ? (request.resource.data.u == 'Pipeline' && request.resource.data.ed == false)
+            : (request.resource.data.u == myName() && request.resource.data.ed == isEditor()));
+
+      // Reactions only. Anyone can react, but only editors can add or remove "verified".
+      allow update: if signedIn()
+        && changed().hasOnly(['r'])
+        && request.resource.data.r.keys().hasOnly(['source', 'verified', 'photo', 'lead', 'check'])
+        && (request.resource.data.r.get('verified', []) == resource.data.r.get('verified', []) || isEditor());
+
+      allow delete: if signedIn() && (isEditor() || resource.data.uid == request.auth.uid);
+    }
+
+    match /stories/{id} {
+      allow read: if signedIn();
+
+      allow create: if signedIn() && okId(id)
+        && request.resource.data.keys().hasOnly(['t', 'd', 'o', 'st', 'c', 'by', 'uid', 'createdAt', 'src'])
+        && request.resource.data.keys().hasAll(['t', 'd', 'st', 'c', 'uid', 'createdAt'])
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.t is string
+        && request.resource.data.t.size() >= 1 && request.resource.data.t.size() <= 90
+        && request.resource.data.d in ['news', 'sports', 'scitech', 'opinion']
+        && request.resource.data.st == 'pitched'
+        && request.resource.data.c == {}
+        && request.resource.data.get('by', '') == myName()
+        && (!('src' in request.resource.data) || (request.resource.data.src is string && request.resource.data.src.size() <= 64));
+
+      // Stage and checklist changes. Mirrors the rules in the app: verified needs sources and a
+      // fact-check, published needs the full checklist, and only editors can fact-check or publish.
+      allow update: if signedIn()
+        && changed().hasOnly(['st', 'o', 'c'])
+        && request.resource.data.st in ['pitched', 'assigned', 'reported', 'verified', 'published']
+        && request.resource.data.o is string && request.resource.data.o.size() <= 40
+        && request.resource.data.c.keys().hasOnly(['src', 'quote', 'photo', 'fact'])
+        && (request.resource.data.st != 'published' || isEditor())
+        && (request.resource.data.c.get('fact', false) == resource.data.c.get('fact', false) || isEditor())
+        && (!(request.resource.data.st in ['verified', 'published'])
+            || (request.resource.data.c.get('src', false) == true && request.resource.data.c.get('fact', false) == true))
+        && (request.resource.data.st != 'published'
+            || (request.resource.data.c.get('quote', false) == true && request.resource.data.c.get('photo', false) == true));
+
+      allow delete: if isEditor();
+    }
+
+    match /boardItems/{id} {
+      allow read: if signedIn();
+
+      allow create: if signedIn() && okId(id)
+        && request.resource.data.keys().hasOnly(['board', 'k', 'u', 't', 'ed', 'v', 'x', 'y', 'r', 'uid', 'createdAt', 'img', 'src'])
+        && request.resource.data.keys().hasAll(['board', 'k', 'x', 'y', 'uid', 'createdAt'])
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.board is string && request.resource.data.board.size() <= 64
+        && request.resource.data.k in ['msg', 'note', 'photo']
+        && request.resource.data.get('t', '') is string && request.resource.data.get('t', '').size() <= 2000
+        && request.resource.data.get('v', '') is string && request.resource.data.get('v', '').size() <= 40
+        && request.resource.data.x is number && request.resource.data.y is number
+        && okImg(request.resource.data);
+
+      // Move, edit a note, or mark verified. A verifier name can only be your own or empty.
+      allow update: if signedIn()
+        && changed().hasOnly(['x', 'y', 't', 'v'])
+        && request.resource.data.x is number && request.resource.data.y is number
+        && request.resource.data.t is string && request.resource.data.t.size() <= 2000
+        && request.resource.data.v is string
+        && (request.resource.data.v == '' || request.resource.data.v == myName() || request.resource.data.v == resource.data.v);
+
+      allow delete: if signedIn();
+    }
+
+    match /boardLinks/{id} {
+      allow read: if signedIn();
+      allow create: if signedIn()
+        && id.matches('^[A-Za-z0-9_-]{1,64}~[A-Za-z0-9_-]{1,64}$')
+        && request.resource.data.keys().hasOnly(['board', 'a', 'b'])
+        && request.resource.data.board is string && request.resource.data.a is string && request.resource.data.b is string;
+      allow delete: if signedIn();
+    }
+  }
+}

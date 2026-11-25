@@ -1,0 +1,97 @@
+---
+// Floating "Community" button. The chat is a standalone page in /public/community (not an Astro
+// route), so the link opens with a full page load (data-astro-reload) and respects the site base path.
+const BASE = (import.meta.env.BASE_URL || "/").replace(/\/$/, "");
+const href = `${BASE}/community/`;
+---
+
+<div class="jk-comm" id="jk-comm" hidden>
+  <a href={href} data-astro-reload class="jk-comm-link" aria-label="Open the JourKnows Community chat">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.5-4.6A8 8 0 1 1 21 12Z"></path>
+    </svg>
+    <span class="jk-comm-t">Community</span>
+  </a>
+  <button type="button" class="jk-comm-x" id="jk-comm-x" aria-label="Hide the Community button">×</button>
+</div>
+
+<style>
+  .jk-comm {
+    position: fixed;
+    left: max(16px, env(safe-area-inset-left));
+    bottom: max(16px, env(safe-area-inset-bottom));
+    z-index: 890;
+    display: flex;
+    align-items: center;
+    background: #000e4b;
+    color: #fff;
+    border-radius: 999px;
+    box-shadow: 0 8px 24px rgba(0, 14, 75, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+    animation: jk-comm-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.6s both;
+  }
+  .jk-comm[hidden] { display: none; }
+  .jk-comm-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 6px 12px 16px;
+    min-height: 44px;
+    color: inherit;
+    text-decoration: none;
+    font: 700 13.5px/1 "Poppins", system-ui, sans-serif;
+    letter-spacing: 0.2px;
+  }
+  .jk-comm-link::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #f5c84b;
+    margin-left: 2px;
+  }
+  .jk-comm-x {
+    border: 0;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 18px;
+    line-height: 1;
+    width: 34px;
+    height: 44px;
+    cursor: pointer;
+    border-radius: 0 999px 999px 0;
+  }
+  .jk-comm-x:hover { color: #fff; }
+  .jk-comm-link:focus-visible,
+  .jk-comm-x:focus-visible { outline: 3px solid #f5c84b; outline-offset: 2px; }
+  @keyframes jk-comm-in {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
+  }
+  @media (max-width: 480px) {
+    /* keep it compact on phones: icon + short label, clear of the bottom-right prompt */
+    .jk-comm-link { padding-left: 14px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .jk-comm { animation: none; } }
+  @media print { .jk-comm { display: none; } }
+</style>
+
+<script>
+  // Remember a dismissal for this browser tab only (wrapped: storage can be blocked).
+  function initComm() {
+    const el = document.getElementById("jk-comm");
+    if (!el) return;
+    let gone = false;
+    try { gone = sessionStorage.getItem("jk-comm-x") === "1"; } catch (e) {}
+    el.hidden = gone;
+    const x = document.getElementById("jk-comm-x");
+    if (x && !x.dataset.b) {
+      x.dataset.b = "1";
+      x.addEventListener("click", () => {
+        el.hidden = true;
+        try { sessionStorage.setItem("jk-comm-x", "1"); } catch (e) {}
+      });
+    }
+  }
+  initComm();
+  document.addEventListener("astro:page-load", initComm);
+</script>

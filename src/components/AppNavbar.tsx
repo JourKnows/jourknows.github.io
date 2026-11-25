@@ -51,7 +51,10 @@ export default function AppNavbar({
     "CARTOONING",
   ];
 
-  const sortedNavLinks = [...navLinks].sort((a, b) => {
+  // Community is reached through the floating button (CommunityFab), not the navbar.
+  const allLinks = navLinks.filter(l => l.label.toUpperCase() !== "COMMUNITY");
+
+  const sortedNavLinks = [...allLinks].sort((a, b) => {
     const aIdx = NAVBAR_ORDER.indexOf(a.label.toUpperCase());
     const bIdx = NAVBAR_ORDER.indexOf(b.label.toUpperCase());
     if (aIdx !== -1 && bIdx !== -1) return aIdx - bIdx;
