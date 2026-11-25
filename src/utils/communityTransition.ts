@@ -16,12 +16,12 @@ const RETURN = "jk-return"; // the site page the person was on when they opened 
 const NAVY = "#000E4B";
 const EASE = "cubic-bezier(.7,0,.2,1)";
 
-/** Two overlapping chat bubbles (same artwork as the floating button). */
+/** Two overlapping chat bubbles in white on navy (same artwork as the floating button). */
 export const CHAT_ICON_SVG =
   '<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">' +
-  '<path fill="var(--jk-back,#6C6E8F)" d="M11 6h22a7 7 0 0 1 7 7v10H22a8 8 0 0 0-8 8v3l-6 6V13a7 7 0 0 1 3-7z"/>' +
-  '<path fill="#E8683B" d="M30 22h25a7 7 0 0 1 7 7v14a7 7 0 0 1-7 7h-5l-1 9-9-9H30a7 7 0 0 1-7-7V29a7 7 0 0 1 7-7z"/>' +
-  '<circle cx="34" cy="36" r="2.7" fill="#fff"/><circle cx="43" cy="36" r="2.7" fill="#fff"/><circle cx="52" cy="36" r="2.7" fill="#fff"/>' +
+  '<path fill="var(--jk-back,rgba(255,255,255,.5))" d="M11 6h22a7 7 0 0 1 7 7v10H22a8 8 0 0 0-8 8v3l-6 6V13a7 7 0 0 1 3-7z"/>' +
+  '<path fill="#fff" d="M30 22h25a7 7 0 0 1 7 7v14a7 7 0 0 1-7 7h-5l-1 9-9-9H30a7 7 0 0 1-7-7V29a7 7 0 0 1 7-7z"/>' +
+  '<circle cx="34" cy="36" r="2.7" fill="#000E4B"/><circle cx="43" cy="36" r="2.7" fill="#000E4B"/><circle cx="52" cy="36" r="2.7" fill="#000E4B"/>' +
   "</svg>";
 
 export function prefersReducedMotion(): boolean {
@@ -57,7 +57,7 @@ function buildCover(): HTMLDivElement {
   el.setAttribute("data-jk-cover", "");
   el.style.cssText =
     "position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;pointer-events:auto;" +
-    `background:radial-gradient(120% 90% at 50% 40%,#0a1f8a 0%,${NAVY} 70%);--jk-back:#B7B9DE;`;
+    `background:radial-gradient(120% 90% at 50% 40%,#0a1f8a 0%,${NAVY} 70%);--jk-back:rgba(255,255,255,.5);`;
   const icon = document.createElement("div");
   icon.style.cssText = "width:76px;height:76px";
   icon.innerHTML = CHAT_ICON_SVG;

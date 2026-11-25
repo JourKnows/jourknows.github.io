@@ -74,21 +74,16 @@ export default function SwipeLauncher({ posts }: { posts: SwipePost[] }) {
             aria-label="Want to know stories that interest you? Open the story swipe."
           >
             <span className="jk-fab-ic" aria-hidden="true">
-              <svg viewBox="0 0 64 64" width="52" height="52" className="jk-fab-mascot">
-                <path className="jk-mc-ant" d="M32 14 V10" />
-                <circle className="jk-mc-bulb" cx="32" cy="7" r="4" />
-                <rect className="jk-mc-body" x="9" y="14" width="46" height="42" rx="18" />
-                <ellipse className="jk-mc-eye" cx="23" cy="32" rx="6" ry="7" />
-                <ellipse className="jk-mc-eye" cx="41" cy="32" rx="6" ry="7" />
-                <circle className="jk-mc-pupil" cx="24.5" cy="33" r="2.6" />
-                <circle className="jk-mc-pupil" cx="42.5" cy="33" r="2.6" />
-                <circle className="jk-mc-cheek" cx="15" cy="42" r="3.6" />
-                <circle className="jk-mc-cheek" cx="49" cy="42" r="3.6" />
-                <path className="jk-mc-mouth" d="M25 44 Q32 52 39 44 Q32 46.5 25 44z" />
+              <svg viewBox="0 0 24 24" width="28" height="28" className="jk-fab-glyph" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M8 3h9a2 2 0 0 1 2 2v11" />
+                <rect x="4" y="6" width="12" height="15" rx="2" />
+                <path d="M7 11h6M7 14.5h6M7 18h3" />
               </svg>
             </span>
             <span className="jk-fab-text">
-              <b>Psst!</b> Stories that interest you?
+              Stories
+              <br />
+              for you
             </span>
           </button>
           {!min && (

@@ -1,0 +1,399 @@
+diff --git a/public/community/index.html b/public/community/index.html
+index 7662f00..558045e 100644
+--- a/public/community/index.html
++++ b/public/community/index.html
+@@ -234,7 +234,7 @@ html,body{background:#fff}
+ 
+ /* ---- site <-> chat transition ---- */
+ html.jk-enter{background:#000E4B}
+-.jkc{position:fixed;inset:0;z-index:2147483000;display:none;place-items:center;background:radial-gradient(120% 90% at 50% 40%,#0a1f8a 0%,#000E4B 70%);--jk-back:#B7B9DE;pointer-events:none}
++.jkc{position:fixed;inset:0;z-index:2147483000;display:none;place-items:center;background:radial-gradient(120% 90% at 50% 40%,#0a1f8a 0%,#000E4B 70%);--jk-back:rgba(255,255,255,.5);pointer-events:none}
+ html.jk-enter .jkc,.jkc.on{display:grid;pointer-events:auto}
+ .jkc-in{width:76px;height:76px}.jkc-in svg{width:100%;height:100%;display:block}
+ .app.jk-in .side,.app.jk-in .chat{animation:jkRise .6s cubic-bezier(.16,1,.3,1) both}
+@@ -261,7 +261,7 @@ html.jk-enter .jkc,.jkc.on{display:grid;pointer-events:auto}
+ </style>
+ </head>
+ <body>
+-<div class="jkc" id="jkc" aria-hidden="true"><div class="jkc-in"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path fill="var(--jk-back,#6C6E8F)" d="M11 6h22a7 7 0 0 1 7 7v10H22a8 8 0 0 0-8 8v3l-6 6V13a7 7 0 0 1 3-7z"/><path fill="#E8683B" d="M30 22h25a7 7 0 0 1 7 7v14a7 7 0 0 1-7 7h-5l-1 9-9-9H30a7 7 0 0 1-7-7V29a7 7 0 0 1 7-7z"/><circle cx="34" cy="36" r="2.7" fill="#fff"/><circle cx="43" cy="36" r="2.7" fill="#fff"/><circle cx="52" cy="36" r="2.7" fill="#fff"/></svg></div></div>
++<div class="jkc" id="jkc" aria-hidden="true"><div class="jkc-in"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path fill="var(--jk-back,rgba(255,255,255,.5))" d="M11 6h22a7 7 0 0 1 7 7v10H22a8 8 0 0 0-8 8v3l-6 6V13a7 7 0 0 1 3-7z"/><path fill="#fff" d="M30 22h25a7 7 0 0 1 7 7v14a7 7 0 0 1-7 7h-5l-1 9-9-9H30a7 7 0 0 1-7-7V29a7 7 0 0 1 7-7z"/><circle cx="34" cy="36" r="2.7" fill="#000E4B"/><circle cx="43" cy="36" r="2.7" fill="#000E4B"/><circle cx="52" cy="36" r="2.7" fill="#000E4B"/></svg></div></div>
+ <div class="bg"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
+ 
+ <div class="app" id="app">
+diff --git a/src/components/CommunityFab.astro b/src/components/CommunityFab.astro
+deleted file mode 100644
+index 2c31926..0000000
+--- a/src/components/CommunityFab.astro
++++ /dev/null
+@@ -1,97 +0,0 @@
+----
+-// Floating "Community" button. The chat is a standalone page in /public/community (not an Astro
+-// route), so the link opens with a full page load (data-astro-reload) and respects the site base path.
+-const BASE = (import.meta.env.BASE_URL || "/").replace(/\/$/, "");
+-const href = `${BASE}/community/`;
+----
+-
+-<div class="jk-comm" id="jk-comm" hidden>
+-  <a href={href} data-astro-reload class="jk-comm-link" aria-label="Open the JourKnows Community chat">
+-    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+-      <path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.5-4.6A8 8 0 1 1 21 12Z"></path>
+-    </svg>
+-    <span class="jk-comm-t">Community</span>
+-  </a>
+-  <button type="button" class="jk-comm-x" id="jk-comm-x" aria-label="Hide the Community button">×</button>
+-</div>
+-
+-<style>
+-  .jk-comm {
+-    position: fixed;
+-    left: max(16px, env(safe-area-inset-left));
+-    bottom: max(16px, env(safe-area-inset-bottom));
+-    z-index: 890;
+-    display: flex;
+-    align-items: center;
+-    background: #000e4b;
+-    color: #fff;
+-    border-radius: 999px;
+-    box-shadow: 0 8px 24px rgba(0, 14, 75, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+-    animation: jk-comm-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.6s both;
+-  }
+-  .jk-comm[hidden] { display: none; }
+-  .jk-comm-link {
+-    display: flex;
+-    align-items: center;
+-    gap: 8px;
+-    padding: 12px 6px 12px 16px;
+-    min-height: 44px;
+-    color: inherit;
+-    text-decoration: none;
+-    font: 700 13.5px/1 "Poppins", system-ui, sans-serif;
+-    letter-spacing: 0.2px;
+-  }
+-  .jk-comm-link::after {
+-    content: "";
+-    width: 8px;
+-    height: 8px;
+-    border-radius: 50%;
+-    background: #f5c84b;
+-    margin-left: 2px;
+-  }
+-  .jk-comm-x {
+-    border: 0;
+-    background: transparent;
+-    color: rgba(255, 255, 255, 0.65);
+-    font-size: 18px;
+-    line-height: 1;
+-    width: 34px;
+-    height: 44px;
+-    cursor: pointer;
+-    border-radius: 0 999px 999px 0;
+-  }
+-  .jk-comm-x:hover { color: #fff; }
+-  .jk-comm-link:focus-visible,
+-  .jk-comm-x:focus-visible { outline: 3px solid #f5c84b; outline-offset: 2px; }
+-  @keyframes jk-comm-in {
+-    from { opacity: 0; transform: translateY(14px); }
+-    to { opacity: 1; transform: none; }
+-  }
+-  @media (max-width: 480px) {
+-    /* keep it compact on phones: icon + short label, clear of the bottom-right prompt */
+-    .jk-comm-link { padding-left: 14px; }
+-  }
+-  @media (prefers-reduced-motion: reduce) { .jk-comm { animation: none; } }
+-  @media print { .jk-comm { display: none; } }
+-</style>
+-
+-<script>
+-  // Remember a dismissal for this browser tab only (wrapped: storage can be blocked).
+-  function initComm() {
+-    const el = document.getElementById("jk-comm");
+-    if (!el) return;
+-    let gone = false;
+-    try { gone = sessionStorage.getItem("jk-comm-x") === "1"; } catch (e) {}
+-    el.hidden = gone;
+-    const x = document.getElementById("jk-comm-x");
+-    if (x && !x.dataset.b) {
+-      x.dataset.b = "1";
+-      x.addEventListener("click", () => {
+-        el.hidden = true;
+-        try { sessionStorage.setItem("jk-comm-x", "1"); } catch (e) {}
+-      });
+-    }
+-  }
+-  initComm();
+-  document.addEventListener("astro:page-load", initComm);
+-</script>
+diff --git a/src/components/CommunityFab.tsx b/src/components/CommunityFab.tsx
+index 352e34f..1170bad 100644
+--- a/src/components/CommunityFab.tsx
++++ b/src/components/CommunityFab.tsx
+@@ -22,50 +22,44 @@ const CSS = `
+ .jkfab{
+   position:fixed; right:0; bottom:calc(20px + env(safe-area-inset-bottom,0px)); z-index:150;
+   display:flex; flex-direction:column; align-items:center; gap:6px;
+-  min-width:68px; max-width:84px; padding:11px 8px 10px;
+-  border-radius:24px 0 0 24px;
+-  background:#ECEEFB; border:1px solid rgba(27,32,56,.08); border-right:0;
+-  box-shadow:-6px 8px 26px rgba(27,32,56,.20), inset 0 1px 0 #fff;
+-  color:#2A2D4A; text-decoration:none; cursor:pointer;
++  min-width:64px; max-width:84px; padding:11px 8px 10px;
++  border-radius:12px 0 0 12px;
++  background:#000E4B; border:1px solid rgba(255,255,255,.14); border-right:0;
++  box-shadow:-4px 6px 20px rgba(0,0,0,.35);
++  color:#fff; text-decoration:none; cursor:pointer;
+   -webkit-tap-highlight-color:transparent; touch-action:manipulation; user-select:none;
+   transform-origin:right center;
+-  transition:transform .45s cubic-bezier(.16,1,.3,1), min-width .35s cubic-bezier(.16,1,.3,1), padding .35s cubic-bezier(.16,1,.3,1), box-shadow .3s ease;
++  transition:transform .45s cubic-bezier(.16,1,.3,1), min-width .35s cubic-bezier(.16,1,.3,1), padding .35s cubic-bezier(.16,1,.3,1), background .25s ease, box-shadow .3s ease;
+ }
+-.jkfab:active{ transform:scale(.95); }
+-.jkfab:focus-visible{ outline:3px solid #E8683B; outline-offset:3px; }
+-@media (hover:hover){ .jkfab:hover{ transform:translateX(-4px); box-shadow:-10px 10px 30px rgba(27,32,56,.26), inset 0 1px 0 #fff; } }
++.jkfab:active{ transform:scale(.96); }
++.jkfab:focus-visible{ outline:3px solid #fff; outline-offset:3px; }
++@media (hover:hover){ .jkfab:hover{ transform:translateX(-3px); background:#000; box-shadow:-6px 8px 24px rgba(0,0,0,.45); } }
+ 
+-.jkfab-ic{ position:relative; width:36px; height:36px; flex:none; }
+-.jkfab-ic > span:last-child{ display:block; width:100%; height:100%; }
++.jkfab-ic{ position:relative; width:32px; height:32px; flex:none; }
++.jkfab-ic > span{ display:block; width:100%; height:100%; }
+ .jkfab-ic svg{ width:100%; height:100%; display:block; }
+-.jkfab-ring{
+-  position:absolute; inset:-5px; border-radius:50%; border:2px solid #E8683B; opacity:0; pointer-events:none;
+-  animation:jkfabRing 3.6s ease-out 2.4s infinite;
+-}
+ .jkfab-lb{
+-  display:block; text-align:center; font-weight:800; font-size:11px; line-height:1.05;
+-  font-stretch:condensed; letter-spacing:.01em; text-transform:uppercase; color:#2A2D4A;
++  display:block; text-align:center; font-weight:700; font-size:10px; line-height:1.15;
++  letter-spacing:.08em; text-transform:uppercase; color:#fff;
+   max-height:32px; overflow:hidden; opacity:1;
+   transition:max-height .3s ease, opacity .2s ease, margin .3s ease;
+ }
+ 
+ /* Collapsed while reading: icon only, so it never covers an article */
+-.jkfab.is-min{ min-width:56px; padding:10px 8px; }
++.jkfab.is-min{ min-width:52px; padding:10px 8px; }
+ .jkfab.is-min .jkfab-lb{ max-height:0; opacity:0; margin-top:-6px; }
+ 
+ @media (min-width:1024px){
+-  .jkfab{ bottom:32px; min-width:84px; max-width:100px; padding:14px 12px 13px; gap:7px; }
+-  .jkfab-ic{ width:40px; height:40px; }
+-  .jkfab-lb{ font-size:12.5px; max-height:34px; }
++  .jkfab{ bottom:32px; min-width:80px; max-width:96px; padding:14px 12px 13px; gap:7px; }
++  .jkfab-ic{ width:36px; height:36px; }
++  .jkfab-lb{ font-size:11px; max-height:34px; }
+ }
+ 
+ .jkfab.is-pop{ animation:jkfabPop .7s cubic-bezier(.34,1.56,.64,1) both; }
+ @keyframes jkfabPop{ 0%{ transform:translateX(80px) scale(.8); opacity:0 } 100%{ transform:none; opacity:1 } }
+-@keyframes jkfabRing{ 0%{ transform:scale(.8); opacity:0 } 12%{ opacity:.9 } 60%,100%{ transform:scale(1.5); opacity:0 } }
+ 
+ @media (prefers-reduced-motion:reduce){
+   .jkfab,.jkfab-lb{ transition:none; }
+-  .jkfab-ring{ animation:none; }
+   .jkfab.is-pop{ animation:none; }
+ }
+ @media print{ .jkfab{ display:none } }
+@@ -172,10 +166,9 @@ export default function CommunityFab() {
+         data-astro-reload=""
+         onClick={onClick}
+         aria-label="Open the JourKnows community chat"
+-        className={`jkfab font-display${min ? " is-min" : ""}${pop ? " is-pop" : ""}`}
++        className={`jkfab${min ? " is-min" : ""}${pop ? " is-pop" : ""}`}
+       >
+         <span className="jkfab-ic">
+-          <span className="jkfab-ring" aria-hidden="true" />
+           <span dangerouslySetInnerHTML={{ __html: CHAT_ICON_SVG }} />
+         </span>
+         <span className="jkfab-lb">
+diff --git a/src/components/SwipeLauncher.tsx b/src/components/SwipeLauncher.tsx
+index b65917a..6580136 100644
+--- a/src/components/SwipeLauncher.tsx
++++ b/src/components/SwipeLauncher.tsx
+@@ -74,21 +74,16 @@ export default function SwipeLauncher({ posts }: { posts: SwipePost[] }) {
+             aria-label="Want to know stories that interest you? Open the story swipe."
+           >
+             <span className="jk-fab-ic" aria-hidden="true">
+-              <svg viewBox="0 0 64 64" width="52" height="52" className="jk-fab-mascot">
+-                <path className="jk-mc-ant" d="M32 14 V10" />
+-                <circle className="jk-mc-bulb" cx="32" cy="7" r="4" />
+-                <rect className="jk-mc-body" x="9" y="14" width="46" height="42" rx="18" />
+-                <ellipse className="jk-mc-eye" cx="23" cy="32" rx="6" ry="7" />
+-                <ellipse className="jk-mc-eye" cx="41" cy="32" rx="6" ry="7" />
+-                <circle className="jk-mc-pupil" cx="24.5" cy="33" r="2.6" />
+-                <circle className="jk-mc-pupil" cx="42.5" cy="33" r="2.6" />
+-                <circle className="jk-mc-cheek" cx="15" cy="42" r="3.6" />
+-                <circle className="jk-mc-cheek" cx="49" cy="42" r="3.6" />
+-                <path className="jk-mc-mouth" d="M25 44 Q32 52 39 44 Q32 46.5 25 44z" />
++              <svg viewBox="0 0 24 24" width="28" height="28" className="jk-fab-glyph" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
++                <path d="M8 3h9a2 2 0 0 1 2 2v11" />
++                <rect x="4" y="6" width="12" height="15" rx="2" />
++                <path d="M7 11h6M7 14.5h6M7 18h3" />
+               </svg>
+             </span>
+             <span className="jk-fab-text">
+-              <b>Psst!</b> Stories that interest you?
++              Stories
++              <br />
++              for you
+             </span>
+           </button>
+           {!min && (
+diff --git a/src/layouts/Layout.astro b/src/layouts/Layout.astro
+index 6e1c29d..ed494a4 100644
+--- a/src/layouts/Layout.astro
++++ b/src/layouts/Layout.astro
+@@ -2,7 +2,6 @@
+ import { LOCALE, SITE } from "@config";
+ import "@styles/base.css";
+ import { ViewTransitions } from "astro:transitions";
+-import CommunityFab from "@components/CommunityFab.astro";
+ 
+ const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
+ 
+@@ -126,6 +125,5 @@ const socialImageURL = new URL(
+   </head>
+   <body>
+     <slot />
+-    <CommunityFab />
+   </body>
+ </html>
+diff --git a/src/styles/base.css b/src/styles/base.css
+index 7c333ad..4789232 100644
+--- a/src/styles/base.css
++++ b/src/styles/base.css
+@@ -3245,3 +3245,103 @@ body, body * { font-family: var(--jk-font) !important; }
+ @media (max-width: 1000px) {
+   .jk-home-in > .jk-home-main { flex: 1 1 auto; width: 100%; min-width: 0; }
+ }
++
++
++/* ═══ Floating buttons: formal navy / white / black tab (matches the Community chat tab) ═══ */
++.jk-fab, .jk-fab * { font-family: inherit !important; }
++.jk-fab {
++  position: fixed;
++  right: 0;
++  bottom: calc(112px + env(safe-area-inset-bottom, 0px));
++  z-index: 149;
++  display: flex;
++  align-items: center;
++  justify-content: center;
++  gap: 0;
++  max-width: 84px;
++  padding: 0;
++  border-radius: 12px 0 0 12px;
++  background: #000e4b;
++  border: 1px solid rgba(255, 255, 255, 0.14);
++  border-right: 0;
++  backdrop-filter: none;
++  -webkit-backdrop-filter: none;
++  box-shadow: -4px 6px 20px rgba(0, 0, 0, 0.35);
++  color: #fff;
++  animation: none;
++  transition: background 0.25s ease, box-shadow 0.3s ease;
++}
++.jk-fab:hover { background: #000; box-shadow: -6px 8px 24px rgba(0, 0, 0, 0.45); }
++.jk-fab-main {
++  position: relative;
++  display: flex;
++  flex-direction: column;
++  align-items: center;
++  gap: 6px;
++  min-width: 64px;
++  padding: 11px 8px 10px;
++  color: #fff;
++  background: none;
++  border: 0;
++  border-radius: 12px 0 0 12px;
++  text-align: center;
++  animation: none;
++  cursor: pointer;
++}
++.jk-fab-ic {
++  order: 0;
++  width: 32px;
++  height: 32px;
++  background: none;
++  border: 0;
++  border-radius: 0;
++  box-shadow: none;
++  color: #fff;
++  animation: none;
++}
++.jk-fab-ic svg.jk-fab-glyph { width: 100%; height: 100%; max-width: none; fill: none; stroke: currentColor; }
++.jk-fab-text {
++  order: 1;
++  margin: 0;
++  padding: 0;
++  background: none;
++  border: 0;
++  border-radius: 0;
++  box-shadow: none;
++  color: #fff;
++  font-size: 10px;
++  font-weight: 700;
++  line-height: 1.15;
++  letter-spacing: 0.08em;
++  text-transform: uppercase;
++}
++.jk-fab-x {
++  position: absolute;
++  top: 3px;
++  left: 3px;
++  right: auto;
++  z-index: 2;
++  width: 18px;
++  height: 18px;
++  margin: 0;
++  background: rgba(255, 255, 255, 0.14);
++  color: #fff;
++  border: 0;
++  box-shadow: none;
++}
++.jk-fab-x:hover { background: rgba(255, 255, 255, 0.3); }
++.jk-fab.is-min { padding: 0; }
++.jk-fab.is-min .jk-fab-main { min-width: 52px; padding: 10px 8px; }
++.jk-fab.is-min .jk-fab-text { display: none; }
++.jk-fab-main:focus-visible .jk-fab-ic,
++.jk-fab-main:focus-visible .jk-fab-text { outline: none; }
++.jk-fab-main:focus-visible { outline: 3px solid #fff; outline-offset: -3px; }
++.jk-fab-main:active { transform: scale(0.97); }
++@media (min-width: 1024px) {
++  .jk-fab { bottom: 140px; max-width: 96px; }
++  .jk-fab-main { min-width: 80px; padding: 14px 12px 13px; gap: 7px; }
++  .jk-fab-ic { width: 36px; height: 36px; }
++  .jk-fab-text { font-size: 11px; }
++}
++@media (max-width: 640px) { .jk-fab { right: 0; bottom: calc(112px + env(safe-area-inset-bottom, 0px)); } .jk-fab-text { font-size: 10px; } }
++@media print { .jk-fab { display: none; } }
+diff --git a/src/utils/communityTransition.ts b/src/utils/communityTransition.ts
+index 71b832e..2f385da 100644
+--- a/src/utils/communityTransition.ts
++++ b/src/utils/communityTransition.ts
+@@ -16,12 +16,12 @@ const RETURN = "jk-return"; // the site page the person was on when they opened
+ const NAVY = "#000E4B";
+ const EASE = "cubic-bezier(.7,0,.2,1)";
+ 
+-/** Two overlapping chat bubbles (same artwork as the floating button). */
++/** Two overlapping chat bubbles in white on navy (same artwork as the floating button). */
+ export const CHAT_ICON_SVG =
+   '<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">' +
+-  '<path fill="var(--jk-back,#6C6E8F)" d="M11 6h22a7 7 0 0 1 7 7v10H22a8 8 0 0 0-8 8v3l-6 6V13a7 7 0 0 1 3-7z"/>' +
+-  '<path fill="#E8683B" d="M30 22h25a7 7 0 0 1 7 7v14a7 7 0 0 1-7 7h-5l-1 9-9-9H30a7 7 0 0 1-7-7V29a7 7 0 0 1 7-7z"/>' +
+-  '<circle cx="34" cy="36" r="2.7" fill="#fff"/><circle cx="43" cy="36" r="2.7" fill="#fff"/><circle cx="52" cy="36" r="2.7" fill="#fff"/>' +
++  '<path fill="var(--jk-back,rgba(255,255,255,.5))" d="M11 6h22a7 7 0 0 1 7 7v10H22a8 8 0 0 0-8 8v3l-6 6V13a7 7 0 0 1 3-7z"/>' +
++  '<path fill="#fff" d="M30 22h25a7 7 0 0 1 7 7v14a7 7 0 0 1-7 7h-5l-1 9-9-9H30a7 7 0 0 1-7-7V29a7 7 0 0 1 7-7z"/>' +
++  '<circle cx="34" cy="36" r="2.7" fill="#000E4B"/><circle cx="43" cy="36" r="2.7" fill="#000E4B"/><circle cx="52" cy="36" r="2.7" fill="#000E4B"/>' +
+   "</svg>";
+ 
+ export function prefersReducedMotion(): boolean {
+@@ -57,7 +57,7 @@ function buildCover(): HTMLDivElement {
+   el.setAttribute("data-jk-cover", "");
+   el.style.cssText =
+     "position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;pointer-events:auto;" +
+-    `background:radial-gradient(120% 90% at 50% 40%,#0a1f8a 0%,${NAVY} 70%);--jk-back:#B7B9DE;`;
++    `background:radial-gradient(120% 90% at 50% 40%,#0a1f8a 0%,${NAVY} 70%);--jk-back:rgba(255,255,255,.5);`;
+   const icon = document.createElement("div");
+   icon.style.cssText = "width:76px;height:76px";
+   icon.innerHTML = CHAT_ICON_SVG;

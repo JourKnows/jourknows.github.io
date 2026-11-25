@@ -234,7 +234,7 @@ html,body{background:#fff}
 
 /* ---- site <-> chat transition ---- */
 html.jk-enter{background:#000E4B}
-.jkc{position:fixed;inset:0;z-index:2147483000;display:none;place-items:center;background:radial-gradient(120% 90% at 50% 40%,#0a1f8a 0%,#000E4B 70%);--jk-back:#B7B9DE;pointer-events:none}
+.jkc{position:fixed;inset:0;z-index:2147483000;display:none;place-items:center;background:radial-gradient(120% 90% at 50% 40%,#0a1f8a 0%,#000E4B 70%);--jk-back:rgba(255,255,255,.5);pointer-events:none}
 html.jk-enter .jkc,.jkc.on{display:grid;pointer-events:auto}
 .jkc-in{width:76px;height:76px}.jkc-in svg{width:100%;height:100%;display:block}
 .app.jk-in .side,.app.jk-in .chat{animation:jkRise .6s cubic-bezier(.16,1,.3,1) both}
@@ -261,7 +261,7 @@ html.jk-enter .jkc,.jkc.on{display:grid;pointer-events:auto}
 </style>
 </head>
 <body>
-<div class="jkc" id="jkc" aria-hidden="true"><div class="jkc-in"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path fill="var(--jk-back,#6C6E8F)" d="M11 6h22a7 7 0 0 1 7 7v10H22a8 8 0 0 0-8 8v3l-6 6V13a7 7 0 0 1 3-7z"/><path fill="#E8683B" d="M30 22h25a7 7 0 0 1 7 7v14a7 7 0 0 1-7 7h-5l-1 9-9-9H30a7 7 0 0 1-7-7V29a7 7 0 0 1 7-7z"/><circle cx="34" cy="36" r="2.7" fill="#fff"/><circle cx="43" cy="36" r="2.7" fill="#fff"/><circle cx="52" cy="36" r="2.7" fill="#fff"/></svg></div></div>
+<div class="jkc" id="jkc" aria-hidden="true"><div class="jkc-in"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path fill="var(--jk-back,rgba(255,255,255,.5))" d="M11 6h22a7 7 0 0 1 7 7v10H22a8 8 0 0 0-8 8v3l-6 6V13a7 7 0 0 1 3-7z"/><path fill="#fff" d="M30 22h25a7 7 0 0 1 7 7v14a7 7 0 0 1-7 7h-5l-1 9-9-9H30a7 7 0 0 1-7-7V29a7 7 0 0 1 7-7z"/><circle cx="34" cy="36" r="2.7" fill="#000E4B"/><circle cx="43" cy="36" r="2.7" fill="#000E4B"/><circle cx="52" cy="36" r="2.7" fill="#000E4B"/></svg></div></div>
 <div class="bg"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
 
 <div class="app" id="app">

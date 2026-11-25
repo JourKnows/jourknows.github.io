@@ -22,50 +22,44 @@ const CSS = `
 .jkfab{
   position:fixed; right:0; bottom:calc(20px + env(safe-area-inset-bottom,0px)); z-index:150;
   display:flex; flex-direction:column; align-items:center; gap:6px;
-  min-width:68px; max-width:84px; padding:11px 8px 10px;
-  border-radius:24px 0 0 24px;
-  background:#ECEEFB; border:1px solid rgba(27,32,56,.08); border-right:0;
-  box-shadow:-6px 8px 26px rgba(27,32,56,.20), inset 0 1px 0 #fff;
-  color:#2A2D4A; text-decoration:none; cursor:pointer;
+  min-width:64px; max-width:84px; padding:11px 8px 10px;
+  border-radius:12px 0 0 12px;
+  background:#000E4B; border:1px solid rgba(255,255,255,.14); border-right:0;
+  box-shadow:-4px 6px 20px rgba(0,0,0,.35);
+  color:#fff; text-decoration:none; cursor:pointer;
   -webkit-tap-highlight-color:transparent; touch-action:manipulation; user-select:none;
   transform-origin:right center;
-  transition:transform .45s cubic-bezier(.16,1,.3,1), min-width .35s cubic-bezier(.16,1,.3,1), padding .35s cubic-bezier(.16,1,.3,1), box-shadow .3s ease;
+  transition:transform .45s cubic-bezier(.16,1,.3,1), min-width .35s cubic-bezier(.16,1,.3,1), padding .35s cubic-bezier(.16,1,.3,1), background .25s ease, box-shadow .3s ease;
 }
-.jkfab:active{ transform:scale(.95); }
-.jkfab:focus-visible{ outline:3px solid #E8683B; outline-offset:3px; }
-@media (hover:hover){ .jkfab:hover{ transform:translateX(-4px); box-shadow:-10px 10px 30px rgba(27,32,56,.26), inset 0 1px 0 #fff; } }
+.jkfab:active{ transform:scale(.96); }
+.jkfab:focus-visible{ outline:3px solid #fff; outline-offset:3px; }
+@media (hover:hover){ .jkfab:hover{ transform:translateX(-3px); background:#000; box-shadow:-6px 8px 24px rgba(0,0,0,.45); } }
 
-.jkfab-ic{ position:relative; width:36px; height:36px; flex:none; }
-.jkfab-ic > span:last-child{ display:block; width:100%; height:100%; }
+.jkfab-ic{ position:relative; width:32px; height:32px; flex:none; }
+.jkfab-ic > span{ display:block; width:100%; height:100%; }
 .jkfab-ic svg{ width:100%; height:100%; display:block; }
-.jkfab-ring{
-  position:absolute; inset:-5px; border-radius:50%; border:2px solid #E8683B; opacity:0; pointer-events:none;
-  animation:jkfabRing 3.6s ease-out 2.4s infinite;
-}
 .jkfab-lb{
-  display:block; text-align:center; font-weight:800; font-size:11px; line-height:1.05;
-  font-stretch:condensed; letter-spacing:.01em; text-transform:uppercase; color:#2A2D4A;
+  display:block; text-align:center; font-weight:700; font-size:10px; line-height:1.15;
+  letter-spacing:.08em; text-transform:uppercase; color:#fff;
   max-height:32px; overflow:hidden; opacity:1;
   transition:max-height .3s ease, opacity .2s ease, margin .3s ease;
 }
 
 /* Collapsed while reading: icon only, so it never covers an article */
-.jkfab.is-min{ min-width:56px; padding:10px 8px; }
+.jkfab.is-min{ min-width:52px; padding:10px 8px; }
 .jkfab.is-min .jkfab-lb{ max-height:0; opacity:0; margin-top:-6px; }
 
 @media (min-width:1024px){
-  .jkfab{ bottom:32px; min-width:84px; max-width:100px; padding:14px 12px 13px; gap:7px; }
-  .jkfab-ic{ width:40px; height:40px; }
-  .jkfab-lb{ font-size:12.5px; max-height:34px; }
+  .jkfab{ bottom:32px; min-width:80px; max-width:96px; padding:14px 12px 13px; gap:7px; }
+  .jkfab-ic{ width:36px; height:36px; }
+  .jkfab-lb{ font-size:11px; max-height:34px; }
 }
 
 .jkfab.is-pop{ animation:jkfabPop .7s cubic-bezier(.34,1.56,.64,1) both; }
 @keyframes jkfabPop{ 0%{ transform:translateX(80px) scale(.8); opacity:0 } 100%{ transform:none; opacity:1 } }
-@keyframes jkfabRing{ 0%{ transform:scale(.8); opacity:0 } 12%{ opacity:.9 } 60%,100%{ transform:scale(1.5); opacity:0 } }
 
 @media (prefers-reduced-motion:reduce){
   .jkfab,.jkfab-lb{ transition:none; }
-  .jkfab-ring{ animation:none; }
   .jkfab.is-pop{ animation:none; }
 }
 @media print{ .jkfab{ display:none } }
@@ -172,10 +166,9 @@ export default function CommunityFab() {
         data-astro-reload=""
         onClick={onClick}
         aria-label="Open the JourKnows community chat"
-        className={`jkfab font-display${min ? " is-min" : ""}${pop ? " is-pop" : ""}`}
+        className={`jkfab${min ? " is-min" : ""}${pop ? " is-pop" : ""}`}
       >
         <span className="jkfab-ic">
-          <span className="jkfab-ring" aria-hidden="true" />
           <span dangerouslySetInnerHTML={{ __html: CHAT_ICON_SVG }} />
         </span>
         <span className="jkfab-lb">
