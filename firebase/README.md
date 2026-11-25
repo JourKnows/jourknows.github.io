@@ -22,32 +22,18 @@ For each editor, add a document whose **Document ID is their Google email in low
 Editors can post in Breaking Updates, add the ✓ Verified reaction, tick 🛡 Fact-checked, publish stories,
 delete any message, and send `@everyone` push alerts. Remove the document to remove the editor.
 
-## 3. Deploy the rules (free Spark plan is enough)
+## 3. Deploy the rules and the push function
+The function needs the **Blaze (pay-as-you-go)** plan. A campus-sized community normally stays within
+the free monthly allowance.
+
 ```bash
 npm install -g firebase-tools
 cd firebase
 firebase login
 firebase use --add            # pick your project
-firebase deploy --only firestore
+(cd functions && npm install)
+firebase deploy --only firestore,functions
 ```
-
-## 3b. Deploy the free push worker (Cloudflare, no Blaze needed)
-Push alerts are sent by `push-worker/` instead of a Firebase Cloud Function. Firebase Cloud Messaging
-itself is free; only Cloud Functions need Blaze.
-1. Create a free account at https://dash.cloudflare.com (no card needed for Workers free).
-2. Firebase console > Project settings > **Service accounts > Generate new private key.** Save the JSON
-   as `push-worker/service-account.json`. Never commit it (add it to `.gitignore`).
-3. Edit `push-worker/wrangler.toml`: set `PROJECT_ID` and `FIREBASE_API_KEY` (the same `apiKey` as in `firebase-config.js`).
-4. Deploy:
-```bash
-cd push-worker
-npx wrangler login
-npx wrangler secret put SERVICE_ACCOUNT < service-account.json
-npx wrangler deploy
-```
-5. Copy the printed `https://jourknows-push.<you>.workers.dev` address into `pushUrl` in
-   `public/community/firebase-config.js`.
-6. Google Cloud console > APIs & Services > Library: make sure **Firebase Cloud Messaging API** is enabled.
 
 ## 4. Publish the site
 Commit `public/community/`, `firebase/` and the nav change, then push. GitHub Actions deploys the site.
@@ -68,11 +54,15 @@ Google Cloud console > APIs & Services > Credentials > the browser key for your 
 You can test the rules without touching real data: `firebase emulators:start --only firestore`.
 
 ## Good to know
-- `@everyone` only sends a push when an editor posts it (the worker checks this). Other members'
-  `@everyone` is still highlighted in the chat.
-- The editor's own phone also gets the alert, since pushes go to one shared topic.
-- Free limits: Cloudflare Workers 100,000 requests/day; Firestore 50,000 reads/day. Plenty for a campus community.
+- `@everyone` only sends a push when an editor posts it (`EDITORS_ONLY` in `functions/index.js`).
+  Other members' `@everyone` is still highlighted in the chat.
 - Photos are stored inside Firestore documents (kept under ~900 KB each), so no Storage setup is needed.
 - Reaction names are stored by display name, so someone could in theory add a reaction under another
   person's name. Only the ✓ Verified reaction is protected (editors only).
 - Possible next steps: rate limiting (App Check + Cloud Function), reporting and muting tools.
+- The site shows a floating **Community chat** button on every page (`src/components/CommunityFab.tsx`, rendered by
+  `AppNavbar`). It collapses to an icon while scrolling down. Tapping it, or the COMMUNITY nav link, plays an
+  expanding-circle transition into `/community/`; the house button in the chat plays it in reverse and returns to the
+  page the person came from. Both directions respect "reduce motion".
+- Members can delete their own messages and editors can delete any message (Delete button under each message, with a
+  confirmation sheet). The `firestore.rules` delete rule already enforces this; nothing needs redeploying.

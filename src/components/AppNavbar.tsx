@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import useBreakpoint from "../utils/useBreakpoint";
+import CommunityFab, { CommunityArriveGuard } from "./CommunityFab";
+import { COMMUNITY_HREF as COMMUNITY_PATH, isPlainLeftClick, openCommunity } from "../utils/communityTransition";
 
 export default function AppNavbar({
   activeHref,
@@ -49,10 +51,24 @@ export default function AppNavbar({
     "EXPLAINER",
     "LITERARY",
     "CARTOONING",
+    "COMMUNITY",
   ];
 
-  // Community is reached through the floating button (CommunityFab), not the navbar.
-  const allLinks = navLinks.filter(l => l.label.toUpperCase() !== "COMMUNITY");
+  // The community chat is a standalone page in /public/community, not an Astro route,
+  // so it is added here (every page gets it) and opened with a full page load.
+  const COMMUNITY_HREF = COMMUNITY_PATH;
+
+  // Opening the chat from a nav link plays the same expanding-circle transition as the floating button.
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href !== COMMUNITY_HREF || !isPlainLeftClick(e)) return;
+    e.preventDefault();
+    const r = e.currentTarget.getBoundingClientRect();
+    setMenuOpen(false);
+    openCommunity({ x: r.left + r.width / 2, y: r.top + r.height / 2 });
+  };
+  const allLinks = navLinks.some(l => l.href === COMMUNITY_HREF)
+    ? navLinks
+    : [...navLinks, { label: "COMMUNITY", href: COMMUNITY_HREF }];
 
   const sortedNavLinks = [...allLinks].sort((a, b) => {
     const aIdx = NAVBAR_ORDER.indexOf(a.label.toUpperCase());
@@ -65,6 +81,7 @@ export default function AppNavbar({
 
   return (
     <>
+      <CommunityArriveGuard />
       {/* Site Banner (MUST STAY INTACT AND UNMODIFIED ABOVE HEADER) */}
       <a
         href="/"
@@ -220,6 +237,8 @@ export default function AppNavbar({
                     <a
                       key={link.label}
                       href={link.href}
+                      data-astro-reload={link.href === COMMUNITY_HREF ? "" : undefined}
+                      onClick={e => handleNavClick(e, link.href)}
                       className={`relative font-display flex items-center justify-center h-full text-[12px] lg:text-[13px] tracking-[0.5px] uppercase no-underline whitespace-nowrap transition-all duration-300 px-2.5 lg:px-3 ${
                         active
                           ? "font-extrabold text-[#000060]"
@@ -331,6 +350,8 @@ export default function AppNavbar({
                 <a
                   key={link.label}
                   href={link.href}
+                  data-astro-reload={link.href === COMMUNITY_HREF ? "" : undefined}
+                  onClick={e => handleNavClick(e, link.href)}
                   className={`block w-full text-center border-none cursor-pointer font-display text-[16px] text-white py-4 px-6 tracking-[1px] outline-none no-underline transition-all duration-300 active:bg-white/20 active:scale-[0.98] ${
                     isActive(link.href)
                       ? "font-extrabold bg-white/20"
@@ -353,6 +374,9 @@ export default function AppNavbar({
           </nav>
         </div>
       )}
+
+      {/* Floating community chat button (every page, thumb-reachable on mobile) */}
+      <CommunityFab />
     </>
   );
 }

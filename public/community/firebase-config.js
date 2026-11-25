@@ -10,15 +10,13 @@
  */
 self.JK_FIREBASE = {
   config: {
-    apiKey: "AIzaSyAKyGY0CDo_kxJLOIz7k1HFtZqkTYKHtP4",
-    authDomain: "jourknows-community.firebaseapp.com",
-    projectId: "jourknows-community",
-    storageBucket: "jourknows-community.firebasestorage.app",
-    messagingSenderId: "1027551161926",
-    appId: "1:1027551161926:web:4c81d89d396802646ca447"
+    apiKey: "",
+    authDomain: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: ""
   },
-  vapidKey: "BOpM1cnkCd0t3O9WwlKjjjC3mU1T1hZMfwVFuudGnU74MBOkSvPygB4jF9b8zcyvgFfUv5qAnnVIZ_qP9oCAbvQ",
-  appUrl: "https://jourknowsph.com/community/",
-  // Address of the free push worker (see push-worker/), e.g. https://jourknows-push.YOURNAME.workers.dev
-  pushUrl: "https://jourknows-push.jourknowsph.workers.dev"
+  vapidKey: "",
+  appUrl: "https://jourknowsph.com/community/"
 };
